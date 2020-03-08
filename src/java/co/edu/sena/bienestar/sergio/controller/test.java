@@ -12,10 +12,12 @@ import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import co.edu.sena.bienestar.sergio.dto.ActividadesAprendiz;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
+import co.edu.sena.bienestar.sergio.util.readXls;
 import co.edu.sena.bienestar.sergio.util.returnString;
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ import javax.servlet.annotation.MultipartConfig;
 public class test extends HttpServlet {
 
    
-
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         
@@ -53,112 +55,8 @@ public class test extends HttpServlet {
         // obteniendo el archivo del formulario
         Part file = request.getPart("fileToUpload");
 
-        // convitiendo el archivo a fileInputStream
-        FileInputStream fi1 = new FileInputStream(new File(returnString.generateUrl(file.toString())));
-
-        // instancia de los objetos para poder leer archivos excel
-        HSSFWorkbook wb1 = new HSSFWorkbook(fi1);
-        HSSFSheet sheet1 = wb1.getSheetAt(0);
-        FormulaEvaluator formulaEvaluator = wb1.getCreationHelper().createFormulaEvaluator();
-        
-        //instancia de la lista para ser llenada de objetos aprendiz y actividades
-        ArrayList<Aprendiz> lista = new ArrayList<>();
-        Aprendiz aprendiz;
-        Actividades actividades;
-
-        // lectura el archivo xls
-        for (Row row : sheet1) {
-            aprendiz = new Aprendiz();
-            actividades = new Actividades();
-            if (row.getRowNum() != 2) {
-                for (Cell cell : row) {
-
-                    switch (formulaEvaluator.evaluateInCell(cell).getCellType()) {
-
-                        case Cell.CELL_TYPE_STRING:
-                            if (cell.getColumnIndex() == 0 || cell.getColumnIndex() == 1
-                                    || cell.getColumnIndex() == 2) {
-                            } else {
-
-                                switch (cell.getColumnIndex()) {
-                                    case 3:
-                                        // separando tipo de documento y documento
-                                        String[] documento = cell.getStringCellValue().split(" ");
-                                        aprendiz.setTipo_documento(documento[0]);
-                                        aprendiz.setDocumento_aprendiz(documento[1]);
-
-                                        break;
-                                    case 5:
-                                        aprendiz.setNombre_aprendiz(cell.getStringCellValue());
-                                        break;
-                                    case 6:
-                                        aprendiz.setEmail_aprendiz(cell.getStringCellValue());
-                                        break;
-                                    case 7:
-                                        aprendiz.setMunicipio(cell.getStringCellValue());
-                                        break;
-                                    case 8:
-                                        aprendiz.setGenero(cell.getStringCellValue());
-                                        break;
-                                    case 9:
-                                        // cambiando formato de fecha
-                                        String[] fecha = cell.getStringCellValue().split("/");
-                                        aprendiz.setFecha_nacimiento(fecha[2] + "-" + fecha[1] + "-" + fecha[0]);
-                                        break;
-                                    case 10:
-                                        aprendiz.setTipo_poblacion(cell.getStringCellValue());
-                                        break;
-                                    case 11:
-                                        aprendiz.setEps(cell.getStringCellValue());
-                                        break;
-                                    case 13:
-                                        String[] ficha = cell.getStringCellValue().split("-");
-                                        aprendiz.setFicha(ficha[0].toString().substring(0, ficha[0].length() - 1));
-                                        aprendiz.setNombrePrograma(ficha[1].replaceFirst(" ", ""));
-
-                                        aprendiz.setCoordinacion(returnString.getCoordinacion(aprendiz.getNombrePrograma()));
-
-                                        break;
-                                    case 14:
-                                        aprendiz.setNivelFormacion(cell.getStringCellValue());
-
-                                        break;
-                                    case 15:
-                                        actividades.setTipo_actividad(cell.getStringCellValue());
-                                        break;
-                                    case 16:
-                                        String nombre = cell.getStringCellValue();
-                                        actividades.setNombre_actividad(nombre);
-
-                                        actividades.setResponsable(returnString.getResponsable(nombre));
-
-                                        break;
-                                    case 17:
-                                        String[] fechaN = cell.getStringCellValue().split("/");
-                                        actividades.setFecha_inicio(fechaN[2] + "-" + fechaN[1] + "-" + fechaN[0]);
-                                        break;
-                                    case 18:
-                                        String[] fechaF = cell.getStringCellValue().split("/");
-                                        actividades.setFecha_fin(fechaF[2] + "-" + fechaF[1] + "-" + fechaF[0]);
-                                        break;
-                                }
-                            }
-                            break;
-                            // lectura de campos enteros
-                        case Cell.CELL_TYPE_NUMERIC:
-                        case 12:
-                            int estrato = (int) cell.getNumericCellValue();
-                            aprendiz.setEstrato(Integer.toString(estrato));
-                            break;
-                    }
-                }
-                // agregando objetos a la lista
-                aprendiz.setActividades(actividades);
-                lista.add(aprendiz);
-            }
-        }
-            // limpiando memoria en la lectura del archivo
-            formulaEvaluator.clearAllCachedResultValues();
+        // método para leer xls
+        ArrayList<Aprendiz> lista = readXls.readingXls(file);
        
             // instancia de conexion y los DAO para la inserción
             Conexion conexion = new Conexion();
@@ -166,7 +64,7 @@ public class test extends HttpServlet {
             AprendizDAO aprendizDAO = new AprendizDAO(conexion);
             AprendizActividadDAO aprendizActividadDAO = new AprendizActividadDAO(conexion);
             
-            // creación de variables para el restorno 
+            // creación de variables para el objeto actividadesAprendiz
             int idActividad = 0;
             String idAprendiz = "";
             
