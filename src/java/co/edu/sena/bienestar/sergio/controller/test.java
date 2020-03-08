@@ -147,6 +147,8 @@ public class test extends HttpServlet {
                 lista.add(aprendiz);
             }
         }
+        
+            formulaEvaluator.clearAllCachedResultValues();
         PrintWriter out = response.getWriter();
         try {
 
@@ -190,7 +192,6 @@ public class test extends HttpServlet {
             }
             out.print(lista.size() + " :D");
             conexion.disconnectDb();
-            formulaEvaluator.clearAllCachedResultValues();
         } catch (Exception e) {
             throw e;
         }
