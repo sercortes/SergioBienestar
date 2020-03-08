@@ -13,6 +13,7 @@ import co.edu.sena.bienestar.sergio.dto.Actividades;
 import co.edu.sena.bienestar.sergio.dto.ActividadesAprendiz;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import co.edu.sena.bienestar.sergio.util.returnString;
+import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -49,18 +50,23 @@ public class test extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
 
+        // obteniendo el archivo del formulario
         Part file = request.getPart("fileToUpload");
 
+        // convitiendo el archivo a fileInputStream
         FileInputStream fi1 = new FileInputStream(new File(returnString.generateUrl(file.toString())));
 
+        // instancia de los objetos para poder leer archivos excel
         HSSFWorkbook wb1 = new HSSFWorkbook(fi1);
         HSSFSheet sheet1 = wb1.getSheetAt(0);
         FormulaEvaluator formulaEvaluator = wb1.getCreationHelper().createFormulaEvaluator();
         
+        //instancia de la lista para ser llenada de objetos aprendiz y actividades
         ArrayList<Aprendiz> lista = new ArrayList<>();
         Aprendiz aprendiz;
         Actividades actividades;
 
+        // lectura el archivo xls
         for (Row row : sheet1) {
             aprendiz = new Aprendiz();
             actividades = new Actividades();
@@ -76,6 +82,7 @@ public class test extends HttpServlet {
 
                                 switch (cell.getColumnIndex()) {
                                     case 3:
+                                        // separando tipo de documento y documento
                                         String[] documento = cell.getStringCellValue().split(" ");
                                         aprendiz.setTipo_documento(documento[0]);
                                         aprendiz.setDocumento_aprendiz(documento[1]);
@@ -94,6 +101,7 @@ public class test extends HttpServlet {
                                         aprendiz.setGenero(cell.getStringCellValue());
                                         break;
                                     case 9:
+                                        // cambiando formato de fecha
                                         String[] fecha = cell.getStringCellValue().split("/");
                                         aprendiz.setFecha_nacimiento(fecha[2] + "-" + fecha[1] + "-" + fecha[0]);
                                         break;
@@ -136,6 +144,7 @@ public class test extends HttpServlet {
                                 }
                             }
                             break;
+                            // lectura de campos enteros
                         case Cell.CELL_TYPE_NUMERIC:
                         case 12:
                             int estrato = (int) cell.getNumericCellValue();
@@ -143,28 +152,32 @@ public class test extends HttpServlet {
                             break;
                     }
                 }
+                // agregando objetos a la lista
                 aprendiz.setActividades(actividades);
                 lista.add(aprendiz);
             }
         }
-        
+            // limpiando memoria en la lectura del archivo
             formulaEvaluator.clearAllCachedResultValues();
-        PrintWriter out = response.getWriter();
-        try {
-
+       
+            // instancia de conexion y los DAO para la inserción
             Conexion conexion = new Conexion();
             ActividadDAO actividadDAO = new ActividadDAO(conexion);
             AprendizDAO aprendizDAO = new AprendizDAO(conexion);
             AprendizActividadDAO aprendizActividadDAO = new AprendizActividadDAO(conexion);
-
+            
+            // creación de variables para el restorno 
             int idActividad = 0;
             String idAprendiz = "";
+            
+            // instancia de objeto de tabla intermedia
             ActividadesAprendiz actividadesAprendiz = new ActividadesAprendiz();
 
+            // lectura de la lista de objetos del archivo
             for (Aprendiz acti : lista) {
 
+                // comprobando que no existan objetos nulos
                 if (acti.getDocumento_aprendiz() == null) {
-                    out.print("0");
                     throw new Exception();
                 }
 
@@ -176,27 +189,28 @@ public class test extends HttpServlet {
                 
                 //comprobación del id actividad
                 if (activi.getIdRealActividad() == 0) {
-                    // si no existe se inserta la actividad
+                    // si no existe, se inserta la actividad
                     idActividad = actividadDAO.insertReturn(acti.getActividades());
                 }else{
-                    // si existe solo se trae el id pero no se agrega de nuevo
+                    // si existe, solo se trae el id pero no se agrega de nuevo
                     idActividad = activi.getIdRealActividad();
                 }
                
-                
+                // asignando el valor del idactividad y idaprendiz
                 actividadesAprendiz.setCodActividad(idActividad);
                 actividadesAprendiz.setCodAprendiz(idAprendiz);
-
+                
+                // insertando en la tabla intermedia
                 aprendizActividadDAO.insertReturn(actividadesAprendiz);
 
             }
-            out.print(lista.size() + " :D");
+            
+            // imprimiendo el tamaño de la lista insertada
+            new Gson().toJson(lista.size()+ " :D", response.getWriter());
+            // desconectando bd
             conexion.disconnectDb();
-        } catch (Exception e) {
-            throw e;
-        }
-
-    }
+            
+    } // cierre del método proccessRequest
 
  
     @Override
@@ -219,10 +233,7 @@ public class test extends HttpServlet {
         }
     }
 
-    public static boolean isNull(Object obj) {
-     return obj == null;
- }
-    
+  
     @Override
     public String getServletInfo() {
         return "Short description";
