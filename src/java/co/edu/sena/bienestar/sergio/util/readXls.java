@@ -87,10 +87,12 @@ public class readXls {
                                         aprendiz.setEps(cell.getStringCellValue());
                                         break;
                                     case 13:
+                                        // separando el campo programa de formación para obtener la ficha
                                         String[] ficha = cell.getStringCellValue().split("-");
                                         aprendiz.setFicha(ficha[0].toString().substring(0, ficha[0].length() - 1));
                                         aprendiz.setNombrePrograma(ficha[1].replaceFirst(" ", ""));
 
+                                        // asignando cordinación por el programa de formación
                                         aprendiz.setCoordinacion(returnString.getCoordinacion(aprendiz.getNombrePrograma()));
 
                                         break;
@@ -105,6 +107,7 @@ public class readXls {
                                         String nombre = cell.getStringCellValue();
                                         actividades.setNombre_actividad(nombre);
 
+                                        // asignando responsable deacuerdo al nombre de la actividad
                                         actividades.setResponsable(returnString.getResponsable(nombre));
 
                                         break;

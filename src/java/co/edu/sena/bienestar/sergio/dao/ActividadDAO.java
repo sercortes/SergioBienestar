@@ -149,10 +149,15 @@ public class ActividadDAO implements InterfaceCRUD{
                         "INNER JOIN Actividades_Aprendiz aa " +
                         "ON ac.Id_actividad=aa.Cod_actividad " +
                         "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "+
-                        "WHERE ac.Tipo_actividad = ?" +
+                        "WHERE ac.Tipo_actividad = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
+                        "AND ac.Fecha_fin BETWEEN ? AND ? " +
                         "group by(aa.Cod_actividad) ORDER BY count(aa.Cod_aprendiz) desc";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, acti.getTipo_actividad());
+            ps.setDate(2, acti.getFecha_inicio());
+            ps.setDate(3, acti.getFecha_fin());
+            ps.setDate(4, acti.getFecha_inicio());
+            ps.setDate(5, acti.getFecha_fin());
             ResultSet rs = ps.executeQuery();
             List<Actividades> list = new ArrayList<>();
             Actividades actividades;

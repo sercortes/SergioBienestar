@@ -13,6 +13,7 @@ function listar() {
         datatype: 'json'
     }).done(function (data) {
 
+let num = 0
 
      let select = document.getElementById('tabla');
         let str = `<table id="examples" class="table table-striped table-bordered">
@@ -44,7 +45,9 @@ function listar() {
                                                         </button>            
                                                 </td>
                                                 </tr> `
+        num +=parseInt(item.cantidad)
         }
+        console.log(num)
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">
