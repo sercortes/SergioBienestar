@@ -58,6 +58,22 @@ public class aprendiz extends HttpServlet {
 
                 break;
                 
+                case "/bienestar/ListAprendicesByFicha":
+                
+                
+                
+                getAprendicesByficha(request, response);
+               
+                
+                
+                break;
+                
+                case "/bienestar/ListAprendicesByCoor":
+                    
+                    getAprendicesByCoor(request, response);
+                    
+                    break;
+                
             case "/bienestar/getPrograms":
                 
                 
@@ -225,6 +241,38 @@ public class aprendiz extends HttpServlet {
 
                 response.setContentType("application/json");
                 new Gson().toJson(activid, response.getWriter());
+    }
+
+    private void getAprendicesByficha(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+
+                request.setCharacterEncoding("UTF-8");
+
+                String acti = request.getParameter("id");
+
+                Conexion conexion = new Conexion();
+                AprendizDAO actividadDAO = new AprendizDAO(conexion);
+
+                ArrayList<?> aprendices = actividadDAO.getByFicha(acti);
+
+                response.setContentType("application/json");
+                new Gson().toJson(aprendices, response.getWriter());
+
+    }
+
+    private void getAprendicesByCoor(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+
+                String acti = request.getParameter("id");
+
+                Conexion conexion = new Conexion();
+                AprendizDAO actividadDAO = new AprendizDAO(conexion);
+
+                ArrayList<?> aprendices = actividadDAO.getByProg(acti);
+
+                response.setContentType("application/json");
+                new Gson().toJson(aprendices, response.getWriter());
+
     }
 
    

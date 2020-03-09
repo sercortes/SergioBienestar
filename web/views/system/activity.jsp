@@ -99,3 +99,5 @@
   <script src="assets/js/project/coordinacion.js" charset="utf-8"></script>
   <script src="assets/js/project/listarPrograma.js" charset="utf-8"></script>
   <script src="assets/js/project/TypesActivitys.js" charset="utf-8"></script>
+  <script src="assets/js/project/fichas.js" charset="utf-8"></script>
+  <script src="assets/js/project/aprendicesCoor.js" charset="utf-8"></script>

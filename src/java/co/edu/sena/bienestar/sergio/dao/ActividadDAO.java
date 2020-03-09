@@ -142,6 +142,8 @@ public class ActividadDAO implements InterfaceCRUD{
 
     }
      
+     
+     
      public ArrayList<?> getActivitysByTypes(Actividades acti) {
         try {
             String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' " +

@@ -47,6 +47,8 @@
         <url-pattern>/getByCoor</url-pattern>
         <url-pattern>/getTypesActivitys</url-pattern>
         <url-pattern>/ListActivitysByType</url-pattern>
+        <url-pattern>/ListAprendicesByFicha</url-pattern>
+        <url-pattern>/ListAprendicesByCoor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

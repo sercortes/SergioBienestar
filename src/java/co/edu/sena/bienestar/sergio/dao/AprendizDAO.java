@@ -115,8 +115,71 @@ public class AprendizDAO implements InterfaceCRUD{
             return null;
         }
     }
-
       
+       public ArrayList<?> getByFicha(String ficha) {
+        try {
+            String sql = "SELECT ap.*, ac.Nombre_actividad, count(ap.Documento_aprendiz) participo " +
+                        "FROM Actividades ac  " +
+                        "INNER JOIN Actividades_Aprendiz aa  " +
+                        "ON ac.Id_actividad=aa.Cod_actividad " +
+                        "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz  " +
+                        "WHERE ap.ficha = ? "+
+                        "group by(ap.Documento_aprendiz) ORDER BY count(ap.Documento_aprendiz) DESC";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, ficha);
+            ResultSet rs = ps.executeQuery();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz aprendiz;
+            while (rs.next()) {
+                aprendiz = new Aprendiz();
+                aprendiz.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
+                aprendiz.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
+                aprendiz.setFicha(rs.getString("Ficha"));
+                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
+                aprendiz.setCoordinacion(rs.getString("Coordinacion"));
+                aprendiz.setActividades(new Actividades(rs.getString("Nombre_actividad")));
+                aprendiz.setParticipaciones(rs.getString("participo"));
+                list.add(aprendiz);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+        public ArrayList<?> getByProg(String ficha) {
+        try {
+            String sql = "SELECT ap.*, ac.Nombre_actividad, count(ap.Documento_aprendiz) participo " +
+                        "FROM Actividades ac  " +
+                        "INNER JOIN Actividades_Aprendiz aa  " +
+                        "ON ac.Id_actividad=aa.Cod_actividad " +
+                        "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz  " +
+                        "WHERE ap.NombrePrograma = ? "+
+                        "group by(ap.Documento_aprendiz) ORDER BY count(ap.Documento_aprendiz) DESC";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, ficha);
+            ResultSet rs = ps.executeQuery();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz aprendiz;
+            while (rs.next()) {
+                aprendiz = new Aprendiz();
+                aprendiz.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
+                aprendiz.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
+                aprendiz.setFicha(rs.getString("Ficha"));
+                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
+                aprendiz.setCoordinacion(rs.getString("Coordinacion"));
+                aprendiz.setActividades(new Actividades(rs.getString("Nombre_actividad")));
+                aprendiz.setParticipaciones(rs.getString("participo"));
+                list.add(aprendiz);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
      
            
     
@@ -211,6 +274,43 @@ public class AprendizDAO implements InterfaceCRUD{
                         "INNER JOIN Actividades ac ON AA.Cod_actividad=ac.Id_actividad " +
                         "WHERE A.NombrePrograma = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
                         "AND ac.Fecha_fin BETWEEN ? AND ? " +
+                        "group by(A.Ficha) ORDER BY count(*) DESC";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, actividades.getPrograma());
+            ps.setDate(2, actividades.getFecha_inicio());
+            ps.setDate(3, actividades.getFecha_fin());
+            ps.setDate(4, actividades.getFecha_inicio());
+            ps.setDate(5, actividades.getFecha_fin());
+            ResultSet rs = ps.executeQuery();
+            System.out.println(ps.toString());
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz aprendiz;
+            while (rs.next()) {
+                aprendiz = new Aprendiz();
+                aprendiz.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
+                aprendiz.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
+                aprendiz.setFicha(rs.getString("Ficha"));
+                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
+                aprendiz.setCoordinacion(rs.getString("Coordinacion"));
+                aprendiz.setParticipaciones(rs.getString("participo"));
+                list.add(aprendiz);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+         
+        public ArrayList<?> getForProgramaDateStudent(Actividades actividades) {
+        try {
+            String sql = "SELECT A.Documento_aprendiz, A.Nombres_aprendiz, A.Genero, A.Ficha, A.NombrePrograma, A.Coordinacion, " +
+                        "count(*) 'participo' FROM Aprendiz A " +
+                        "INNER JOIN Actividades_Aprendiz AA ON A.Documento_aprendiz=AA.Cod_aprendiz " +
+                        "INNER JOIN Actividades ac ON AA.Cod_actividad=ac.Id_actividad " +
+                        "WHERE A.NombrePrograma = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
+                        "AND ac.Fecha_fin BETWEEN ? AND ? " +
                         "group by(A.Documento_aprendiz) ORDER BY count(*) DESC";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, actividades.getPrograma());
@@ -239,8 +339,43 @@ public class AprendizDAO implements InterfaceCRUD{
         }
     }
     
-        
         public ArrayList<?> getForCoorDate(Actividades actividades) {
+        try {
+            String sql = "SELECT A.Documento_aprendiz, A.Nombres_aprendiz, A.Genero, A.Ficha, A.NombrePrograma, A.Coordinacion, " +
+                        "count(*) 'participo' FROM Aprendiz A " +
+                        "INNER JOIN Actividades_Aprendiz AA ON A.Documento_aprendiz=AA.Cod_aprendiz " +
+                        "INNER JOIN Actividades ac ON AA.Cod_actividad=ac.Id_actividad " +
+                        "WHERE A.Coordinacion = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
+                        "AND ac.Fecha_fin BETWEEN ? AND ? " +
+                        "group by(A.NombrePrograma) ORDER BY count(*) DESC";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, actividades.getCoor());
+            ps.setDate(2, actividades.getFecha_inicio());
+            ps.setDate(3, actividades.getFecha_fin());
+            ps.setDate(4, actividades.getFecha_inicio());
+            ps.setDate(5, actividades.getFecha_fin());
+            ResultSet rs = ps.executeQuery();
+            System.out.println(ps.toString());
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz aprendiz;
+            while (rs.next()) {
+                aprendiz = new Aprendiz();
+                aprendiz.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
+                aprendiz.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
+                aprendiz.setFicha(rs.getString("Ficha"));
+                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
+                aprendiz.setCoordinacion(rs.getString("Coordinacion"));
+                aprendiz.setParticipaciones(rs.getString("participo"));
+                list.add(aprendiz);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+        
+     public ArrayList<?> getForCoorDateStudent(Actividades actividades) {
         try {
             String sql = "SELECT A.Documento_aprendiz, A.Nombres_aprendiz, A.Genero, A.Ficha, A.NombrePrograma, A.Coordinacion, " +
                         "count(*) 'participo' FROM Aprendiz A " +
