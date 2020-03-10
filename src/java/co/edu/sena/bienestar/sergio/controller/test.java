@@ -20,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +64,27 @@ public class test extends HttpServlet {
             ActividadDAO actividadDAO = new ActividadDAO(conexion);
             AprendizDAO aprendizDAO = new AprendizDAO(conexion);
             AprendizActividadDAO aprendizActividadDAO = new AprendizActividadDAO(conexion);
+            
+            // validación de los campos, por fecha
+            System.out.println("SERGIO "+actividadDAO.getLastDate().toString());
+            System.out.println("");
+            
+            Date dateLastBd = actividadDAO.getLastDate().getFecha_inicio();
+            if (dateLastBd != null) {
+             Date dateLastFile = lista.get((lista.size()-1)).getActividades().getFecha_inicio();
+                System.out.println(":D "+dateLastFile);
+                System.out.println(":D "+dateLastBd);
+            boolean validatiOne = dateLastBd.equals(dateLastFile);
+            boolean validatiTwo = dateLastBd.before(dateLastFile);
+            System.out.println(":D");
+            System.out.println(validatiOne);
+            System.out.println(validatiTwo);
+        }
+           
+            
+            
+            
+            
             
             // creación de variables para el objeto actividadesAprendiz
             int idActividad = 0;

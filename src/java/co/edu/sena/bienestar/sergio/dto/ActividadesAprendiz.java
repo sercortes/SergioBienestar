@@ -58,6 +58,11 @@ public class ActividadesAprendiz {
     public void setCodAprendiz(String codAprendiz) {
         this.codAprendiz = codAprendiz;
     }
+
+    @Override
+    public String toString() {
+        return "ActividadesAprendiz{" + "idActividadAprendiz=" + idActividadAprendiz + ", codActividad=" + codActividad + ", codAprendiz=" + codAprendiz + ", codAprendizFecha=" + codAprendizFecha + '}';
+    }
     
     
     

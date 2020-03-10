@@ -7,8 +7,10 @@ package co.edu.sena.bienestar.sergio.dao;
 
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,24 @@ public class ActividadDAO implements InterfaceCRUD{
     @Override
     public boolean insert(Object t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Actividades getLastDate() {
+        try {
+            String sql = "SELECT a.Fecha_inicio FROM Actividades a ORDER BY a.Fecha_inicio DESC LIMIT 1";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Actividades actividad = new Actividades();
+
+            while (rs.next()) {
+                actividad = new Actividades();
+                actividad.setFecha_inicio(rs.getString("Fecha_inicio"));
+            }
+            return actividad;
+        } catch (SQLException e) {
+            System.out.println("error getById " + e.getMessage());
+            return null;
+        }
     }
     
     public int insertReturn(Actividades actividades){
