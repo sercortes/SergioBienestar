@@ -52,11 +52,9 @@ public class AprendizDAO implements InterfaceCRUD{
             ps.executeUpdate();
             return idAprendiz;
         }catch(MySQLIntegrityConstraintViolationException e){
-           System.out.println(":( "+e);
             return idAprendiz;
         }
         catch(Exception e){
-            System.out.println(":( "+e);
             return "null";
         }
     }

@@ -33,18 +33,19 @@ public class ActividadDAO implements InterfaceCRUD{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public Actividades getLastDate() {
+  public Actividades getLastDate() {
         try {
-            String sql = "SELECT a.Fecha_inicio FROM Actividades a ORDER BY a.Fecha_inicio DESC LIMIT 1";
+            String sql = "SELECT max(a.Fecha_inicio) Fecha_inicio, min(a.Fecha_fin) Fecha_fin FROM Actividades a limit 1";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Actividades actividad = new Actividades();
 
             while (rs.next()) {
                 actividad = new Actividades();
-                actividad.setFecha_inicio(rs.getString("Fecha_inicio"));
+                actividad.setFecha_inicio(rs.getString("Fecha_fin"));
+                actividad.setFecha_fin(rs.getString("Fecha_inicio"));
             }
-            return actividad;
+             return actividad;
         } catch (SQLException e) {
             System.out.println("error getById " + e.getMessage());
             return null;
@@ -71,10 +72,8 @@ public class ActividadDAO implements InterfaceCRUD{
             }
             return idActividad;
         }catch(MySQLIntegrityConstraintViolationException e){
-            System.out.println(":( "+e);
             return 0;
         }catch(Exception e){
-            System.out.println(":( "+e);
             return 0;
         }
         

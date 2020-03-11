@@ -13,30 +13,16 @@ import co.edu.sena.bienestar.sergio.dto.Actividades;
 import co.edu.sena.bienestar.sergio.dto.ActividadesAprendiz;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import co.edu.sena.bienestar.sergio.util.readXls;
-import co.edu.sena.bienestar.sergio.util.returnString;
 import com.google.gson.Gson;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.*;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
-
 import javax.servlet.annotation.MultipartConfig;
 
 /**
@@ -55,34 +41,19 @@ public class test extends HttpServlet {
 
         // obteniendo el archivo del formulario
         Part file = request.getPart("fileToUpload");
-
+        
+        readXls read = new readXls();
+        
+        read.validationDate();
+         
         // método para leer xls
-        ArrayList<Aprendiz> lista = readXls.readingXls(file);
+        ArrayList<Aprendiz> lista = read.readingXls(file);
        
             // instancia de conexion y los DAO para la inserción
             Conexion conexion = new Conexion();
             ActividadDAO actividadDAO = new ActividadDAO(conexion);
             AprendizDAO aprendizDAO = new AprendizDAO(conexion);
             AprendizActividadDAO aprendizActividadDAO = new AprendizActividadDAO(conexion);
-            
-            // validación de los campos, por fecha
-            System.out.println("SERGIO "+actividadDAO.getLastDate().toString());
-            System.out.println("");
-            
-            Date dateLastBd = actividadDAO.getLastDate().getFecha_inicio();
-            if (dateLastBd != null) {
-             Date dateLastFile = lista.get((lista.size()-1)).getActividades().getFecha_inicio();
-                System.out.println(":D "+dateLastFile);
-                System.out.println(":D "+dateLastBd);
-            boolean validatiOne = dateLastBd.equals(dateLastFile);
-            boolean validatiTwo = dateLastBd.before(dateLastFile);
-            System.out.println(":D");
-            System.out.println(validatiOne);
-            System.out.println(validatiTwo);
-        }
-           
-            
-            
             
             
             

@@ -37,10 +37,8 @@ public class AprendizActividadDAO implements InterfaceCRUD{
           
             return true;   
         } catch(MySQLIntegrityConstraintViolationException e){
-            System.out.println(":D "+actividadesAprendiz.toString());
             return false;
         }catch(Exception e){
-            System.out.println(":( "+e);
             return false;
         }
     }

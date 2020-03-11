@@ -5,12 +5,15 @@
  */
 package co.edu.sena.bienestar.sergio.util;
 
+import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
+import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.http.Part;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -25,7 +28,19 @@ import org.apache.poi.ss.usermodel.Row;
  */
 public class readXls {
     
-     public static ArrayList<Aprendiz> readingXls(Part file) throws FileNotFoundException, IOException{
+    private Date fechaInicio;
+    private Date fechaFin;
+    
+    public void validationDate(){
+           Conexion conexion = new Conexion();
+           ActividadDAO actividadDAO = new ActividadDAO(conexion);
+           Actividades actividad = actividadDAO.getLastDate();
+           this.fechaInicio = actividad.getFecha_inicio();
+           this.fechaFin = actividad.getFecha_fin();
+          conexion.disconnectDb();
+    }
+    
+     public ArrayList<Aprendiz> readingXls(Part file) throws FileNotFoundException, IOException{
         
          // convitiendo el archivo a fileInputStream
         FileInputStream fi1 = new FileInputStream(new File(returnString.generateUrl(file.toString())));
@@ -131,15 +146,47 @@ public class readXls {
                             break;
                     }
                 }
-                // agregando objetos a la lista
-                aprendiz.setActividades(actividades);
-                lista.add(aprendiz);
+                
+              
+                boolean comOne = actividades.getFecha_inicio().after(fechaInicio);
+                boolean comTwo = actividades.getFecha_fin().before(fechaFin);
+                boolean comThree = actividades.getFecha_inicio().equals(fechaInicio);
+                boolean comFour = actividades.getFecha_fin().equals(fechaFin);
+               
+                if (comOne && comTwo || comThree || comFour) {
+                    
+                }else{
+                     aprendiz.setActividades(actividades);
+                    lista.add(aprendiz);
+                }
+           
+                    // agregando objetos a la lista
+               
             }
         }
             // limpiando memoria en la lectura del archivo
             formulaEvaluator.clearAllCachedResultValues();
             return lista;
     }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+  
+  
 
     
 }
