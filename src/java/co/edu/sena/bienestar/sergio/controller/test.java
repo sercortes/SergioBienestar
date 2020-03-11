@@ -43,9 +43,7 @@ public class test extends HttpServlet {
         Part file = request.getPart("fileToUpload");
         
         readXls read = new readXls();
-        
-        read.validationDate();
-         
+    
         // método para leer xls
         ArrayList<Aprendiz> lista = read.readingXls(file);
        

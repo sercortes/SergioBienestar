@@ -27,34 +27,27 @@ import org.apache.poi.ss.usermodel.Row;
  * @author serfin
  */
 public class readXls {
-    
-    private Date fechaInicio;
-    private Date fechaFin;
-    
-    public void validationDate(){
-           Conexion conexion = new Conexion();
-           ActividadDAO actividadDAO = new ActividadDAO(conexion);
-           Actividades actividad = actividadDAO.getLastDate();
-           this.fechaInicio = actividad.getFecha_inicio();
-           this.fechaFin = actividad.getFecha_fin();
-          conexion.disconnectDb();
-    }
-    
-     public ArrayList<Aprendiz> readingXls(Part file) throws FileNotFoundException, IOException{
-        
-         // convitiendo el archivo a fileInputStream
+
+
+    public ArrayList<Aprendiz> readingXls(Part file) throws FileNotFoundException, IOException {
+
+        // convitiendo el archivo a fileInputStream
         FileInputStream fi1 = new FileInputStream(new File(returnString.generateUrl(file.toString())));
 
         // instancia de los objetos para poder leer archivos excel
         HSSFWorkbook wb1 = new HSSFWorkbook(fi1);
         HSSFSheet sheet1 = wb1.getSheetAt(0);
-       
+
         FormulaEvaluator formulaEvaluator = wb1.getCreationHelper().createFormulaEvaluator();
-        
+
         //instancia de la lista para ser llenada de objetos aprendiz y actividades
         ArrayList<Aprendiz> lista = new ArrayList<>();
         Aprendiz aprendiz;
         Actividades actividades;
+        
+        // instanciar la clase conexion y actividadDao para consultar si ya esta en la bd
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion);
 
         // lectura el archivo xls
         for (Row row : sheet1) {
@@ -138,7 +131,7 @@ public class readXls {
                                 }
                             }
                             break;
-                            // lectura de campos enteros
+                        // lectura de campos enteros
                         case Cell.CELL_TYPE_NUMERIC:
                         case 12:
                             int estrato = (int) cell.getNumericCellValue();
@@ -146,47 +139,33 @@ public class readXls {
                             break;
                     }
                 }
+
+                // validaciones con fecha, para que no se repitan datos en la bd
+                Actividades actividad = actividadDAO.getLastDate(actividades);
                 
-              
-                boolean comOne = actividades.getFecha_inicio().after(fechaInicio);
-                boolean comTwo = actividades.getFecha_fin().before(fechaFin);
-                boolean comThree = actividades.getFecha_inicio().equals(fechaInicio);
-                boolean comFour = actividades.getFecha_fin().equals(fechaFin);
+                // retorna verdadero si esta en la bd
+                boolean existe = actividad.getIdRealActividad() != 0;
                
-                if (comOne && comTwo || comThree || comFour) {
-                    
-                }else{
-                     aprendiz.setActividades(actividades);
+                //validación si la fila de excel ya esta en el rango de la bd, no se agrega a la lista
+                //si existe no se agrega
+                if (existe) {
+
+                } else {
+                    // agregando objetos a la lista
+                    aprendiz.setActividades(actividades);
                     lista.add(aprendiz);
                 }
-           
-                    // agregando objetos a la lista
-               
+
             }
         }
-            // limpiando memoria en la lectura del archivo
-            formulaEvaluator.clearAllCachedResultValues();
-            return lista;
-    }
-
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-  
-  
-
+        
+        // limpiando memoria por lectura del archivo
+        formulaEvaluator.clearAllCachedResultValues();
+        conexion.disconnectDb();
+        
+        // retornando los valores del archivo en una lista
+        return lista;
     
+    } // cierre del metodo readingXls
+
 }

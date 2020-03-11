@@ -33,17 +33,20 @@ public class ActividadDAO implements InterfaceCRUD{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-  public Actividades getLastDate() {
+  public Actividades getLastDate(Actividades acti) {
         try {
-            String sql = "SELECT max(a.Fecha_inicio) Fecha_inicio, min(a.Fecha_fin) Fecha_fin FROM Actividades a limit 1";
+            String sql = "SELECT * FROM Actividades a WHERE Fecha_inicio = ? AND Fecha_fin = ? limit 1";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setDate(1, acti.getFecha_inicio());
+            ps.setDate(2, acti.getFecha_fin());
             ResultSet rs = ps.executeQuery();
             Actividades actividad = new Actividades();
 
             while (rs.next()) {
                 actividad = new Actividades();
-                actividad.setFecha_inicio(rs.getString("Fecha_fin"));
-                actividad.setFecha_fin(rs.getString("Fecha_inicio"));
+                actividad.setIdRealActividad(rs.getInt("Id_actividad"));
+                actividad.setFecha_inicio(rs.getString("Fecha_inicio"));
+                actividad.setFecha_fin(rs.getString("Fecha_fin"));
             }
              return actividad;
         } catch (SQLException e) {
