@@ -5,20 +5,34 @@ function fichas(id){
     $('#exampleModal').modal('show')
     
   
+        let fechai = document.getElementById('fechaI').value
+        let fechaf = document.getElementById('fechaF').value
+        
+        let data = {
+            fechaInicial : fechai,
+            fechaFinal : fechaf
+        };
+        
+        if(!validationDate(data)){
+            return false
+        }
+  
    
      $.ajax({
         type: "GET",
         url: './ListAprendicesByFicha',
         datatype: 'json',
         data:{
-            id:id
+            id:id,
+            fechaInicial : data.fechaInicial,
+            fechaFinal : data.fechaFinal
         }
     }).done(function (data) {
         
         console.log(data)
       
-      let acti = data[0].actividades.ficha
-      
+      let acti = data[0].ficha
+      let num = 0
       
        $('#titulo').text(acti)
        
@@ -56,8 +70,9 @@ function fichas(id){
                                                         </button>           
                                                 </td>
                                                 </tr> `
+        num +=parseInt(item.participaciones)
         }
-        
+        console.log(num)
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">

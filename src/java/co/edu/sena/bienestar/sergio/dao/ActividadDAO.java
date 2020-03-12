@@ -6,6 +6,7 @@
 package co.edu.sena.bienestar.sergio.dao;
 
 import co.edu.sena.bienestar.sergio.dto.Actividades;
+import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -163,6 +164,47 @@ public class ActividadDAO implements InterfaceCRUD{
         }
 
     }
+     
+     
+     
+      public ArrayList<?> getActivitysByIdAPrendiz(Aprendiz aprendiz) {
+        try {
+            String sql = "SELECT ac.*, count(ac.Id_actividad) 'cantidad' "
+                    + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ac.Id_actividad=aa.Cod_actividad "
+                    + "INNER JOIN Aprendiz ap "
+                    + "ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "WHERE ap.Documento_aprendiz = ? "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "GROUP BY(ac.Id_actividad)";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, aprendiz.getDocumento_aprendiz());
+            ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(3, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(4, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(5, aprendiz.getActividades().getFecha_fin());
+            ResultSet rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades actividades;
+            while (rs.next()) {
+                actividades = new Actividades();
+                actividades.setNombre_actividad(rs.getString("Nombre_actividad"));
+                actividades.setTipo_actividad(rs.getString("Tipo_actividad"));
+                actividades.setFecha_inicio(rs.getString("Fecha_Inicio"));
+                actividades.setFecha_fin(rs.getString("Fecha_fin"));
+                actividades.setResponsable(rs.getString("responsable"));
+                actividades.setCantidad(rs.getString("cantidad"));
+                actividades.setIdRealActividad(rs.getInt("Id_actividad"));
+                list.add(actividades);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+     
      
      
      

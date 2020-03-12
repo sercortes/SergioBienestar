@@ -9,6 +9,7 @@ import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.AprendizDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
+import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -162,12 +163,18 @@ public class aprendiz extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String acti = request.getParameter("id");
+     
+        Aprendiz aprendiz = new Aprendiz();
+        aprendiz.setFicha(request.getParameter("id"));
+        Actividades actividades = new Actividades();
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        aprendiz.setActividades(actividades);
 
         Conexion conexion = new Conexion();
         AprendizDAO actividadDAO = new AprendizDAO(conexion);
 
-        ArrayList<?> aprendices = actividadDAO.getByFicha(acti);
+        ArrayList<?> aprendices = actividadDAO.getByFicha(aprendiz);
 
         response.setContentType("application/json");
         new Gson().toJson(aprendices, response.getWriter());
