@@ -24,104 +24,84 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Select extends HttpServlet {
 
-   
-
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String direccion = request.getRequestURI();
         
-         switch (direccion) {
+        String direccion = request.getRequestURI();
 
-         
-                
-           
-                
+        switch (direccion) {
+
             case "/bienestar/getPrograms":
-                
-                
+
                 getPrograms(request, response);
-               
-                
-                
+
                 break;
-                
+
             case "/bienestar/getFichas":
-                
+
                 getFichas(request, response);
-                
+
                 break;
-                
-          
-         
-             
-                
+
             case "/bienestar/getCoor":
+
                 getCoor(request, response);
+
                 break;
-                
-           
 
         }
     }
 
-     
     private void getCoor(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
-         request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
-                Conexion conexion = new Conexion();
-                AprendizDAO actividadDAO = new AprendizDAO(conexion);
+        Conexion conexion = new Conexion();
+        AprendizDAO actividadDAO = new AprendizDAO(conexion);
 
-                ArrayList<?> programas = actividadDAO.getCoordinacion();
+        ArrayList<?> programas = actividadDAO.getCoordinacion();
 
-                response.setContentType("application/json");
-                new Gson().toJson(programas, response.getWriter());
+        response.setContentType("application/json");
+        new Gson().toJson(programas, response.getWriter());
     }
 
-    
     private void getFichas(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
 
-          request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
-                String acti = request.getParameter("id");
-                
-                Actividades actividades = new Actividades();
-                actividades.setFecha_inicio(request.getParameter("fechaInicial"));
-                actividades.setFecha_fin(request.getParameter("fechaFinal"));
-                actividades.setPrograma(acti);
-                
-                System.out.println(actividades.toString());
+        String acti = request.getParameter("id");
 
-                Conexion conexion = new Conexion();
-                AprendizDAO actividadDAO = new AprendizDAO(conexion);
+        Actividades actividades = new Actividades();
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        actividades.setPrograma(acti);
 
-                ArrayList<?> aprendices = actividadDAO.getForProgramaDate(actividades);
+        System.out.println(actividades.toString());
 
-                response.setContentType("application/json");
-                new Gson().toJson(aprendices, response.getWriter());
+        Conexion conexion = new Conexion();
+        AprendizDAO actividadDAO = new AprendizDAO(conexion);
 
+        ArrayList<?> aprendices = actividadDAO.getForProgramaDate(actividades);
+
+        response.setContentType("application/json");
+        new Gson().toJson(aprendices, response.getWriter());
+
+    }
+
+    private void getPrograms(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+
+        Conexion conexion = new Conexion();
+        AprendizDAO actividadDAO = new AprendizDAO(conexion);
+
+        ArrayList<?> programas = actividadDAO.getPrograms();
+
+        response.setContentType("application/json");
+        new Gson().toJson(programas, response.getWriter());
 
     }
 
-    
-    
-     private void getPrograms(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
-
-          request.setCharacterEncoding("UTF-8");
-
-                Conexion conexion = new Conexion();
-                AprendizDAO actividadDAO = new AprendizDAO(conexion);
-
-                ArrayList<?> programas = actividadDAO.getPrograms();
-
-                response.setContentType("application/json");
-                new Gson().toJson(programas, response.getWriter());
-
-
-    }
-    
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

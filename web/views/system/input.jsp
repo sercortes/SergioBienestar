@@ -44,4 +44,4 @@
 
 <%@include file="/views/template/footer.jspf"%>
 
-  <script src="assets/js/project/inputFile.js" charset="utf-8"></script>
+  <script src="assets/js/project/uploadfile/inputFile.js" charset="utf-8"></script>

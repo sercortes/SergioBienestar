@@ -33,7 +33,6 @@ public class activitys extends HttpServlet {
         switch (direccion) {
 
             case "/bienestar/ListActivitys":
-
                 
                 ListActivitys(request, response);
 
@@ -42,18 +41,7 @@ public class activitys extends HttpServlet {
         }
 
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
     private void ListActivitys(HttpServletRequest request, HttpServletResponse response) throws IOException {
         
                 response.setContentType("text/html;charset=UTF-8");
@@ -67,4 +55,16 @@ public class activitys extends HttpServlet {
                 new Gson().toJson(actividades, response.getWriter());
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+    
 }

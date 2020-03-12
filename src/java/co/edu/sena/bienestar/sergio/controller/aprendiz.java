@@ -73,7 +73,9 @@ public class aprendiz extends HttpServlet {
                 break;
 
             case "/bienestar/getByCoor":
+                
                 getByCoor(request, response);
+                
                 break;
 
         }

@@ -102,8 +102,7 @@ function generateError() {
     Swal.fire({
         icon: 'error',
         title: 'Seleccione un archivo válido',
-        showConfirmButton: true,
-        timer: 1500
+        showConfirmButton: true
     })
 
 }

@@ -84,11 +84,18 @@ function selectProgram(){
          $('#TypeActivity').val(1)
         let fechai = document.getElementById('fechaI').value
         let fechaf = document.getElementById('fechaF').value
+      
         let data = {
             id : select,
             fechaInicial : fechai,
             fechaFinal : fechaf
         };
+        
+        if (!validationDate(data)) {
+            return false
+        }
+        
+        
             listarPrograma(data)
     }
     

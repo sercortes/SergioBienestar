@@ -93,11 +93,16 @@
 </div>
 <%@include file="/views/template/footer.jspf"%>
 
-  <script src="assets/js/project/activitys.js" charset="utf-8"></script>
-  <script src="assets/js/project/aprendices.js" charset="utf-8"></script>
-  <script src="assets/js/project/botonsFiltro.js" charset="utf-8"></script>
-  <script src="assets/js/project/coordinacion.js" charset="utf-8"></script>
-  <script src="assets/js/project/listarPrograma.js" charset="utf-8"></script>
-  <script src="assets/js/project/TypesActivitys.js" charset="utf-8"></script>
-  <script src="assets/js/project/fichas.js" charset="utf-8"></script>
-  <script src="assets/js/project/aprendicesCoor.js" charset="utf-8"></script>
+
+
+  <script src="assets/js/project/select/validationSelect.js" charset="utf-8"></script>
+  <script src="assets/js/project/select/botonsFiltro.js" charset="utf-8"></script>
+  <script src="assets/js/project/select/listarPrograma.js" charset="utf-8"></script>
+  
+  <script src="assets/js/project/querys/activitys.js" charset="utf-8"></script>
+  <script src="assets/js/project/querys/aprendices.js" charset="utf-8"></script>
+  
+  <script src="assets/js/project/querys/coordinacion.js" charset="utf-8"></script>
+  <script src="assets/js/project/querys/TypesActivitys.js" charset="utf-8"></script>
+  <script src="assets/js/project/querys/fichas.js" charset="utf-8"></script>
+  <script src="assets/js/project/querys/aprendicesCoor.js" charset="utf-8"></script>

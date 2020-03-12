@@ -45,6 +45,11 @@ function selectTypeActivity() {
             fechaInicial: fechai,
             fechaFinal: fechaf
         };
+        
+        if(!validationDate(data)){
+            return false;
+        }
+        
         listarTypes(data)
 
     }
