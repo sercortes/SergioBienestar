@@ -30,7 +30,7 @@ import javax.servlet.annotation.MultipartConfig;
  * @author serfin
  */
 @MultipartConfig
-public class test extends HttpServlet {
+public class UploadFile extends HttpServlet {
 
    
    
@@ -52,8 +52,6 @@ public class test extends HttpServlet {
             ActividadDAO actividadDAO = new ActividadDAO(conexion);
             AprendizDAO aprendizDAO = new AprendizDAO(conexion);
             AprendizActividadDAO aprendizActividadDAO = new AprendizActividadDAO(conexion);
-            
-            
             
             // creación de variables para el objeto actividadesAprendiz
             int idActividad = 0;
@@ -108,7 +106,7 @@ public class test extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -118,7 +116,7 @@ public class test extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

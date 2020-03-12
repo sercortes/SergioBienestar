@@ -16,9 +16,11 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         RequestDispatcher rd;
         rd = request.getRequestDispatcher("/views/home/home.jsp");
         rd.forward(request, response);
+        
     }
 
     /**
