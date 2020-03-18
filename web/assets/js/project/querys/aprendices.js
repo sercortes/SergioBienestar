@@ -39,6 +39,7 @@ function aprendices(id){
                                                  `
 
         for (var item of data) {
+     
             str += `<tr id="row${item.nombre_actividad}" class="chiquito">
                                                     <td>${item.documento_aprendiz}</td>
                                                     <td>${item.nombre_aprendiz}</td>
@@ -46,7 +47,7 @@ function aprendices(id){
                                                     <td>${item.nombrePrograma}</td>
                                                     <td>${item.coordinacion}</td>
                                                  <td>         
-                                                      <button class="btn btn-info btn-sm" role="button" onclick = "eliminar(${item.documento_aprendiz})" >
+                                                      <button class="btn btn-info btn-sm" role="button" onclick = "detailsAprendiz('${item.documento_aprendiz}')" >
                                                             <i class="fas fa-address-card"></i>
                                                         </button>           
                                                 </td>

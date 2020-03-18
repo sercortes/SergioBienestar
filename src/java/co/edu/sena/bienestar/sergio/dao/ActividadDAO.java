@@ -46,8 +46,6 @@ public class ActividadDAO implements InterfaceCRUD{
             while (rs.next()) {
                 actividad = new Actividades();
                 actividad.setIdRealActividad(rs.getInt("Id_actividad"));
-                actividad.setFecha_inicio(rs.getString("Fecha_inicio"));
-                actividad.setFecha_fin(rs.getString("Fecha_fin"));
             }
              return actividad;
         } catch (SQLException e) {
@@ -137,7 +135,7 @@ public class ActividadDAO implements InterfaceCRUD{
      public Actividades getIdActividad(Actividades actividades) {
 
         try {
-            String sql = "SELECT * FROM Actividades "
+            String sql = "SELECT Id_actividad FROM Actividades "
                     + "WHERE Nombre_actividad = ? "
                     + "AND Tipo_actividad = ? "
                     + "AND Fecha_inicio = ?";
@@ -150,11 +148,6 @@ public class ActividadDAO implements InterfaceCRUD{
             while (rs.next()) {
                 
                 acti.setIdRealActividad(rs.getInt("Id_actividad"));
-                acti.setNombre_actividad(rs.getString("Nombre_actividad"));
-                acti.setTipo_actividad(rs.getString("Tipo_actividad"));
-                acti.setFecha_inicio(rs.getString("Fecha_inicio"));
-                acti.setFecha_fin(rs.getString("Fecha_fin"));
-                acti.setResponsable(rs.getString("responsable"));
 
             }
             return acti;
@@ -169,7 +162,7 @@ public class ActividadDAO implements InterfaceCRUD{
      
       public ArrayList<?> getActivitysByIdAPrendiz(Aprendiz aprendiz) {
         try {
-            String sql = "SELECT ac.*, count(ac.Id_actividad) 'cantidad' "
+            String sql = "SELECT ac.*, ap.*, count(ac.Id_actividad) 'cantidad' "
                     + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
                     + "ON ac.Id_actividad=aa.Cod_actividad "
                     + "INNER JOIN Aprendiz ap "
@@ -185,9 +178,11 @@ public class ActividadDAO implements InterfaceCRUD{
             ps.setDate(4, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(5, aprendiz.getActividades().getFecha_fin());
             ResultSet rs = ps.executeQuery();
-            List<Actividades> list = new ArrayList<>();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz apren;
             Actividades actividades;
             while (rs.next()) {
+                apren = new Aprendiz();
                 actividades = new Actividades();
                 actividades.setNombre_actividad(rs.getString("Nombre_actividad"));
                 actividades.setTipo_actividad(rs.getString("Tipo_actividad"));
@@ -196,7 +191,13 @@ public class ActividadDAO implements InterfaceCRUD{
                 actividades.setResponsable(rs.getString("responsable"));
                 actividades.setCantidad(rs.getString("cantidad"));
                 actividades.setIdRealActividad(rs.getInt("Id_actividad"));
-                list.add(actividades);
+                
+                apren.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
+                apren.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
+                apren.setNombrePrograma(rs.getString("NombrePrograma"));
+                
+                apren.setActividades(actividades);
+                list.add(apren);
             }
             return (ArrayList<?>) list;
         } catch (Exception e) {

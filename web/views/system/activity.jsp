@@ -90,8 +90,57 @@
   </div>
 </div>
         
+
+<!-- ModalTwo -->
+<div class="modal fade" id="modalTwo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTwo">Listado de actividades</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h6 class="chiquito">Nombre aprendiz:</h6>
+          <p id="name" class="chiquito"></p>
+          <h6 id="program" class="chiquito">Programa: </h6>
+          <p id="pro" class="chiquito"></p>
+          <div class="row">
+        <div class="col-sm-12">
+
+                 <div id="tabla2" class="table-responsive-xl">
+                        
+                    </div>
+            
+            
+        </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+        <button type="button" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir</button>
+      </div>
+    </div>
+  </div>
 </div>
-<%@include file="/views/template/footer.jspf"%>
+ 
+
+
+
+
+
+
+
+</div>
+
+      
+
+        
+
+  
+        
+        <%@include file="/views/template/footer.jspf"%>
 
 
 
@@ -106,3 +155,6 @@
   <script src="assets/js/project/querys/TypesActivitys.js" charset="utf-8"></script>
   <script src="assets/js/project/querys/fichas.js" charset="utf-8"></script>
   <script src="assets/js/project/querys/aprendicesCoor.js" charset="utf-8"></script>
+  
+  <script src="assets/js/project/querys/ActivitysByAprendiz.js" charset="utf-8"></script>
+  

@@ -148,13 +148,11 @@ public class readXls {
                
                 //validación si la fila de excel ya esta en el rango de la bd, no se agrega a la lista
                 //si existe no se agrega
-                if (existe) {
-
-                } else {
+                if (!existe) {
                     // agregando objetos a la lista
                     aprendiz.setActividades(actividades);
                     lista.add(aprendiz);
-                }
+                } 
 
             }
         }

@@ -1,31 +1,49 @@
-function aprendicesByCoor(id){
+
+function getActivitysByAprendiz(aprendiz){
+
     
-    console.log(id)
+       let fechai = document.getElementById('fechaI').value
+        let fechaf = document.getElementById('fechaF').value
+        
+        let data = {
+            objeto : aprendiz,
+            fechaInicial : fechai,
+            fechaFinal : fechaf
+        };
+        
+        if(!validationDate(data)){
+            return false
+        }
+        
+            listActivitysByAprendiz(data)
+    
+}
+
+function listActivitysByAprendiz(data){
+    console.log(data)
+    $('#modalTwo').modal('show')
     
    
-      
-    $('#exampleModal').modal('show')
     
-  
-   
-     $.ajax({
+    
+      $.ajax({
         type: "GET",
-        url: './ListAprendicesByCoor',
+        url: './ListActivitysByAprendiz',
         datatype: 'json',
         data:{
-            id:id
+            documento:data.objeto,
+            fechaInicial : data.fechaInicial,
+            fechaFinal : data.fechaFinal
         }
     }).done(function (data) {
-        
-        console.log(data)
-      
-   //   let acti = data[0].actividades.ficha
-       
-      let cantidad = document.getElementById('cantidad')
-      cantidad.innerHTML = "# Aprendices";
-      cantidad.innerHTML += " "+data.length
-
-     let select = document.getElementById('tabla1');
+     
+     console.log(data)
+     
+      $('#name').text(data[0].nombre_aprendiz)
+      console.log(data[0].nombrePrograma)
+      $('#pro').text(data[0].nombrePrograma)
+     
+       let select = document.getElementById('tabla2');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="bg-primary">
@@ -34,7 +52,7 @@ function aprendicesByCoor(id){
                                         <th>Ficha</th>
                                         <th>Programa</th>
                                         <th>Coordinación</th>
-                                        <th>Participaciones</th>
+                                        <th>Detalles</th>
                                         <th>Detalles</th>
                                     </tr>
                                 </thead>
@@ -42,15 +60,16 @@ function aprendicesByCoor(id){
                                                  `
 
         for (var item of data) {
+     
             str += `<tr id="row${item.nombre_actividad}" class="chiquito">
-                                                    <td>${item.documento_aprendiz}</td>
-                                                    <td>${item.nombre_aprendiz}</td>
-                                                    <td>${item.ficha}</td>
-                                                    <td>${item.nombrePrograma}</td>
-                                                    <td>${item.coordinacion}</td>
-                                                    <td>${item.participaciones}</td>
+                                                    <td>${item.actividades.nombre_actividad}</td>
+                                                    <td>${item.actividades.tipo_actividad}</td>
+                                                    <td>${item.actividades.fecha_inicio}</td>
+                                                    <td>${item.actividades.fecha_fin}</td>
+                                                    <td>${item.actividades.responsable}</td>
+                                                    <td>${item.actividades.cantidad}</td>
                                                  <td>         
-                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz(${item.documento_aprendiz})" >
+                                                      <button class="btn btn-info btn-sm" role="button" onclick = "detailsAprendiz('${item.documento_aprendiz}')" >
                                                             <i class="fas fa-address-card"></i>
                                                         </button>           
                                                 </td>
@@ -66,7 +85,7 @@ function aprendicesByCoor(id){
                                         <th>Ficha</th>
                                         <th>Programa</th>
                                         <th>Coordinación</th>
-                                        <th>Coordinación</th>
+                                        <th>Detalles</th>
                                         <th>Detalles</th>
                                     </tr>
                                 </tfoot>
@@ -74,16 +93,16 @@ function aprendicesByCoor(id){
 
         select.innerHTML = str;
 
+
        
        
     })
     
 
     
-
-
-
+    
     
     
 }
+
 

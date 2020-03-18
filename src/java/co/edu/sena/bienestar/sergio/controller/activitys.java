@@ -8,6 +8,7 @@ package co.edu.sena.bienestar.sergio.controller;
 import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
+import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,6 +38,12 @@ public class activitys extends HttpServlet {
                 ListActivitys(request, response);
 
                 break;
+                
+            case "/bienestar/ListActivitysByAprendiz":
+                
+                listActivitysByAprendiz(request, response);
+                
+                break;
 
         }
 
@@ -65,6 +72,28 @@ public class activitys extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void listActivitysByAprendiz(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+         response.setContentType("text/html;charset=UTF-8");
+        
+         Aprendiz aprendiz = new Aprendiz();
+        aprendiz.setDocumento_aprendiz(request.getParameter("documento"));
+        Actividades actividades = new Actividades();
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        aprendiz.setActividades(actividades);
+         
+                Conexion conexion = new Conexion();
+                ActividadDAO actividadDAO = new ActividadDAO(conexion);
+
+                
+                ArrayList<?> lista = actividadDAO.getActivitysByIdAPrendiz(aprendiz);
+
+                response.setContentType("application/json");
+                new Gson().toJson(lista, response.getWriter());
+        
+    }
 
     
 }

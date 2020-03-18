@@ -65,7 +65,7 @@ function fichas(id){
                                                     <td>${item.coordinacion}</td>
                                                     <td>${item.participaciones}</td>
                                                  <td>         
-                                                      <button class="btn btn-info btn-sm" role="button" onclick = "eliminar(${item.documento_aprendiz})" >
+                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz(${item.documento_aprendiz})" >
                                                             <i class="fas fa-address-card"></i>
                                                         </button>           
                                                 </td>
