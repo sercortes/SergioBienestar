@@ -9,6 +9,7 @@ function fichas(id){
         let fechaf = document.getElementById('fechaF').value
         
         let data = {
+            id: id,
             fechaInicial : fechai,
             fechaFinal : fechaf
         };
@@ -16,6 +17,8 @@ function fichas(id){
         if(!validationDate(data)){
             return false
         }
+      
+      graphicByFicha(data)
   
    
      $.ajax({

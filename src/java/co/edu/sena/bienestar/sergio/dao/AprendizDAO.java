@@ -148,7 +148,6 @@ public class AprendizDAO implements InterfaceCRUD{
             }
             return (ArrayList<?>) list;
         } catch (Exception e) {
-            System.out.println(e);
             return null;
         }
     }
@@ -180,7 +179,6 @@ public class AprendizDAO implements InterfaceCRUD{
             }
             return (ArrayList<?>) list;
         } catch (Exception e) {
-            System.out.println(e);
             return null;
         }
     }

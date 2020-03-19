@@ -34,38 +34,44 @@ public class activitys extends HttpServlet {
         switch (direccion) {
 
             case "/bienestar/ListActivitys":
-                
+
                 ListActivitys(request, response);
 
                 break;
-                
+
             case "/bienestar/ListActivitysByAprendiz":
-                
+
                 listActivitysByAprendiz(request, response);
-                
+
                 break;
-                
+
             case "/bienestar/ListStaticsBytype":
-                
+
                 ListStaticsBytype(request, response);
-                
+
+                break;
+
+            case "/bienestar/ListStaticsBytypeFicha":
+
+                ListStaticsBytypeFicha(request, response);
+
                 break;
 
         }
 
     }
-    
+
     private void ListActivitys(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
-                response.setContentType("text/html;charset=UTF-8");
-        
-                Conexion conexion = new Conexion();
-                ActividadDAO actividadDAO = new ActividadDAO(conexion);
 
-                ArrayList<?> actividades = actividadDAO.getAll();
+        response.setContentType("text/html;charset=UTF-8");
 
-                response.setContentType("application/json");
-                new Gson().toJson(actividades, response.getWriter());
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+
+        ArrayList<?> actividades = actividadDAO.getAll();
+
+        response.setContentType("application/json");
+        new Gson().toJson(actividades, response.getWriter());
     }
 
     @Override
@@ -80,47 +86,66 @@ public class activitys extends HttpServlet {
     }// </editor-fold>
 
     private void listActivitysByAprendiz(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
-         response.setContentType("text/html;charset=UTF-8");
-        
-         Aprendiz aprendiz = new Aprendiz();
+
+        response.setContentType("text/html;charset=UTF-8");
+
+        Aprendiz aprendiz = new Aprendiz();
         aprendiz.setDocumento_aprendiz(request.getParameter("documento"));
         Actividades actividades = new Actividades();
         actividades.setFecha_inicio(request.getParameter("fechaInicial"));
         actividades.setFecha_fin(request.getParameter("fechaFinal"));
         aprendiz.setActividades(actividades);
-         
-                Conexion conexion = new Conexion();
-                ActividadDAO actividadDAO = new ActividadDAO(conexion);
 
-                
-                ArrayList<?> lista = actividadDAO.getActivitysByIdAPrendiz(aprendiz);
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion);
 
-                response.setContentType("application/json");
-                new Gson().toJson(lista, response.getWriter());
-        
+        ArrayList<?> lista = actividadDAO.getActivitysByIdAPrendiz(aprendiz);
+
+        response.setContentType("application/json");
+        new Gson().toJson(lista, response.getWriter());
+
     }
 
     private void ListStaticsBytype(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
-         response.setContentType("text/html;charset=UTF-8");
-        
-         Aprendiz aprendiz = new Aprendiz();
+
+        response.setContentType("text/html;charset=UTF-8");
+
+        Aprendiz aprendiz = new Aprendiz();
         aprendiz.setDocumento_aprendiz(request.getParameter("id"));
         Actividades actividades = new Actividades();
         actividades.setFecha_inicio(request.getParameter("fechaInicial"));
         actividades.setFecha_fin(request.getParameter("fechaFinal"));
         aprendiz.setActividades(actividades);
-         
-                Conexion conexion = new Conexion();
-                ActividadDAO actividadDAO = new ActividadDAO(conexion);
 
-                
-                ArrayList<?> lista = actividadDAO.getStaticsByType(aprendiz);
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion);
 
-                response.setContentType("application/json");
-                new Gson().toJson(lista, response.getWriter());
+        ArrayList<?> lista = actividadDAO.getStaticsByType(aprendiz);
+
+        response.setContentType("application/json");
+        new Gson().toJson(lista, response.getWriter());
     }
 
-    
+    private void ListStaticsBytypeFicha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+
+        Aprendiz aprendiz = new Aprendiz();
+        aprendiz.setFicha(request.getParameter("id"));
+        Actividades actividades = new Actividades();
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        aprendiz.setActividades(actividades);
+
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        System.out.println(aprendiz.toString());
+
+        ArrayList<?> lista = actividadDAO.getStaticsByTypeFicha(aprendiz);
+
+        response.setContentType("application/json");
+        new Gson().toJson(lista, response.getWriter());
+
+    }
+
 }

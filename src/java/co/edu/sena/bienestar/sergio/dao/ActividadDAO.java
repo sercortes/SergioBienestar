@@ -159,6 +159,43 @@ public class ActividadDAO implements InterfaceCRUD{
     }
      
      
+     public ArrayList<?> getStaticsByTypeFicha(Aprendiz aprendiz) {
+        try {
+            String sql = "SELECT ac.Tipo_actividad, (count(ac.Tipo_actividad) * 100/ "
+                    + "(select count(*) from Aprendiz ap INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ap.Documento_aprendiz=aa.Cod_aprendiz "
+                    + "INNER JOIN Actividades ac ON aa.Cod_actividad = ac.Id_actividad "
+                    + "WHERE ap.Ficha = ?)) 'cantidad' FROM Actividades ac "
+                    + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "WHERE ap.Ficha = ? "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "GROUP BY(ac.Tipo_actividad)";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, aprendiz.getFicha());
+            ps.setString(2, aprendiz.getFicha());
+            ps.setDate(3, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(4, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(5, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(6, aprendiz.getActividades().getFecha_fin());
+            ResultSet rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades actividades;
+            while (rs.next()) {
+                actividades = new Actividades();
+                actividades.setTipo_actividad(rs.getString("Tipo_actividad"));
+                actividades.setCantidad(rs.getString("cantidad"));
+                
+             
+                list.add(actividades);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+     
      
        public ArrayList<?> getStaticsByType(Aprendiz aprendiz) {
         try {

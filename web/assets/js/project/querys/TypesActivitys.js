@@ -22,7 +22,7 @@ function typesActivitys() {
 
         str += "</select>"
 
-        filtros2.innerHTML = str;
+        filtros2.innerHTML += str;
     })
 
 }

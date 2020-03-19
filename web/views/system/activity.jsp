@@ -9,8 +9,6 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <button id="filtroPrograma" type="button" class="btn btn-success float-right mb-2 ml-2"><i class="fab fa-searchengin"></i> Buscar</button>
-            <button id="borrarBusqueda" type="button" class="btn btn-danger float-right mb-2"><i class="fas fa-window-close"></i> Limpiar</button>
 
 
         </div>
@@ -18,26 +16,38 @@
 
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
 
 
-                <label for="validationTooltip03">Fecha Inicial</label>
-                <input type="date" class="form-control" id="fechaI" required>
+            <label for="validationTooltip03">Fecha Inicial</label>
+            <input type="date" class="form-control" id="fechaI" required>
             <div id="filtros" class="float-left mb-2">
             </div>
 
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
 
 
-                <label for="validationTooltip03">Fecha final</label>
-                <input type="date" class="form-control" id="fechaF" placeholder="City" required>
+            <label for="validationTooltip03">Fecha final</label>
+            <input type="date" class="form-control" id="fechaF" placeholder="City" required>
             <div id="filtros1">
             </div>
 
         </div>
-        <div class="col-sm-4" id="filtros2">
+        <div class="col-sm-3" id="filtros2">
 
+
+
+
+
+
+
+
+        </div>
+
+        <div class="col-sm-3 mt-5" id="filtros3">
+
+            <button id="filtroPrograma" type="button" class="btn btn-success float-left mb-2 ml-2"><i class="fab fa-searchengin"></i> Buscar</button>
 
 
         </div>
@@ -80,7 +90,7 @@
 
                             </div>
 
-
+                            <div id="chartFicha" style="height: 400px;"></div>
                         </div>
                     </div>
                 </div>
@@ -156,6 +166,10 @@
 <%@include file="/views/template/footer.jspf"%>
 
 <script src="assets/js/canvas/canvasjs.min.js" charset="utf-8"></script>
+
+<script src="assets/js/project/canva/GraphicByAprendiz.js" charset="utf-8"></script>
+<script src="assets/js/project/canva/GraphicByFicha.js" charset="utf-8"></script>
+
 
 <script src="assets/js/project/select/validationSelect.js" charset="utf-8"></script>
 <script src="assets/js/project/select/botonsFiltro.js" charset="utf-8"></script>
