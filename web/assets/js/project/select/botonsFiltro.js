@@ -1,19 +1,26 @@
 
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+
+Date.prototype.getStartYear = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    local.setMonth(this.getMonth()-(this.getMonth()))
+    local.setDate(this.getDay()-this.getDay()+1)
+    return local.toJSON().slice(0,10);
+});
+
 $(function(){
     
-  
-    
-})
-
-document.getElementById("filtroPrograma").addEventListener("click", function (){
-
-    let filtros = document.getElementById('filtros')
+      let filtros = document.getElementById('filtros')
     let filtros1 = document.getElementById('filtros1')
 
     
     let str = ``
-    str +=` <label for="validationTooltip03">Fecha Inicial</label>
-      <input type="date" class="form-control" id="fechaI" placeholder="City" required>`
+    str +=` `
     
     str += `<label for="validationTooltip03">Programa</label>`
       $.ajax({
@@ -31,20 +38,18 @@ document.getElementById("filtroPrograma").addEventListener("click", function (){
             
             str += "</select>"
             
-            filtros.innerHTML = str;
+            filtros.innerHTML += str;
                
             
         })
         
-        filtros1.innerHTML = `<label for="validationTooltip03">Fecha final</label>
-      <input type="date" class="form-control" id="fechaF" placeholder="City" required>`
+    
     
     let cordinacion = ``
     
     cordinacion += `<label for="validationTooltip03">Coordinación</label>`
-  
  
-    
+
     
     $.ajax({
             type: "GET",
@@ -67,9 +72,21 @@ document.getElementById("filtroPrograma").addEventListener("click", function (){
         })
     
     typesActivitys()
+
+    setDefaultDate()
+    
+})
+
+document.getElementById("filtroPrograma").addEventListener("click", function (){
+      
        
 });
 
+  
+function setDefaultDate(){
+    document.getElementById('fechaI').value = new Date().getStartYear();
+    document.getElementById('fechaF').value = new Date().toDateInputValue();
+}
 
 
 

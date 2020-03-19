@@ -1,49 +1,99 @@
 
-function getActivitysByAprendiz(aprendiz){
+function getActivitysByAprendiz(aprendiz) {
 
-    
-       let fechai = document.getElementById('fechaI').value
-        let fechaf = document.getElementById('fechaF').value
-        
-        let data = {
-            objeto : aprendiz,
-            fechaInicial : fechai,
-            fechaFinal : fechaf
-        };
-        
-        if(!validationDate(data)){
-            return false
-        }
-        
-            listActivitysByAprendiz(data)
-    
+
+    let fechai = document.getElementById('fechaI').value
+    let fechaf = document.getElementById('fechaF').value
+
+    let data = {
+        objeto: aprendiz,
+        fechaInicial: fechai,
+        fechaFinal: fechaf
+    };
+    if (!validationDate(data)) {
+        return false
+    }
+
+    listActivitysByAprendiz(data)
+
 }
 
-function listActivitysByAprendiz(data){
+function getByTypes(data) {
+    $.ajax({
+        type: "GET",
+        url: './ListStaticsBytype',
+        datatype: 'json',
+        data: {
+            id: data.objeto,
+            fechaInicial: data.fechaInicial,
+            fechaFinal: data.fechaFinal
+        }
+    }).done(function (data) {
+        console.log(data)
+        var data2 = [
+    ]
+        for (var item of data) {
+            delete item.idRealActividad
+            var ob = {
+                y:item.cantidad,
+                label:item.tipo_actividad
+            }
+            data2.push(ob)
+        }
+
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
+            animationEnabled: true,
+            title: {
+                text: "Eventos preferidos"
+            },
+            data: [{
+                    type: "pie",
+                    startAngle: 25,
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabelFontSize: 16,
+                    indexLabel: "{label} - {y}%",
+                    dataPoints: 
+			data2
+                    
+                }]
+        });
+        chart.render();
+
+    })
+}
+
+
+function listActivitysByAprendiz(data) {
     console.log(data)
     $('#modalTwo').modal('show')
-    
-   
-    
-    
-      $.ajax({
+
+    getByTypes(data)
+
+    $.ajax({
         type: "GET",
         url: './ListActivitysByAprendiz',
         datatype: 'json',
-        data:{
-            documento:data.objeto,
-            fechaInicial : data.fechaInicial,
-            fechaFinal : data.fechaFinal
+        data: {
+            documento: data.objeto,
+            fechaInicial: data.fechaInicial,
+            fechaFinal: data.fechaFinal
         }
     }).done(function (data) {
-     
-     console.log(data)
-     
-      $('#name').text(data[0].nombre_aprendiz)
-      console.log(data[0].nombrePrograma)
-      $('#pro').text(data[0].nombrePrograma)
-     
-       let select = document.getElementById('tabla2');
+
+        console.log(data)
+
+
+
+        $('#name').text(data[0].nombre_aprendiz)
+        console.log(data[0].nombrePrograma)
+        $('#pro').text(data[0].nombrePrograma)
+
+        let select = document.getElementById('tabla2');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="bg-primary">
@@ -60,7 +110,7 @@ function listActivitysByAprendiz(data){
                                                  `
 
         for (var item of data) {
-     
+
             str += `<tr id="row${item.nombre_actividad}" class="chiquito">
                                                     <td>${item.actividades.nombre_actividad}</td>
                                                     <td>${item.actividades.tipo_actividad}</td>
@@ -75,7 +125,7 @@ function listActivitysByAprendiz(data){
                                                 </td>
                                                 </tr> `
         }
-        
+
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">
@@ -92,17 +142,13 @@ function listActivitysByAprendiz(data){
                             </table>`
 
         select.innerHTML = str;
-
-
-       
-       
     })
-    
 
-    
-    
-    
-    
+
+
+
+
+
 }
 
 
