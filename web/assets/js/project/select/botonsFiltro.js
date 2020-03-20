@@ -77,10 +77,6 @@ $(function(){
     
 })
 
-document.getElementById("filtroPrograma").addEventListener("click", function (){
-      
-       
-});
 
   
 function setDefaultDate(){

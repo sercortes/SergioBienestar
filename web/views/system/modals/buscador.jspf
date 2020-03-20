@@ -21,7 +21,7 @@
         </div>
         <div class="col-sm-6 float-right">
 
-            <button id="filtroPrograma" type="button" class="btn btn-success mt-4 float-right"><i class="fas fa-file-download"></i> Generar reporte</button>
+            <button id="generateReport" type="button" class="btn btn-success mt-4 float-right"><i class="fas fa-file-download"></i> Generar reporte</button>
         </div>
 
     </div>

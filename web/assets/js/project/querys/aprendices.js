@@ -46,7 +46,7 @@ function aprendices(id){
                                                     <td>${item.nombrePrograma}</td>
                                                     <td>${item.coordinacion}</td>
                                                  <td>         
-                                                      <button class="btn btn-info btn-sm" role="button" onclick = "detailsAprendiz('${item.documento_aprendiz}')" >
+                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz('${item.documento_aprendiz}')" >
                                                             <i class="fas fa-address-card"></i>
                                                         </button>           
                                                 </td>
