@@ -1,0 +1,68 @@
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <h3 class="text-center"><i class="fab fa-angellist"></i> Actividades</h3>
+
+    <div class="row">
+        <div class="col-sm-3">
+
+
+            <label for="validationTooltip03">Fecha Inicial</label>
+            <input type="date" class="form-control" id="fechaI" required>
+
+
+        </div>
+        <div class="col-sm-3">
+
+
+            <label for="validationTooltip03">Fecha final</label>
+            <input type="date" class="form-control" id="fechaF" placeholder="City" required>
+
+
+        </div>
+        <div class="col-sm-6 float-right">
+
+            <button id="filtroPrograma" type="button" class="btn btn-success mt-4 float-right"><i class="fas fa-file-download"></i> Generar reporte</button>
+        </div>
+
+    </div>
+    <div class="row pb-3">
+
+        <div id="filtros" class="col-sm-3">
+
+        </div>
+        <div id="filtros1" class="col-sm-3">
+
+        </div>
+        <div class="col-sm-3" id="filtros2">
+
+        </div>
+
+        <div class="col-sm-3" id="filtros3">
+
+            <label for="validationCustom01">Buscar:</label>
+            <div class="input-group">
+                <input name="nombre" type="text" class="form-control" id="validationCustom01" maxlength="50" placeholder="Excelencia" required>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="buttonSearch"><i class="fas fa-search-plus"></i> </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+
+
+
+
+            <div id="tabla" class="table-responsive">
+
+            </div>
+
+
+        </div>
+    </div>

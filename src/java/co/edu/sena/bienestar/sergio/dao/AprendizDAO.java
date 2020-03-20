@@ -152,7 +152,7 @@ public class AprendizDAO implements InterfaceCRUD{
         }
     }
 
-        public ArrayList<?> getByProg(String ficha) {
+        public ArrayList<?> getByProg(String programa) {
         try {
             String sql = "SELECT ap.*, ac.Nombre_actividad, count(ap.Documento_aprendiz) participo " +
                         "FROM Actividades ac  " +
@@ -162,7 +162,7 @@ public class AprendizDAO implements InterfaceCRUD{
                         "WHERE ap.NombrePrograma = ? "+
                         "group by(ap.Documento_aprendiz) ORDER BY count(ap.Documento_aprendiz) DESC";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
-            ps.setString(1, ficha);
+            ps.setString(1, programa);
             ResultSet rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;

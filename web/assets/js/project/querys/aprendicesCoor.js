@@ -4,7 +4,7 @@ function aprendicesByCoor(id){
     
    
       
-    $('#exampleModal').modal('show')
+    $('#modalPrograma').modal('show')
     
   
    
@@ -18,14 +18,19 @@ function aprendicesByCoor(id){
     }).done(function (data) {
         
         console.log(data)
+        
+        console.log(data[0].nombrePrograma)
       
    //   let acti = data[0].actividades.ficha
+       let programa = document.getElementById('programaFormacion')
+       programa.innerHTML += " "+data[0].nombrePrograma
        
-      let cantidad = document.getElementById('cantidad')
-      cantidad.innerHTML = "# Aprendices";
-      cantidad.innerHTML += " "+data.length
+      let cantidad = document.getElementById('Total')
+      cantidad.innerHTML += " # aprendices "+data.length
+      
+      let num = 0
 
-     let select = document.getElementById('tabla1');
+     let select = document.getElementById('tablaPrograma');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="bg-primary">
@@ -55,8 +60,9 @@ function aprendicesByCoor(id){
                                                         </button>           
                                                 </td>
                                                 </tr> `
+        num +=parseInt(item.participaciones)
         }
-        
+        console.log(num)
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">
