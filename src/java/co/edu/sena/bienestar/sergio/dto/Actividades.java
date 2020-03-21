@@ -6,6 +6,7 @@
 package co.edu.sena.bienestar.sergio.dto;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -29,10 +30,19 @@ public class Actividades {
     private String programa;
     
     private String coor;
+    
+    private String keyWord;
 
     public Actividades() {
     }
 
+    public Actividades(String fecha_inicio, String fecha_fin) {
+        this.fecha_inicio = Date.valueOf(fecha_inicio);
+        this.fecha_fin = Date.valueOf(fecha_fin);
+    }
+
+    
+    
     public Actividades(String nombre_actividad) {
         this.nombre_actividad = nombre_actividad;
     }
@@ -143,6 +153,14 @@ public class Actividades {
 
     public void setIdRealActividad(int idRealActividad) {
         this.idRealActividad = idRealActividad;
+    }
+
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    public void setKeyWord(String keyWord) {
+        this.keyWord = keyWord;
     }
     
     

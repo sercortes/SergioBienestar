@@ -6,27 +6,32 @@ function aprendicesByCoor(id){
       
     $('#modalPrograma').modal('show')
     
-  
+     let fechai = document.getElementById('fechaI').value
+     let fechaf = document.getElementById('fechaF').value
+    
+
    
      $.ajax({
         type: "GET",
         url: './ListAprendicesByCoor',
         datatype: 'json',
         data:{
-            id:id
+            cordinacion:id,
+            fechaInicial:fechai,
+            fechaFinal:fechaf
         }
     }).done(function (data) {
         
         console.log(data)
         
-        console.log(data[0].nombrePrograma)
+        
       
    //   let acti = data[0].actividades.ficha
        let programa = document.getElementById('programaFormacion')
-       programa.innerHTML += " "+data[0].nombrePrograma
+       programa.innerHTML = " "+data[0].nombrePrograma
        
       let cantidad = document.getElementById('Total')
-      cantidad.innerHTML += " # aprendices "+data.length
+      cantidad.innerHTML = " # aprendices "+data.length
       
       let num = 0
 

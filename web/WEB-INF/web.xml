@@ -37,6 +37,7 @@
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>
         <url-pattern>/ListActivitys</url-pattern>
+        <url-pattern>/ListActivitysSearch</url-pattern>
         <url-pattern>/ListActivitysByAprendiz</url-pattern>
         <url-pattern>/ListStaticsBytype</url-pattern>
         <url-pattern>/ListStaticsBytypeFicha</url-pattern>

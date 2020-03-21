@@ -1,15 +1,25 @@
 $(document).ready(function () {
 
-    listar()
+
+        let fechai = document.getElementById('fechaI').value
+        let fechaf = document.getElementById('fechaF').value
+        
+        let data = {
+            fechaInicial:fechai,
+            fechaFinal:fechaf
+        }
+
+    listar(data)
 
 });
 
 
 
-function listar() {
+function listar(data) {
     $.ajax({
         type: "GET",
         url: './ListActivitys',
+        data:data,
         datatype: 'json'
     }).done(function (data) {
 

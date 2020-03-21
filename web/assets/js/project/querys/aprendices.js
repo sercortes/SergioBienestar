@@ -2,7 +2,6 @@
 function aprendices(id){
     
     $('#modalThree').modal('show')
-    console.log(id)
   
    
      $.ajax({
@@ -20,7 +19,9 @@ function aprendices(id){
        $('#titulos').text(acti)
        
       let cantidad = document.getElementById('cantidadAprendices')
-      cantidad.innerHTML += " "+data.length
+      cantidad.innerHTML = "#Aprendices "+data.length
+
+var num = 0
 
      let select = document.getElementById('tablaAprendices');
         let str = `<table id="examples" class="table table-striped table-bordered">
@@ -51,8 +52,9 @@ function aprendices(id){
                                                         </button>           
                                                 </td>
                                                 </tr> `
+        num++
         }
-        
+        console.log(num)
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">

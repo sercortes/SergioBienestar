@@ -103,14 +103,58 @@ public class ActividadDAO implements InterfaceCRUD{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-     public ArrayList<?> getAll() {
+     public ArrayList<?> getAllByword(Actividades activi) {
         try {
             String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
                     + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "WHERE ac.Nombre_actividad LIKE ? "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "group by ac.Id_actividad, ac.Tipo_actividad "
                     + "ORDER BY count(aa.Cod_aprendiz) desc";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, "%" + activi.getKeyWord() +"%");
+            ps.setDate(2, activi.getFecha_inicio());
+            ps.setDate(3, activi.getFecha_fin());
+            ps.setDate(4, activi.getFecha_inicio());
+            ps.setDate(5, activi.getFecha_fin());
+            ResultSet rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades actividades;
+            while (rs.next()) {
+                actividades = new Actividades();
+                actividades.setIdRealActividad(rs.getInt("Id_actividad"));
+                actividades.setNombre_actividad(rs.getString("Nombre_actividad"));
+                actividades.setTipo_actividad(rs.getString("Tipo_actividad"));
+                actividades.setFecha_inicio(rs.getString("Fecha_Inicio"));
+                actividades.setFecha_fin(rs.getString("Fecha_fin"));
+                actividades.setResponsable(rs.getString("responsable"));
+                actividades.setCantidad(rs.getString("cantidad"));
+                list.add(actividades);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+     
+    
+     public ArrayList<?> getAll(Actividades activi) {
+        try {
+            String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
+                    + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "group by ac.Id_actividad, ac.Tipo_actividad "
+                    + "ORDER BY count(aa.Cod_aprendiz) desc";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setDate(1, activi.getFecha_inicio());
+            ps.setDate(2, activi.getFecha_fin());
+            ps.setDate(3, activi.getFecha_inicio());
+            ps.setDate(4, activi.getFecha_fin());
             ResultSet rs = ps.executeQuery();
             List<Actividades> list = new ArrayList<>();
             Actividades actividades;
@@ -343,7 +387,6 @@ public class ActividadDAO implements InterfaceCRUD{
                         "group by(aa.Cod_actividad) ORDER BY count(aa.Cod_aprendiz) desc";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, actividades.getCoor());
-            System.out.println(ps.toString());
             ResultSet rs = ps.executeQuery();
             List<Actividades> list = new ArrayList<>();
             Actividades acti;
@@ -386,6 +429,11 @@ public class ActividadDAO implements InterfaceCRUD{
 
     @Override
     public ArrayList<?> getByWord(String keyword) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<?> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

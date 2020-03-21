@@ -185,12 +185,17 @@ public class aprendiz extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String acti = request.getParameter("id");
-
+      
+        Aprendiz aprendiz = new Aprendiz();
+        aprendiz.setCoordinacion(request.getParameter("cordinacion"));
+        
+        Actividades actividades = new Actividades(request.getParameter("fechaInicial"), request.getParameter("fechaFinal"));
+        aprendiz.setActividades(actividades);
+        
         Conexion conexion = new Conexion();
         AprendizDAO actividadDAO = new AprendizDAO(conexion);
 
-        ArrayList<?> aprendices = actividadDAO.getByProg(acti);
+        ArrayList<?> aprendices = actividadDAO.getByProg(aprendiz); 
 
         response.setContentType("application/json");
         new Gson().toJson(aprendices, response.getWriter());

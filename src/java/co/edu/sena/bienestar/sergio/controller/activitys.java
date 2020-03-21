@@ -32,10 +32,16 @@ public class activitys extends HttpServlet {
         String direccion = request.getRequestURI();
 
         switch (direccion) {
-
+            
             case "/bienestar/ListActivitys":
 
                 ListActivitys(request, response);
+
+                break;
+                
+             case "/bienestar/ListActivitysSearch":
+
+                ListActivitysSearch(request, response);
 
                 break;
 
@@ -63,15 +69,19 @@ public class activitys extends HttpServlet {
 
     private void ListActivitys(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         Conexion conexion = new Conexion();
         ActividadDAO actividadDAO = new ActividadDAO(conexion);
 
-        ArrayList<?> actividades = actividadDAO.getAll();
+        Actividades actividades = new Actividades();
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        
+        ArrayList<?> lista = actividadDAO.getAll(actividades);
 
         response.setContentType("application/json");
-        new Gson().toJson(actividades, response.getWriter());
+        new Gson().toJson(lista, response.getWriter());
     }
 
     @Override
@@ -87,7 +97,7 @@ public class activitys extends HttpServlet {
 
     private void listActivitysByAprendiz(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         Aprendiz aprendiz = new Aprendiz();
         aprendiz.setDocumento_aprendiz(request.getParameter("documento"));
@@ -108,7 +118,7 @@ public class activitys extends HttpServlet {
 
     private void ListStaticsBytype(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         Aprendiz aprendiz = new Aprendiz();
         aprendiz.setDocumento_aprendiz(request.getParameter("id"));
@@ -128,7 +138,7 @@ public class activitys extends HttpServlet {
 
     private void ListStaticsBytypeFicha(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         Aprendiz aprendiz = new Aprendiz();
         aprendiz.setFicha(request.getParameter("id"));
@@ -146,6 +156,25 @@ public class activitys extends HttpServlet {
         response.setContentType("application/json");
         new Gson().toJson(lista, response.getWriter());
 
+    }
+
+    private void ListActivitysSearch(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+
+        Actividades actividades = new Actividades();
+        actividades.setKeyWord(request.getParameter("palabra"));
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        
+        ArrayList<?> lista = actividadDAO.getAllByword(actividades);
+
+        response.setContentType("application/json");
+        new Gson().toJson(lista, response.getWriter());
+        
     }
 
 }

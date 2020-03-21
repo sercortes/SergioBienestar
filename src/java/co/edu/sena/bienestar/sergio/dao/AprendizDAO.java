@@ -152,17 +152,22 @@ public class AprendizDAO implements InterfaceCRUD{
         }
     }
 
-        public ArrayList<?> getByProg(String programa) {
+        public ArrayList<?> getByProg(Aprendiz apren) {
         try {
             String sql = "SELECT ap.*, ac.Nombre_actividad, count(ap.Documento_aprendiz) participo " +
                         "FROM Actividades ac  " +
                         "INNER JOIN Actividades_Aprendiz aa  " +
                         "ON ac.Id_actividad=aa.Cod_actividad " +
                         "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz  " +
-                        "WHERE ap.NombrePrograma = ? "+
+                        "WHERE ap.NombrePrograma = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
+                        "AND ac.Fecha_fin BETWEEN ? AND ? " +
                         "group by(ap.Documento_aprendiz) ORDER BY count(ap.Documento_aprendiz) DESC";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
-            ps.setString(1, programa);
+            ps.setString(1, apren.getCoordinacion());
+            ps.setDate(2, apren.getActividades().getFecha_inicio());
+            ps.setDate(3, apren.getActividades().getFecha_fin());
+            ps.setDate(4, apren.getActividades().getFecha_inicio());
+            ps.setDate(5, apren.getActividades().getFecha_fin());
             ResultSet rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
@@ -285,7 +290,7 @@ public class AprendizDAO implements InterfaceCRUD{
             ps.setDate(4, actividades.getFecha_inicio());
             ps.setDate(5, actividades.getFecha_fin());
             ResultSet rs = ps.executeQuery();
-            System.out.println(ps.toString());
+            
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {
@@ -322,7 +327,7 @@ public class AprendizDAO implements InterfaceCRUD{
             ps.setDate(4, actividades.getFecha_inicio());
             ps.setDate(5, actividades.getFecha_fin());
             ResultSet rs = ps.executeQuery();
-            System.out.println(ps.toString());
+            
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {
@@ -358,7 +363,7 @@ public class AprendizDAO implements InterfaceCRUD{
             ps.setDate(4, actividades.getFecha_inicio());
             ps.setDate(5, actividades.getFecha_fin());
             ResultSet rs = ps.executeQuery();
-            System.out.println(ps.toString());
+            
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {
@@ -394,7 +399,7 @@ public class AprendizDAO implements InterfaceCRUD{
             ps.setDate(4, actividades.getFecha_inicio());
             ps.setDate(5, actividades.getFecha_fin());
             ResultSet rs = ps.executeQuery();
-            System.out.println(ps.toString());
+            
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {

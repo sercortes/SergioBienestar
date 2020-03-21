@@ -45,8 +45,8 @@ function listarCoor(data) {
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="bg-primary">
-                                        <th>Nombre programa</th>
-                                        <th>Coordinación</th>
+                                        <th>Nombre programas</th>
+                                        <th>Coordinaciónn</th>
                                         <th># Participaciones</th>
                                         <th>Detalles</th>
                                     </tr>

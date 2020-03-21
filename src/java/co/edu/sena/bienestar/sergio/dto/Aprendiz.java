@@ -180,8 +180,9 @@ public class Aprendiz {
 
     @Override
     public String toString() {
-        return "Aprendiz{" + "id_aprendiz=" + id_aprendiz + ", tipo_documento=" + tipo_documento + ", documento_aprendiz=" + documento_aprendiz + ", nombre_aprendiz=" + nombre_aprendiz + ", email_aprendiz=" + email_aprendiz + ", municipio=" + municipio + ", genero=" + genero + ", fecha_nacimiento=" + fecha_nacimiento + ", tipo_poblacion=" + tipo_poblacion + ", eps=" + eps + ", estrato=" + estrato + ", ficha=" + ficha + ", nombrePrograma=" + nombrePrograma + ", nivelFormacion=" + nivelFormacion + ", actividades=" + actividades + ", actividadesAprendiz=" + actividadesAprendiz + '}';
+        return "Aprendiz{" + "id_aprendiz=" + id_aprendiz + ", tipo_documento=" + tipo_documento + ", documento_aprendiz=" + documento_aprendiz + ", nombre_aprendiz=" + nombre_aprendiz + ", email_aprendiz=" + email_aprendiz + ", municipio=" + municipio + ", genero=" + genero + ", fecha_nacimiento=" + fecha_nacimiento + ", tipo_poblacion=" + tipo_poblacion + ", eps=" + eps + ", estrato=" + estrato + ", ficha=" + ficha + ", nombrePrograma=" + nombrePrograma + ", nivelFormacion=" + nivelFormacion + ", actividades=" + actividades + ", actividadesAprendiz=" + actividadesAprendiz + ", coordinacion=" + coordinacion + ", participaciones=" + participaciones + '}';
     }
+
 
     public String getParticipaciones() {
         return participaciones;
