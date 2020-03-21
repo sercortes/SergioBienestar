@@ -108,17 +108,19 @@ public class ActividadDAO implements InterfaceCRUD{
             String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
                     + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
-                    + "WHERE ac.Nombre_actividad LIKE ? "
+                    + "WHERE ac.Nombre_actividad LIKE ? AND "
+                    + "ac.Tipo_actividad LIKE ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "group by ac.Id_actividad, ac.Tipo_actividad "
                     + "ORDER BY count(aa.Cod_aprendiz) desc";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, "%" + activi.getKeyWord() +"%");
-            ps.setDate(2, activi.getFecha_inicio());
-            ps.setDate(3, activi.getFecha_fin());
-            ps.setDate(4, activi.getFecha_inicio());
-            ps.setDate(5, activi.getFecha_fin());
+            ps.setString(2, "%" + activi.getTipo_actividad() +"%");
+            ps.setDate(3, activi.getFecha_inicio());
+            ps.setDate(4, activi.getFecha_fin());
+            ps.setDate(5, activi.getFecha_inicio());
+            ps.setDate(6, activi.getFecha_fin());
             ResultSet rs = ps.executeQuery();
             List<Actividades> list = new ArrayList<>();
             Actividades actividades;

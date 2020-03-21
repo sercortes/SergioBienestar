@@ -1,10 +1,9 @@
 function typesActivitys() {
 
-    let filtros2 = document.getElementById('filtros2')
+    let filtros2 = document.getElementById('TypeActivity')
 
     let str = ``
 
-    str += `<label for="validationTooltip03">Tipo Actividad</label>`
 
 
     $.ajax({
@@ -13,14 +12,12 @@ function typesActivitys() {
         datatype: 'json'
     }).done(function (data) {
 
-        str += `<select name="coor" class="form-control" id="TypeActivity" tabindex="4" onchange="selectTypeActivity()" required>
-          <option value="No">No</option>`
 
         for (var item of data) {
             str += `<option value="${item.tipo_actividad}">${item.tipo_actividad}</option>`
         }
 
-        str += "</select>"
+      
 
         filtros2.innerHTML += str;
     })
@@ -31,6 +28,12 @@ function selectTypeActivity() {
 
 
     let select = document.getElementById('TypeActivity').value
+ 
+    let input = document.getElementById('keyWord').value
+    
+    if (input !== "") {
+        return false
+    }
  
     if (select == 'No') {
 

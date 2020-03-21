@@ -167,6 +167,7 @@ public class activitys extends HttpServlet {
 
         Actividades actividades = new Actividades();
         actividades.setKeyWord(request.getParameter("palabra"));
+        actividades.setTipo_actividad(request.getParameter("tipo"));
         actividades.setFecha_inicio(request.getParameter("fechaInicial"));
         actividades.setFecha_fin(request.getParameter("fechaFinal"));
         

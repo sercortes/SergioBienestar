@@ -19,15 +19,18 @@
 
 
         </div>
-        <div class="col-sm-3" id="filtros2">
-
+        <div class="col-sm-2" id="filtros2">
+            <label for="validationTooltip03">Tipo Actividad</label>
+            <select name="actividadTipos" class="form-control" id="TypeActivity" tabindex="4" onchange="selectTypeActivity()" required>
+          <option value="No">No</option>
+          </select>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
 
             
             <label for="validationCustom01">Palabra clave:</label>
             <div class="input-group">
-                                <input name="nombre" type="text" class="form-control" id="keyWord" maxlength="50" placeholder="Excelencia" required>
+                <input name="nombre" type="text" class="form-control" id="keyWord" minlength="2" maxlength="10" placeholder="" required>
 
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" id="buttonSearch"><i class="fas fa-search"></i> Buscar</button>

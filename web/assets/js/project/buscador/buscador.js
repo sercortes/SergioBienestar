@@ -1,20 +1,15 @@
 
 $('#buttonSearch').click(function (){
    
-    console.log('sergio')
-    
-    let fechai = document.getElementById('fechaI').value
-        let fechaf = document.getElementById('fechaF').value
-        let word = document.getElementById('keyWord').value
-        
-        let data = {
-            palabra:word,
-            fechaInicial:fechai,
-            fechaFinal:fechaf
-        }
-    console.log(data)
- 
-    listarActivitysSearch(data)
+   let input = document.getElementById('keyWord').value
+   
+    if (input.length <= 3) {
+        messageInfo('Completa la palabra clave')
+        return false
+    }
+   
+   
+    listarActivitysSearch(returtDataActivitys())
     
 });
 
@@ -27,6 +22,8 @@ function listarActivitysSearch(data) {
         data:data,
         datatype: 'json'
     }).done(function (data) {
+
+console.log(data)
 
 let num = 0
 
