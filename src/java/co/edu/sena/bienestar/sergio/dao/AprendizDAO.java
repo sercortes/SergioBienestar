@@ -154,16 +154,17 @@ public class AprendizDAO implements InterfaceCRUD{
 
         public ArrayList<?> getByProg(Aprendiz apren) {
         try {
-            String sql = "SELECT ap.*, ac.Nombre_actividad, count(ap.Documento_aprendiz) participo " +
-                        "FROM Actividades ac  " +
-                        "INNER JOIN Actividades_Aprendiz aa  " +
-                        "ON ac.Id_actividad=aa.Cod_actividad " +
-                        "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz  " +
-                        "WHERE ap.NombrePrograma = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
-                        "AND ac.Fecha_fin BETWEEN ? AND ? " +
-                        "group by(ap.Documento_aprendiz) ORDER BY count(ap.Documento_aprendiz) DESC";
+            String sql = "SELECT ap.Ficha, ap.Coordinacion, count(ap.Ficha) 'participo' "
+                    + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ac.Id_actividad=aa.Cod_actividad INNER JOIN Aprendiz ap "
+                    + "ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "WHERE ap.NombrePrograma = ? "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin "
+                    + "BETWEEN ? AND ? "
+                    + "group by(ap.Ficha) ORDER BY count(ap.Ficha) DESC";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
-            ps.setString(1, apren.getCoordinacion());
+            ps.setString(1, apren.getNombrePrograma());
             ps.setDate(2, apren.getActividades().getFecha_inicio());
             ps.setDate(3, apren.getActividades().getFecha_fin());
             ps.setDate(4, apren.getActividades().getFecha_inicio());
@@ -173,12 +174,8 @@ public class AprendizDAO implements InterfaceCRUD{
             Aprendiz aprendiz;
             while (rs.next()) {
                 aprendiz = new Aprendiz();
-                aprendiz.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
-                aprendiz.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
                 aprendiz.setFicha(rs.getString("Ficha"));
-                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
                 aprendiz.setCoordinacion(rs.getString("Coordinacion"));
-                aprendiz.setActividades(new Actividades(rs.getString("Nombre_actividad")));
                 aprendiz.setParticipaciones(rs.getString("participo"));
                 list.add(aprendiz);
             }

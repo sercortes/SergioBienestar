@@ -30,7 +30,7 @@
             
             <label for="validationCustom01">Palabra clave:</label>
             <div class="input-group">
-                <input name="nombre" type="text" class="form-control" id="keyWord" minlength="2" maxlength="10" placeholder="" required>
+                <input name="nombre" type="text" class="form-control" id="keyWord" minlength="2" maxlength="20" placeholder="" required>
 
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" id="buttonSearch"><i class="fas fa-search"></i> Buscar</button>
@@ -51,7 +51,10 @@
 
         
         <div id="filtros1" class="col-sm-3">
-
+                <label for="validationTooltip03">Coordinación</label>
+                <select name="coor" class="form-control" id="coor" tabindex="4" onchange="selectCoordinacion()" required>
+          <option value="No">No</option>
+          </select>
         </div>
         
         <div id="filtros" class="col-sm-3">

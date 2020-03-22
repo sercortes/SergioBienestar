@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author serfin
  */
-public class ActividadDAO implements InterfaceCRUD{
+public class ActividadDAO implements InterfaceCRUD {
 
     private Conexion conn;
     private String error;
@@ -28,13 +28,13 @@ public class ActividadDAO implements InterfaceCRUD{
     public ActividadDAO(Conexion conn) {
         this.conn = conn;
     }
-    
+
     @Override
     public boolean insert(Object t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-  public Actividades getLastDate(Actividades acti) {
+
+    public Actividades getLastDate(Actividades acti) {
         try {
             String sql = "SELECT * FROM Actividades a WHERE Fecha_inicio = ? AND Fecha_fin = ? limit 1";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
@@ -47,42 +47,40 @@ public class ActividadDAO implements InterfaceCRUD{
                 actividad = new Actividades();
                 actividad.setIdRealActividad(rs.getInt("Id_actividad"));
             }
-             return actividad;
+            return actividad;
         } catch (SQLException e) {
             System.out.println("error getById " + e.getMessage());
             return null;
         }
     }
-    
-    public int insertReturn(Actividades actividades){
+
+    public int insertReturn(Actividades actividades) {
         int idActividad = 0;
         String sql = "INSERT INTO Actividades (Nombre_actividad, Tipo_actividad, Fecha_inicio, Fecha_fin, responsable)"
                 + "VALUES (?, ?, ?, ?, ?)";
-        
-        try{
+
+        try {
             PreparedStatement ps = conn.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, actividades.getNombre_actividad());
             ps.setString(2, actividades.getTipo_actividad());
             ps.setDate(3, actividades.getFecha_inicio());
             ps.setDate(4, actividades.getFecha_fin());
             ps.setString(5, actividades.getResponsable());
-            
+
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 idActividad = rs.getInt(1);
             }
             return idActividad;
-        }catch(MySQLIntegrityConstraintViolationException e){
+        } catch (MySQLIntegrityConstraintViolationException e) {
             return 0;
-        }catch(Exception e){
+        } catch (Exception e) {
             return 0;
         }
-        
+
     }
-    
-   
-    
+
     @Override
     public boolean delete(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -103,7 +101,7 @@ public class ActividadDAO implements InterfaceCRUD{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-     public ArrayList<?> getAllByword(Actividades activi) {
+    public ArrayList<?> getAllByword(Actividades activi) {
         try {
             String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
@@ -115,8 +113,8 @@ public class ActividadDAO implements InterfaceCRUD{
                     + "group by ac.Id_actividad, ac.Tipo_actividad "
                     + "ORDER BY count(aa.Cod_aprendiz) desc";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
-            ps.setString(1, "%" + activi.getKeyWord() +"%");
-            ps.setString(2, "%" + activi.getTipo_actividad() +"%");
+            ps.setString(1, "%" + activi.getKeyWord() + "%");
+            ps.setString(2, "%" + activi.getTipo_actividad() + "%");
             ps.setDate(3, activi.getFecha_inicio());
             ps.setDate(4, activi.getFecha_fin());
             ps.setDate(5, activi.getFecha_inicio());
@@ -141,9 +139,8 @@ public class ActividadDAO implements InterfaceCRUD{
             return null;
         }
     }
-     
-    
-     public ArrayList<?> getAll(Actividades activi) {
+
+    public ArrayList<?> getAll(Actividades activi) {
         try {
             String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
@@ -177,8 +174,8 @@ public class ActividadDAO implements InterfaceCRUD{
             return null;
         }
     }
-     
-     public Actividades getIdActividad(Actividades actividades) {
+
+    public Actividades getIdActividad(Actividades actividades) {
 
         try {
             String sql = "SELECT Id_actividad FROM Actividades "
@@ -192,7 +189,7 @@ public class ActividadDAO implements InterfaceCRUD{
             ResultSet rs = ps.executeQuery();
             Actividades acti = new Actividades();
             while (rs.next()) {
-                
+
                 acti.setIdRealActividad(rs.getInt("Id_actividad"));
 
             }
@@ -203,9 +200,55 @@ public class ActividadDAO implements InterfaceCRUD{
         }
 
     }
-     
-     
-     public ArrayList<?> getStaticsByTypeFicha(Aprendiz aprendiz) {
+
+    public ArrayList<?> getStaticsByProgram(Aprendiz aprendiz) {
+        try {
+            String sql = "SELECT ap.Ficha,  (count(ap.NombrePrograma) *100/ "
+                    + "(select count(*) from Aprendiz ap INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ap.Documento_aprendiz=aa.Cod_aprendiz INNER JOIN Actividades ac "
+                    + "ON aa.Cod_actividad = ac.Id_actividad WHERE ap.NombrePrograma = ? "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ?)) 'participo' "
+                    + "FROM Actividades ac  "
+                    + "INNER JOIN Actividades_Aprendiz aa  "
+                    + "ON ac.Id_actividad=aa.Cod_actividad "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz  "
+                    + "WHERE ap.NombrePrograma = ? "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "group by(ap.Ficha) ORDER BY count(ap.Documento_aprendiz) DESC";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, aprendiz.getNombrePrograma());
+            ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(3, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(4, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(5, aprendiz.getActividades().getFecha_fin());
+            ps.setString(6, aprendiz.getNombrePrograma());
+            ps.setDate(7, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(8, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(9, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(10, aprendiz.getActividades().getFecha_fin());
+            ResultSet rs = ps.executeQuery();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz apren;
+            Actividades actividad;
+            while (rs.next()) {
+                apren = new Aprendiz();
+                apren.setFicha(rs.getString("ficha"));
+                actividad = new Actividades();
+                actividad.setCantidad(rs.getString("participo"));
+                apren.setActividades(actividad);
+
+                list.add(apren);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(":("+e);
+            return null;
+        }
+    }
+
+    public ArrayList<?> getStaticsByTypeFicha(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ac.Tipo_actividad, round(count(ac.Tipo_actividad) * 100/ "
                     + "(select count(*) from Aprendiz ap INNER JOIN Actividades_Aprendiz aa "
@@ -220,7 +263,7 @@ public class ActividadDAO implements InterfaceCRUD{
                     + "GROUP BY(ac.Tipo_actividad)";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, aprendiz.getFicha());
-             ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(3, aprendiz.getActividades().getFecha_fin());
             ps.setDate(4, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(5, aprendiz.getActividades().getFecha_fin());
@@ -236,8 +279,7 @@ public class ActividadDAO implements InterfaceCRUD{
                 actividades = new Actividades();
                 actividades.setTipo_actividad(rs.getString("Tipo_actividad"));
                 actividades.setCantidad(rs.getString("cantidad"));
-                
-             
+
                 list.add(actividades);
             }
             return (ArrayList<?>) list;
@@ -245,9 +287,8 @@ public class ActividadDAO implements InterfaceCRUD{
             return null;
         }
     }
-     
-     
-       public ArrayList<?> getStaticsByType(Aprendiz aprendiz) {
+
+    public ArrayList<?> getStaticsByType(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ac.Tipo_actividad, "
                     + "round(count(ac.Tipo_actividad) * 100/(select count(*) from Actividades_Aprendiz aa "
@@ -278,8 +319,7 @@ public class ActividadDAO implements InterfaceCRUD{
                 actividades = new Actividades();
                 actividades.setTipo_actividad(rs.getString("Tipo_actividad"));
                 actividades.setCantidad(rs.getString("cantidad"));
-                
-             
+
                 list.add(actividades);
             }
             return (ArrayList<?>) list;
@@ -288,10 +328,8 @@ public class ActividadDAO implements InterfaceCRUD{
             return null;
         }
     }
-     
-     
-     
-      public ArrayList<?> getActivitysByIdAPrendiz(Aprendiz aprendiz) {
+
+    public ArrayList<?> getActivitysByIdAPrendiz(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ac.*, ap.*, count(ac.Id_actividad) 'cantidad' "
                     + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
@@ -322,11 +360,11 @@ public class ActividadDAO implements InterfaceCRUD{
                 actividades.setResponsable(rs.getString("responsable"));
                 actividades.setCantidad(rs.getString("cantidad"));
                 actividades.setIdRealActividad(rs.getInt("Id_actividad"));
-                
+
                 apren.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
                 apren.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
                 apren.setNombrePrograma(rs.getString("NombrePrograma"));
-                
+
                 apren.setActividades(actividades);
                 list.add(apren);
             }
@@ -336,20 +374,17 @@ public class ActividadDAO implements InterfaceCRUD{
             return null;
         }
     }
-     
-     
-     
-     
-     public ArrayList<?> getActivitysByTypes(Actividades acti) {
+
+    public ArrayList<?> getActivitysByTypes(Actividades acti) {
         try {
-            String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' " +
-                        "FROM Actividades ac " +
-                        "INNER JOIN Actividades_Aprendiz aa " +
-                        "ON ac.Id_actividad=aa.Cod_actividad " +
-                        "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "+
-                        "WHERE ac.Tipo_actividad = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
-                        "AND ac.Fecha_fin BETWEEN ? AND ? " +
-                        "group by(aa.Cod_actividad) ORDER BY count(aa.Cod_aprendiz) desc";
+            String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' "
+                    + "FROM Actividades ac "
+                    + "INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ac.Id_actividad=aa.Cod_actividad "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "WHERE ac.Tipo_actividad = ? AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "group by(aa.Cod_actividad) ORDER BY count(aa.Cod_aprendiz) desc";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, acti.getTipo_actividad());
             ps.setDate(2, acti.getFecha_inicio());
@@ -376,17 +411,16 @@ public class ActividadDAO implements InterfaceCRUD{
             return null;
         }
     }
-     
-     
-      public ArrayList<?> getByCoor(Actividades actividades) {
+
+    public ArrayList<?> getByCoor(Actividades actividades) {
         try {
-            String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' " +
-                        "FROM Actividades ac " +
-                        "INNER JOIN Actividades_Aprendiz aa " +
-                        "ON ac.Id_actividad=aa.Cod_actividad " +
-                        "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "+
-                        "WHERE ac.Tipo_actividad = ? " +
-                        "group by(aa.Cod_actividad) ORDER BY count(aa.Cod_aprendiz) desc";
+            String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' "
+                    + "FROM Actividades ac "
+                    + "INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ac.Id_actividad=aa.Cod_actividad "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "WHERE ac.Tipo_actividad = ? "
+                    + "group by(aa.Cod_actividad) ORDER BY count(aa.Cod_aprendiz) desc";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, actividades.getCoor());
             ResultSet rs = ps.executeQuery();
@@ -409,8 +443,7 @@ public class ActividadDAO implements InterfaceCRUD{
         }
     }
 
-      
-       public ArrayList<?> getByTypeActivity() {
+    public ArrayList<?> getByTypeActivity() {
         try {
             String sql = "SELECT A.Tipo_actividad FROM Actividades A group by(A.Tipo_actividad)";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
@@ -438,5 +471,5 @@ public class ActividadDAO implements InterfaceCRUD{
     public ArrayList<?> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

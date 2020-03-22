@@ -24,6 +24,7 @@ function typesActivitys() {
 
 }
 
+
 function selectTypeActivity() {
 
 
@@ -39,7 +40,6 @@ function selectTypeActivity() {
 
     } else {
         $('#coor').val(1)
-        $('#programa').val(1)
 
         let fechai = document.getElementById('fechaI').value
         let fechaf = document.getElementById('fechaF').value
@@ -69,6 +69,13 @@ function listarTypes(data){
             fechaFinal: data.fechaFinal
         }
     }).done(function (data) {
+        
+
+        if(data <= 0){
+              let sel = document.getElementById('TypeActivity').value
+            validationSizeSelect(sel)
+            return false
+        }
 
 let num = 0;
      let select = document.getElementById('tabla');

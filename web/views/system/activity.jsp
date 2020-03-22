@@ -5,13 +5,13 @@
 
 <%@include file="/views/system/modals/buscador.jspf"%>
 
-<%@include file="/views/system/modals/aprendices.jspf"%>
+
 
 <%@include file="/views/system/modals/reportes.jspf"%>
-<%@include file="/views/system/modals/aprendicesXficha.jspf"%>
 <%@include file="/views/system/modals/aprendicesXprograma.jspf"%>
+<%@include file="/views/system/modals/aprendices.jspf"%>
+<%@include file="/views/system/modals/aprendicesXficha.jspf"%>
 <%@include file="/views/system/modals/actividadesAprendiz.jspf"%>
-
 
 
 
@@ -28,11 +28,12 @@
 
 <script src="assets/js/project/canva/GraphicByAprendiz.js" charset="utf-8"></script>
 <script src="assets/js/project/canva/GraphicByFicha.js" charset="utf-8"></script>
+<script src="assets/js/project/canva/GraphicByProgram.js" charset="utf-8"></script>
 
 
 <script src="assets/js/project/select/validationSelect.js" charset="utf-8"></script>
 <script src="assets/js/project/select/botonsFiltro.js" charset="utf-8"></script>
-<script src="assets/js/project/select/listarPrograma.js" charset="utf-8"></script>
+<script src="assets/js/project/buscador/validationSize.js" charset="utf-8"></script>
 
 <script src="assets/js/project/querys/activitys.js" charset="utf-8"></script>
 <script src="assets/js/project/querys/aprendices.js" charset="utf-8"></script>

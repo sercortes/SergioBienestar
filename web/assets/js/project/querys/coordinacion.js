@@ -1,26 +1,26 @@
+var input
 function selectCoordinacion(){
     let select = document.getElementById('coor').value
     
     if(select == 'No'){
             
     }else{
-       $('#programa').val(1)
          $('#TypeActivity').val(1)
     
         let fechai = document.getElementById('fechaI').value
         let fechaf = document.getElementById('fechaF').value
         
-        let data = {
+        input = {
             id : select,
             fechaInicial : fechai,
             fechaFinal : fechaf
         };
         
-        if(!validationDate(data)){
+        if(!validationDate(input)){
             return false
         }
         
-            listarCoor(data)
+            listarCoor(input)
        
        
     }
@@ -39,7 +39,14 @@ function listarCoor(data) {
             fechaFinal: data.fechaFinal
         }
     }).done(function (data) {
+        
+        if(data <= 0){
+            validationSizeSelect(input.id)
+            return false
+        }
+        
         let sum  = 0
+        
 
      let select = document.getElementById('tabla');
         let str = `<table id="examples" class="table table-striped table-bordered">

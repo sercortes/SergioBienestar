@@ -41,6 +41,7 @@
         <url-pattern>/ListActivitysByAprendiz</url-pattern>
         <url-pattern>/ListStaticsBytype</url-pattern>
         <url-pattern>/ListStaticsBytypeFicha</url-pattern>
+        <url-pattern>/ListStaticsByProgram</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>aprendiz</servlet-name>
@@ -54,7 +55,9 @@
     <servlet-mapping>
         <servlet-name>Select</servlet-name>
         <url-pattern>/getPrograms</url-pattern>
+        
         <url-pattern>/getFichas</url-pattern>
+        
         <url-pattern>/getCoor</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

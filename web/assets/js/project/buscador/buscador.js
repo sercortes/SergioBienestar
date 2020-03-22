@@ -1,7 +1,8 @@
+var input = ''
 
 $('#buttonSearch').click(function (){
    
-   let input = document.getElementById('keyWord').value
+   input = document.getElementById('keyWord').value
    
     if (input.length <= 3) {
         messageInfo('Completa la palabra clave')
@@ -23,9 +24,13 @@ function listarActivitysSearch(data) {
         datatype: 'json'
     }).done(function (data) {
 
-console.log(data)
-
-let num = 0
+        
+        if (data <= 0) {
+            validationSize(returtDataActivitys())
+            return false;
+        }
+        
+        let num = 0
 
      let select = document.getElementById('tabla');
         let str = `<table id="examples" class="table table-striped table-bordered">

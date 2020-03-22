@@ -187,7 +187,7 @@ public class aprendiz extends HttpServlet {
 
       
         Aprendiz aprendiz = new Aprendiz();
-        aprendiz.setCoordinacion(request.getParameter("cordinacion"));
+        aprendiz.setNombrePrograma(request.getParameter("programa"));
         
         Actividades actividades = new Actividades(request.getParameter("fechaInicial"), request.getParameter("fechaFinal"));
         aprendiz.setActividades(actividades);

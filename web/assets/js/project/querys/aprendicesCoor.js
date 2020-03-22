@@ -9,40 +9,39 @@ function aprendicesByCoor(id){
      let fechai = document.getElementById('fechaI').value
      let fechaf = document.getElementById('fechaF').value
     
+    let data = {
+        programa:id,
+        fechaInicial:fechai,
+        fechaFinal:fechaf
+    }
+    
+    graphicByProgram(data)
 
    
      $.ajax({
         type: "GET",
         url: './ListAprendicesByCoor',
         datatype: 'json',
-        data:{
-            cordinacion:id,
-            fechaInicial:fechai,
-            fechaFinal:fechaf
-        }
+        data:data
     }).done(function (data) {
         
         console.log(data)
         
-        
-      
-   //   let acti = data[0].actividades.ficha
-       let programa = document.getElementById('programaFormacion')
-       programa.innerHTML = " "+data[0].nombrePrograma
+       
+       let programa = document.getElementById('tittleAprendicesXPrograma')
+       programa.innerHTML = " "+id
        
       let cantidad = document.getElementById('Total')
-      cantidad.innerHTML = " # aprendices "+data.length
+      cantidad.innerHTML = "# fichas "+data.length
       
       let num = 0
+      let numPro = 0
 
      let select = document.getElementById('tablaPrograma');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="bg-primary">
-                                        <th>Documento</th>
-                                        <th>Nombres</th>
                                         <th>Ficha</th>
-                                        <th>Programa</th>
                                         <th>Coordinación</th>
                                         <th>Participaciones</th>
                                         <th>Detalles</th>
@@ -52,19 +51,17 @@ function aprendicesByCoor(id){
                                                  `
 
         for (var item of data) {
-            str += `<tr id="row${item.nombre_actividad}" class="chiquito">
-                                                    <td>${item.documento_aprendiz}</td>
-                                                    <td>${item.nombre_aprendiz}</td>
+            str += `<tr id="row" class="chiquito">
                                                     <td>${item.ficha}</td>
-                                                    <td>${item.nombrePrograma}</td>
                                                     <td>${item.coordinacion}</td>
                                                     <td>${item.participaciones}</td>
                                                  <td>         
-                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz(${item.documento_aprendiz})" >
+                                                      <button class="btn btn-info btn-sm" role="button" onclick = "fichas(${item.ficha})" >
                                                             <i class="fas fa-address-card"></i>
                                                         </button>           
                                                 </td>
                                                 </tr> `
+     
         num +=parseInt(item.participaciones)
         }
         console.log(num)
@@ -76,9 +73,6 @@ function aprendicesByCoor(id){
                                         <th>Nombres</th>
                                         <th>Ficha</th>
                                         <th>Programa</th>
-                                        <th>Coordinación</th>
-                                        <th>Coordinación</th>
-                                        <th>Detalles</th>
                                     </tr>
                                 </tfoot>
                             </table>`

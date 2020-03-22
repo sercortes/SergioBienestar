@@ -62,6 +62,12 @@ public class activitys extends HttpServlet {
                 ListStaticsBytypeFicha(request, response);
 
                 break;
+                
+                case "/bienestar/ListStaticsByProgram":
+
+                ListStaticsByProgram(request, response);
+
+                break;
 
         }
 
@@ -172,6 +178,27 @@ public class activitys extends HttpServlet {
         actividades.setFecha_fin(request.getParameter("fechaFinal"));
         
         ArrayList<?> lista = actividadDAO.getAllByword(actividades);
+
+        response.setContentType("application/json");
+        new Gson().toJson(lista, response.getWriter());
+        
+    }
+
+    private void ListStaticsByProgram(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+
+        Aprendiz aprendiz = new Aprendiz();
+        aprendiz.setNombrePrograma(request.getParameter("programa"));
+        Actividades actividades = new Actividades();
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        aprendiz.setActividades(actividades);
+
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+
+        ArrayList<?> lista = actividadDAO.getStaticsByProgram(aprendiz);
 
         response.setContentType("application/json");
         new Gson().toJson(lista, response.getWriter());

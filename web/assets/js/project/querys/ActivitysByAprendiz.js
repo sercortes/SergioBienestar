@@ -39,9 +39,7 @@ function listActivitysByAprendiz(data) {
 
         console.log(data)
 
-
-
-        $('#name').text(data[0].nombre_aprendiz)
+        $('#modalActividadesAprendiz').text(data[0].nombre_aprendiz)
         console.log(data[0].nombrePrograma)
         $('#pro').text(data[0].nombrePrograma)
 
