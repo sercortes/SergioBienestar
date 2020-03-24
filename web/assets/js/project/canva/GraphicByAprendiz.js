@@ -16,7 +16,7 @@ function getByTypes(data) {
         for (var item of data) {
             delete item.idRealActividad
             var ob = {
-                y:item.cantidad,
+                y:Math.round(item.cantidad * 100) / 100,
                 label:item.tipo_actividad
             }
             data2.push(ob)

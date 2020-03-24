@@ -5,7 +5,7 @@ $('#buttonSearch').click(function (){
    input = document.getElementById('keyWord').value
    
    if(input != ''){
-        if (input.length <= 3) {
+        if (input.length <= 2) {
         messageInfo('Completa la palabra clave')
         return false
     }

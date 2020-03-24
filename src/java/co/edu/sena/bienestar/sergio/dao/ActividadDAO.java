@@ -111,7 +111,7 @@ public class ActividadDAO implements InterfaceCRUD {
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "group by ac.Id_actividad, ac.Tipo_actividad "
-                    + "ORDER BY count(aa.Cod_aprendiz) desc";
+                    + "ORDER BY ac.Fecha_inicio ASC";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, "%" + activi.getKeyWord() + "%");
             ps.setString(2, "%" + activi.getTipo_actividad() + "%");
@@ -250,7 +250,7 @@ public class ActividadDAO implements InterfaceCRUD {
 
     public ArrayList<?> getStaticsByTypeFicha(Aprendiz aprendiz) {
         try {
-            String sql = "SELECT ac.Tipo_actividad, round(count(ac.Tipo_actividad) * 100/ "
+            String sql = "SELECT ac.Tipo_actividad, (count(ac.Tipo_actividad) * 100/ "
                     + "(select count(*) from Aprendiz ap INNER JOIN Actividades_Aprendiz aa "
                     + "ON ap.Documento_aprendiz=aa.Cod_aprendiz "
                     + "INNER JOIN Actividades ac ON aa.Cod_actividad = ac.Id_actividad "
@@ -291,8 +291,8 @@ public class ActividadDAO implements InterfaceCRUD {
     public ArrayList<?> getStaticsByType(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ac.Tipo_actividad, "
-                    + "round(count(ac.Tipo_actividad) * 100/(select count(*) from Actividades_Aprendiz aa "
-                    + "WHERE aa.Cod_aprendiz= ? AND ac.Fecha_inicio BETWEEN ? AND ? AND ac.Fecha_fin BETWEEN ? AND ?)) 'cantidad' "
+                    + "(count(ac.Tipo_actividad) * 100/(select count(*) from Actividades_Aprendiz aa INNER JOIN Actividades ac ON aa.Cod_actividad=ac.Id_actividad "
+                    + "WHERE aa.Cod_aprendiz = ? AND ac.Fecha_inicio BETWEEN ? AND ? AND ac.Fecha_fin BETWEEN ? AND ?)) 'cantidad' "
                     + "FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa "
                     + "ON ac.Id_actividad=aa.Cod_actividad "
@@ -302,16 +302,19 @@ public class ActividadDAO implements InterfaceCRUD {
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "GROUP BY(ac.Tipo_actividad)";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            
             ps.setString(1, aprendiz.getDocumento_aprendiz());
             ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(3, aprendiz.getActividades().getFecha_fin());
             ps.setDate(4, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(5, aprendiz.getActividades().getFecha_fin());
+            
             ps.setString(6, aprendiz.getDocumento_aprendiz());
             ps.setDate(7, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(8, aprendiz.getActividades().getFecha_fin());
             ps.setDate(9, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(10, aprendiz.getActividades().getFecha_fin());
+            
             ResultSet rs = ps.executeQuery();
             List<Actividades> list = new ArrayList<>();
             Actividades actividades;

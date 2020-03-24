@@ -17,7 +17,7 @@
         var data2 = []
         for (var item of data){
             var ob = {
-                y:item.cantidad,
+                y:Math.round(item.cantidad * 100)/100,
                 label:item.tipo_actividad
             }
             data2.push(ob)

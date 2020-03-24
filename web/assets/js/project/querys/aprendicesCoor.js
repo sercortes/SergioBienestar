@@ -1,8 +1,5 @@
 function aprendicesByCoor(id){
     
-    console.log(id)
-    
-   
       
     $('#modalPrograma').modal('show')
     
@@ -24,9 +21,6 @@ function aprendicesByCoor(id){
         datatype: 'json',
         data:data
     }).done(function (data) {
-        
-        console.log(data)
-        
        
        let programa = document.getElementById('tittleAprendicesXPrograma')
        programa.innerHTML = " "+id
