@@ -46,6 +46,8 @@ function listarCoor(data) {
             return false
         }
         
+          validationResult(data.length)
+        
         let sum  = 0
         
 

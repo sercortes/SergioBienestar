@@ -76,6 +76,7 @@ function listarTypes(data){
             validationSizeSelect(sel)
             return false
         }
+          validationResult(data.length)
 
 let num = 0;
      let select = document.getElementById('tabla');

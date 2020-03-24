@@ -27,11 +27,15 @@ function listarActivitysSearch(data) {
         datatype: 'json'
     }).done(function (data) {
 
+        $('#coor').val(1)
         
         if (data <= 0) {
             validationSizeSelect(returtDataActivitys().palabra)
             return false;
         }
+        
+        
+        validationResult(data.length)
         
         let num = 0
 

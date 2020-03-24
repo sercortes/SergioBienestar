@@ -79,7 +79,9 @@
         <div class="col-sm-12">
 
 
-
+            <div id="resultado">
+                
+            </div>
 
             <div id="tabla" class="table-responsive">
 

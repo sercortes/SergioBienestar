@@ -3,12 +3,27 @@
 
 function validationSizeSelect(input) {
 
-    let mensage = 'sin resultados para tu búsqueda:"' + input + '"'
+    let select = document.getElementById('resultado')
+    select.innerHTML = `
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  Sin resultados! : <strong>${input}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>`
+    
+    let tabla = document.getElementById('tabla')
+    tabla.innerHTML = ''
 
-    let select = document.getElementById('tabla');
+}
+
+function validationResult(size) {
+
+
+    let select = document.getElementById('resultado');
     select.innerHTML = `
 <div class="alert alert-info alert-dismissible fade show" role="alert">
-  Sin resultados! : <strong>${input}</strong>
+  <strong>${size}</strong> Resultados
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
