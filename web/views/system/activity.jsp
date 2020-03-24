@@ -35,6 +35,8 @@
 <script src="assets/js/project/select/botonsFiltro.js" charset="utf-8"></script>
 <script src="assets/js/project/buscador/validationSize.js" charset="utf-8"></script>
 
+<script src="assets/js/project/buscador/onChangeDate.js" charset="utf-8"></script>
+
 <script src="assets/js/project/querys/activitys.js" charset="utf-8"></script>
 <script src="assets/js/project/querys/aprendices.js" charset="utf-8"></script>
 

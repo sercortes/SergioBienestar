@@ -12,6 +12,7 @@
   <title>Login</title>
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/login.css" rel="stylesheet" type="text/css">
   <link href="assets/css/ruang-admin.min.css" rel="stylesheet">
 
 </head>
@@ -27,7 +28,8 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Bienestar al aprendiz</h1>
+                    <img src="assets/img/logo/logooo.png" class="rounded img-fluid" alt="Cinque Terre">
+                           <hr>
                   </div>
                     <form class="user" action="Login" method="post">
                     <div class="form-group">
@@ -37,14 +39,9 @@
                     <div class="form-group">
                       <input type="password" class="form-control" id="exampleInputPassword" placeholder="**********">
                     </div>
+                    
                     <div class="form-group">
-                      <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Recordar</label>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                        <button type="submit" class="btn btn-primary btn-block font-weight-bold"><i class="fas fa-smile-wink"></i> Ingresar</button>
                     </div>
                     <hr>
                   

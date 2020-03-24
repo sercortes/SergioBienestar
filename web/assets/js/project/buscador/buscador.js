@@ -4,10 +4,13 @@ $('#buttonSearch').click(function (){
    
    input = document.getElementById('keyWord').value
    
-    if (input.length <= 3) {
+   if(input != ''){
+        if (input.length <= 3) {
         messageInfo('Completa la palabra clave')
         return false
     }
+   
+   }
    
    
     listarActivitysSearch(returtDataActivitys())
@@ -26,7 +29,7 @@ function listarActivitysSearch(data) {
 
         
         if (data <= 0) {
-            validationSize(returtDataActivitys())
+            validationSizeSelect(returtDataActivitys().palabra)
             return false;
         }
         

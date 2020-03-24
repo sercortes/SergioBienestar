@@ -6,6 +6,7 @@ function selectCoordinacion(){
             
     }else{
          $('#TypeActivity').val(1)
+         $('#keyWord').val('')
     
         let fechai = document.getElementById('fechaI').value
         let fechaf = document.getElementById('fechaF').value
