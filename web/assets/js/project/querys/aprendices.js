@@ -15,7 +15,6 @@ function aprendices(id){
       
       let acti = data[0].actividades.nombre_actividad
       
-      
        $('#titulos').text(acti)
        
       let cantidad = document.getElementById('cantidadAprendices')
@@ -47,7 +46,7 @@ var num = 0
                                                     <td>${item.nombrePrograma}</td>
                                                     <td>${item.coordinacion}</td>
                                                  <td>         
-                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz('${item.documento_aprendiz}')" >
+                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz('${item.id_aprendiz}')" >
                                                             <i class="fas fa-address-card"></i>
                                                         </button>           
                                                 </td>

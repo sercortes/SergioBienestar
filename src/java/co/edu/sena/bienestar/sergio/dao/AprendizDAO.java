@@ -26,14 +26,39 @@ public class AprendizDAO implements InterfaceCRUD{
     public AprendizDAO(Conexion conn) {
         this.conn = conn;
     }
+     public Aprendiz getIdAprendiz(Aprendiz apren) {
+
+        try {
+            String sql = "SELECT idAprendiz FROM Aprendiz "
+                    + "WHERE Documento_aprendiz = ? "
+                    + "AND Ficha = ? ";
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, apren.getDocumento_aprendiz());
+            ps.setString(2, apren.getFicha());
+            
+            ResultSet rs = ps.executeQuery();
+            Aprendiz aprendiz = new Aprendiz();
+            while (rs.next()) {
+
+                aprendiz.setId_aprendiz(rs.getInt("idAprendiz"));
+
+            }
+            return aprendiz;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+
+    }
+
     
-    public String insertReturn(Aprendiz aprendiz){
-        String idAprendiz = aprendiz.getDocumento_aprendiz();
+    public int insertReturn(Aprendiz aprendiz){
+        int idAprendiz = 0;
         String sql = "INSERT INTO Aprendiz (Documento_aprendiz, Tipo_documento, Nombres_aprendiz, Email_aprendiz, Municipio_aprendiz, Genero, FechaNacimiento_Aprendiz, Tipo_poblacion, Eps, Estrato, Ficha, NombrePrograma, Nivel_formacion, Coordinacion)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try{
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, aprendiz.getDocumento_aprendiz());
             ps.setString(2, aprendiz.getTipo_documento());
             ps.setString(3, aprendiz.getNombre_aprendiz());
@@ -50,12 +75,18 @@ public class AprendizDAO implements InterfaceCRUD{
             ps.setString(14, aprendiz.getCoordinacion());
             
             ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                idAprendiz = rs.getInt(1);
+            }
             return idAprendiz;
         }catch(MySQLIntegrityConstraintViolationException e){
-            return idAprendiz;
+            System.out.println(e);
+            return 0;
         }
         catch(Exception e){
-            return "null";
+            System.out.println(e);
+            return 0;
         }
     }
 
@@ -90,7 +121,7 @@ public class AprendizDAO implements InterfaceCRUD{
                         "FROM Actividades ac  " +
                         "INNER JOIN Actividades_Aprendiz aa  " +
                         "ON ac.Id_actividad=aa.Cod_actividad " +
-                        "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz  " +
+                        "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz " +
                         "WHERE ac.Id_actividad = ?";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, acti);
@@ -99,6 +130,7 @@ public class AprendizDAO implements InterfaceCRUD{
             Aprendiz aprendiz;
             while (rs.next()) {
                 aprendiz = new Aprendiz();
+                aprendiz.setId_aprendiz(rs.getInt("idAprendiz"));
                 aprendiz.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
                 aprendiz.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
                 aprendiz.setFicha(rs.getString("Ficha"));
@@ -119,11 +151,11 @@ public class AprendizDAO implements InterfaceCRUD{
             String sql = "SELECT ap.*, count(aa.Cod_aprendiz) 'cantidad' "
                     + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
                     + "ON ac.Id_actividad=aa.Cod_actividad INNER JOIN Aprendiz ap "
-                    + "ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "ON aa.Cod_aprendiz = ap.idAprendiz "
                     + "WHERE ap.Ficha = ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
-                    + "GROUP BY(ap.Documento_aprendiz) "
+                    + "GROUP BY(ap.idAprendiz) "
                     + "ORDER BY `cantidad` DESC";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, aprendiz.getFicha());
@@ -138,6 +170,7 @@ public class AprendizDAO implements InterfaceCRUD{
             Aprendiz aprendizLista;
             while (rs.next()) {
                 aprendizLista = new Aprendiz();
+                aprendizLista.setId_aprendiz(rs.getInt("idAprendiz"));
                 aprendizLista.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
                 aprendizLista.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
                 aprendizLista.setFicha(rs.getString("Ficha"));
@@ -157,7 +190,7 @@ public class AprendizDAO implements InterfaceCRUD{
             String sql = "SELECT ap.Ficha, ap.Coordinacion, count(ap.Ficha) 'participo' "
                     + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
                     + "ON ac.Id_actividad=aa.Cod_actividad INNER JOIN Aprendiz ap "
-                    + "ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "ON aa.Cod_aprendiz = ap.idAprendiz "
                     + "WHERE ap.NombrePrograma = ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin "
@@ -348,7 +381,7 @@ public class AprendizDAO implements InterfaceCRUD{
         try {
             String sql = "SELECT A.Documento_aprendiz, A.Nombres_aprendiz, A.Genero, A.Ficha, A.NombrePrograma, A.Coordinacion, " +
                         "count(*) 'participo' FROM Aprendiz A " +
-                        "INNER JOIN Actividades_Aprendiz AA ON A.Documento_aprendiz=AA.Cod_aprendiz " +
+                        "INNER JOIN Actividades_Aprendiz AA ON A.idAprendiz=AA.Cod_aprendiz " +
                         "INNER JOIN Actividades ac ON AA.Cod_actividad=ac.Id_actividad " +
                         "WHERE A.Coordinacion = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
                         "AND ac.Fecha_fin BETWEEN ? AND ? " +

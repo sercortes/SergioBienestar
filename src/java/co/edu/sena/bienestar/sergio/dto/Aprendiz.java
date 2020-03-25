@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Aprendiz {
     
-    private String id_aprendiz;
+    private int id_aprendiz;
     private String tipo_documento;
     private String documento_aprendiz;
     private String nombre_aprendiz;
@@ -55,16 +55,18 @@ public class Aprendiz {
     public void setTipo_documento(String tipo_documento) {
         this.tipo_documento = tipo_documento;
     }
-    
-  
 
-    public String getId_aprendiz() {
+    public int getId_aprendiz() {
         return id_aprendiz;
     }
 
-    public void setId_aprendiz(String id_aprendiz) {
+    public void setId_aprendiz(int id_aprendiz) {
         this.id_aprendiz = id_aprendiz;
     }
+    
+  
+
+  
 
     public String getDocumento_aprendiz() {
         return documento_aprendiz;
@@ -178,11 +180,7 @@ public class Aprendiz {
         this.actividadesAprendiz = actividadesAprendiz;
     }
 
-    @Override
-    public String toString() {
-        return "Aprendiz{" + "id_aprendiz=" + id_aprendiz + ", tipo_documento=" + tipo_documento + ", documento_aprendiz=" + documento_aprendiz + ", nombre_aprendiz=" + nombre_aprendiz + ", email_aprendiz=" + email_aprendiz + ", municipio=" + municipio + ", genero=" + genero + ", fecha_nacimiento=" + fecha_nacimiento + ", tipo_poblacion=" + tipo_poblacion + ", eps=" + eps + ", estrato=" + estrato + ", ficha=" + ficha + ", nombrePrograma=" + nombrePrograma + ", nivelFormacion=" + nivelFormacion + ", actividades=" + actividades + ", actividadesAprendiz=" + actividadesAprendiz + ", coordinacion=" + coordinacion + ", participaciones=" + participaciones + '}';
-    }
-
+ 
 
     public String getParticipaciones() {
         return participaciones;
@@ -190,6 +188,11 @@ public class Aprendiz {
 
     public void setParticipaciones(String participaciones) {
         this.participaciones = participaciones;
+    }
+
+    @Override
+    public String toString() {
+        return "Aprendiz{" + "id_aprendiz=" + id_aprendiz + ", tipo_documento=" + tipo_documento + ", documento_aprendiz=" + documento_aprendiz + ", nombre_aprendiz=" + nombre_aprendiz + ", email_aprendiz=" + email_aprendiz + ", municipio=" + municipio + ", genero=" + genero + ", fecha_nacimiento=" + fecha_nacimiento + ", tipo_poblacion=" + tipo_poblacion + ", eps=" + eps + ", estrato=" + estrato + ", ficha=" + ficha + ", nombrePrograma=" + nombrePrograma + ", nivelFormacion=" + nivelFormacion + ", actividades=" + actividades + ", actividadesAprendiz=" + actividadesAprendiz + ", coordinacion=" + coordinacion + ", participaciones=" + participaciones + '}';
     }
 
  

@@ -1,6 +1,5 @@
   
  function graphicByFicha(data){
-    console.log(data)
     
     $.ajax({
         type: 'GET',
@@ -12,8 +11,7 @@
             fechaFinal: data.fechaFinal
         }
     }).done(function (data){
-        console.log(data)
-        
+       
         var data2 = []
         for (var item of data){
             var ob = {

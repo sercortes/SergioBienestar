@@ -21,7 +21,7 @@ function getActivitysByAprendiz(aprendiz) {
 
 
 function listActivitysByAprendiz(data) {
-    console.log(data)
+
     $('#modalTwo').modal('show')
 
     getByTypes(data)
@@ -37,10 +37,9 @@ function listActivitysByAprendiz(data) {
         }
     }).done(function (data) {
 
-        console.log(data)
-
+    
         $('#modalActividadesAprendiz').text(data[0].nombre_aprendiz)
-        console.log(data[0].nombrePrograma)
+    
         $('#pro').text(data[0].nombrePrograma)
 
         let select = document.getElementById('tabla2');

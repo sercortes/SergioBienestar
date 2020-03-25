@@ -55,10 +55,14 @@ public class UploadFile extends HttpServlet {
             
             // creación de variables para el objeto actividadesAprendiz
             int idActividad = 0;
-            String idAprendiz = "";
+            int idAprendiz = 0;
             
             // instancia de objeto de tabla intermedia
             ActividadesAprendiz actividadesAprendiz = new ActividadesAprendiz();
+            
+            //objetos bandera
+            Actividades activi;
+            Aprendiz apren;
 
             // lectura de la lista de objetos del archivo
             for (Aprendiz acti : lista) {
@@ -67,12 +71,21 @@ public class UploadFile extends HttpServlet {
                 if (acti.getDocumento_aprendiz() == null) {
                     throw new Exception();
                 }
-
+                
                 // inserción del aprendiz en la bd
-                idAprendiz = aprendizDAO.insertReturn(acti);
+                // bandera para verificar la existencia del aprendiz
+                apren = aprendizDAO.getIdAprendiz(acti);
+            
+                //si el aprendiz no existe se crea uno nuevo
+                if (apren.getId_aprendiz() == 0) {
+                    idAprendiz = aprendizDAO.insertReturn(acti);
+                }else{
+                    // de lo contrario se trae el id de la consulta
+                    idAprendiz = apren.getId_aprendiz();
+                }
                 
                 // bandera para verificar si la actividad existe
-                Actividades activi = actividadDAO.getIdActividad(acti.getActividades());
+                activi = actividadDAO.getIdActividad(acti.getActividades());
                 
                 //comprobación del id actividad
                 if (activi.getIdRealActividad() == 0) {

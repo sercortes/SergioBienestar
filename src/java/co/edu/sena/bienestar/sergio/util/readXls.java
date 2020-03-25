@@ -159,6 +159,7 @@ public class readXls {
         
         // limpiando memoria por lectura del archivo
         formulaEvaluator.clearAllCachedResultValues();
+        fi1.close();
         conexion.disconnectDb();
         
         // retornando los valores del archivo en una lista

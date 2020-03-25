@@ -10,7 +10,6 @@ function getByTypes(data) {
             fechaFinal: data.fechaFinal
         }
     }).done(function (data) {
-        console.log(data)
         var data2 = [
     ]
         for (var item of data) {

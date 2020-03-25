@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 07, 2020 at 08:59 PM
+-- Generation Time: Mar 24, 2020 at 11:55 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -55,6 +55,7 @@ CREATE TABLE `Actividades_Aprendiz` (
 --
 
 CREATE TABLE `Aprendiz` (
+  `idAprendiz` int(11) NOT NULL,
   `Documento_aprendiz` varchar(255) NOT NULL,
   `Tipo_documento` varchar(10) NOT NULL,
   `Nombres_aprendiz` varchar(300) NOT NULL,
@@ -85,7 +86,7 @@ ALTER TABLE `Actividades`
 -- Indexes for table `Aprendiz`
 --
 ALTER TABLE `Aprendiz`
-  ADD PRIMARY KEY (`Documento_aprendiz`);
+  ADD PRIMARY KEY (`idAprendiz`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -96,6 +97,12 @@ ALTER TABLE `Aprendiz`
 --
 ALTER TABLE `Actividades`
   MODIFY `Id_actividad` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Aprendiz`
+--
+ALTER TABLE `Aprendiz`
+  MODIFY `idAprendiz` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

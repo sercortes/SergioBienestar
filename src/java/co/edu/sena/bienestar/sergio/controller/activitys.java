@@ -155,7 +155,6 @@ public class activitys extends HttpServlet {
 
         Conexion conexion = new Conexion();
         ActividadDAO actividadDAO = new ActividadDAO(conexion);
-        System.out.println(aprendiz.toString());
 
         ArrayList<?> lista = actividadDAO.getStaticsByTypeFicha(aprendiz);
 

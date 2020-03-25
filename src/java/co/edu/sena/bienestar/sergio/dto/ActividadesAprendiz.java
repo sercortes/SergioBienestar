@@ -15,7 +15,7 @@ public class ActividadesAprendiz {
     
     private String idActividadAprendiz;
     private int codActividad;
-    private String codAprendiz;
+    private int codAprendiz;
     private Date codAprendizFecha;
 
     public ActividadesAprendiz() {
@@ -51,11 +51,11 @@ public class ActividadesAprendiz {
 
     
 
-    public String getCodAprendiz() {
+    public int getCodAprendiz() {
         return codAprendiz;
     }
 
-    public void setCodAprendiz(String codAprendiz) {
+    public void setCodAprendiz(int codAprendiz) {
         this.codAprendiz = codAprendiz;
     }
 

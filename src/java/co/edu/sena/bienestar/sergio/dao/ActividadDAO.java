@@ -74,8 +74,10 @@ public class ActividadDAO implements InterfaceCRUD {
             }
             return idActividad;
         } catch (MySQLIntegrityConstraintViolationException e) {
+            System.out.println(e);
             return 0;
         } catch (Exception e) {
+            System.out.println(e);
             return 0;
         }
 
@@ -105,7 +107,7 @@ public class ActividadDAO implements InterfaceCRUD {
         try {
             String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
-                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
                     + "WHERE ac.Nombre_actividad LIKE ? AND "
                     + "ac.Tipo_actividad LIKE ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
@@ -144,7 +146,7 @@ public class ActividadDAO implements InterfaceCRUD {
         try {
             String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
-                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "group by ac.Id_actividad, ac.Tipo_actividad "
@@ -195,7 +197,7 @@ public class ActividadDAO implements InterfaceCRUD {
             }
             return acti;
         } catch (Exception e) {
-            error = e.getMessage();
+            System.out.println(e);
             return null;
         }
 
@@ -205,18 +207,18 @@ public class ActividadDAO implements InterfaceCRUD {
         try {
             String sql = "SELECT ap.Ficha,  (count(ap.NombrePrograma) *100/ "
                     + "(select count(*) from Aprendiz ap INNER JOIN Actividades_Aprendiz aa "
-                    + "ON ap.Documento_aprendiz=aa.Cod_aprendiz INNER JOIN Actividades ac "
+                    + "ON ap.idAprendiz=aa.Cod_aprendiz INNER JOIN Actividades ac "
                     + "ON aa.Cod_actividad = ac.Id_actividad WHERE ap.NombrePrograma = ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ?)) 'participo' "
                     + "FROM Actividades ac  "
                     + "INNER JOIN Actividades_Aprendiz aa  "
                     + "ON ac.Id_actividad=aa.Cod_actividad "
-                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz  "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
                     + "WHERE ap.NombrePrograma = ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
-                    + "group by(ap.Ficha) ORDER BY count(ap.Documento_aprendiz) DESC";
+                    + "group by(ap.Ficha)";
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setString(1, aprendiz.getNombrePrograma());
             ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
@@ -252,11 +254,11 @@ public class ActividadDAO implements InterfaceCRUD {
         try {
             String sql = "SELECT ac.Tipo_actividad, (count(ac.Tipo_actividad) * 100/ "
                     + "(select count(*) from Aprendiz ap INNER JOIN Actividades_Aprendiz aa "
-                    + "ON ap.Documento_aprendiz=aa.Cod_aprendiz "
+                    + "ON ap.idAprendiz=aa.Cod_aprendiz "
                     + "INNER JOIN Actividades ac ON aa.Cod_actividad = ac.Id_actividad "
                     + "WHERE ap.Ficha = ? AND ac.Fecha_inicio BETWEEN ? AND ? AND ac.Fecha_fin BETWEEN ? AND ?)) 'cantidad' FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
-                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
                     + "WHERE ap.Ficha = ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
@@ -296,8 +298,8 @@ public class ActividadDAO implements InterfaceCRUD {
                     + "FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa "
                     + "ON ac.Id_actividad=aa.Cod_actividad "
-                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
-                    + "WHERE ap.Documento_aprendiz = ? "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
+                    + "WHERE ap.idAprendiz = ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "GROUP BY(ac.Tipo_actividad)";
@@ -338,8 +340,8 @@ public class ActividadDAO implements InterfaceCRUD {
                     + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
                     + "ON ac.Id_actividad=aa.Cod_actividad "
                     + "INNER JOIN Aprendiz ap "
-                    + "ON aa.Cod_aprendiz = ap.Documento_aprendiz "
-                    + "WHERE ap.Documento_aprendiz = ? "
+                    + "ON aa.Cod_aprendiz = ap.idAprendiz "
+                    + "WHERE ap.idAprendiz = ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "GROUP BY(ac.Id_actividad)";

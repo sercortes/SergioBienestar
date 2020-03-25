@@ -32,8 +32,6 @@ function fichas(id){
         }
     }).done(function (data) {
         
-        console.log(data)
-      
       let acti = data[0].ficha
       let num = 0
       
@@ -60,7 +58,7 @@ function fichas(id){
                                                  `
 
         for (var item of data) {
-            str += `<tr id="row${item.nombre_actividad}" class="chiquito">
+            str += `<tr id="row" class="chiquito">
                                                     <td>${item.documento_aprendiz}</td>
                                                     <td>${item.nombre_aprendiz}</td>
                                                     <td>${item.ficha}</td>
@@ -68,7 +66,7 @@ function fichas(id){
                                                     <td>${item.coordinacion}</td>
                                                     <td>${item.participaciones}</td>
                                                  <td>         
-                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz(${item.documento_aprendiz})" >
+                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz(${item.id_aprendiz})" >
                                                             <i class="fas fa-address-card"></i>
                                                         </button>           
                                                 </td>

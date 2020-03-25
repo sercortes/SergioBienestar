@@ -31,14 +31,16 @@ public class AprendizActividadDAO implements InterfaceCRUD{
         try{
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ps.setInt(1, actividadesAprendiz.getCodActividad());
-            ps.setString(2, actividadesAprendiz.getCodAprendiz());
+            ps.setInt(2, actividadesAprendiz.getCodAprendiz());
             
             ps.executeUpdate();
           
             return true;   
         } catch(MySQLIntegrityConstraintViolationException e){
+            System.out.println(e);
             return false;
         }catch(Exception e){
+            System.out.println(e);
             return false;
         }
     }
