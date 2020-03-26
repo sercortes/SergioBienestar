@@ -119,10 +119,11 @@ public class aprendiz extends HttpServlet {
         actividades.setCoor(acti);
 
         Conexion conexion = new Conexion();
-        AprendizDAO aprendizDAO = new AprendizDAO(conexion);
+        AprendizDAO aprendizDAO = new AprendizDAO(conexion.getConnection());
 
         ArrayList<?> activid = aprendizDAO.getForCoorDate(actividades);
 
+        aprendizDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(activid, response.getWriter());
 
@@ -132,10 +133,11 @@ public class aprendiz extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         ArrayList<?> tipos = actividadDAO.getByTypeActivity();
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(tipos, response.getWriter());
     }
@@ -151,10 +153,11 @@ public class aprendiz extends HttpServlet {
         actividades.setTipo_actividad(acti);
 
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         ArrayList<?> activid = actividadDAO.getActivitysByTypes(actividades);
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(activid, response.getWriter());
     }
@@ -172,10 +175,11 @@ public class aprendiz extends HttpServlet {
         aprendiz.setActividades(actividades);
 
         Conexion conexion = new Conexion();
-        AprendizDAO actividadDAO = new AprendizDAO(conexion);
+        AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
 
         ArrayList<?> aprendices = actividadDAO.getByFicha(aprendiz);
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(aprendices, response.getWriter());
 
@@ -193,10 +197,11 @@ public class aprendiz extends HttpServlet {
         aprendiz.setActividades(actividades);
         
         Conexion conexion = new Conexion();
-        AprendizDAO actividadDAO = new AprendizDAO(conexion);
+        AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
 
         ArrayList<?> aprendices = actividadDAO.getByProg(aprendiz); 
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(aprendices, response.getWriter());
 
@@ -210,10 +215,11 @@ public class aprendiz extends HttpServlet {
                 String acti = request.getParameter("id");
 
                 Conexion conexion = new Conexion();
-                AprendizDAO actividadDAO = new AprendizDAO(conexion);
+                AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
 
                 ArrayList<?> aprendices = actividadDAO.getByActivity(acti);
 
+                actividadDAO.CloseAll();
                 response.setContentType("application/json");
                 new Gson().toJson(aprendices, response.getWriter());
 

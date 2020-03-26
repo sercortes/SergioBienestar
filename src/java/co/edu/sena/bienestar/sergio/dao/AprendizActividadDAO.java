@@ -8,7 +8,9 @@ package co.edu.sena.bienestar.sergio.dao;
 import co.edu.sena.bienestar.sergio.dto.ActividadesAprendiz;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +19,12 @@ import java.util.ArrayList;
  */
 public class AprendizActividadDAO implements InterfaceCRUD{
 
-    private Conexion conn;
-    private String error;
 
-    public AprendizActividadDAO(Conexion conn) {
+    private Connection conn = null;
+    private PreparedStatement ps = null;
+    private ResultSet rs = null;
+
+    public AprendizActividadDAO(Connection conn) {
         this.conn = conn;
     }
   
@@ -29,7 +33,7 @@ public class AprendizActividadDAO implements InterfaceCRUD{
                 + "VALUES (?, ?)";
         
         try{
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setInt(1, actividadesAprendiz.getCodActividad());
             ps.setInt(2, actividadesAprendiz.getCodAprendiz());
             
@@ -79,5 +83,11 @@ public class AprendizActividadDAO implements InterfaceCRUD{
     public ArrayList<?> getByWord(String keyword) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+      public void CloseAll(){
+        Conexion.close(conn);
+        Conexion.close(ps);
+    } 
+        
     
 }

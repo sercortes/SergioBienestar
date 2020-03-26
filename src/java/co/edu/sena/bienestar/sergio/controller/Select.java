@@ -27,7 +27,7 @@ public class Select extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String direccion = request.getRequestURI();
 
         switch (direccion) {
@@ -57,11 +57,13 @@ public class Select extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         Conexion conexion = new Conexion();
-        AprendizDAO actividadDAO = new AprendizDAO(conexion);
+        AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
 
         ArrayList<?> programas = actividadDAO.getCoordinacion();
 
         response.setContentType("application/json");
+
+        actividadDAO.CloseAll();
         new Gson().toJson(programas, response.getWriter());
     }
 
@@ -76,14 +78,13 @@ public class Select extends HttpServlet {
         actividades.setFecha_fin(request.getParameter("fechaFinal"));
         actividades.setPrograma(acti);
 
-        System.out.println(actividades.toString());
-
         Conexion conexion = new Conexion();
-        AprendizDAO actividadDAO = new AprendizDAO(conexion);
+        AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
 
         ArrayList<?> aprendices = actividadDAO.getForProgramaDate(actividades);
 
         response.setContentType("application/json");
+        actividadDAO.CloseAll();
         new Gson().toJson(aprendices, response.getWriter());
 
     }
@@ -93,11 +94,12 @@ public class Select extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         Conexion conexion = new Conexion();
-        AprendizDAO actividadDAO = new AprendizDAO(conexion);
+        AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
 
         ArrayList<?> programas = actividadDAO.getPrograms();
 
         response.setContentType("application/json");
+        actividadDAO.CloseAll();
         new Gson().toJson(programas, response.getWriter());
 
     }

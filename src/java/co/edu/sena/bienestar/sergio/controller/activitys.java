@@ -78,7 +78,7 @@ public class activitys extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         Actividades actividades = new Actividades();
         actividades.setFecha_inicio(request.getParameter("fechaInicial"));
@@ -86,6 +86,7 @@ public class activitys extends HttpServlet {
         
         ArrayList<?> lista = actividadDAO.getAll(actividades);
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(lista, response.getWriter());
     }
@@ -113,10 +114,11 @@ public class activitys extends HttpServlet {
         aprendiz.setActividades(actividades);
 
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         ArrayList<?> lista = actividadDAO.getActivitysByIdAPrendiz(aprendiz);
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(lista, response.getWriter());
 
@@ -134,10 +136,11 @@ public class activitys extends HttpServlet {
         aprendiz.setActividades(actividades);
 
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         ArrayList<?> lista = actividadDAO.getStaticsByType(aprendiz);
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(lista, response.getWriter());
     }
@@ -154,10 +157,11 @@ public class activitys extends HttpServlet {
         aprendiz.setActividades(actividades);
 
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         ArrayList<?> lista = actividadDAO.getStaticsByTypeFicha(aprendiz);
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(lista, response.getWriter());
 
@@ -168,7 +172,7 @@ public class activitys extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         Actividades actividades = new Actividades();
         actividades.setKeyWord(request.getParameter("palabra"));
@@ -178,6 +182,7 @@ public class activitys extends HttpServlet {
         
         ArrayList<?> lista = actividadDAO.getAllByword(actividades);
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(lista, response.getWriter());
         
@@ -195,10 +200,11 @@ public class activitys extends HttpServlet {
         aprendiz.setActividades(actividades);
 
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         ArrayList<?> lista = actividadDAO.getStaticsByProgram(aprendiz);
 
+        actividadDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(lista, response.getWriter());
         

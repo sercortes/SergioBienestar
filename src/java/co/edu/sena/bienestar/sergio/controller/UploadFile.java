@@ -15,6 +15,8 @@ import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import co.edu.sena.bienestar.sergio.util.readXls;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,87 +34,107 @@ import javax.servlet.annotation.MultipartConfig;
 @MultipartConfig
 public class UploadFile extends HttpServlet {
 
-   
-   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
-        
+
         response.setContentType("text/html;charset=UTF-8");
 
         // obteniendo el archivo del formulario
         Part file = request.getPart("fileToUpload");
-        
+
         readXls read = new readXls();
-    
+
         // método para leer xls
         ArrayList<Aprendiz> lista = read.readingXls(file);
-       
-            // instancia de conexion y los DAO para la inserción
-            Conexion conexion = new Conexion();
-            ActividadDAO actividadDAO = new ActividadDAO(conexion);
-            AprendizDAO aprendizDAO = new AprendizDAO(conexion);
-            AprendizActividadDAO aprendizActividadDAO = new AprendizActividadDAO(conexion);
-            
-            // creación de variables para el objeto actividadesAprendiz
-            int idActividad = 0;
-            int idAprendiz = 0;
-            
-            // instancia de objeto de tabla intermedia
-            ActividadesAprendiz actividadesAprendiz = new ActividadesAprendiz();
-            
-            //objetos bandera
-            Actividades activi;
-            Aprendiz apren;
 
-            // lectura de la lista de objetos del archivo
-            for (Aprendiz acti : lista) {
+        // instancia de conexion y los DAO para la inserción
+        Conexion conexion = new Conexion();
+        Connection cone = conexion.getConnection();
 
-                // comprobando que no existan objetos nulos
-                if (acti.getDocumento_aprendiz() == null) {
-                    throw new Exception();
-                }
-                
-                // inserción del aprendiz en la bd
-                // bandera para verificar la existencia del aprendiz
-                apren = aprendizDAO.getIdAprendiz(acti);
-            
+        // desactivando en autocommit
+        if (cone.getAutoCommit()) {
+            cone.setAutoCommit(false);
+        }
+        ActividadDAO actividadDAO = new ActividadDAO(cone);
+        AprendizDAO aprendizDAO = new AprendizDAO(cone);
+        AprendizActividadDAO aprendizActividadDAO = new AprendizActividadDAO(cone);
+
+        // creación de variables para el objeto actividadesAprendiz
+        int idActividad = 0;
+        int idAprendiz = 0;
+
+        // instancia de objeto de tabla intermedia
+        ActividadesAprendiz actividadesAprendiz = new ActividadesAprendiz();
+
+        //objetos bandera
+        Actividades activi;
+        Aprendiz apren;
+
+        // lectura de la lista de objetos del archivo
+        for (Aprendiz acti : lista) {
+
+            // comprobando que no existan objetos nulos
+            if (acti.getDocumento_aprendiz() == null) {
+                throw new Exception();
+            }
+
+            // inserción del aprendiz en la bd
+            // bandera para verificar la existencia del aprendiz
+            apren = aprendizDAO.getIdAprendiz(acti);
+
+            try {
+
                 //si el aprendiz no existe se crea uno nuevo
                 if (apren.getId_aprendiz() == 0) {
+                    // inserción del aprendiz
                     idAprendiz = aprendizDAO.insertReturn(acti);
-                }else{
+                } else {
                     // de lo contrario se trae el id de la consulta
                     idAprendiz = apren.getId_aprendiz();
                 }
-                
+
                 // bandera para verificar si la actividad existe
                 activi = actividadDAO.getIdActividad(acti.getActividades());
-                
+
                 //comprobación del id actividad
                 if (activi.getIdRealActividad() == 0) {
                     // si no existe, se inserta la actividad
                     idActividad = actividadDAO.insertReturn(acti.getActividades());
-                }else{
+                } else {
                     // si existe, solo se trae el id pero no se agrega de nuevo
                     idActividad = activi.getIdRealActividad();
                 }
-               
+
                 // asignando el valor del idactividad y idaprendiz
                 actividadesAprendiz.setCodActividad(idActividad);
                 actividadesAprendiz.setCodAprendiz(idAprendiz);
-                
+
                 // insertando en la tabla intermedia
                 aprendizActividadDAO.insertReturn(actividadesAprendiz);
 
+                // guardando todos lo cambios en la bd
+                cone.commit();
+            } catch (SQLException sql) {
+                System.out.println(sql);
+                try {
+                    // revertir cambios en la bd
+                    cone.rollback();
+                } catch (SQLException sq) {
+                    System.out.println(sq);
+                }
             }
-            
-            // imprimiendo el tamaño de la lista insertada
-            new Gson().toJson(lista.size()+ " :D", response.getWriter());
-            // desconectando bd
-            conexion.disconnectDb();
-            
+
+        }
+
+        // imprimiendo el tamaño de la lista insertada
+        new Gson().toJson(lista.size() + " :D", response.getWriter());
+        // cerrando conexión y otros componentes
+        actividadDAO.CloseAll();
+        aprendizDAO.CloseAll();
+        aprendizActividadDAO.CloseAll();
+
     } // cierre del método proccessRequest
 
- 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -124,7 +146,7 @@ public class UploadFile extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
@@ -133,7 +155,6 @@ public class UploadFile extends HttpServlet {
         }
     }
 
-  
     @Override
     public String getServletInfo() {
         return "Short description";

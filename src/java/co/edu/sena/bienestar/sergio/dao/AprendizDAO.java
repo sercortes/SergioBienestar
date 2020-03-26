@@ -8,6 +8,7 @@ package co.edu.sena.bienestar.sergio.dao;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -20,10 +21,11 @@ import java.util.List;
  */
 public class AprendizDAO implements InterfaceCRUD{
 
-    private Conexion conn;
-    private String error;
+    private Connection conn = null;
+    private PreparedStatement ps = null;
+    private ResultSet rs = null;
 
-    public AprendizDAO(Conexion conn) {
+    public AprendizDAO(Connection conn) {
         this.conn = conn;
     }
      public Aprendiz getIdAprendiz(Aprendiz apren) {
@@ -32,11 +34,11 @@ public class AprendizDAO implements InterfaceCRUD{
             String sql = "SELECT idAprendiz FROM Aprendiz "
                     + "WHERE Documento_aprendiz = ? "
                     + "AND Ficha = ? ";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, apren.getDocumento_aprendiz());
             ps.setString(2, apren.getFicha());
             
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             Aprendiz aprendiz = new Aprendiz();
             while (rs.next()) {
 
@@ -58,7 +60,7 @@ public class AprendizDAO implements InterfaceCRUD{
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try{
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, aprendiz.getDocumento_aprendiz());
             ps.setString(2, aprendiz.getTipo_documento());
             ps.setString(3, aprendiz.getNombre_aprendiz());
@@ -75,7 +77,7 @@ public class AprendizDAO implements InterfaceCRUD{
             ps.setString(14, aprendiz.getCoordinacion());
             
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
+            rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 idAprendiz = rs.getInt(1);
             }
@@ -123,9 +125,9 @@ public class AprendizDAO implements InterfaceCRUD{
                         "ON ac.Id_actividad=aa.Cod_actividad " +
                         "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz " +
                         "WHERE ac.Id_actividad = ?";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, acti);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {
@@ -157,7 +159,7 @@ public class AprendizDAO implements InterfaceCRUD{
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "GROUP BY(ap.idAprendiz) "
                     + "ORDER BY `cantidad` DESC";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, aprendiz.getFicha());
             
             ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
@@ -165,7 +167,7 @@ public class AprendizDAO implements InterfaceCRUD{
             ps.setDate(4, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(5, aprendiz.getActividades().getFecha_fin());
             
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendizLista;
             while (rs.next()) {
@@ -196,13 +198,13 @@ public class AprendizDAO implements InterfaceCRUD{
                     + "AND ac.Fecha_fin "
                     + "BETWEEN ? AND ? "
                     + "group by(ap.Ficha) ORDER BY count(ap.Ficha) DESC";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, apren.getNombrePrograma());
             ps.setDate(2, apren.getActividades().getFecha_inicio());
             ps.setDate(3, apren.getActividades().getFecha_fin());
             ps.setDate(4, apren.getActividades().getFecha_inicio());
             ps.setDate(5, apren.getActividades().getFecha_fin());
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {
@@ -224,8 +226,8 @@ public class AprendizDAO implements InterfaceCRUD{
       public ArrayList<?> getPrograms() {
         try {
             String sql = "SELECT A.NombrePrograma FROM Aprendiz A group by(A.NombrePrograma)";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {
@@ -244,8 +246,8 @@ public class AprendizDAO implements InterfaceCRUD{
         public ArrayList<?> getCoordinacion() {
         try {
             String sql = "SELECT A.Coordinacion FROM Aprendiz A group by(A.Coordinacion)";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {
@@ -280,9 +282,9 @@ public class AprendizDAO implements InterfaceCRUD{
                         "INNER JOIN Actividades ac ON AA.Cod_actividad=ac.Nombre_actividad " +
                         "WHERE A.NombrePrograma = ? " +
                         "group by(A.Documento_aprendiz) ORDER BY count(*) DESC";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, acti);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
             while (rs.next()) {
@@ -313,13 +315,13 @@ public class AprendizDAO implements InterfaceCRUD{
                         "WHERE A.NombrePrograma = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
                         "AND ac.Fecha_fin BETWEEN ? AND ? " +
                         "group by(A.Ficha) ORDER BY count(*) DESC";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, actividades.getPrograma());
             ps.setDate(2, actividades.getFecha_inicio());
             ps.setDate(3, actividades.getFecha_fin());
             ps.setDate(4, actividades.getFecha_inicio());
             ps.setDate(5, actividades.getFecha_fin());
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
@@ -350,13 +352,13 @@ public class AprendizDAO implements InterfaceCRUD{
                         "WHERE A.NombrePrograma = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
                         "AND ac.Fecha_fin BETWEEN ? AND ? " +
                         "group by(A.Documento_aprendiz) ORDER BY count(*) DESC";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, actividades.getPrograma());
             ps.setDate(2, actividades.getFecha_inicio());
             ps.setDate(3, actividades.getFecha_fin());
             ps.setDate(4, actividades.getFecha_inicio());
             ps.setDate(5, actividades.getFecha_fin());
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
@@ -386,13 +388,13 @@ public class AprendizDAO implements InterfaceCRUD{
                         "WHERE A.Coordinacion = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
                         "AND ac.Fecha_fin BETWEEN ? AND ? " +
                         "group by(A.NombrePrograma) ORDER BY count(*) DESC";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, actividades.getCoor());
             ps.setDate(2, actividades.getFecha_inicio());
             ps.setDate(3, actividades.getFecha_fin());
             ps.setDate(4, actividades.getFecha_inicio());
             ps.setDate(5, actividades.getFecha_fin());
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
@@ -422,13 +424,13 @@ public class AprendizDAO implements InterfaceCRUD{
                         "WHERE A.Coordinacion = ? AND ac.Fecha_inicio BETWEEN ? AND ? "  +
                         "AND ac.Fecha_fin BETWEEN ? AND ? " +
                         "group by(A.Documento_aprendiz) ORDER BY count(*) DESC";
-            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, actividades.getCoor());
             ps.setDate(2, actividades.getFecha_inicio());
             ps.setDate(3, actividades.getFecha_fin());
             ps.setDate(4, actividades.getFecha_inicio());
             ps.setDate(5, actividades.getFecha_fin());
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             List<Aprendiz> list = new ArrayList<>();
             Aprendiz aprendiz;
@@ -450,7 +452,11 @@ public class AprendizDAO implements InterfaceCRUD{
     }
         
     
-        
+       public void CloseAll(){
+        Conexion.close(conn);
+        Conexion.close(ps);
+        Conexion.close(rs);
+    } 
         
         
 }

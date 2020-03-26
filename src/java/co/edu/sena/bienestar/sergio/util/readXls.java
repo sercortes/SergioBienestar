@@ -47,7 +47,7 @@ public class readXls {
         
         // instanciar la clase conexion y actividadDao para consultar si ya esta en la bd
         Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion);
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         // lectura el archivo xls
         for (Row row : sheet1) {
@@ -160,7 +160,7 @@ public class readXls {
         // limpiando memoria por lectura del archivo
         formulaEvaluator.clearAllCachedResultValues();
         fi1.close();
-        conexion.disconnectDb();
+        actividadDAO.CloseAll();
         
         // retornando los valores del archivo en una lista
         return lista;

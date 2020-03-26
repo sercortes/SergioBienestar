@@ -3,24 +3,23 @@ package co.edu.sena.bienestar.sergio.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Conexion {
 
-    static String bd = "Bienestar";
-    static String user = "root";
-    static String pass = "";
-    static String url = "jdbc:mysql://localhost/" + bd +"?useUnicode=true&amp;characterEncoding=utf8";
-    
-    Connection conn = null;
+    private static String bd = "Bienestar";
+    private static String user = "root";
+    private static String pass = "";
+    private static String url = "jdbc:mysql://localhost/" + bd +"?useUnicode=true&amp;characterEncoding=utf8";
+    private Connection conn = null;
     
     public Conexion(){
        try{
            
            Class.forName("com.mysql.jdbc.Driver");
            conn = DriverManager.getConnection(url, user, pass);
-           
-         
            
        }catch(SQLException e){
            e.getMessage();
@@ -34,16 +33,29 @@ public class Conexion {
        return conn; 
     }
     
-    public void disconnectDb(){
-        
-        if (conn != null) {
-            try{
-               conn.close();
-            }catch(SQLException e){
-                e.getMessage();
-            }
+     public static void close(ResultSet rs){
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
         }
-        
     }
+    
+    public static void close(PreparedStatement stmt){
+        try {
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public static void close(Connection conn){
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+           ex.printStackTrace(System.out);
+        }
+    }
+    
     
 }
