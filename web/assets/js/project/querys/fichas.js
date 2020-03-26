@@ -1,4 +1,4 @@
-function fichas(id){
+function fichasTotal(id){
     
     
       
