@@ -4,8 +4,6 @@ function typesActivitys() {
 
     let str = ``
 
-
-
     $.ajax({
         type: "GET",
         url: './getTypesActivitys',
@@ -17,9 +15,8 @@ function typesActivitys() {
             str += `<option value="${item.tipo_actividad}">${item.tipo_actividad}</option>`
         }
 
-      
-
         filtros2.innerHTML += str;
+        
     })
 
 }

@@ -46,11 +46,11 @@ function listarCoor(data) {
             return false
         }
         
-          validationResult(data.length)
+        validationResult(data.length)
         
+       
         let sum  = 0
         
-
      let select = document.getElementById('tabla');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
@@ -65,7 +65,7 @@ function listarCoor(data) {
                                                  `
 
         for (var item of data) {
-            str += `<tr id="row${item.documento_aprendiz}" class="chiquito1 text-justify">
+            str += `<tr id="" class="chiquito1 text-justify">
                                                     <td>${item.nombrePrograma}</td>
                                                     <td>${item.coordinacion}</td>
                                                     <td>${item.participaciones}</td>
@@ -88,11 +88,30 @@ function listarCoor(data) {
                                         <th>Listado Aprendices</th>
                                     </tr>
                                 </tfoot>
-                            </table>`
+                            </table><div id="graficos">
 
-        select.innerHTML = str;       
+            </div>`
+
+
+        select.innerHTML = str;    
+        
+       
+        generateArrayStatics(data, sum)
+        
        
     })
     
     
 }
+function generateArrayStatics(data, total){
+    let arregloEstadisticas = []
+        for(var item of data){
+            let ob = {
+                label:item.nombrePrograma,
+                y:((item.participaciones * 100)/total).toFixed(2)
+            }
+            arregloEstadisticas.push(ob)
+        }
+        generateGraphicByCoor(arregloEstadisticas)
+}
+

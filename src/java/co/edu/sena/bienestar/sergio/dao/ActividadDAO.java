@@ -205,53 +205,7 @@ public class ActividadDAO implements InterfaceCRUD {
 
     }
 
-    public ArrayList<?> getStaticsByProgram(Aprendiz aprendiz) {
-        try {
-            String sql = "SELECT ap.Ficha,  (count(ap.NombrePrograma) *100/ "
-                    + "(select count(*) from Aprendiz ap INNER JOIN Actividades_Aprendiz aa "
-                    + "ON ap.idAprendiz=aa.Cod_aprendiz INNER JOIN Actividades ac "
-                    + "ON aa.Cod_actividad = ac.Id_actividad WHERE ap.NombrePrograma = ? "
-                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
-                    + "AND ac.Fecha_fin BETWEEN ? AND ?)) 'participo' "
-                    + "FROM Actividades ac  "
-                    + "INNER JOIN Actividades_Aprendiz aa  "
-                    + "ON ac.Id_actividad=aa.Cod_actividad "
-                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
-                    + "WHERE ap.NombrePrograma = ? "
-                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
-                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
-                    + "group by(ap.Ficha)";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, aprendiz.getNombrePrograma());
-            ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
-            ps.setDate(3, aprendiz.getActividades().getFecha_fin());
-            ps.setDate(4, aprendiz.getActividades().getFecha_inicio());
-            ps.setDate(5, aprendiz.getActividades().getFecha_fin());
-            ps.setString(6, aprendiz.getNombrePrograma());
-            ps.setDate(7, aprendiz.getActividades().getFecha_inicio());
-            ps.setDate(8, aprendiz.getActividades().getFecha_fin());
-            ps.setDate(9, aprendiz.getActividades().getFecha_inicio());
-            ps.setDate(10, aprendiz.getActividades().getFecha_fin());
-            rs = ps.executeQuery();
-            List<Aprendiz> list = new ArrayList<>();
-            Aprendiz apren;
-            Actividades actividad;
-            while (rs.next()) {
-                apren = new Aprendiz();
-                apren.setFicha(rs.getString("ficha"));
-                actividad = new Actividades();
-                actividad.setCantidad(rs.getString("participo"));
-                apren.setActividades(actividad);
-
-                list.add(apren);
-            }
-            return (ArrayList<?>) list;
-        } catch (Exception e) {
-            System.out.println(":("+e);
-            return null;
-        }
-    }
-
+   
     public ArrayList<?> getStaticsByTypeFicha(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ac.Tipo_actividad, (count(ac.Tipo_actividad) * 100/ "
@@ -388,7 +342,7 @@ public class ActividadDAO implements InterfaceCRUD {
                     + "FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa "
                     + "ON ac.Id_actividad=aa.Cod_actividad "
-                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.Documento_aprendiz "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
                     + "WHERE ac.Tipo_actividad = ? AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
                     + "group by(aa.Cod_actividad) ORDER BY count(aa.Cod_aprendiz) desc";

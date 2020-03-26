@@ -1,5 +1,5 @@
 var fichas
-
+var total
 function aprendicesByCoor(id) {
 
     let programa = document.getElementById('tittleAprendicesXPrograma')
@@ -14,10 +14,7 @@ function aprendicesByCoor(id) {
         fechaInicial: fechai,
         fechaFinal: fechaf
     }
-
-    graphicByProgram(data)
-
-
+ 
     $.ajax({
         type: "GET",
         url: './ListAprendicesByCoor',
@@ -30,6 +27,8 @@ function aprendicesByCoor(id) {
         drawSelectFichas(data)
 
         drawTable(data)
+        
+        generateArrayForProgram(data, total)
 
     })
 
@@ -37,7 +36,9 @@ function aprendicesByCoor(id) {
 }
 
 function selectFicha() {
+    
     let ficha = document.getElementById('fichas').value
+    
     if (ficha == 'No') {
         drawTable(fichas)
 
@@ -51,6 +52,7 @@ function selectFicha() {
             }
         }
         drawTable(fichasBusqueda)
+
     }
 }
 
@@ -59,17 +61,7 @@ function drawTable(data) {
     let num = 0
 
     let select = document.getElementById('tablaPrograma');
-    let str = `<table id="examples" class="table table-striped table-bordered">
-                                <thead class="letrablanca">
-                                    <tr class="bg-primary">
-                                        <th>Ficha</th>
-                                        <th>Coordinación</th>
-                                        <th>Participaciones</th>
-                                        <th>Detalles</th>
-                                    </tr>
-                                </thead>
-                                            <tbody>
-                                                 `
+    let str = ` `
 
     for (var item of data) {
 
@@ -88,18 +80,9 @@ function drawTable(data) {
 
     }
     console.log(num)
-
-    str += `      </tbody>
-                                <tfoot class="letrablanca">
-                                    <tr class="bg-primary">
-                                        <th>Documento</th>
-                                        <th>Nombres</th>
-                                        <th>Ficha</th>
-                                        <th>Programa</th>
-                                    </tr>
-                                </tfoot>
-                            </table>`
-
+    total = num
+    
+    
     select.innerHTML = str;
 }
 
@@ -112,4 +95,17 @@ function drawSelectFichas(data) {
     }
     fichaSelect.innerHTML = option;
     
+}
+
+function generateArrayForProgram(data, total){
+     let arreglo = []
+    for(var item of data){
+        var ob = {
+            label:item.ficha,
+            y:((item.participaciones * 100) / total).toFixed(2)
+        }
+        arreglo.push(ob)
+    }
+  
+   graphicByProgram(arreglo)
 }

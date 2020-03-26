@@ -83,10 +83,16 @@
                 
             </div>
 
-            <div id="tabla" class="table-responsive">
+            <div id="tabla">
+            
+            
+            <div id="graficos">
 
+            </div>
+                
             </div>
 
 
         </div>
+        
     </div>

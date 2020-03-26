@@ -1,12 +1,16 @@
- 
- function graphicByProgram(data){
-        
-          var chart = new CanvasJS.Chart("chartPrograma", {
+function generateGraphicByCoor(data){
+    
+     let charts = `<div id="chartCoordinacion" style="height: 400px;"></div>`
+        let grafico = document.getElementById('graficos')
+       grafico.innerHTML = charts
+       
+    
+     var chart = new CanvasJS.Chart("chartCoordinacion", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,
             animationEnabled: true,
             title: {
-                text: "Participación X fichas"
+                text: "Participacion X programa"
             },
             data: [{
                     type: "pie",
@@ -22,6 +26,4 @@
                 }]
         });
         chart.render();
-        
-  
- }
+}

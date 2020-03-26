@@ -40,7 +40,7 @@ function listarActivitysSearch(data) {
         let num = 0
 
      let select = document.getElementById('tabla');
-        let str = `<table id="examples" class="table table-striped table-bordered">
+        let str = `<table id="examples" class="table table-striped table-bordered table-responsive">
                                 <thead class="letrablanca">
                                     <tr class="bg-primary">
                                         <th>Actividad</th>
@@ -85,7 +85,9 @@ function listarActivitysSearch(data) {
                                         <th>Listado Aprendices</th>
                                     </tr>
                                 </tfoot>
-                            </table>`
+                            </table><div id="graficos">
+
+            </div>`
 
         select.innerHTML = str;       
        

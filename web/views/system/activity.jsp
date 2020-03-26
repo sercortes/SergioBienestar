@@ -29,6 +29,7 @@
 <script src="assets/js/project/canva/GraphicByAprendiz.js" charset="utf-8"></script>
 <script src="assets/js/project/canva/GraphicByFicha.js" charset="utf-8"></script>
 <script src="assets/js/project/canva/GraphicByProgram.js" charset="utf-8"></script>
+<script src="assets/js/project/canva/GraphicByCoordinacion.js" charset="utf-8"></script>
 
 
 <script src="assets/js/project/select/validationSelect.js" charset="utf-8"></script>
