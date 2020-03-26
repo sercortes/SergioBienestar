@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2020 at 11:55 PM
+-- Generation Time: Mar 26, 2020 at 01:56 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Actividades` (
   `Id_actividad` int(11) NOT NULL,
-  `Nombre_actividad` varchar(255) NOT NULL,
+  `Nombre_actividad` varchar(500) NOT NULL,
   `Tipo_actividad` varchar(255) NOT NULL,
   `Fecha_inicio` date NOT NULL,
   `Fecha_fin` date NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `Actividades` (
 
 CREATE TABLE `Actividades_Aprendiz` (
   `Cod_actividad` int(11) NOT NULL,
-  `Cod_aprendiz` varchar(255) NOT NULL
+  `Cod_aprendiz` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,7 +67,7 @@ CREATE TABLE `Aprendiz` (
   `Eps` varchar(255) DEFAULT NULL,
   `Estrato` varchar(1) NOT NULL,
   `Ficha` varchar(255) NOT NULL,
-  `NombrePrograma` varchar(255) NOT NULL,
+  `NombrePrograma` varchar(300) NOT NULL,
   `Nivel_formacion` varchar(255) NOT NULL,
   `Coordinacion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -81,6 +81,13 @@ CREATE TABLE `Aprendiz` (
 --
 ALTER TABLE `Actividades`
   ADD PRIMARY KEY (`Id_actividad`);
+
+--
+-- Indexes for table `Actividades_Aprendiz`
+--
+ALTER TABLE `Actividades_Aprendiz`
+  ADD KEY `fkAprendiz` (`Cod_aprendiz`),
+  ADD KEY `fkActividad` (`Cod_actividad`);
 
 --
 -- Indexes for table `Aprendiz`
@@ -103,6 +110,17 @@ ALTER TABLE `Actividades`
 --
 ALTER TABLE `Aprendiz`
   MODIFY `idAprendiz` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Actividades_Aprendiz`
+--
+ALTER TABLE `Actividades_Aprendiz`
+  ADD CONSTRAINT `fkActividad` FOREIGN KEY (`Cod_actividad`) REFERENCES `Actividades` (`Id_actividad`),
+  ADD CONSTRAINT `fkAprendiz` FOREIGN KEY (`Cod_aprendiz`) REFERENCES `Aprendiz` (`idAprendiz`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

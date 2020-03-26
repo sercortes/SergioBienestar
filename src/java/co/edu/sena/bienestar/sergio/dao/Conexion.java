@@ -35,7 +35,9 @@ public class Conexion {
     
      public static void close(ResultSet rs){
         try {
-            rs.close();
+            if (rs != null) {
+                rs.close();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
@@ -43,7 +45,9 @@ public class Conexion {
     
     public static void close(PreparedStatement stmt){
         try {
-            stmt.close();
+            if (stmt != null) {
+                stmt.close();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
@@ -51,7 +55,9 @@ public class Conexion {
     
     public static void close(Connection conn){
         try {
-            conn.close();
+            if (conn != null) {
+                conn.close();
+            }
         } catch (SQLException ex) {
            ex.printStackTrace(System.out);
         }
