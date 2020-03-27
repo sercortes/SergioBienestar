@@ -24,6 +24,10 @@
         <servlet-name>UploadFile</servlet-name>
         <servlet-class>co.edu.sena.bienestar.sergio.controller.UploadFile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SelectQuerys</servlet-name>
+        <servlet-class>co.edu.sena.bienestar.sergio.controller.SelectQuerys</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -36,7 +40,6 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>
-        <url-pattern>/ListActivitys</url-pattern>
         <url-pattern>/ListActivitysSearch</url-pattern>
         <url-pattern>/ListActivitysByAprendiz</url-pattern>
         <url-pattern>/ListStaticsBytype</url-pattern>
@@ -53,15 +56,16 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Select</servlet-name>
-        <url-pattern>/getPrograms</url-pattern>
-        
         <url-pattern>/getFichas</url-pattern>
-        
         <url-pattern>/getCoor</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UploadFile</servlet-name>
         <url-pattern>/Uploading</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SelectQuerys</servlet-name>
+        <url-pattern>/SelectYears</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

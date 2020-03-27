@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author serfin
  */
-public class ActividadDAO implements InterfaceCRUD {
+public class ActividadDAO {
 
     private Connection conn = null;
     private PreparedStatement ps = null;
@@ -29,11 +29,6 @@ public class ActividadDAO implements InterfaceCRUD {
     
     public ActividadDAO(Connection conn) {
         this.conn = conn;
-    }
-
-    @Override
-    public boolean insert(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Actividades getLastDate(Actividades acti) {
@@ -84,27 +79,7 @@ public class ActividadDAO implements InterfaceCRUD {
         }
 
     }
-
-    @Override
-    public boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean update(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object getByID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<?> getSomeByID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     public ArrayList<?> getAllByword(Actividades activi) {
         try {
             String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
@@ -143,42 +118,8 @@ public class ActividadDAO implements InterfaceCRUD {
             return null;
         }
     }
-
-    public ArrayList<?> getAll(Actividades activi) {
-        try {
-            String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
-                    + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
-                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
-                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
-                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
-                    + "group by ac.Id_actividad, ac.Tipo_actividad "
-                    + "ORDER BY count(aa.Cod_aprendiz) desc";
-            ps = conn.prepareStatement(sql);
-            ps.setDate(1, activi.getFecha_inicio());
-            ps.setDate(2, activi.getFecha_fin());
-            ps.setDate(3, activi.getFecha_inicio());
-            ps.setDate(4, activi.getFecha_fin());
-            rs = ps.executeQuery();
-            List<Actividades> list = new ArrayList<>();
-            Actividades actividades;
-            while (rs.next()) {
-                actividades = new Actividades();
-                actividades.setIdRealActividad(rs.getInt("Id_actividad"));
-                actividades.setNombre_actividad(rs.getString("Nombre_actividad"));
-                actividades.setTipo_actividad(rs.getString("Tipo_actividad"));
-                actividades.setFecha_inicio(rs.getString("Fecha_Inicio"));
-                actividades.setFecha_fin(rs.getString("Fecha_fin"));
-                actividades.setResponsable(rs.getString("responsable"));
-                actividades.setCantidad(rs.getString("cantidad"));
-                list.add(actividades);
-            }
-            return (ArrayList<?>) list;
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-    }
-
+    
+    
     public Actividades getIdActividad(Actividades actividades) {
 
         try {
@@ -423,15 +364,6 @@ public class ActividadDAO implements InterfaceCRUD {
         }
     }
 
-    @Override
-    public ArrayList<?> getByWord(String keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<?> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
       public void CloseAll(){
         Conexion.close(conn);

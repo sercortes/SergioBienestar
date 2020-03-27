@@ -1,5 +1,7 @@
 var input
+var total
 function selectCoordinacion(){
+    
     let select = document.getElementById('coor').value
     
     if(select == 'No'){
@@ -23,7 +25,7 @@ function selectCoordinacion(){
         
             listarCoor(input)
        
-       
+            
     }
 }
 
@@ -79,6 +81,7 @@ function listarCoor(data) {
         sum += parseInt(item.participaciones);
         }
         console.log(sum)
+        total = sum
         str += `      </tbody>
                                 <tfoot class="letrablanca">
                                     <tr class="bg-primary">
@@ -88,21 +91,29 @@ function listarCoor(data) {
                                         <th>Listado Aprendices</th>
                                     </tr>
                                 </tfoot>
-                            </table><div id="graficos">
+                            </table>
+            <div id="graficos">
+            </div>
+                <hr>
+            <div id="year">
 
             </div>`
 
 
         select.innerHTML = str;    
         
-       
         generateArrayStatics(data, sum)
+        
+        let datos = generateQueryYearCoor(input);
+        generateArrayStaticsYearCoor(datos, total)
         
        
     })
     
     
 }
+
+
 function generateArrayStatics(data, total){
     let arregloEstadisticas = []
         for(var item of data){

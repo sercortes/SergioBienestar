@@ -32,12 +32,6 @@ public class activitys extends HttpServlet {
         String direccion = request.getRequestURI();
 
         switch (direccion) {
-            
-            case "/bienestar/ListActivitys":
-
-                ListActivitys(request, response);
-
-                break;
                 
              case "/bienestar/ListActivitysSearch":
 
@@ -63,30 +57,9 @@ public class activitys extends HttpServlet {
 
                 break;
                 
-            case "/bienestar/ListStaticsByProgram":
-                    
-                break;
-
+          
         }
 
-    }
-
-    private void ListActivitys(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        request.setCharacterEncoding("UTF-8");
-
-        Conexion conexion = new Conexion();
-        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
-
-        Actividades actividades = new Actividades();
-        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
-        actividades.setFecha_fin(request.getParameter("fechaFinal"));
-        
-        ArrayList<?> lista = actividadDAO.getAll(actividades);
-
-        actividadDAO.CloseAll();
-        response.setContentType("application/json");
-        new Gson().toJson(lista, response.getWriter());
     }
 
     @Override

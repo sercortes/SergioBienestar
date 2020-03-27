@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author serfin
  */
-public class AprendizDAO implements InterfaceCRUD{
+public class AprendizDAO {
 
     private Connection conn = null;
     private PreparedStatement ps = null;
@@ -92,31 +92,7 @@ public class AprendizDAO implements InterfaceCRUD{
         }
     }
 
-    @Override
-    public boolean insert(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean update(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object getByID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<?> getSomeByID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
       public ArrayList<?> getByActivity(String acti) {
         try {
             String sql = "SELECT ap.*, ac.Nombre_actividad  " +
@@ -221,26 +197,7 @@ public class AprendizDAO implements InterfaceCRUD{
     }
 
      
-           
-    
-      public ArrayList<?> getPrograms() {
-        try {
-            String sql = "SELECT A.NombrePrograma FROM Aprendiz A group by(A.NombrePrograma)";
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            List<Aprendiz> list = new ArrayList<>();
-            Aprendiz aprendiz;
-            while (rs.next()) {
-                aprendiz = new Aprendiz();
-                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
-                list.add(aprendiz);
-            }
-            return (ArrayList<?>) list;
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-    }
+       
 
       
         public ArrayList<?> getCoordinacion() {
@@ -261,49 +218,6 @@ public class AprendizDAO implements InterfaceCRUD{
             return null;
         }
     }
-           
-           
-           
-    @Override
-    public ArrayList<?> getByWord(String keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<?> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-       public ArrayList<?> getForPrograma(String acti) {
-        try {
-            String sql = "SELECT A.Documento_aprendiz, A.Nombres_aprendiz, A.Genero, A.Ficha, A.NombrePrograma, A.Coordinacion, " +
-                        "count(*) 'participo' FROM Aprendiz A " +
-                        "INNER JOIN Actividades_Aprendiz AA ON A.Documento_aprendiz=AA.Cod_aprendiz " +
-                        "INNER JOIN Actividades ac ON AA.Cod_actividad=ac.Nombre_actividad " +
-                        "WHERE A.NombrePrograma = ? " +
-                        "group by(A.Documento_aprendiz) ORDER BY count(*) DESC";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, acti);
-            rs = ps.executeQuery();
-            List<Aprendiz> list = new ArrayList<>();
-            Aprendiz aprendiz;
-            while (rs.next()) {
-                aprendiz = new Aprendiz();
-                aprendiz.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
-                aprendiz.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
-                aprendiz.setFicha(rs.getString("Ficha"));
-                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
-                aprendiz.setCoordinacion(rs.getString("Coordinacion"));
-                aprendiz.setParticipaciones(rs.getString("participo"));
-                list.add(aprendiz);
-            }
-            return (ArrayList<?>) list;
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-    }
-
     
        
         public ArrayList<?> getForProgramaDate(Actividades actividades) {
@@ -378,6 +292,38 @@ public class AprendizDAO implements InterfaceCRUD{
             return null;
         }
     }
+     
+                 public ArrayList<?> getByYearCoor(Actividades actividades) {
+        try {
+            String sql = "SELECT TIMESTAMPDIFF(YEAR,A.FechaNacimiento_Aprendiz,CURDATE()) AS edad, "
+                    + "count(*) valor FROM Aprendiz A INNER JOIN Actividades_Aprendiz AA "
+                    + "ON A.idAprendiz=AA.Cod_aprendiz INNER JOIN Actividades ac ON "
+                    + "AA.Cod_actividad=ac.Id_actividad WHERE A.Coordinacion = ? "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? group BY(edad)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, actividades.getCoor());
+            ps.setDate(2, actividades.getFecha_inicio());
+            ps.setDate(3, actividades.getFecha_fin());
+            ps.setDate(4, actividades.getFecha_inicio());
+            ps.setDate(5, actividades.getFecha_fin());
+            rs = ps.executeQuery();
+            
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz aprendiz;
+            while (rs.next()) {
+                aprendiz = new Aprendiz();
+                aprendiz.setLabel(rs.getString("edad"));
+                aprendiz.setY(rs.getString("valor"));
+                list.add(aprendiz);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+        
     
         public ArrayList<?> getForCoorDate(Actividades actividades) {
         try {
