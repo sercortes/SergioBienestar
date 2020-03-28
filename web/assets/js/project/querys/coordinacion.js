@@ -97,6 +97,10 @@ function listarCoor(data) {
                 <hr>
             <div id="year">
 
+            </div>
+                <hr>
+            <div id="yearRange">
+
             </div>`
 
 
@@ -106,7 +110,6 @@ function listarCoor(data) {
         
         let datos = generateQueryYearCoor(input);
         generateArrayStaticsYearCoor(datos, total)
-        
        
     })
     

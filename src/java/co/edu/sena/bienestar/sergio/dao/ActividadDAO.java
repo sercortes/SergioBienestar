@@ -233,7 +233,7 @@ public class ActividadDAO {
 
     public ArrayList<?> getActivitysByIdAPrendiz(Aprendiz aprendiz) {
         try {
-            String sql = "SELECT ac.*, ap.*, count(ac.Id_actividad) 'cantidad' "
+            String sql = "SELECT ac.*, ap.*, count(ac.Id_actividad) 'cantidad', TIMESTAMPDIFF(YEAR,ap.FechaNacimiento_Aprendiz,CURDATE()) AS edad "
                     + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
                     + "ON ac.Id_actividad=aa.Cod_actividad "
                     + "INNER JOIN Aprendiz ap "
@@ -266,6 +266,14 @@ public class ActividadDAO {
                 apren.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
                 apren.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
                 apren.setNombrePrograma(rs.getString("NombrePrograma"));
+                apren.setTipo_documento(rs.getString("Tipo_documento"));
+                apren.setEmail_aprendiz(rs.getString("Email_aprendiz"));
+                apren.setMunicipio(rs.getString("Municipio_aprendiz"));
+                apren.setFecha_nacimiento(rs.getString("FechaNacimiento_Aprendiz"));
+                apren.setTipo_poblacion(rs.getString("Tipo_poblacion"));
+                apren.setEstrato(rs.getString("Estrato"));
+                apren.setNivelFormacion(rs.getString("Nivel_formacion"));
+                apren.setY(rs.getString("edad"));
 
                 apren.setActividades(actividades);
                 list.add(apren);

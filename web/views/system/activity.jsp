@@ -21,6 +21,10 @@
 
 <%@include file="/views/template/footer.jspf"%>
 
+ <script src="assets/js/pdf/jszip.min.js"></script>
+  <script src="assets/js/pdf/kendo.all.min.js"></script>
+
+
 <script src="assets/js/canvas/canvasjs.min.js" charset="utf-8"></script>
 
 <script src="assets/js/project/buscador/buscador.js" charset="utf-8"></script>

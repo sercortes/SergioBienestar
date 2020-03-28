@@ -1,7 +1,8 @@
 <!-- ModalActividadeAprendiz -->
-<div class="modal fade" id="modalTwo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+<div class="modal fade text-center" id="modalTwo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+            <div id="contenidoModal">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalActividadesAprendiz"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -9,10 +10,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h6 id="program" class="chiquito">Programa: </h6>
-                <p id="pro" class="chiquito"></p>
+                <div class="row text-left">
+                    <div class="col-sm-6">
+                        <p id="pro" class="chiquito"></p>
+                    <p id="doc" class="chiquito"></p>
+                    <p id="ema" class="chiquito"></p>
+                    <p id="estrato" class="chiquito"></p>
+                    <p id="participaciones" class="chiquito"></p>
+                </div>
+                    <div class="col-sm-6">
+                        <p id="mun" class="chiquito"></p>
+                         <p id="fec" class="chiquito"></p>
+                    <p id="fech" class="chiquito"></p>
+                    <p id="tipo" class="chiquito"></p>
+                </div>
+                </div>
+                <div class="text-left">
+                   
+                    
+               
+                   
+                    
+             
 
 
+                </div>
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -23,16 +45,19 @@
                         <div id="tabla2" class="table-responsive-xl">
 
                         </div>
-
-                        <div id="chartContainer" style="height: 400px;"></div>
-
-
+                     
+                        <div class="" id="chartContainer" style="height: 400px;">
+                            
+                        </div>
+                     
                     </div>
 
                 </div>
+                </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir</button>
+                    <button id="pdf" type="button" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir</button>
                 </div>
             </div>
         </div>

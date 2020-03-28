@@ -35,11 +35,13 @@ function fichasTotal(id){
       let acti = data[0].ficha
       let num = 0
       
-       $('#titulo').text(acti)
+       $('#tittleListAprendices').text('FICHA : '+acti)
        
       let cantidad = document.getElementById('cantidad')
-      cantidad.innerHTML = "# Aprendices";
-      cantidad.innerHTML += " "+data.length
+      cantidad.innerHTML = "# Aprendices : "+data.length
+      
+      let programa = document.getElementById('programaFicha')
+       programa.innerHTML = "Programa Formación : "+data[0].nombrePrograma
 
      let select = document.getElementById('tabla1');
         let str = `<table id="examples" class="table table-striped table-bordered">
@@ -47,8 +49,6 @@ function fichasTotal(id){
                                     <tr class="bg-primary">
                                         <th>Documento</th>
                                         <th>Nombres</th>
-                                        <th>Ficha</th>
-                                        <th>Programa</th>
                                         <th>Coordinación</th>
                                         <th>Participaciones</th>
                                         <th>Detalles</th>
@@ -61,8 +61,6 @@ function fichasTotal(id){
             str += `<tr id="row" class="chiquito">
                                                     <td>${item.documento_aprendiz}</td>
                                                     <td>${item.nombre_aprendiz}</td>
-                                                    <td>${item.ficha}</td>
-                                                    <td>${item.nombrePrograma}</td>
                                                     <td>${item.coordinacion}</td>
                                                     <td>${item.participaciones}</td>
                                                  <td>         
@@ -78,12 +76,10 @@ function fichasTotal(id){
         str += `      </tbody>
                                 <tfoot class="letrablanca">
                                     <tr class="bg-primary">
-                                        <th>Documento</th>
+                                         <th>Documento</th>
                                         <th>Nombres</th>
-                                        <th>Ficha</th>
-                                        <th>Programa</th>
                                         <th>Coordinación</th>
-                                        <th>Coordinación</th>
+                                        <th>Participaciones</th>
                                         <th>Detalles</th>
                                     </tr>
                                 </tfoot>

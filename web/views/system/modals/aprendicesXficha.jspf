@@ -1,19 +1,21 @@
 <!-- Modal aprendices x ficha-->
-    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg text-center" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Lista de aprendicess</h5>
+                    <h5 class="modal-title" id="tittleListAprendices"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h6 class="chiquito">Ficha:</h6>
-                    <p id="titulo" class="chiquito"></p>
-                    <h6 id="cantidad" class="chiquito">#Aprendices: </h6>
+                    <div class="text-sm-left">
+                    <h6 id="programaFicha" class="chiquito"></h6>
+                    <h6 id="cantidad" class="chiquito"></h6>
+                    </div>
                     <div class="row">
                         <div class="col-sm-12">
+                             
 
                             <div id="tabla1" class="table-responsive-xl">
 
