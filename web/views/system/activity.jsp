@@ -21,14 +21,22 @@
 
 <%@include file="/views/template/footer.jspf"%>
 
- <script src="assets/js/pdf/jszip.min.js"></script>
-  <script src="assets/js/pdf/kendo.all.min.js"></script>
-
-
-<script src="assets/js/canvas/canvasjs.min.js" charset="utf-8"></script>
-
 <script src="assets/js/project/buscador/buscador.js" charset="utf-8"></script>
 <script src="assets/js/project/reportes/reportCordinacion.js" charset="utf-8"></script>
+
+<script src="assets/js/project/select/validationSelect.js" charset="utf-8"></script>
+<script src="assets/js/project/select/botonsFiltro.js" charset="utf-8"></script>
+
+<script src="assets/js/project/buscador/validationSize.js" charset="utf-8"></script>
+<script src="assets/js/project/buscador/onChangeDate.js" charset="utf-8"></script>
+
+<script src="assets/js/project/querys/activitys.js" charset="utf-8"></script>
+<script src="assets/js/project/querys/aprendices.js" charset="utf-8"></script>
+<script src="assets/js/project/querys/coordinacion.js" charset="utf-8"></script>
+<script src="assets/js/project/querys/TypesActivitys.js" charset="utf-8"></script>
+<script src="assets/js/project/querys/fichas.js" charset="utf-8"></script>
+<script src="assets/js/project/querys/aprendicesCoor.js" charset="utf-8"></script>
+<script src="assets/js/project/querys/ActivitysByAprendiz.js" charset="utf-8"></script>
 
 <script src="assets/js/project/canva/GraphicByAprendiz.js" charset="utf-8"></script>
 <script src="assets/js/project/canva/GraphicByFicha.js" charset="utf-8"></script>
@@ -36,19 +44,6 @@
 <script src="assets/js/project/canva/GraphicByCoordinacion.js" charset="utf-8"></script>
 <script src="assets/js/project/canva/GraphicByYearCoor.js" charset="utf-8"></script>
 
-
-<script src="assets/js/project/select/validationSelect.js" charset="utf-8"></script>
-<script src="assets/js/project/select/botonsFiltro.js" charset="utf-8"></script>
-<script src="assets/js/project/buscador/validationSize.js" charset="utf-8"></script>
-
-<script src="assets/js/project/buscador/onChangeDate.js" charset="utf-8"></script>
-
-<script src="assets/js/project/querys/activitys.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/aprendices.js" charset="utf-8"></script>
-
-<script src="assets/js/project/querys/coordinacion.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/TypesActivitys.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/fichas.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/aprendicesCoor.js" charset="utf-8"></script>
-
-<script src="assets/js/project/querys/ActivitysByAprendiz.js" charset="utf-8"></script>
+ <script src="assets/js/pdf/jszip.min.js"></script>
+<script src="assets/js/pdf/kendo.all.min.js"></script>
+<script src="assets/js/canvas/canvasjs.min.js" charset="utf-8"></script>

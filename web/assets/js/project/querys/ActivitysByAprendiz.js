@@ -18,29 +18,11 @@ function getActivitysByAprendiz(aprendiz) {
 
 }
 
-function calculateAge(birthday) { // birthday is a date
-   var ageDifMs = Date.now() - birthday;
-   var ageDate = new Date(ageDifMs); // miliseconds from epoch
-   return Math.abs(ageDate.getUTCFullYear() - 1970);
- }
- 
- function getAge(DOB) {
-    var today = new Date();
-    var birthDate = new Date(DOB);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age = age - 1;
-    }
-
-    return age;
-}
-
 function listActivitysByAprendiz(data) {
 
     $('#modalTwo').modal('show')
 
-    getByTypes(data)
+
 
     $.ajax({
         type: "GET",
@@ -54,17 +36,7 @@ function listActivitysByAprendiz(data) {
     }).done(function (data) {
 
 
-        $('#modalActividadesAprendiz').text(data[0].nombre_aprendiz)
-    
-        $('#pro').text('PROGRAMA : '+data[0].nivelFormacion+' EN '+data[0].nombrePrograma)
-        $('#doc').text('DOCUMENTO : '+data[0].tipo_documento+' '+data[0].documento_aprendiz)
-        $('#ema').text('EMAIL : '+data[0].email_aprendiz) 
-        $('#mun').text('MUNICIPIO : '+data[0].municipio) 
-        $('#participaciones').text('# PARTICIPACIONES : '+data.length)
-        $('#fec').text('EDAD : '+data[0].y) 
-        $('#fech').text('FECHA NACIMIENTO : '+data[0].fecha_nacimiento) 
-        $('#tipo').text('TIPO DE POBLACIÓN : '+data[0].tipo_poblacion)
-        $('#estrato').text('ESTRATO : '+data[0].estrato)
+        generateInformationAprendiz(data)
 
         let select = document.getElementById('tabla2');
         let str = `<table id="examples" class="table table-striped table-bordered">
@@ -111,7 +83,8 @@ function listActivitysByAprendiz(data) {
         select.innerHTML = str;
     })
 
-
+    getByTypes(data)
+    
 }
 
 $('#pdf').click(function(){
@@ -138,3 +111,18 @@ function generatePDF(div, nameFile){
   
 }
 
+function generateInformationAprendiz(data){
+    
+        $('#modalActividadesAprendiz').text(data[0].nombre_aprendiz)
+    
+        $('#pro').text('PROGRAMA : '+data[0].nivelFormacion+' EN '+data[0].nombrePrograma)
+        $('#doc').text('DOCUMENTO : '+data[0].tipo_documento+' '+data[0].documento_aprendiz)
+        $('#ema').text('EMAIL : '+data[0].email_aprendiz) 
+        $('#mun').text('MUNICIPIO : '+data[0].municipio) 
+        $('#participaciones').text('# PARTICIPACIONES : '+data.length)
+        $('#fec').text('EDAD : '+data[0].y) 
+        $('#fech').text('FECHA NACIMIENTO : '+data[0].fecha_nacimiento) 
+        $('#tipo').text('TIPO DE POBLACIÓN : '+data[0].tipo_poblacion)
+        $('#estrato').text('ESTRATO : '+data[0].estrato)
+    
+}

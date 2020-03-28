@@ -25,13 +25,12 @@ function getByTypes(data) {
         var chart = new CanvasJS.Chart("chartContainer", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,
-            animationEnabled: true,
             title: {
                 text: "Eventos preferidos"
             },
             data: [{
                     type: "pie",
-                    startAngle: 25,
+                    startAngle: 235,
                     toolTipContent: "<b>{label}</b>: {y}%",
                     showInLegend: "true",
                     legendText: "{label}",
