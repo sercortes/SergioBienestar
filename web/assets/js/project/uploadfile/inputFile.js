@@ -4,6 +4,9 @@ $(document).ready(function () {
 
 $('#loader').hide()
 
+let menuItem = document.getElementById('menuUpload')
+menuItem.classList.add('active')
+
 
 $("#send").click(function (e) {
 

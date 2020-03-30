@@ -5,13 +5,24 @@
 
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
-    <h3 class="text-center">Importar Base de Datos</h3>
+    <h3 class="text-center titulos"><i class="fas fa-database"></i> IMPORTAR BASE DE DATOS</h3>
 
 
     <div class="row">
         <div class="col-lg-12">
             <p>Seleccione el archivo sobre de las actividades realizadas por bienestar de sofia plus</p>
+           
+            <ul>
+                <li>
+                    Debe subir el archivo tal cual se descargo de sofia plus
+                </li>
+                <li>
+                    No funciona con archivos modificados
+                </li>
+            </ul>
+            
         </div>
+        
     </div>
 
     <div class="row" action>

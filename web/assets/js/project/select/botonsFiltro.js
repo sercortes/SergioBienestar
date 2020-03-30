@@ -15,6 +15,9 @@ Date.prototype.getStartYear = (function() {
 
 $(function(){
     
+    let menuItem = document.getElementById('menuActividad')
+    menuItem.classList.add('active')
+    
     let filtros1 = document.getElementById('coor')
     
     
