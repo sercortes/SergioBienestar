@@ -51,10 +51,8 @@
 
         
         <div id="filtros1" class="col-sm-3">
-                <label for="validationTooltip03">Coordinación</label>
-                <select name="coor" class="form-control" id="coor" tabindex="4" onchange="selectCoordinacion()" required>
-          <option value="No">No</option>
-          </select>
+                
+            
         </div>
         
         <div id="filtros" class="col-sm-3">
@@ -65,8 +63,6 @@
         </div>
 
         <div class="col-sm-3" id="filtros3">
-
-                       <button id="generateReport" type="button" class="btn btn-success mt-4 float-right"><i class="fas fa-file-download"></i> Generar reporte</button>
 
         </div>
 

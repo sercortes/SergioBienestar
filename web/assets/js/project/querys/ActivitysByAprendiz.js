@@ -10,10 +10,7 @@ function getActivitysByAprendiz(aprendiz) {
         fechaInicial: fechai,
         fechaFinal: fechaf
     };
-    if (!validationDate(data)) {
-        return false
-    }
-
+ 
     listActivitysByAprendiz(data)
 
 }
@@ -94,22 +91,7 @@ $('#pdf').click(function(){
   
 })
 
-function generatePDF(div, nameFile){
-    kendo.drawing
-    .drawDOM(div, 
-    { 
-        paperSize: "A4",
-//       margin: { 
-//            top: "1cm", 
-//            bottom: "1cm" },
-        scale: 0.8,
-        height: 500
-    })
-        .then(function(group){
-        kendo.drawing.pdf.saveAs(group, nameFile)
-    });
-  
-}
+
 
 function generateInformationAprendiz(data){
     

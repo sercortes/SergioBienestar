@@ -37,6 +37,7 @@
         <url-pattern>/Home</url-pattern>
         <url-pattern>/Upload</url-pattern>
         <url-pattern>/Activitys</url-pattern>
+        <url-pattern>/Aprendices</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>

@@ -11,8 +11,8 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="titulos text-center"><i class="far fa-smile-beam"></i> BIENVENIDO</h1>
-            <h5 class="titulos">Sistema de control y seguimiento de actividades de Bienestar al aprendiz</h5>
+            <h1 class="titulos text-center"> <i class="far fa-smile-beam"></i> BIENVENIDO</h1>
+            <h5 class="titulos"><i class="fas fa-laptop-code"></i> Sistema de control y seguimiento de actividades de Bienestar al aprendiz</h5>
         </div>
     </div>
     <hr>

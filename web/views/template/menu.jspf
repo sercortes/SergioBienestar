@@ -26,6 +26,14 @@
           <span>Actividades</span>
         </a>
       </li>
+      
+      <li class="nav-item" id="menuAprendices">
+        <a class="nav-link" href="./Aprendices">
+          <i class="fas fa-users"></i>
+          <span>Aprendices</span>
+        </a>
+      </li>
+      
       <li class="nav-item" id="menuUpload">
         <a class="nav-link" href="./Upload">
           <i class="fas fa-file-excel"></i>

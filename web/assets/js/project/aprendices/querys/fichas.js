@@ -14,9 +14,6 @@ function fichasTotal(id){
             fechaFinal : fechaf
         };
         
-        if(!validationDate(data)){
-            return false
-        }
       
       graphicByFicha(data)
   

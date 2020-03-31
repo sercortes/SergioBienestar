@@ -36,8 +36,7 @@ function selectTypeActivity() {
     if (select == 'No') {
 
     } else {
-        $('#coor').val(1)
-
+        
         let fechai = document.getElementById('fechaI').value
         let fechaf = document.getElementById('fechaF').value
         let data = {
@@ -45,11 +44,7 @@ function selectTypeActivity() {
             fechaInicial: fechai,
             fechaFinal: fechaf
         };
-        
-        if(!validationDate(data)){
-            return false;
-        }
-        
+     
         listarTypes(data)
 
     }

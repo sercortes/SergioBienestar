@@ -7,7 +7,6 @@ function selectCoordinacion(){
     if(select == 'No'){
             
     }else{
-         $('#TypeActivity').val(1)
          $('#keyWord').val('')
     
         let fechai = document.getElementById('fechaI').value
@@ -19,9 +18,6 @@ function selectCoordinacion(){
             fechaFinal : fechaf
         };
         
-        if(!validationDate(input)){
-            return false
-        }
         
             listarCoor(input)
        

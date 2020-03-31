@@ -3,14 +3,10 @@
 <%@include file="/views/template/menu.jspf"%>
 
 
-<%@include file="/views/system/modals/buscador.jspf"%>
+<%@include file="/views/system/modalActivitys/buscador.jspf"%>
 
 
-
-<%@include file="/views/system/modals/reportes.jspf"%>
-<%@include file="/views/system/modals/aprendicesXprograma.jspf"%>
-<%@include file="/views/system/modals/aprendices.jspf"%>
-<%@include file="/views/system/modals/aprendicesXficha.jspf"%>
+<%@include file="/views/system/modalActivitys/aprendices.jspf"%>
 <%@include file="/views/system/modals/actividadesAprendiz.jspf"%>
 
 
@@ -21,28 +17,16 @@
 
 <%@include file="/views/template/footer.jspf"%>
 
-<script src="assets/js/project/buscador/buscador.js" charset="utf-8"></script>
-<script src="assets/js/project/reportes/reportCordinacion.js" charset="utf-8"></script>
+<script src="assets/js/project/activitys/start.js" charset="utf-8"></script>
+<script src="assets/js/project/activitys/buscador/buscador.js" charset="utf-8"></script>
+<script src="assets/js/project/util/dates.js" charset="utf-8"></script>
 
-<script src="assets/js/project/select/validationSelect.js" charset="utf-8"></script>
-<script src="assets/js/project/select/botonsFiltro.js" charset="utf-8"></script>
+<script src="assets/js/project/activitys/querys/aprendices.js" charset="utf-8"></script>
+<script src="assets/js/project/activitys/querys/TypesActivitys.js" charset="utf-8"></script>
 
-<script src="assets/js/project/buscador/validationSize.js" charset="utf-8"></script>
-<script src="assets/js/project/buscador/onChangeDate.js" charset="utf-8"></script>
-
-<script src="assets/js/project/querys/activitys.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/aprendices.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/coordinacion.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/TypesActivitys.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/fichas.js" charset="utf-8"></script>
-<script src="assets/js/project/querys/aprendicesCoor.js" charset="utf-8"></script>
+<!-- consulta que comparten las dos vistas-->
 <script src="assets/js/project/querys/ActivitysByAprendiz.js" charset="utf-8"></script>
-
 <script src="assets/js/project/canva/GraphicByAprendiz.js" charset="utf-8"></script>
-<script src="assets/js/project/canva/GraphicByFicha.js" charset="utf-8"></script>
-<script src="assets/js/project/canva/GraphicByProgram.js" charset="utf-8"></script>
-<script src="assets/js/project/canva/GraphicByCoordinacion.js" charset="utf-8"></script>
-<script src="assets/js/project/canva/GraphicByYearCoor.js" charset="utf-8"></script>
 
  <script src="assets/js/pdf/jszip.min.js"></script>
 <script src="assets/js/pdf/kendo.all.min.js"></script>
