@@ -39,11 +39,11 @@
                         <div id="tabla2" class="table-responsive-xl">
 
                         </div>
-                     
+                       
                         <div class="text-center" id="chartContainer" style="height: 400px;">
                             
                         </div>
-                     
+                    
                     </div>
 
                 </div>

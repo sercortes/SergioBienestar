@@ -16,54 +16,59 @@
         </div>
     </div>
     <hr>
-    
+
 </div>
 
-    <div class="container-fluid">
-     <div class="row">
-        
-         <div class="col-sm-6 justify-content-center">
-             
-               
-            <div class="card text-white bg-info mb-3">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-calendar-check"></i> Ver actividades</h5>
-                    <p class="card-text">Observe y dellate todas la actividades realizadas por bienestar.</p>
-                </div>
-            </div>
-            
-            
-            <div class="card text-white bg-success mb-3">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-chart-area"></i> Ver estadísticas</h5>
-                    <p class="card-text">Visualice las gráficas que permitan tomar las mejores decisiones.</p>
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="row">
 
-          
-             </div>
-         
-            <div class="col-sm-6">
-            
-            <div class="card text-white bg-warning mb-3">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-database"></i> Importe la Base de Datos</h5>
-                    <p class="card-text">Restaure la BD para que la información quede actualizada.</p>
+        <div class="col-sm-6 justify-content-center">
+
+            <a href="./Activitys" class="menu hvr-skew-forward"> 
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-calendar-check"></i> Ver actividades</h5>
+                        <p class="card-text">Observe y dellate todas la actividades realizadas por bienestar.</p>
+                    </div>
                 </div>
-            </div>
-     <div class="card text-white bg-secondary mb-3">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-users"></i> Ver aprendices</h5>
-                    <p class="card-text">Busque por medio de ficha o programa de formación.</p>
+            </a>
+
+            <a href="#" class="menu hvr-skew-forward"> 
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-chart-area"></i> Ver estadísticas</h5>
+                        <p class="card-text">Visualice las gráficas que permitan tomar las mejores decisiones.</p>
+                    </div>
                 </div>
-            </div>
-                    
-               
-         </div>
-         
+            </a>
+
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <a href="./Upload" class="menu hvr-skew-forward"> 
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-database"></i> Importe la Base de Datos</h5>
+                        <p class="card-text">Restaure la BD para que la información quede actualizada.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="./Aprendices" class="menu hvr-skew-forward"> 
+                <div class="card text-white bg-secondary mb-3 ">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-users"></i> Ver aprendices</h5>
+                        <p class="card-text">Busque por medio de ficha o programa de formación.</p>
+                    </div>
+                </div>
+            </a>     
+
+        </div>
+
     </div>    
-        
-    </div>
+
+</div>
 
 
 
