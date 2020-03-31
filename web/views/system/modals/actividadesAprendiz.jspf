@@ -39,16 +39,25 @@
                         <div id="tabla2" class="table-responsive-xl">
 
                         </div>
-                       
-                        <div class="text-center" id="chartContainer" style="height: 400px;">
+                          </div>
+                     
+                          </div>
+                 
+                     </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="page-break" id="chartContainer"  style="height: 500px;">
                             
                         </div>
-                    
-                    </div>
-
                 </div>
                 </div>
-                </div>
+                        
+              
+                        <hr>
+                         </div>
+                
+             
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
                     <button id="pdf" type="button" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir</button>

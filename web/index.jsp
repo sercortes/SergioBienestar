@@ -14,6 +14,8 @@
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/login.css" rel="stylesheet" type="text/css">
   <link href="assets/css/ruang-admin.min.css" rel="stylesheet">
+  <link href="assets/css/hover-min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -41,7 +43,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block font-weight-bold"><i class="fas fa-smile-wink"></i> Ingresar</button>
+                        <button type="submit" class="btn btn-primary btn-block font-weight-bold hvr-pulse-grow"><i class="fas fa-smile-wink"></i> Ingresar</button>
                     </div>
                     <hr>
                   

@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="titulos text-center"> <i class="far fa-smile-beam"></i> BIENVENIDO</h1>
-            <h5 class="titulos"><i class="fas fa-laptop-code"></i> Sistema de control y seguimiento de actividades de Bienestar al aprendiz</h5>
+            <h5 class="titulos hvr-icon-pop"><i class="fas fa-laptop-code hvr-icon"></i> Sistema de control y seguimiento de actividades de Bienestar al aprendiz</h5>
         </div>
     </div>
     <hr>
@@ -24,7 +24,7 @@
 
         <div class="col-sm-6 justify-content-center">
 
-            <a href="./Activitys" class="menu hvr-skew-forward"> 
+            <a href="./Activitys" class="menu hvr-grow"> 
                 <div class="card text-white bg-info mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-calendar-check"></i> Ver actividades</h5>
@@ -33,7 +33,7 @@
                 </div>
             </a>
 
-            <a href="#" class="menu hvr-skew-forward"> 
+            <a href="#" class="menu hvr-grow"> 
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-chart-area"></i> Ver estadísticas</h5>
@@ -47,7 +47,7 @@
 
         <div class="col-sm-6">
 
-            <a href="./Upload" class="menu hvr-skew-forward"> 
+            <a href="./Upload" class="menu hvr-grow"> 
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-database"></i> Importe la Base de Datos</h5>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </a>
-            <a href="./Aprendices" class="menu hvr-skew-forward"> 
+            <a href="./Aprendices" class="menu hvr-grow"> 
                 <div class="card text-white bg-secondary mb-3 ">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-users"></i> Ver aprendices</h5>
