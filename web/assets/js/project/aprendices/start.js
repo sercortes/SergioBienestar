@@ -34,11 +34,11 @@ $(function () {
 function cambiarFecha() {
 
     let select = document.getElementById('coor').value
-  
-    if (select != '' || select != 'No') {
-            selectCoordinacion()
-    }else{
+    if (select == '' || select == 'No') {
+           
          buscarAprendiz()
+    }else{
+            selectCoordinacion()
     }
 
 }
@@ -46,7 +46,6 @@ function cambiarFecha() {
 function buscarAprendiz(){
     
    let word = document.getElementById('keyWord').value
-
     if (word == '') {
         searchAprendiz(returnDataAprendiz())
     } else if (word.length <= 2) {
