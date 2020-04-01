@@ -11,7 +11,7 @@ $('#buttonSearch').click(function (){
     }
    
    }
-   
+   showAnimation()
    
     listarActivitysSearch(returtDataActivitys())
     
@@ -96,12 +96,14 @@ function listarActivitysSearch(data) {
 
 function cambiarFecha(){
  
+ showAnimation()
         listarActivitysSearch(returtDataActivitys()) 
     
 }
 
 $(document).ready(function () {
  
+    showAnimation()
     listarActivitysSearch(returtDataActivitys())
    
 });

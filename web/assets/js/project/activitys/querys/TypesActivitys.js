@@ -24,6 +24,7 @@ function typesActivitys() {
 
 function selectTypeActivity() {
 
+showAnimation()
 
     let select = document.getElementById('TypeActivity').value
  

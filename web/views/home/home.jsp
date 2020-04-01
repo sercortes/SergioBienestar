@@ -1,5 +1,7 @@
 
 <%@include file="/views/template/head.jspf"%>
+
+
 <%@include file="/views/template/menu.jspf"%>
 <!-- Topbar -->
 
@@ -64,6 +66,12 @@
                 </div>
             </a>     
 
+        </div>
+
+        <div class="col-sm-12 d-flex justify-content-center">
+           
+          
+            
         </div>
 
     </div>    

@@ -2,6 +2,8 @@ var input
 var total
 function selectCoordinacion(){
     
+    showAnimation()
+    
     let select = document.getElementById('coor').value
     
     if(select == 'No'){

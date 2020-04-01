@@ -10,7 +10,6 @@ menuItem.classList.add('active')
 
 $("#send").click(function (e) {
 
-
     let file = $('#fileToUpload').val()
 
     if (file == "") {
@@ -38,6 +37,8 @@ $("#send").click(function (e) {
 
     $('#loader').show()
 
+    document.getElementById('send').disabled = true
+    document.getElementById('fileToUpload').disabled = true
 
     $.ajax({
         type: "POST",
@@ -58,9 +59,7 @@ $("#send").click(function (e) {
                     generateSucces()
                 }
 
-
             hideAnimation()
-            reset()
 
         },
         error: function (e) {
@@ -70,22 +69,21 @@ $("#send").click(function (e) {
             hideAnimation()
             
             generateError()
-            reset()
-
-
 
         }
     });
-
+    
+ 
 })
+
 
 function hideAnimation() {
     $('#loader').hide()
-}
-
-function reset() {
+    document.getElementById('send').disabled = false
+    document.getElementById('fileToUpload').disabled = false
     $('#formulario').trigger('reset')
 }
+
 
 function generateSucces() {
 

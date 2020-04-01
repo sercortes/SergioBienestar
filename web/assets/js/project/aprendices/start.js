@@ -26,26 +26,31 @@ $(function () {
 
     setDefaultDate()
 
+    showAnimation()
+
     searchAprendiz(returnDataAprendiz())
 
 
 })
 
 function cambiarFecha() {
-
+    
     let select = document.getElementById('coor').value
     if (select == '' || select == 'No') {
-           
-         buscarAprendiz()
-    }else{
-            selectCoordinacion()
+
+        buscarAprendiz()
+    } else {
+        selectCoordinacion()
     }
 
 }
 
-function buscarAprendiz(){
-    
-   let word = document.getElementById('keyWord').value
+function buscarAprendiz() {
+
+showAnimation()
+      
+
+    let word = document.getElementById('keyWord').value
     if (word == '') {
         searchAprendiz(returnDataAprendiz())
     } else if (word.length <= 2) {
@@ -54,7 +59,7 @@ function buscarAprendiz(){
     } else {
         searchAprendizWord(returnDataAprendiz())
     }
-    
+
 }
 
 $('#buttonSearch').click(function () {
@@ -67,16 +72,17 @@ $('#buttonSearch').click(function () {
 
 
 function searchAprendiz(data) {
-    
-    $('#coor').val(1)
-    
+
+    $('#coor').val(1)   
+
     $.ajax({
         type: "GET",
         url: './getSearchAprendiz',
         datatype: 'json',
         data: data
     }).done(function (data) {
-
+    
+        
         if (data <= 0) {
             validationSizeSelect(returnDataAprendiz().palabra)
             return false
