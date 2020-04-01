@@ -269,12 +269,13 @@ public class aprendiz extends HttpServlet {
       
         Actividades actividades = new Actividades();
         aprendiz.setDocumento_aprendiz(request.getParameter("palabra"));
+        aprendiz.setNombre_aprendiz(request.getParameter("palabra"));
         actividades.setFecha_inicio(request.getParameter("fechaInicial"));
         actividades.setFecha_fin(request.getParameter("fechaFinal"));
         aprendiz.setActividades(actividades);
         
         
-        ArrayList<?> lista = aprendizDAO.getAllBywordOrNumber(aprendiz);
+        ArrayList<?> lista = aprendizDAO.getAllByNumber(aprendiz);
 
         aprendizDAO.CloseAll();
         response.setContentType("application/json");

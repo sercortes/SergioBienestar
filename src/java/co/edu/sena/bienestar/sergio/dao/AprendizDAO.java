@@ -162,7 +162,7 @@ public class AprendizDAO {
             return null;
         }
     }
-    public ArrayList<?> getAllBywordOrNumber(Aprendiz aprendiz) {
+    public ArrayList<?> getAllByNumber(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ap.Documento_aprendiz, ap.Nombres_aprendiz, ap.idAprendiz, ap.NombrePrograma, count(aa.Cod_aprendiz) 'cantidad' "
                     + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
@@ -170,7 +170,10 @@ public class AprendizDAO {
                     + "ap ON aa.Cod_aprendiz = ap.idAprendiz WHERE "
                     + "ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
-                    + "AND ap.Documento_aprendiz = ? "
+                    + "AND ap.Documento_aprendiz = ? OR "
+                    + "ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "AND ap.Nombres_aprendiz LIKE ? "
                     + "GROUP BY(ap.idAprendiz) ORDER BY `cantidad` DESC";
             ps = conn.prepareStatement(sql);
            
@@ -179,6 +182,12 @@ public class AprendizDAO {
             ps.setDate(3, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(4, aprendiz.getActividades().getFecha_fin());
             ps.setString(5, aprendiz.getDocumento_aprendiz());
+            
+               ps.setDate(6, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(7, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(8, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(9, aprendiz.getActividades().getFecha_fin());
+              ps.setString(10, "%"+aprendiz.getNombre_aprendiz()+"%");
             
             rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();

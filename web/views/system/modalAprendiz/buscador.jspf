@@ -28,9 +28,9 @@
         </div>
         
         <div class="col-sm-4">
-            <label for="validationCustom01">Palabra clave:</label>
+            <label for="validationCustom01">Nombre o Documento:</label>
             <div class="input-group">
-                <input name="nombre" type="text" class="form-control" id="keyWord" minlength="2" maxlength="20" placeholder="" required>
+                <input name="nombre" type="text" class="form-control" id="keyWord" minlength="2" maxlength="20" placeholder="Nombre o documento" required>
 
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" id="buttonSearch"><i class="fas fa-search"></i> Buscar</button>
