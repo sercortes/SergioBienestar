@@ -140,13 +140,13 @@ public class readXls {
                     }
                 }
 
-                // validaciones con fecha, para que no se repitan datos en la bd
-                Actividades actividad = actividadDAO.getLastDate(actividades);
+                // validaciones, para que no se repitan datos en la bd
+                Actividades actividad = actividadDAO.getIdActividad(actividades);
                 
                 // retorna verdadero si esta en la bd
                 boolean existe = actividad.getIdRealActividad() != 0;
                
-                //validación si la fila de excel ya esta en el rango de la bd, no se agrega a la lista
+                //validación en la bd, no se agrega a la lista
                 //si existe no se agrega
                 if (!existe) {
                     // agregando objetos a la lista

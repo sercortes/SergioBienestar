@@ -31,26 +31,6 @@ public class ActividadDAO {
         this.conn = conn;
     }
 
-    public Actividades getLastDate(Actividades acti) {
-        try {
-            String sql = "SELECT * FROM Actividades a WHERE Fecha_inicio = ? AND Fecha_fin = ? limit 1";
-            ps = conn.prepareStatement(sql);
-            ps.setDate(1, acti.getFecha_inicio());
-            ps.setDate(2, acti.getFecha_fin());
-            rs = ps.executeQuery();
-            Actividades actividad = new Actividades();
-
-            while (rs.next()) {
-                actividad = new Actividades();
-                actividad.setIdRealActividad(rs.getInt("Id_actividad"));
-            }
-            return actividad;
-        } catch (SQLException e) {
-            System.out.println("error getById " + e.getMessage());
-            return null;
-        }
-    }
-
     public int insertReturn(Actividades actividades) {
         int idActividad = 0;
         String sql = "INSERT INTO Actividades (Nombre_actividad, Tipo_actividad, Fecha_inicio, Fecha_fin, responsable)"
