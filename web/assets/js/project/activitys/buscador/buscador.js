@@ -26,8 +26,6 @@ function listarActivitysSearch(data) {
         data:data,
         datatype: 'json'
     }).done(function (data) {
-
-        $('#coor').val(1)
         
         if (data <= 0) {
             validationSizeSelect(returtDataActivitys().palabra)

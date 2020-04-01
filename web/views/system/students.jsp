@@ -21,6 +21,7 @@
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
 <script src="assets/js/project/aprendices/start.js" charset="utf-8"></script>
 
+<script src="assets/js/project/aprendices/buscador/buscador.js" charset="utf-8"></script>
 <script src="assets/js/project/aprendices/querys/coordinacion.js" charset="utf-8"></script>
 <script src="assets/js/project/aprendices/querys/fichas.js" charset="utf-8"></script>
 <script src="assets/js/project/aprendices/querys/aprendicesCoor.js" charset="utf-8"></script>
