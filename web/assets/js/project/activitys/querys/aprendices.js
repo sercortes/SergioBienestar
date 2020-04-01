@@ -25,7 +25,7 @@ var num = 0
      let select = document.getElementById('tablaAprendices');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Documento</th>
                                         <th>Nombres</th>
                                         <th>Ficha</th>
@@ -57,7 +57,7 @@ var num = 0
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Documento</th>
                                         <th>Nombres</th>
                                         <th>Ficha</th>

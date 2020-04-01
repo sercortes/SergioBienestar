@@ -123,7 +123,86 @@ public class AprendizDAO {
             return null;
         }
     }
-      
+        public ArrayList<?> getAllByDate(Aprendiz aprendiz) {
+        try {
+            String sql = "SELECT ap.Documento_aprendiz, ap.Nombres_aprendiz, ap.idAprendiz, ap.NombrePrograma, count(aa.Cod_aprendiz) 'cantidad' "
+                    + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ac.Id_actividad=aa.Cod_actividad INNER JOIN Aprendiz "
+                    + "ap ON aa.Cod_aprendiz = ap.idAprendiz WHERE "
+                    + "ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "GROUP BY(ap.idAprendiz) ORDER BY `cantidad` DESC";
+            ps = conn.prepareStatement(sql);
+           
+            ps.setDate(1, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(2, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(3, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(4, aprendiz.getActividades().getFecha_fin());
+             
+        
+            rs = ps.executeQuery();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz apren;
+            Actividades acti;
+            while (rs.next()) {
+                apren = new Aprendiz();
+                acti = new Actividades();
+                apren.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
+                apren.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
+                apren.setId_aprendiz(rs.getInt("idAprendiz"));
+                apren.setNombrePrograma(rs.getString("NombrePrograma"));
+                
+                acti.setCantidad(rs.getString("cantidad"));
+                apren.setActividades(acti);
+                list.add(apren);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public ArrayList<?> getAllBywordOrNumber(Aprendiz aprendiz) {
+        try {
+            String sql = "SELECT ap.Documento_aprendiz, ap.Nombres_aprendiz, ap.idAprendiz, ap.NombrePrograma, count(aa.Cod_aprendiz) 'cantidad' "
+                    + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ac.Id_actividad=aa.Cod_actividad INNER JOIN Aprendiz "
+                    + "ap ON aa.Cod_aprendiz = ap.idAprendiz WHERE "
+                    + "ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "AND ap.Documento_aprendiz = ? "
+                    + "GROUP BY(ap.idAprendiz) ORDER BY `cantidad` DESC";
+            ps = conn.prepareStatement(sql);
+           
+            ps.setDate(1, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(2, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(3, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(4, aprendiz.getActividades().getFecha_fin());
+            ps.setString(5, aprendiz.getDocumento_aprendiz());
+            
+            rs = ps.executeQuery();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz apren;
+            Actividades acti;
+            while (rs.next()) {
+                apren = new Aprendiz();
+                acti = new Actividades();
+                apren.setDocumento_aprendiz(rs.getString("Documento_aprendiz"));
+                apren.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
+                apren.setId_aprendiz(rs.getInt("idAprendiz"));
+                apren.setNombrePrograma(rs.getString("NombrePrograma"));
+                
+                acti.setCantidad(rs.getString("cantidad"));
+                apren.setActividades(acti);
+                list.add(apren);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
        public ArrayList<?> getByFicha(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ap.*, count(aa.Cod_aprendiz) 'cantidad' "

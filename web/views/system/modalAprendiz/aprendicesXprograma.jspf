@@ -28,7 +28,7 @@
                         <div id="" class="table-responsive-xl">
                                 <table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Ficha</th>
                                         <th>Coordinación</th>
                                         <th>Participaciones</th>
@@ -38,7 +38,7 @@
                                             <tbody id="tablaPrograma">
                                                 </tbody>
                                 <tfoot class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Documento</th>
                                         <th>Nombres</th>
                                         <th>Ficha</th>

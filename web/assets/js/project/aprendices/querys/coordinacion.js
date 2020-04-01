@@ -52,7 +52,7 @@ function listarCoor(data) {
      let select = document.getElementById('tabla');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Nombre programas</th>
                                         <th>Coordinaciónn</th>
                                         <th># Participaciones</th>
@@ -80,7 +80,7 @@ function listarCoor(data) {
         total = sum
         str += `      </tbody>
                                 <tfoot class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Fecha Fin</th>
                                         <th>Responsable</th>
                                         <th>Aprendices</th>

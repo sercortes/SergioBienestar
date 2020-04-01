@@ -43,7 +43,7 @@ function fichasTotal(id){
      let select = document.getElementById('tabla1');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Documento</th>
                                         <th>Nombres</th>
                                         <th>Coordinación</th>
@@ -72,7 +72,7 @@ function fichasTotal(id){
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                          <th>Documento</th>
                                         <th>Nombres</th>
                                         <th>Coordinación</th>

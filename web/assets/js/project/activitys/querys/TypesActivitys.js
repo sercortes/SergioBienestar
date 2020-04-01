@@ -74,7 +74,7 @@ let num = 0;
      let select = document.getElementById('tabla');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Actividad</th>
                                         <th>Tipo</th>
                                         <th>Fecha Inicio</th>
@@ -107,7 +107,7 @@ let num = 0;
         console.log(num)
         str += `      </tbody>
                                 <tfoot class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Actividad</th>
                                         <th>Tipo</th>
                                         <th>Fecha Inicio</th>

@@ -11,13 +11,15 @@
     <div class="row">
         <div class="col-lg-12">
             <p>Seleccione el archivo sobre de las actividades realizadas por bienestar de sofia plus</p>
-           
             <ul>
                 <li>
-                    Debe subir el archivo tal cual se descargo de sofia plus
+                    No funciona con archivos modificados
                 </li>
                 <li>
-                    No funciona con archivos modificados
+                    Debe subir el archivo que contenga todas las categorias
+                </li>
+                <li>
+                    Debe subir el archivo tal cual se descargo de sofia plus
                 </li>
             </ul>
             

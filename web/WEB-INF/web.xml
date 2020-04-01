@@ -54,6 +54,8 @@
         <url-pattern>/ListActivitysByType</url-pattern>
         <url-pattern>/ListAprendicesByFicha</url-pattern>
         <url-pattern>/ListAprendicesByCoor</url-pattern>
+        <url-pattern>/getSearchAprendiz</url-pattern>
+        <url-pattern>/getSearchAprendizWord</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Select</servlet-name>

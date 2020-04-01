@@ -1,8 +1,4 @@
-<!-- Container Fluid-->
-<div class="container-fluid" id="container-wrapper">
-    <h3 class="text-center titulos"><i class="fab fa-angellist"></i> ACTIVIDADES</h3>
-
-    <div class="row">
+ <div class="row">
             <div class="col-sm-3">
 
          <label for="validationCustom01">Fecha inicial:</label>
@@ -19,52 +15,48 @@
 
 
         </div>
-        <div class="col-sm-2" id="filtros2">
-            <label for="validationTooltip03">Tipo Actividad</label>
-            <select name="actividadTipos" class="form-control" id="TypeActivity" tabindex="4" onchange="selectTypeActivity()" required>
-          <option value="No">No</option>
+  
+            <div class="col-sm-2">
+                
+                <label for="validationTooltip03">Coordinación</label>
+                <select name="coor" class="form-control" id="coor" tabindex="4" onchange="selectCoordinacion()" required>
+                <option value="No">No</option>
+                
           </select>
-        </div>
-        <div class="col-sm-4">
-
+    
             
+        </div>
+        
+        <div class="col-sm-4">
             <label for="validationCustom01">Palabra clave:</label>
             <div class="input-group">
-                <input name="nombre" type="text" class="form-control" id="keyWord" minlength="2" maxlength="30" placeholder="" required>
+                <input name="nombre" type="text" class="form-control" id="keyWord" minlength="2" maxlength="20" placeholder="" required>
 
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" id="buttonSearch"><i class="fas fa-search"></i> Buscar</button>
                 </div>
             </div>
             
-
-
         </div>
         
-
-        <div class="col-sm-2 float-right">
-
-        </div>
+ 
 
     </div>
     <div class="row pb-3 pt-2">
 
         
-        <div id="filtros1" class="col-sm-3">
-                
-            
-        </div>
+       
         
-        <div id="filtros" class="col-sm-3">
-
+        <div id="filtros" class="col-sm-5">
+            
+                    
+            
         </div>
          <div id="" class="col-sm-3">
 
         </div>
 
-        <div class="col-sm-3" id="filtros3">
-
-        </div>
+       
 
     </div>
 

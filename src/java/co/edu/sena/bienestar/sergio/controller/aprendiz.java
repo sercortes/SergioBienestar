@@ -78,6 +78,18 @@ public class aprendiz extends HttpServlet {
                 getByCoor(request, response);
                 
                 break;
+                
+            case "/bienestar/getSearchAprendiz":
+                
+                getSearchAprendiz(request, response);
+                
+                break;
+                
+            case "/bienestar/getSearchAprendizWord":
+                
+                getSearchAprendizWord(request, response);
+                
+                break;
 
         }
 
@@ -222,6 +234,52 @@ public class aprendiz extends HttpServlet {
                 actividadDAO.CloseAll();
                 response.setContentType("application/json");
                 new Gson().toJson(aprendices, response.getWriter());
+
+    }
+
+    private void getSearchAprendiz(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+
+         request.setCharacterEncoding("UTF-8");
+
+        Conexion conexion = new Conexion();
+        AprendizDAO aprendizDAO = new AprendizDAO(conexion.getConnection());
+
+        Aprendiz aprendiz = new Aprendiz();
+      
+        Actividades actividades = new Actividades();
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        aprendiz.setActividades(actividades);
+        
+        ArrayList<?> lista = aprendizDAO.getAllByDate(aprendiz);
+
+        aprendizDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(lista, response.getWriter());
+
+    }
+
+    private void getSearchAprendizWord(HttpServletRequest request, HttpServletResponse response) throws IOException {
+         request.setCharacterEncoding("UTF-8");
+
+        Conexion conexion = new Conexion();
+        AprendizDAO aprendizDAO = new AprendizDAO(conexion.getConnection());
+
+        Aprendiz aprendiz = new Aprendiz();
+      
+        Actividades actividades = new Actividades();
+        aprendiz.setDocumento_aprendiz(request.getParameter("palabra"));
+        actividades.setFecha_inicio(request.getParameter("fechaInicial"));
+        actividades.setFecha_fin(request.getParameter("fechaFinal"));
+        aprendiz.setActividades(actividades);
+        
+        
+        ArrayList<?> lista = aprendizDAO.getAllBywordOrNumber(aprendiz);
+
+        aprendizDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(lista, response.getWriter());
+
 
     }
 

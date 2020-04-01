@@ -38,7 +38,7 @@ function listActivitysByAprendiz(data) {
         let select = document.getElementById('tabla2');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                        <th>Actividad</th>
                                         <th>Tipo</th>
                                         <th>Fecha Inicio</th>
@@ -66,7 +66,7 @@ function listActivitysByAprendiz(data) {
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">
-                                    <tr class="bg-primary">
+                                    <tr class="tablas">
                                         <th>Actividad</th>
                                         <th>Tipo</th>
                                         <th>Fecha Inicio</th>
