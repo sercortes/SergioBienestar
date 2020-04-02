@@ -58,6 +58,11 @@
 
 
 </div>
+    
+    <div id="informe">
+        
+
+    
     <h4 class="titulos hvr-icon-pop mt-4" id="tituloInforme"></h4>
     <hr>
      <div class="row">
@@ -70,12 +75,18 @@
         
     </div>
   
-     <div class="row">
+    <div class="row page-break">
         
          <div class="col-sm-12" id="outPutTwo">
             
             
         </div>
+        
+    </div>
+    
+        </div>
+    
+    <div id="buttons" class="m-3 float-right">
         
     </div>
 

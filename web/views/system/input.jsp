@@ -39,7 +39,7 @@
         </div>
     </div>
     <hr class="sidebar-divider">
-    <button type="submit" id="send" class="btn btn-primary btn-lg"><i class="far fa-file-excel fa-1x"></i> Cargar archivo</button>
+    <button type="submit" id="send" class="btn btn-primary btn-lg hvr-push"><i class="far fa-file-excel fa-1x"></i> Cargar archivo</button>
 </form>
         
 </div>

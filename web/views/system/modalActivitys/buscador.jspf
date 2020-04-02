@@ -33,7 +33,7 @@
                 <input name="nombre" type="text" class="form-control" id="keyWord" minlength="2" maxlength="30" placeholder="" required>
 
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" id="buttonSearch"><i class="fas fa-search"></i> Buscar</button>
+                    <button class="btn btn-primary hvr-push" type="button" id="buttonSearch"><i class="fas fa-search"></i> Buscar</button>
                 </div>
             </div>
             

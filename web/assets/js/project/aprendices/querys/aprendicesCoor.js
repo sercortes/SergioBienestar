@@ -86,6 +86,11 @@ function drawTable(data) {
     select.innerHTML = str;
 }
 
+$('#generateInforme').click(function(){
+    let titulo = document.getElementById('tittleAprendicesXPrograma').textContent
+    generatePDF('#informePrograma', titulo, true)
+})
+
 function drawSelectFichas(data) {
     
     let fichaSelect = document.getElementById('fichas')

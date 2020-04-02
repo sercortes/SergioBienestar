@@ -86,7 +86,7 @@ function listActivitysByAprendiz(data) {
 
 $('#pdf').click(function(){
 
-    generatePDF('#contenidoModal', 'informeAprendiz')
+    generatePDF('#contenidoModal', 'informeAprendiz', false)
   
   
 })

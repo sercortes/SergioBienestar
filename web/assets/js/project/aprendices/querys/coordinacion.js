@@ -50,9 +50,10 @@ function listarCoor(data) {
         
        
         let sum  = 0
-        
+        let coor = document.getElementById('coor').value
      let select = document.getElementById('tabla');
-        let str = `<table id="examples" class="table table-striped table-bordered">
+        let str = ` <h4 class="titulos hvr-icon-pop mt-4" id="tituloInforme">${coor}</h4>
+    <table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
                                         <th>Nombre programas</th>
@@ -90,16 +91,20 @@ function listarCoor(data) {
                                     </tr>
                                 </tfoot>
                             </table>
-            <div id="graficos">
+            <div id="graficos" class="page-break">
             </div>
                 <hr>
-            <div id="year">
+            <div id="year" class="page-break">
 
             </div>
                 <hr>
-            <div id="yearRange">
+            <div id="yearRange" class="page-break">
 
-            </div>`
+            </div>
+         <div id="buttons" class="m-3 float-right">
+        <button id="generatePdf" type="button" class="btn btn-primary hvr-pulse-grow" onclick="printCoor()"><i class="fas fa-print"></i> Imprimir</button>
+    </div>
+                `
 
 
         select.innerHTML = str;    
@@ -114,6 +119,10 @@ function listarCoor(data) {
     
 }
 
+function printCoor(){
+    let select = document.getElementById('coor').value
+    generatePDF('#informe', select, true)
+}
 
 function generateArrayStatics(data, total){
     let arregloEstadisticas = []

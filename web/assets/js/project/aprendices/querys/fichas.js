@@ -92,3 +92,7 @@ function fichasTotal(id){
     
 }
 
+$('#generateInformeFicha').click(function(){
+    let titulo = document.getElementById('tittleListAprendices').textContent
+    generatePDF('#informeFichas', titulo, true)
+})

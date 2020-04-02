@@ -15,9 +15,22 @@ function graphicByTypesYear(data) {
         generateOther(castArray(data), 'graphicOne', '# aprendices', 'light2')
 
         generateOther(castArrayTwo(data), 'graphicTwo', 'porcentaje', 'light2')
+        
+        addButtons()
 
     })
 
+}
+
+function print(){
+
+     let select = document.getElementById('TypeActivity').value
+    generatePDF('#informe', select, true)
+}
+
+function addButtons(){
+    let buttons = `<button id="generatePdf" type="button" class="btn btn-primary hvr-pulse-grow" onclick="print()"><i class="fas fa-print"></i> Imprimir</button>`
+    document.getElementById('buttons').innerHTML = buttons
 }
 
 function addTitle(){

@@ -2,6 +2,7 @@
     <div class="modal fade bd-example-modal-lg text-center" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
+                <div id="informeFichas">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tittleListAprendices"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -21,13 +22,14 @@
 
                             </div>
 
-                            <div id="chartFicha" style="height: 400px;"></div>
+                            <div class="page-break" id="chartFicha" style="height: 400px;"></div>
                         </div>
                     </div>
                 </div>
+                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir</button>
+                    <button type="button" id="generateInformeFicha" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir</button>
                 </div>
             </div>
         </div>

@@ -1,14 +1,15 @@
-function generatePDF(div, nameFile){
+function generatePDF(div, nameFile, horizontal){
  
     kendo.drawing
     .drawDOM(div, 
     { 
+        landscape:horizontal,
         forcePageBreak: ".page-break" ,
     paperSize: "A4",
        margin: { 
             top: "1cm"},
 //            bottom: "0,5mm" },
-        scale: 0.8,
+        scale: 0.9,
         height: 500,
         with:400
 //         keepTogether: ".prevent-split"
