@@ -4,9 +4,7 @@ $(document).ready(function () {
 
 $('#loader').hide()
 
-let menuItem = document.getElementById('menuUpload')
-menuItem.classList.add('active')
-
+menu('menuUpload')
 
 $("#send").click(function (e) {
 
@@ -48,7 +46,6 @@ $("#send").click(function (e) {
         processData: false,
         contentType: false,
         cache: false,
-        timeout: 600000,
         success: function (data) {
 
             console.log(data)

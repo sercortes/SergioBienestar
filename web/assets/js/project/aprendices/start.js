@@ -2,8 +2,7 @@
 
 $(function () {
 
-    let menuItem = document.getElementById('menuAprendices')
-    menuItem.classList.add('active')
+    menu('menuAprendices')
 
     let coor = document.getElementById('coor')
 

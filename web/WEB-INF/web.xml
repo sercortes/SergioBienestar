@@ -38,6 +38,7 @@
         <url-pattern>/Upload</url-pattern>
         <url-pattern>/Activitys</url-pattern>
         <url-pattern>/Aprendices</url-pattern>
+        <url-pattern>/Statistics</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>
@@ -61,6 +62,7 @@
         <servlet-name>Select</servlet-name>
         <url-pattern>/getFichas</url-pattern>
         <url-pattern>/getCoor</url-pattern>
+        <url-pattern>/getYears</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UploadFile</servlet-name>
@@ -69,6 +71,7 @@
     <servlet-mapping>
         <servlet-name>SelectQuerys</servlet-name>
         <url-pattern>/SelectYears</url-pattern>
+        <url-pattern>/SelectByTypesbyYear</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

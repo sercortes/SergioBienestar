@@ -125,6 +125,39 @@ public class ActividadDAO {
         }
 
     }
+  public ArrayList<?> getStaticsByTypeEveryYear(Actividades actividades) {
+        try {
+            String sql = "SELECT ac.Tipo_actividad, YEAR(ac.Fecha_inicio) 'year', count(*) 'cantidad' " +
+                    "FROM Actividades ac " +
+                    "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad " +
+                    "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz " +
+                    "WHERE ac.Tipo_actividad = ? " +
+                    "AND YEAR(ac.Fecha_inicio) BETWEEN ? AND ? " +
+                    "AND YEAR(ac.Fecha_fin) BETWEEN ? AND ? " +
+                    "GROUP BY YEAR(ac.Fecha_inicio)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, actividades.getTipo_actividad());
+            
+            ps.setString(2, actividades.getYearStar());
+            ps.setString(3, actividades.getYearFinish());
+            ps.setString(4, actividades.getYearStar());
+            ps.setString(5, actividades.getYearFinish());
+            
+            rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades activi;
+            while (rs.next()) {
+                activi = new Actividades();
+                activi.setLabel(rs.getString("year"));
+                activi.setY(rs.getString("cantidad"));
+
+                list.add(activi);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
    
     public ArrayList<?> getStaticsByTypeFicha(Aprendiz aprendiz) {
@@ -333,6 +366,26 @@ public class ActividadDAO {
         }
     }
 
+    public ArrayList<?> getEveryYear() {
+        try {
+            String sql = "SELECT YEAR(A.Fecha_inicio) year FROM Actividades A group by YEAR(A.Fecha_inicio)";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades actividades;
+            while (rs.next()) {
+                actividades = new Actividades();
+                actividades.setY(rs.getString("year"));
+                list.add(actividades);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    
     public ArrayList<?> getByTypeActivity() {
         try {
             String sql = "SELECT A.Tipo_actividad FROM Actividades A group by(A.Tipo_actividad)";

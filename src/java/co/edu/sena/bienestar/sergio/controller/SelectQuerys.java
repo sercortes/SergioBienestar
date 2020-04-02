@@ -5,12 +5,14 @@
  */
 package co.edu.sena.bienestar.sergio.controller;
 
+import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.AprendizDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +38,12 @@ public class SelectQuerys extends HttpServlet {
             case "/bienestar/SelectYears":
                 
                 SelectYearsByCoor(request, response);
+                
+                break;
+                
+            case "/bienestar/SelectByTypesbyYear":
+                
+                SelectByTypesbyYear(request, response);
                 
                 break;
             
@@ -74,6 +82,26 @@ public class SelectQuerys extends HttpServlet {
         aprendizDAO.CloseAll();
         response.setContentType("application/json");
         new Gson().toJson(activid, response.getWriter());
+    }
+
+    private void SelectByTypesbyYear(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+   request.setCharacterEncoding("UTF-8");
+   
+
+        Actividades actividades = new Actividades();
+        actividades.setYearStar(request.getParameter("yearStart"));
+        actividades.setYearFinish(request.getParameter("finishYear"));
+        actividades.setTipo_actividad(request.getParameter("tipo"));
+        
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
+
+        ArrayList<?> activid = actividadDAO.getStaticsByTypeEveryYear(actividades);
+
+        actividadDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(activid, response.getWriter());
+
     }
 
 }

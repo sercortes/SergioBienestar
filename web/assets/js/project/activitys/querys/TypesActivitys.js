@@ -1,26 +1,3 @@
-function typesActivitys() {
-
-    let filtros2 = document.getElementById('TypeActivity')
-
-    let str = ``
-
-    $.ajax({
-        type: "GET",
-        url: './getTypesActivitys',
-        datatype: 'json'
-    }).done(function (data) {
-
-
-        for (var item of data) {
-            str += `<option value="${item.tipo_actividad}">${item.tipo_actividad}</option>`
-        }
-
-        filtros2.innerHTML += str;
-        
-    })
-
-}
-
 
 function selectTypeActivity() {
 

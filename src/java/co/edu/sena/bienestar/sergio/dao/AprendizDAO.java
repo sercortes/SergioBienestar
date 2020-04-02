@@ -187,7 +187,7 @@ public class AprendizDAO {
             ps.setDate(7, aprendiz.getActividades().getFecha_fin());
             ps.setDate(8, aprendiz.getActividades().getFecha_inicio());
             ps.setDate(9, aprendiz.getActividades().getFecha_fin());
-              ps.setString(10, "%"+aprendiz.getNombre_aprendiz()+"%");
+              ps.setString(10, aprendiz.getNombre_aprendiz()+"%");
             
             rs = ps.executeQuery();
             List<Aprendiz> list = new ArrayList<>();

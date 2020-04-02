@@ -35,7 +35,7 @@
                 </div>
             </a>
 
-            <a href="#" class="menu hvr-grow"> 
+            <a href="./Statistics" class="menu hvr-grow"> 
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-chart-area"></i> Ver estadísticas</h5>
@@ -84,3 +84,4 @@
 <%@include file="/views/template/footer.jspf"%>
 
 <script src="assets/js/project/home/home.js" charset="utf-8"></script>
+<script src="assets/js/project/util/dates.js" charset="utf-8"></script>

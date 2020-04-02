@@ -24,14 +24,16 @@ public class Actividades {
     private ActividadesAprendiz actividadesAprendiz;
     
     private String responsable;
-    
     private String cantidad;
-    
     private String programa;
-    
     private String coor;
-    
     private String keyWord;
+    
+    private String y;
+    private String label;
+    
+    private String yearStar;
+    private String yearFinish;
 
     public Actividades() {
     }
@@ -108,12 +110,6 @@ public class Actividades {
         this.actividadesAprendiz = actividadesAprendiz;
     }
 
-    @Override
-    public String toString() {
-        return "Actividades{" + "idRealActividad=" + idRealActividad + ", id_actividades=" + id_actividades + ", nombre_actividad=" + nombre_actividad + ", tipo_actividad=" + tipo_actividad + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", actividadesAprendiz=" + actividadesAprendiz + ", responsable=" + responsable + ", cantidad=" + cantidad + ", programa=" + programa + ", coor=" + coor + '}';
-    }
-
-    
 
     public String getResponsable() {
         return responsable;
@@ -162,9 +158,45 @@ public class Actividades {
     public void setKeyWord(String keyWord) {
         this.keyWord = keyWord;
     }
-    
-    
-    
+
+    public String getY() {
+        return y;
+    }
+
+    public void setY(String y) {
+        this.y = y;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getYearStar() {
+        return yearStar;
+    }
+
+    public void setYearStar(String yearStar) {
+        this.yearStar = yearStar;
+    }
+
+    public String getYearFinish() {
+        return yearFinish;
+    }
+
+    public void setYearFinish(String yearFinish) {
+        this.yearFinish = yearFinish;
+    }
+
+    @Override
+    public String toString() {
+        return "Actividades{" + "idRealActividad=" + idRealActividad + ", id_actividades=" + id_actividades + ", nombre_actividad=" + nombre_actividad + ", tipo_actividad=" + tipo_actividad + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", actividadesAprendiz=" + actividadesAprendiz + ", responsable=" + responsable + ", cantidad=" + cantidad + ", programa=" + programa + ", coor=" + coor + ", keyWord=" + keyWord + ", y=" + y + ", label=" + label + ", yearStar=" + yearStar + ", yearFinish=" + yearFinish + '}';
+    }
+
+ 
     
     
 }

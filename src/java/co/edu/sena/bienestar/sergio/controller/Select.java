@@ -5,6 +5,7 @@
  */
 package co.edu.sena.bienestar.sergio.controller;
 
+import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.AprendizDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
@@ -43,6 +44,12 @@ public class Select extends HttpServlet {
             case "/bienestar/getCoor":
 
                 getCoor(request, response);
+
+                break;
+                
+                case "/bienestar/getYears":
+
+                getYears(request, response);
 
                 break;
 
@@ -100,5 +107,19 @@ public class Select extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void getYears(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
+
+        ArrayList<?> aprendices = actividadDAO.getEveryYear();
+
+        response.setContentType("application/json");
+        actividadDAO.CloseAll();
+        new Gson().toJson(aprendices, response.getWriter());
+        
+    }
 
 }
