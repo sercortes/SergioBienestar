@@ -9,6 +9,7 @@ import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
+import com.mysql.jdbc.StringUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,7 +29,16 @@ import org.apache.poi.ss.usermodel.Row;
  */
 public class readXls {
 
-
+    private String[] documento;
+    private String[] fecha;
+    private String[] ficha;
+    private String nombre;
+    private String[] fechaN;
+    private String[] fechaF;
+    private String responsable;
+    private boolean existe;
+    private int estrato;
+    
     public ArrayList<Aprendiz> readingXls(Part file) throws FileNotFoundException, IOException {
 
         // convitiendo el archivo a fileInputStream
@@ -49,11 +59,16 @@ public class readXls {
         Conexion conexion = new Conexion();
         ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
+        Actividades actividad;
+        
         // lectura el archivo xls
         for (Row row : sheet1) {
+            
             aprendiz = new Aprendiz();
             actividades = new Actividades();
+            
             if (row.getRowNum() != 2) {
+                
                 for (Cell cell : row) {
 
                     switch (formulaEvaluator.evaluateInCell(cell).getCellType()) {
@@ -67,7 +82,7 @@ public class readXls {
                                 switch (cell.getColumnIndex()) {
                                     case 3:
                                         // separando tipo de documento y documento
-                                        String[] documento = cell.getStringCellValue().split(" ");
+                                        documento = cell.getStringCellValue().split(" ");
                                         aprendiz.setTipo_documento(documento[0]);
                                         aprendiz.setDocumento_aprendiz(documento[1]);
 
@@ -86,7 +101,7 @@ public class readXls {
                                         break;
                                     case 9:
                                         // cambiando formato de fecha
-                                        String[] fecha = cell.getStringCellValue().split("/");
+                                        fecha = cell.getStringCellValue().split("/");
                                         aprendiz.setFecha_nacimiento(fecha[2] + "-" + fecha[1] + "-" + fecha[0]);
                                         break;
                                     case 10:
@@ -97,7 +112,7 @@ public class readXls {
                                         break;
                                     case 13:
                                         // separando el campo programa de formación para obtener la ficha
-                                        String[] ficha = cell.getStringCellValue().split("-");
+                                        ficha = cell.getStringCellValue().split("-");
                                         aprendiz.setFicha(ficha[0].toString().substring(0, ficha[0].length() - 1));
                                         aprendiz.setNombrePrograma(ficha[1].replaceFirst(" ", ""));
 
@@ -113,46 +128,58 @@ public class readXls {
                                         actividades.setTipo_actividad(cell.getStringCellValue());
                                         break;
                                     case 16:
-                                        String nombre = cell.getStringCellValue();
+                                        nombre = cell.getStringCellValue();
                                         actividades.setNombre_actividad(nombre);
-
-                                        // asignando responsable deacuerdo al nombre de la actividad
-                                        actividades.setResponsable(returnString.getResponsable(nombre));
-
+                                        
                                         break;
                                     case 17:
-                                        String[] fechaN = cell.getStringCellValue().split("/");
+                                        fechaN = cell.getStringCellValue().split("/");
                                         actividades.setFecha_inicio(fechaN[2] + "-" + fechaN[1] + "-" + fechaN[0]);
                                         break;
                                     case 18:
-                                        String[] fechaF = cell.getStringCellValue().split("/");
+                                        fechaF = cell.getStringCellValue().split("/");
                                         actividades.setFecha_fin(fechaF[2] + "-" + fechaF[1] + "-" + fechaF[0]);
                                         break;
+                                    case 19:
+                                        responsable = cell.getStringCellValue();
+                                        actividades.setResponsable(responsable);
+                                        if (responsable.length() < 2) {
+                                            actividades.setResponsable("");
+                                        }
                                 }
                             }
                             break;
                         // lectura de campos enteros
                         case Cell.CELL_TYPE_NUMERIC:
                         case 12:
-                            int estrato = (int) cell.getNumericCellValue();
+                            estrato = (int) cell.getNumericCellValue();
                             aprendiz.setEstrato(Integer.toString(estrato));
                             break;
                     }
                 }
 
                 // validaciones, para que no se repitan datos en la bd
-                Actividades actividad = actividadDAO.getIdActividad(actividades);
+                actividad = actividadDAO.getIdActividad(actividades);
                 
                 // retorna verdadero si esta en la bd
-                boolean existe = actividad.getIdRealActividad() != 0;
+                existe = actividad.getIdRealActividad() != 0;
                
                 //validación en la bd, no se agrega a la lista
                 //si existe no se agrega
                 if (!existe) {
+                    
+                    
+                    if (StringUtils.isNullOrEmpty(actividades.getResponsable())) {
+                       
+                        actividades.setResponsable(getResponsableBd(actividades));
+                       
+                    }
+                    
                     // agregando objetos a la lista
                     aprendiz.setActividades(actividades);
                     lista.add(aprendiz);
-                } 
+                    
+                } // cierre de comprobación de actividad 
 
             }
         }
@@ -167,4 +194,20 @@ public class readXls {
     
     } // cierre del metodo readingXls
 
+    
+    private String getResponsableBd(Actividades actividades){
+    String fechas = String.valueOf(actividades.getFecha_inicio()).substring(0, 4);
+                
+                if (fechas.equals("2019")) {
+                    return "2019";
+                    
+                }else if (fechas.equals("2020")) {
+                    return returnString.getResponsable(actividades.getNombre_actividad());
+                    
+                }else{
+                    return "upss";
+                }
+                
+    }
+    
 }

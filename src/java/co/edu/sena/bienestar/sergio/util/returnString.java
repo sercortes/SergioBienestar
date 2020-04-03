@@ -106,55 +106,57 @@ public class returnString {
 
     public static String getResponsable(String res) {
 
-        if (res.indexOf("P01") != -1) {
+        String start= res.substring(0, 13);
+        
+        if (start.indexOf("P01") != -1) {
             return "VIVIANA PARDO";
 
-        } else if (res.indexOf("P02") != -1) {
+        } else if (start.indexOf("P02") != -1) {
             return "VIVIANA SIERRA";
 
-        } else if (res.indexOf("P03") != -1) {
+        } else if (start.indexOf("P03") != -1) {
             return "Elizabeth Díaz";
 
-        } else if (res.indexOf("P04") != -1) {
+        } else if (start.indexOf("P04") != -1) {
             return "Angie Estepa";
 
-        } else if (res.indexOf("P05") != -1) {
+        } else if (start.indexOf("P05") != -1) {
             return "Teódulo Quintero";
 
-        } else if (res.indexOf("P06") != -1) {
+        } else if (start.indexOf("P06") != -1) {
             return "Gina Duarte";
 
-        } else if (res.indexOf("P07") != -1) {
+        } else if (start.indexOf("P07") != -1) {
             return "Solanyhi Rodriguez";
 
-        } else if (res.indexOf("P08") != -1) {
+        } else if (start.indexOf("P08") != -1) {
             return "Sebastián Urrea";
 
-        } else if (res.indexOf("P09") != -1) {
+        } else if (start.indexOf("P09") != -1) {
             return "Cesar Díaz";
 
-        } else if (res.indexOf("P10") != -1) {
+        } else if (start.indexOf("P10") != -1) {
             return "Daniel Galeano";
 
-        } else if (res.indexOf("P11") != -1) {
+        } else if (start.indexOf("P11") != -1) {
             return "Edilma Silva";
 
-        } else if (res.indexOf("P12") != -1) {
+        } else if (start.indexOf("P12") != -1) {
             return "Floralba Ramos";
 
-        } else if (res.indexOf("P13") != -1) {
+        } else if (start.indexOf("P13") != -1) {
             return "Pilar Duarte";
 
-        } else if (res.indexOf("P14") != -1) {
+        } else if (start.indexOf("P14") != -1) {
             return "Christian Riveros";
 
-        } else if (res.indexOf("P15") != -1) {
+        } else if (start.indexOf("P15") != -1) {
             return "Esmeralda Clavijo";
 
-        } else if (res.indexOf("P16") != -1) {
+        } else if (start.indexOf("P16") != -1) {
             return "Alejandra Torres";
 
-        } else if (res.indexOf("P17") != -1) {
+        } else if (start.indexOf("P17") != -1) {
             return "Masivo";
 
         } else {
