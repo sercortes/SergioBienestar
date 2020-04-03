@@ -7,8 +7,10 @@ package co.edu.sena.bienestar.sergio.util;
 
 import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
+import co.edu.sena.bienestar.sergio.dao.ResponsableDAO;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
+import co.edu.sena.bienestar.sergio.dto.Responsables;
 import com.mysql.jdbc.StringUtils;
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,6 +41,8 @@ public class readXls {
     private boolean existe;
     private int estrato;
     
+    private ArrayList<Responsables> lista1;
+    
     public ArrayList<Aprendiz> readingXls(Part file) throws FileNotFoundException, IOException {
 
         // convitiendo el archivo a fileInputStream
@@ -58,7 +62,13 @@ public class readXls {
         // instanciar la clase conexion y actividadDao para consultar si ya esta en la bd
         Conexion conexion = new Conexion();
         ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
-
+        ResponsableDAO responsableDAO = new ResponsableDAO(conexion.getConnection());
+        
+        // lista para traer responsables
+        lista1 = new ArrayList<>();
+        lista1 = responsableDAO.getResponsables();
+        
+        //objeto bandera
         Actividades actividad;
         
         // lectura el archivo xls
@@ -142,10 +152,19 @@ public class readXls {
                                         break;
                                     case 19:
                                         responsable = cell.getStringCellValue();
-                                        actividades.setResponsable(responsable);
-                                        if (responsable.length() < 2) {
-                                            actividades.setResponsable("");
+                                        // asignando valor a responsable
+                                        actividades = returnReponsable(actividades);
+                                        // verificando campo responsable
+                                        if (actividades.getResponsable().equals("n/a")) {
+                                            // asignando el valor del excel
+                                            actividades.setResponsable(responsable);
+                                            if (responsable.length() < 2) {
+                                                // si el valor de la consulta es nulo y del excel también se asigna n/a
+                                                actividades.setResponsable("n/a");
+                                            }
+                                            
                                         }
+                                         
                                 }
                             }
                             break;
@@ -164,17 +183,9 @@ public class readXls {
                 // retorna verdadero si esta en la bd
                 existe = actividad.getIdRealActividad() != 0;
                
-                //validación en la bd, no se agrega a la lista
                 //si existe no se agrega
                 if (!existe) {
-                    
-                    
-                    if (StringUtils.isNullOrEmpty(actividades.getResponsable())) {
-                       
-                        actividades.setResponsable(getResponsableBd(actividades));
-                       
-                    }
-                    
+         
                     // agregando objetos a la lista
                     aprendiz.setActividades(actividades);
                     lista.add(aprendiz);
@@ -188,26 +199,38 @@ public class readXls {
         formulaEvaluator.clearAllCachedResultValues();
         fi1.close();
         actividadDAO.CloseAll();
+        responsableDAO.CloseAll();
         
         // retornando los valores del archivo en una lista
         return lista;
     
     } // cierre del metodo readingXls
 
-    
-    private String getResponsableBd(Actividades actividades){
-    String fechas = String.valueOf(actividades.getFecha_inicio()).substring(0, 4);
-                
-                if (fechas.equals("2019")) {
-                    return "2019";
-                    
-                }else if (fechas.equals("2020")) {
-                    return returnString.getResponsable(actividades.getNombre_actividad());
-                    
-                }else{
-                    return "upss";
-                }
-                
+    // retorna el nombre del responsable deacuerdo al nombre de la actividad
+    public Actividades returnReponsable(Actividades actividades){
+      // año de la actividad para sacar el codigo del responsable
+                       String fechas = String.valueOf(actividades.getFecha_inicio()).substring(0, 4);
+                       
+                       // recoriendo lista responsables para asignar código
+                       for (Responsables activi : lista1) {
+                            // comparando el año de la actividad con el año de la lista
+                            if (activi.getYear().equals(fechas)) {
+                                if (actividades.getNombre_actividad().indexOf(activi.getCodigo()) != -1) {
+                                    // asignando valor de la base de datos
+                                    actividades.setResponsable(activi.getNombre());
+                                }
+                                
+                            }
+                            
+                        }
+                       
+                       //si no encuentra coincidencia en la base de datos, asigna valor por defecto
+                        if (StringUtils.isNullOrEmpty(actividades.getResponsable())) {
+                            actividades.setResponsable("n/a");
+                        }
+                        
+                        return actividades;       
     }
     
-}
+    
+} // cierre de la clase

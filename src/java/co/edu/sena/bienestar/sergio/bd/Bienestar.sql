@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2020 at 01:56 AM
+-- Generation Time: Apr 04, 2020 at 01:21 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `Bienestar`
 --
+CREATE DATABASE IF NOT EXISTS `Bienestar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `Bienestar`;
 
 -- --------------------------------------------------------
 
@@ -72,6 +74,42 @@ CREATE TABLE `Aprendiz` (
   `Coordinacion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Responsables`
+--
+
+CREATE TABLE `Responsables` (
+  `idResponsable` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `codigo` varchar(50) NOT NULL,
+  `year` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Responsables`
+--
+
+INSERT INTO `Responsables` (`idResponsable`, `nombre`, `codigo`, `year`) VALUES
+(1, 'VIVIANA PARDO', 'P01', '2020'),
+(2, 'VIVIANA SIERRA', 'P02', '2020'),
+(3, 'ELIZABETH DÍAZ', 'P03', '2020'),
+(5, 'ANGIE ESTEPA', 'P04', '2020'),
+(6, 'TEÓDULO QUINTERO', 'P05', '2020'),
+(7, 'GINA DUARTE', 'P06', '2020'),
+(8, 'SOLANYHI RODRIGUEZ', 'P07', '2020'),
+(9, 'SEBASTIÁN URREA', 'P08', '2020'),
+(10, 'CESAR DÍAZ', 'P09', '2020'),
+(11, 'DANIEL GALEANO', 'P10', '2020'),
+(12, 'EDILMA SILVA', 'P11', '2020'),
+(13, 'FLORALBA RAMOS', 'P12', '2020'),
+(14, 'PILAR DUARTE', 'P13', '2020'),
+(15, 'CHRISTIAN RIVEROS', 'P14', '2020'),
+(16, 'ESMERALDA CLAVIJO', 'P15', '2020'),
+(17, 'ALEJANDRA TORRES', 'P16', '2020'),
+(18, 'MASIVO', 'P17', '2020');
+
 --
 -- Indexes for dumped tables
 --
@@ -96,6 +134,12 @@ ALTER TABLE `Aprendiz`
   ADD PRIMARY KEY (`idAprendiz`);
 
 --
+-- Indexes for table `Responsables`
+--
+ALTER TABLE `Responsables`
+  ADD PRIMARY KEY (`idResponsable`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -110,6 +154,12 @@ ALTER TABLE `Actividades`
 --
 ALTER TABLE `Aprendiz`
   MODIFY `idAprendiz` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Responsables`
+--
+ALTER TABLE `Responsables`
+  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
