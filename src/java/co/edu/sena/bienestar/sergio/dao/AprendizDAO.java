@@ -93,6 +93,37 @@ public class AprendizDAO {
     }
 
     
+    public ArrayList<?> getStatiticsByActivity(String acti) {
+        try {
+            String sql = "SELECT ap.NombrePrograma, count(*) cantidad " +
+                        "FROM Actividades ac  " +
+                        "INNER JOIN Actividades_Aprendiz aa " +
+                        "ON ac.Id_actividad=aa.Cod_actividad " +
+                        "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz " +
+                        "WHERE ac.Id_actividad = ?" +
+                        "group by(ap.NombrePrograma)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, acti);
+            rs = ps.executeQuery();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz aprendiz;
+            while (rs.next()) {
+                aprendiz = new Aprendiz();
+                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
+                aprendiz.setParticipaciones(rs.getString("cantidad"));
+                list.add(aprendiz);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    
+    
+    
+    
       public ArrayList<?> getByActivity(String acti) {
         try {
             String sql = "SELECT ap.*, ac.Nombre_actividad  " +

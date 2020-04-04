@@ -280,6 +280,7 @@ public class ActividadDAO {
                 apren.setNombre_aprendiz(rs.getString("Nombres_aprendiz"));
                 apren.setNombrePrograma(rs.getString("NombrePrograma"));
                 apren.setTipo_documento(rs.getString("Tipo_documento"));
+                apren.setFicha(rs.getString("Ficha"));
                 apren.setEmail_aprendiz(rs.getString("Email_aprendiz"));
                 apren.setMunicipio(rs.getString("Municipio_aprendiz"));
                 apren.setFecha_nacimiento(rs.getString("FechaNacimiento_Aprendiz"));

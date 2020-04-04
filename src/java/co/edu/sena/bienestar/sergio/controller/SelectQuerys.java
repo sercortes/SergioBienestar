@@ -46,6 +46,12 @@ public class SelectQuerys extends HttpServlet {
                 SelectByTypesbyYear(request, response);
                 
                 break;
+                
+            case "/bienestar/SelectStatiticsByActivity":
+                
+                SelectStatiticsByActivity(request, response);
+                
+                break;
             
         }
         
@@ -102,6 +108,23 @@ public class SelectQuerys extends HttpServlet {
         response.setContentType("application/json");
         new Gson().toJson(activid, response.getWriter());
 
+    }
+
+    private void SelectStatiticsByActivity(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+
+                String acti = request.getParameter("id");
+
+                Conexion conexion = new Conexion();
+                AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
+
+                ArrayList<?> aprendices = actividadDAO.getStatiticsByActivity(acti);
+
+                actividadDAO.CloseAll();
+                response.setContentType("application/json");
+                new Gson().toJson(aprendices, response.getWriter());
+        
     }
 
 }

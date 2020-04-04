@@ -72,6 +72,7 @@
         <servlet-name>SelectQuerys</servlet-name>
         <url-pattern>/SelectYears</url-pattern>
         <url-pattern>/SelectByTypesbyYear</url-pattern>
+        <url-pattern>/SelectStatiticsByActivity</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

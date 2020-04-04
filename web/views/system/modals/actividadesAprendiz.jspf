@@ -14,9 +14,9 @@
                 <div class="row text-left">
                     <div class="col-sm-6">
                         <p id="pro" class="chiquito"></p>
+                     <p id="fich" class="chiquito"></p>
                     <p id="doc" class="chiquito"></p>
                     <p id="ema" class="chiquito"></p>
-                    <p id="estrato" class="chiquito"></p>
                     <p id="participaciones" class="chiquito"></p>
                 </div>
                     <div class="col-sm-6">
@@ -24,6 +24,7 @@
                          <p id="fec" class="chiquito"></p>
                     <p id="fech" class="chiquito"></p>
                     <p id="tipo" class="chiquito"></p>
+                    <p id="estrato" class="chiquito"></p>
                 </div>
                 </div>
                 <div class="text-left">

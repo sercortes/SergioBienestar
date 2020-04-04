@@ -31,8 +31,7 @@ function listActivitysByAprendiz(data) {
             fechaFinal: data.fechaFinal
         }
     }).done(function (data) {
-
-
+        
         generateInformationAprendiz(data)
 
         let select = document.getElementById('tabla2');
@@ -106,5 +105,6 @@ function generateInformationAprendiz(data){
         $('#fech').text('FECHA NACIMIENTO : '+data[0].fecha_nacimiento) 
         $('#tipo').text('TIPO DE POBLACIÓN : '+data[0].tipo_poblacion)
         $('#estrato').text('ESTRATO : '+data[0].estrato)
+        $('#fich').text('FICHA : '+data[0].ficha)
     
 }
