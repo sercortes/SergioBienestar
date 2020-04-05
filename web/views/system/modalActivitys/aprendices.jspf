@@ -20,7 +20,7 @@
                         <hr>
                         <div class="page-break ml-2">
 
-                            <div id="graphicOne" style="height: 400px;">
+                            <div id="graphicOne" class="canva">
                                 
                             </div>    
 

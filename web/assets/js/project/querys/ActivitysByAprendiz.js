@@ -1,4 +1,4 @@
-
+var dataP
 function getActivitysByAprendiz(aprendiz) {
 
 
@@ -19,8 +19,6 @@ function listActivitysByAprendiz(data) {
 
     $('#modalTwo').modal('show')
 
-
-
     $.ajax({
         type: "GET",
         url: './ListActivitysByAprendiz',
@@ -32,9 +30,30 @@ function listActivitysByAprendiz(data) {
         }
     }).done(function (data) {
         
+      
+        
         generateInformationAprendiz(data)
+        
+        generateTableByaprendiz(data)
 
-        let select = document.getElementById('tabla2');
+        
+    })
+    dataP = data
+}
+
+$('#modalTwo').on('shown.bs.modal', function (){
+    getByTypes(dataP)
+})
+
+$('#pdf').click(function(){
+
+    generatePDF('#contenidoModal', 'informeAprendiz', true)
+  
+})
+
+function generateTableByaprendiz(data){
+    
+    let select = document.getElementById('tabla2');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
@@ -77,20 +96,8 @@ function listActivitysByAprendiz(data) {
                             </table>`
 
         select.innerHTML = str;
-    })
-
-    getByTypes(data)
     
 }
-
-$('#pdf').click(function(){
-
-    generatePDF('#contenidoModal', 'informeAprendiz', false)
-  
-  
-})
-
-
 
 function generateInformationAprendiz(data){
     

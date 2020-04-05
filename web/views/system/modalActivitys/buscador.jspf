@@ -20,7 +20,7 @@
 
         </div>
         <div class="col-sm-2" id="filtros2">
-            <label for="validationTooltip03">Tipo Actividad</label>
+            <label for="validationTooltip03">Tipo</label>
             <select name="actividadTipos" class="form-control" id="TypeActivity" tabindex="4" onchange="selectTypeActivity()" required>
           <option value="No">No</option>
           </select>

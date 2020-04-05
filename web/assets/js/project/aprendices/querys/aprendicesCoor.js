@@ -111,6 +111,11 @@ function generateArrayForProgram(data, total){
         }
         arreglo.push(ob)
     }
-  
-   graphicByProgram(arreglo)
+    
+   setTimeout(() => {
+       graphicByProgram(arreglo)
+   }, 1800) 
+   
 }
+
+

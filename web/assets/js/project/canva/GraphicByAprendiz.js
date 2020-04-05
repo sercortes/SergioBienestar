@@ -20,11 +20,17 @@ function getByTypes(data) {
             }
             data2.push(ob)
         }
+        
+        generateGraaa(data2)
 
+    })
+}
 
-        var chart = new CanvasJS.Chart("chartContainer", {
+function generateGraaa(data2){
+      var chart = new CanvasJS.Chart("chartContainer", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,
+            animationEnabled: true,
             title: {
                 text: "Eventos preferidos"
             },
@@ -41,7 +47,6 @@ function getByTypes(data) {
                     
                 }]
         });
-        chart.render();
-
-    })
+        chart.render()
+    
 }

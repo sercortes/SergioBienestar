@@ -14,6 +14,10 @@ public class returnString {
        public static String getCoordinacion(String programa) {
         switch (programa) {
 
+            case "DESARROLLO DE APLICACIONES PARA DISPOSITIVOS MOVILES.":
+                    return "TELEINFORMÁTICA";
+                    
+            
             case "ANALISIS Y DESARROLLO DE SISTEMAS DE INFORMACION":
                 return "TELEINFORMÁTICA";
 
@@ -74,6 +78,10 @@ public class returnString {
             case "LOGÍSTICA DEL TRANSPORTE":
                 return "LOGÍSTICA";
                 
+            case "OPERACIÓN DE EVENTOS":
+                return "LOGÍSTICA";
+                
+                
             case "DISEÑO Y DESARROLLO DE INVESTIGACIONES DE MERCADO":
                 return "MERCADEO";
                 
@@ -97,9 +105,13 @@ public class returnString {
 
             case "BILINGUAL EXPERT ON BUSINESS PROCESS OUTSOURCING":
                 return "MERCADEO";
-
+                
+            case "ASESORIA COMERCIAL":
+                    return "MERCADEO";
+                    
+                
             default:
-                return "****";
+                return "n/a";
         }
 
     }

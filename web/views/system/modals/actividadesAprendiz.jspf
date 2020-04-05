@@ -48,9 +48,9 @@
                 <hr>
                 <div class="row">
                     <div class="col-sm-12">
-                    <div class="page-break" id="chartContainer"  style="height: 500px;">
-                            
-                        </div>
+                   
+                        <div id="chartContainer" class="canva page-break"></div>
+                   
                 </div>
                 </div>
                         

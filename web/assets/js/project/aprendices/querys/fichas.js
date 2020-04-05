@@ -1,6 +1,9 @@
+
+$('#exampleModal').on('show.bs.modal', function (){
+    
+    
+})
 function fichasTotal(id){
-    
-    
       
     $('#exampleModal').modal('show')
     
@@ -13,9 +16,10 @@ function fichasTotal(id){
             fechaInicial : fechai,
             fechaFinal : fechaf
         };
-        
-      
-      graphicByFicha(data)
+       
+      setTimeout(()=> {
+            graphicByFicha(data)
+      }, 1800)
   
    
      $.ajax({

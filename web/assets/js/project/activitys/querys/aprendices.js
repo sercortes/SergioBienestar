@@ -1,11 +1,9 @@
-
+var dataGr
 function aprendices(id){
     
     let idActividad = id
     
     $('#modalThree').modal('show')
-    
-
    
      $.ajax({
         type: "GET",
@@ -16,16 +14,101 @@ function aprendices(id){
         }
     }).done(function (data) {
       
-      let acti = data[0].actividades.nombre_actividad
+        generateTableAprendicess(data)
+        resultGraphicOne(idActividad)
+       
+    })
+    
+
+}
+
+function resultGraphicOne(id){
+    
+    let dataP
+    
+    $.ajax({
+        type:'GET',
+        url: 'SelectStatiticsByActivity',
+        data:{
+            id:id
+        },
+        dataType: 'JSON'
+    }).done(function(data){
+        
+        
+        let dataG = []
+        var total = 0
+        
+        for(var item of data){
+            total+=parseInt(item.participaciones)
+            var ob = {
+                label:item.nombrePrograma,
+                y:item.participaciones
+            }
+            dataG.push(ob)
+        }
+      
+        dataP = []
+        
+        for(var item of dataG){
+            var ob = {
+                label:item.label,
+                y:((item.y * 100) / total).toFixed(2)
+            }
+            dataP.push(ob)
+        }
+        
+        dataGr = dataP
+      
+    })
+    
+     
+}
+
+$('#modalThree').on('shown.bs.modal', function generargrafica(){
+      generateGrap(dataGr)
+});
+
+
+function generateGrap(data){
+    
+         var chart = new CanvasJS.Chart("graphicOne", {
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
+            animationEnabled: true,
+            title: {
+                text: "Participación de programas"
+            },
+            data: [{
+                    type: "pie",
+                    startAngle: 235,
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabelFontSize: 16,
+                    indexLabel: "{label} - {y}%",
+                    dataPoints: 
+			data
+                    
+                }]
+        });
+        chart.render();
+
+    
+}
+
+
+function generateTableAprendicess(data){
+       
+       let acti = data[0].actividades.nombre_actividad
       
        $('#titulos').text(acti)
        
       let cantidad = document.getElementById('cantidadAprendices')
       cantidad.innerHTML = "#Aprendices "+data.length
 
-var num = 0
-
-     let select = document.getElementById('tablaAprendices');
+      var num = 0
+    let select = document.getElementById('tablaAprendices');
         let str = `<table id="examples" class="table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
@@ -72,98 +155,4 @@ var num = 0
                             </table>`
 
         select.innerHTML = str;
-
-        resultGraphicOne(idActividad)
-       
-    })
-    
-
 }
-
-function resultGraphicOne(id){
-    
-    
-    $.ajax({
-        type:'GET',
-        url: 'SelectStatiticsByActivity',
-        data:{
-            id:id
-        },
-        dataType: 'JSON',
-    }).done(function(data){
-        
-        
-        let dataG = []
-        var total = 0
-        
-        for(var item of data){
-            total+=parseInt(item.participaciones)
-            var ob = {
-                label:item.nombrePrograma,
-                y:item.participaciones
-            }
-            dataG.push(ob)
-        }
-      
-        let dataP = []
-        
-        for(var item of dataG){
-            var ob = {
-                label:item.label,
-                y:((item.y * 100) / total).toFixed(2)
-            }
-            dataP.push(ob)
-        }
-        
-        setTimeout(generateGrap(dataP), 1000)
-        
-        
-    })
-    
-}
-
-
-$('#modalThree').on("scroll", function (){
-    var position = $('#modalThree').scrollTop();
-  var bottom = $(document).height() - $(window).height();
-  
-  console.log(position)
-  console.log(bottom)
-    
-    
-      if (position == bottom ) {
-    console.log(consulta)    
-    }
-    
-}) ;
-
-
-
-
-function generateGrap(data){
-    
-    
-            var chart = new CanvasJS.Chart("graphicOne", {
-            theme: "light2", // "light1", "light2", "dark1", "dark2"
-            exportEnabled: true,
-            title: {
-                text: "Participación de programas"
-            },
-            data: [{
-                    type: "pie",
-                    startAngle: 235,
-                    toolTipContent: "<b>{label}</b>: {y}%",
-                    showInLegend: "true",
-                    legendText: "{label}",
-                    indexLabelFontSize: 16,
-                    indexLabel: "{label} - {y}%",
-                    dataPoints: 
-			data
-                    
-                }]
-        });
-        chart.render();
-
-    
-}
-
