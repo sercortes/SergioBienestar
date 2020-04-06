@@ -1,0 +1,54 @@
+<!-- ModalActividadeAprendiz -->
+<div class="modal fade text-center" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="contenidoModal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Nuevo Código</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                
+            <div class="modal-body">
+                
+              
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex justify-content-center">
+
+                        <form id="formAdd">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label float-left">Nombre:</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+         <div class="form-group">
+            <label for="recipient-name" class="col-form-label float-left">Código:</label>
+            <input type="text" class="form-control" id="code">
+          </div>
+          <div class="form-group">
+            
+              <label for="validationTooltip03" class="float-left">Año:</label>
+                <select name="year" class="form-control" id="year" tabindex="4" required>
+                
+                </select>
+              
+          </div>
+        </form>
+      </div>
+                  
+                          </div>
+                     
+                          </div>
+                 
+                     </div>
+               
+            
+             
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+                    <button type="button" id="botonAgregar" class="btn btn-primary"><i class="far fa-plus-square"></i> Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -28,6 +28,10 @@
         <servlet-name>SelectQuerys</servlet-name>
         <servlet-class>co.edu.sena.bienestar.sergio.controller.SelectQuerys</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Responsable</servlet-name>
+        <servlet-class>co.edu.sena.bienestar.sergio.controller.Responsable</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -39,6 +43,7 @@
         <url-pattern>/Activitys</url-pattern>
         <url-pattern>/Aprendices</url-pattern>
         <url-pattern>/Statistics</url-pattern>
+        <url-pattern>/Responsables</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>
@@ -75,6 +80,11 @@
         <url-pattern>/SelectStatiticsByActivity</url-pattern>
         <url-pattern>/SelectgetProgramsWithOutCoor</url-pattern>
         <url-pattern>/UpdateProgram</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Responsable</servlet-name>
+        <url-pattern>/SelectResponsables</url-pattern>
+        <url-pattern>/addResponsables</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

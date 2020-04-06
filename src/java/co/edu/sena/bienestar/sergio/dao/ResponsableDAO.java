@@ -28,6 +28,28 @@ public class ResponsableDAO {
         this.conn = conn;
     }
   
+    public boolean insertReturn(Responsables responsables){
+        String sql = "INSERT INTO Responsables (nombre, codigo, year) "
+                + "VALUES (?, ?, ?)";
+        
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, responsables.getNombre());
+            ps.setString(2, responsables.getCodigo());
+            ps.setString(3, responsables.getYear());
+            
+            ps.executeUpdate();
+          
+            return true;   
+        } catch(MySQLIntegrityConstraintViolationException e){
+            System.out.println(e);
+            return false;
+        }catch(Exception e){
+            System.out.println(e);
+            return false;
+        }
+    }
+    
      public ArrayList<Responsables> getResponsables() {
         try {
             String sql = "SELECT * FROM Responsables";
@@ -37,6 +59,7 @@ public class ResponsableDAO {
             Responsables respon;
             while (rs.next()) {
                 respon = new Responsables();
+                respon.setId(rs.getString("idResponsable"));
                 respon.setNombre(rs.getString("nombre"));
                 respon.setCodigo(rs.getString("codigo"));
                 respon.setYear(rs.getString("year"));

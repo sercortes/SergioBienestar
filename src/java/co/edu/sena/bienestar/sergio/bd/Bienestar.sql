@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 04, 2020 at 01:21 AM
+-- Generation Time: Apr 06, 2020 at 04:01 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -108,7 +108,26 @@ INSERT INTO `Responsables` (`idResponsable`, `nombre`, `codigo`, `year`) VALUES
 (15, 'CHRISTIAN RIVEROS', 'P14', '2020'),
 (16, 'ESMERALDA CLAVIJO', 'P15', '2020'),
 (17, 'ALEJANDRA TORRES', 'P16', '2020'),
-(18, 'MASIVO', 'P17', '2020');
+(18, 'MASIVO', 'P17', '2020'),
+(19, 'ANGIE PAOLA ESTEPA LOPEZ', 'P01', '2019'),
+(20, 'ELIZABETH DIAZ BERNAL', 'P02', '2019'),
+(21, 'GINA PAOLA DUARTE RODRIGUEZ', 'P03', '2019'),
+(22, 'SOLANGIE RODRIGUEZ', 'P04', '2019'),
+(23, 'URIEL FERNANDO ALONSO', 'P05', '2019'),
+(24, 'VIVIANA ROCIO PARDO TENJO ', 'P06', '2019'),
+(25, 'CESAR AUGUSTO DIAZ SILVA', 'P07', '2019'),
+(26, 'SEBASTIAN URREA PALACIOS', 'P08', '2019'),
+(27, 'DANEL GALEANO OJAS', 'P09', '2019'),
+(28, 'EDILMA SILVA PAEZ', 'P10', '2019'),
+(29, 'HEIDYI ANGELICA  RAMIREZ PINILLA', 'P11', '2019'),
+(30, 'FLORALBA RAMOS BRAVO', 'P12', '2019'),
+(31, 'ANDREA PAOLA', 'P13', '2019'),
+(32, 'BEATRIZ CECILIA REYES DURAN', 'P14', '2019'),
+(33, 'LUZ AMPARO GUERRERO', 'P15', '2019'),
+(34, 'MARIA ALEJANDRA TORRES FERNANDEZ', 'P16', '2019'),
+(35, 'ACTIVIDADES MASIVAS', 'P17', '2019'),
+(36, 'CESAR AUGUSTO DIAZ SILVA', 'P7', '2019'),
+(37, 'TEÓDULO QUINTERO', 'PO5', '2020');
 
 --
 -- Indexes for dumped tables
@@ -159,7 +178,7 @@ ALTER TABLE `Aprendiz`
 -- AUTO_INCREMENT for table `Responsables`
 --
 ALTER TABLE `Responsables`
-  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables

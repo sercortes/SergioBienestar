@@ -48,6 +48,13 @@
         </a>
       </li>
       
+       <li class="nav-item" id="menuResp">
+        <a class="nav-link hvr-icon-pop" href="./Responsables">
+          <i class="fas fa-user-cog hvr-icon"></i>
+          <span>Códigos</span>
+        </a>
+      </li>
+      
       
 
       <hr class="sidebar-divider">
