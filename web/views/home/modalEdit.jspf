@@ -1,0 +1,53 @@
+<!-- ModalActividadeAprendiz -->
+<div class="modal fade text-center" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="contenidoModal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Actualizar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                
+            <div class="modal-body">
+                
+              
+
+                <div class="row">
+                    <div class="col-sm-12">
+
+                      <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nombre del programa</label>
+            <input type="text" class="form-control" id="programa" disabled="">
+          </div>
+          <div class="form-group">
+            
+                <label for="validationTooltip03">Coordinación</label>
+                <select name="coor" class="form-control" id="coor" tabindex="4" required>
+                
+                </select>
+              
+          </div>
+        </form>
+      </div>
+    
+
+
+                  
+                          </div>
+                     
+                          </div>
+                 
+                     </div>
+               
+            
+             
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+                    <button type="button" id="botonUpdate" class="btn btn-primary"><i class="far fa-edit"></i> Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -45,7 +45,7 @@
 </div>
 <div class="d-flex justify-content-center">
     <div class="loader" id="loader">
-       <img src="assets/img/cat2.gif" class="img-fluid" alt="Responsive image"> 
+       <img src="assets/img/cat3.gif" class="img-fluid" alt="Responsive image"> 
     </div>
    <div class="loader1" id="loader">
    </div>

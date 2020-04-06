@@ -19,6 +19,15 @@ function generatePDF(div, nameFile, horizontal){
     });
   
 }
+
+function messageOk(message){
+     Swal.fire({
+            icon: 'success',
+            title: message,
+            showConfirmButton: true
+        })
+}
+
 function messageInfo(message){
      Swal.fire({
             icon: 'info',
@@ -88,7 +97,7 @@ function showAnimation() {
 
     let animacion = `<div class="col-sm-12 d-flex justify-content-center">
                         <div class="loader" id="loader">
-                        <img src="assets/img/cat2.gif" class="img-fluid" alt="Responsive image"> 
+                        <img src="assets/img/cat3.gif" class="img-fluid" alt="Responsive image"> 
                        </div>
                     </div>`
     let select = document.getElementById('resultado');

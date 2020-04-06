@@ -28,6 +28,24 @@ public class AprendizDAO {
     public AprendizDAO(Connection conn) {
         this.conn = conn;
     }
+    
+    public boolean updateCoor(Aprendiz aprendiz) {
+            try {
+           
+            String sql = "UPDATE Aprendiz set Coordinacion = ? WHERE NombrePrograma = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, aprendiz.getCoordinacion());
+            ps.setString(2, aprendiz.getNombrePrograma());
+            
+            int rows = ps.executeUpdate();
+            boolean estado = rows > 0;
+            return estado;
+        } catch (Exception ex) {
+            System.out.println("Error edit " + ex.getMessage());
+            return false;
+        }
+    }
+    
      public Aprendiz getIdAprendiz(Aprendiz apren) {
 
         try {
@@ -92,8 +110,7 @@ public class AprendizDAO {
         }
     }
 
-    
-    public ArrayList<?> getStatiticsByActivity(String acti) {
+     public ArrayList<?> getStatiticsByActivity(String acti) {
         try {
             String sql = "SELECT ap.NombrePrograma, count(*) cantidad " +
                         "FROM Actividades ac  " +
@@ -109,6 +126,32 @@ public class AprendizDAO {
             Aprendiz aprendiz;
             while (rs.next()) {
                 aprendiz = new Aprendiz();
+                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
+                aprendiz.setParticipaciones(rs.getString("cantidad"));
+                list.add(aprendiz);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
+    
+    public ArrayList<?> getProgramsWithOutCoor() {
+        try {
+            String sql = "SELECT ap.Nivel_formacion, ap.NombrePrograma, count(*) cantidad "
+                    + "FROM Actividades ac INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ac.Id_actividad=aa.Cod_actividad INNER JOIN Aprendiz ap "
+                    + "ON aa.Cod_aprendiz = ap.idAprendiz WHERE ap.Coordinacion = 'n/a' "
+                    + "group by(ap.NombrePrograma) order by(cantidad) desc";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz aprendiz;
+            while (rs.next()) {
+                aprendiz = new Aprendiz();
+                aprendiz.setNivelFormacion(rs.getString("Nivel_formacion"));
                 aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
                 aprendiz.setParticipaciones(rs.getString("cantidad"));
                 list.add(aprendiz);

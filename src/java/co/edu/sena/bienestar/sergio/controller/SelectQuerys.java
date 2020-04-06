@@ -9,6 +9,7 @@ import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.AprendizDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
+import co.edu.sena.bienestar.sergio.dto.Aprendiz;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,6 +53,18 @@ public class SelectQuerys extends HttpServlet {
                 SelectStatiticsByActivity(request, response);
                 
                 break;
+                
+            case "/bienestar/SelectgetProgramsWithOutCoor":
+                
+                SelectgetProgramsWithOutCoor(request, response);
+                
+                break;
+                
+            case "/bienestar/UpdateProgram":
+                
+                UpdateProgram(request, response);
+                
+                break;
             
         }
         
@@ -61,7 +74,17 @@ public class SelectQuerys extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+           String dirrecion = request.getRequestURI();
+           
+            switch(dirrecion){
+                
+            case "/bienestar/UpdateProgram":
+                
+                UpdateProgram(request, response);
+                
+                break;
+          
+            }
     }
 
     
@@ -124,6 +147,41 @@ public class SelectQuerys extends HttpServlet {
                 actividadDAO.CloseAll();
                 response.setContentType("application/json");
                 new Gson().toJson(aprendices, response.getWriter());
+        
+    }
+
+    private void SelectgetProgramsWithOutCoor(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+            request.setCharacterEncoding("UTF-8");
+
+                Conexion conexion = new Conexion();
+                AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
+
+                ArrayList<?> aprendices = actividadDAO.getProgramsWithOutCoor();
+
+                actividadDAO.CloseAll();
+                response.setContentType("application/json");
+                new Gson().toJson(aprendices, response.getWriter());
+
+    }
+
+    private void UpdateProgram(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+                request.setCharacterEncoding("UTF-8");
+
+                Aprendiz aprendiz = new Aprendiz();
+                aprendiz.setCoordinacion(request.getParameter("coor"));
+                aprendiz.setNombrePrograma(request.getParameter("programa"));
+
+                Conexion conexion = new Conexion();
+                AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
+
+                boolean estado = actividadDAO.updateCoor(aprendiz);
+
+                actividadDAO.CloseAll();
+                response.setContentType("application/json");
+                new Gson().toJson(estado, response.getWriter());
+        
         
     }
 

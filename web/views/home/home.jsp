@@ -3,6 +3,9 @@
 
 
 <%@include file="/views/template/menu.jspf"%>
+
+
+
 <!-- Topbar -->
 
 <!-- Container Fluid-->
@@ -15,6 +18,9 @@
         <div class="col-lg-12">
             <h1 class="titulos text-center"> <i class="far fa-smile-beam"></i> BIENVENIDO</h1>
             <h5 class="titulos hvr-icon-pop"><i class="fas fa-laptop-code hvr-icon"></i> Sistema de control y seguimiento de actividades de Bienestar al aprendiz</h5>
+        </div>
+        <div class="col-lg-12" id="alerta">
+            
         </div>
     </div>
     <hr>
@@ -78,6 +84,8 @@
 
 </div>
 
+<%@include file="/views/home/modalPrograms.jspf"%>
+<%@include file="/views/home/modalEdit.jspf"%>
 
 
 
