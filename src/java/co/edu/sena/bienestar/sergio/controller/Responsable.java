@@ -57,6 +57,21 @@ public class Responsable extends HttpServlet {
                 addResponsables(request, response);
                 
                 break;
+                
+                case "/bienestar/delResponsables":
+                
+                delResponsables(request, response);
+                
+                break;
+                
+                case "/bienestar/editResponsables":
+                
+                editResponsables(request, response);
+                
+                break;
+                
+                
+                
             
         }
         
@@ -105,6 +120,40 @@ public class Responsable extends HttpServlet {
         response.setContentType("application/json");
         new Gson().toJson(estado, response.getWriter());
         
+    }
+
+    private void delResponsables(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        
+        Conexion conexion = new Conexion();
+        ResponsableDAO responsableDAO = new ResponsableDAO(conexion.getConnection());
+        
+       boolean estado = responsableDAO.delete(request.getParameter("id"));
+
+        responsableDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(estado, response.getWriter());
+        
+        
+    }
+
+    private void editResponsables(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+         request.setCharacterEncoding("UTF-8");
+        
+        Conexion conexion = new Conexion();
+        ResponsableDAO responsableDAO = new ResponsableDAO(conexion.getConnection());
+        Responsables responsable = new Responsables();
+        responsable.setId(request.getParameter("id"));
+        responsable.setNombre(request.getParameter("nombre"));
+        responsable.setCodigo(request.getParameter("codigo"));
+        responsable.setYear(request.getParameter("year"));
+
+       boolean estado = responsableDAO.updateRes(responsable);
+
+        responsableDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(estado, response.getWriter());
     }
 
 }

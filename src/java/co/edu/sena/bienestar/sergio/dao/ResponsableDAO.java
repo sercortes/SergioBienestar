@@ -27,6 +27,40 @@ public class ResponsableDAO {
     public ResponsableDAO(Connection conn) {
         this.conn = conn;
     }
+    public boolean updateRes(Responsables responsables) {
+            try {
+           
+            String sql = "UPDATE Responsables set nombre = ?, codigo = ?, year = ? WHERE idResponsable = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, responsables.getNombre());
+            ps.setString(2, responsables.getCodigo());
+            ps.setString(3, responsables.getYear());
+            ps.setString(4, responsables.getId());
+            
+            int rows = ps.executeUpdate();
+            boolean estado = rows > 0;
+            return estado;
+        } catch (Exception ex) {
+            System.out.println("Error edit " + ex.getMessage());
+            return false;
+        }
+    }
+
+    public boolean delete(String id) {
+        try {
+            String sql = "DELETE FROM Responsables WHERE idResponsable = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            int rows = ps.executeUpdate();
+            boolean estado = rows > 0;
+            return estado;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+
   
     public boolean insertReturn(Responsables responsables){
         String sql = "INSERT INTO Responsables (nombre, codigo, year) "

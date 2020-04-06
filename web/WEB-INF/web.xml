@@ -85,6 +85,8 @@
         <servlet-name>Responsable</servlet-name>
         <url-pattern>/SelectResponsables</url-pattern>
         <url-pattern>/addResponsables</url-pattern>
+        <url-pattern>/delResponsables</url-pattern>
+        <url-pattern>/editResponsables</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

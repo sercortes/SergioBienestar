@@ -61,6 +61,7 @@
 </div>
 
 <%@include file="/views/responsables/modalEdit.jspf"%>
+<%@include file="/views/responsables/modalUpdate.jspf"%>
 
 
 
@@ -68,3 +69,4 @@
 
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
 <script src="assets/js/project/resp/home.js" charset="utf-8"></script>
+<script src="assets/js/project/resp/crud.js" charset="utf-8"></script>

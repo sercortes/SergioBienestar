@@ -1,6 +1,5 @@
 $(function(){
     
-    
     menu('menuResp')
     
     queryResponsables()
@@ -45,7 +44,7 @@ function addNewRecord(data){
         data:data
     }).done(function (data) {
    
-        console.log(data)
+      
         if (data) {
             messageOk('Generado con éxito')
             $('#formAdd').trigger('reset')
@@ -87,27 +86,19 @@ function queryResponsables(){
     
 }
 
-function drawTable(data){
+
+function generateYearsEdit(years){
     
-    
-    let select = document.getElementById('tabla');
-    let str = ` `
+    let yearA = document.getElementById('yearE')
+    let year = parseInt(years)
+    let srt = `<option value="${year}">${year}</option>`
+    let actualyear = new Date().getStartYear().substring(0, 4)-2
    
-    for (var item of data) {
-
-        str += `<tr id="${item.id}" class="chiquito">
-                                                    <td>${item.nombre}</td>
-                                                    <td>${item.codigo}</td>
-                                                    <td>${item.year}</td>
-                                                 <td>         
-                                                      <button class="btn btn-warning btn-sm" role="button" onclick = "update('${item.id}')" >
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>           
-                                                </td>
-                                                </tr> `
-    }
-    
-    select.innerHTML = str;
-    
+   for(var i = actualyear;i<=actualyear+4;i++){
+        if (i != year) {
+       srt +=`<option value="${i}">${i}</option>`
+        }
+   }
+   yearA.innerHTML = srt
+   
 }
-
