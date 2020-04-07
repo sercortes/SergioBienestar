@@ -32,7 +32,7 @@
 
         <div class="col-sm-6 justify-content-center">
 
-            <a href="./Activitys" class="menu hvr-grow"> 
+            <a href="./Activitys" class="menu hvr-grow w-100"> 
                 <div class="card text-white bg-info mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-calendar-check"></i> Ver actividades</h5>
@@ -41,11 +41,11 @@
                 </div>
             </a>
 
-            <a href="./Statistics" class="menu hvr-grow"> 
+            <a href="./Statistics" class="menu hvr-grow w-100"> 
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-chart-area"></i> Ver estadísticas</h5>
-                        <p class="card-text">Visualice las gráficas que permitan tomar las mejores decisiones.</p>
+                        <p class="card-text">Visualice las gráficas sobre las dimensiones de bienestar con el fin de tomar las mejores decisiones.</p>
                     </div>
                 </div>
             </a>
@@ -55,7 +55,7 @@
 
         <div class="col-sm-6">
 
-            <a href="./Upload" class="menu hvr-grow"> 
+            <a href="./Upload" class="menu hvr-grow w-100"> 
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-database"></i> Importe la Base de Datos</h5>
@@ -63,11 +63,11 @@
                     </div>
                 </div>
             </a>
-            <a href="./Aprendices" class="menu hvr-grow"> 
+            <a href="./Aprendices" class="menu hvr-grow w-100"> 
                 <div class="card text-white bg-secondary mb-3 ">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-users"></i> Ver aprendices</h5>
-                        <p class="card-text">Busque por medio de ficha o programa de formación.</p>
+                        <p class="card-text">Lleve un control y seguimiento de los programas de formación y los aprendices.</p>
                     </div>
                 </div>
             </a>     

@@ -53,7 +53,7 @@ function listarCoor(data) {
         let coor = document.getElementById('coor').value
      let select = document.getElementById('tabla');
         let str = ` <h4 class="titulos hvr-icon-pop mt-4" id="tituloInforme">${coor}</h4>
-    <table id="examples" class="table table-striped table-bordered">
+    <table id="examples" class="table table-striped table-bordered table-responsive">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
                                         <th>Nombre programas</th>

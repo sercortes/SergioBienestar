@@ -14,7 +14,7 @@
 <%@include file="/views/system/modalAprendiz/aprendicesXficha.jspf"%>
 
 <%@include file="/views/system/modals/actividadesAprendiz.jspf"%>
-    
+    </div>
 <%@include file="/views/template/footer.jspf"%>
 
 

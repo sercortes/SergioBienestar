@@ -31,7 +31,7 @@ function generateTableaprendices(data) {
     let sum = 0
 
     let select = document.getElementById('tabla');
-    let str = `<table id="examples" class="table table-striped table-bordered">
+    let str = `<table id="examples" class="table table-striped table-bordered table-responsive">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
                                         <th>Documento</th>

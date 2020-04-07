@@ -45,7 +45,7 @@ function fichasTotal(id){
        programa.innerHTML = "Programa Formación : "+data[0].nombrePrograma
 
      let select = document.getElementById('tabla1');
-        let str = `<table id="examples" class="table table-striped table-bordered">
+        let str = `<table id="examples" class="table table-striped table-bordered table-responsive">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
                                         <th>Documento</th>
