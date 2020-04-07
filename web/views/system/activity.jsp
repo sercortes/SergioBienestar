@@ -13,16 +13,24 @@
 
 </div>
 
+<div id="pager" class="col-sm-12">
+    <nav aria-label="Page navigation example">
+    <ul id="pagination" class="pagination"></ul>
+    </nav>
+
+    </div>
 
 
 <%@include file="/views/template/footer.jspf"%>
+
+<script src="assets/js/pagination/pager.js" charset="utf-8"></script>
+
 
 <script src="assets/js/project/activitys/start.js" charset="utf-8"></script>
 <script src="assets/js/project/activitys/buscador/buscador.js" charset="utf-8"></script>
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
 
 <script src="assets/js/project/activitys/querys/aprendices.js" charset="utf-8"></script>
-<script src="assets/js/project/activitys/querys/TypesActivitys.js" charset="utf-8"></script>
 
 <!-- consulta que comparten las dos vistas-->
 <script src="assets/js/project/querys/ActivitysByAprendiz.js" charset="utf-8"></script>
