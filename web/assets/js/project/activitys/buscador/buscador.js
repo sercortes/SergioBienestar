@@ -76,15 +76,15 @@ function generateTableBuscador() {
                                                  `
 
     for (var item of displayRecords) {
-        str += `<tr id="row${item.nombre_actividad}" class="chiquito1 text-justify">
-                                                    <td>${item.nombre_actividad}</td>
-                                                    <td>${item.tipo_actividad}</td>
-                                                    <td>${item.fecha_inicio}</td>
-                                                    <td>${item.fecha_fin}</td>
-                                                    <td>${item.responsable}</td>
+        str += `<tr idActividad="${item.idRealActividad}" class="chiquito1 text-justify">
+                                                    <td class="elements">${item.nombre_actividad}</td>
+                                                    <td class="elements">${item.tipo_actividad}</td>
+                                                    <td class="elements">${item.fecha_inicio}</td>
+                                                    <td class="elements">${item.fecha_fin}</td>
+                                                    <td class="elements">${item.responsable}</td>
                                                     <td>${item.cantidad}</td>
                                                  <td>         
-                                                      <button class="btn btn-info btn-xs" role="button" onclick = "aprendices('${item.idRealActividad}')" >
+                                                      <button class="seeAprendices btn btn-info btn-xs" >
                                                             <i class="fas fa-list-ol"></i> 
                                                         </button>            
                                                 </td>

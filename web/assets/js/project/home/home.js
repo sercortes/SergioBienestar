@@ -104,7 +104,7 @@ function showAlert(tama){
     let menu = document.getElementById('alerta')
     let dialog = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Hola tienes ${tama} programas!</strong> sin actualizar su coordinación.
-    <button id = 'seePrograms' type="button" class="btn btn-primary" onclick="hola()"><i class="fas fa-edit"></i>Actualizar</button>
+    <button id = 'seePrograms' type="button" class="btn btn-primary hvr-icon-pop" onclick="hola()"><i class="fas fa-edit hvr-icon"></i>Actualizar</button>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>

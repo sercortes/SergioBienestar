@@ -1,7 +1,25 @@
 var dataGr
-function aprendices(id){
+var activ
+
+$(document).on('click', '.seeAprendices', function(){
     
-    let idActividad = id
+    let element = $(this)[0].parentElement.parentElement
+    let id = $(element).attr('idActividad')
+    var eleme = $(this).closest('tr').find('.elements')
+    activ = {
+        id:id,
+        nombre: eleme[0].outerText,
+        tipo:eleme[1].outerText,
+        fechaI:eleme[2].outerText,
+        fechaF:eleme[3].outerText,
+        res:eleme[4].outerText
+    }
+    
+    aprendices()
+    
+})
+
+function aprendices(){
     
     $('#modalThree').modal('show')
    
@@ -10,12 +28,12 @@ function aprendices(id){
         url: './ListAprendices',
         datatype: 'json',
         data:{
-            id:id
+            id:activ.id
         }
     }).done(function (data) {
       
         generateTableAprendicess(data)
-        resultGraphicOne(idActividad)
+        resultGraphicOne(activ.id)
        
     })
     
@@ -99,13 +117,14 @@ function generateGrap(data){
 
 
 function generateTableAprendicess(data){
-       
-       let acti = data[0].actividades.nombre_actividad
       
-       $('#titulos').text(acti)
+       $('#titulos').text('NOMBRE ACTIVIDAD : '+activ.nombre)
+       $('#dimension').text('DIMENSIÓN : '+activ.tipo.toString().toUpperCase())
+       $('#fechaI').text('FECHA INICIO : '+activ.fechaI)
+       $('#fechaF').text('FECHA FIN : '+activ.fechaF)
+       $('#res').text('RESPONSABLE : '+activ.res)
        
-      let cantidad = document.getElementById('cantidadAprendices')
-      cantidad.innerHTML = "#Aprendices "+data.length
+       $('#cantidadAprendices').text("#Aprendices "+data.length)
 
       var num = 0
     let select = document.getElementById('tablaAprendices');
@@ -156,3 +175,7 @@ function generateTableAprendicess(data){
 
         select.innerHTML = str;
 }
+
+$('#prints').click(function(){
+    generatePDF('#contenido', activ.nombre.toString().substring(0,55), true)
+})

@@ -73,7 +73,7 @@ public class ActividadDAO {
                     + "ORDER BY ac.Fecha_inicio ASC";
             ps = conn.prepareStatement(sql);
             ps.setString(1, "%" + activi.getKeyWord() + "%");
-            ps.setString(2, "%" + activi.getTipo_actividad() + "%");
+            ps.setString(2,  activi.getTipo_actividad() + "%");
             ps.setDate(3, activi.getFecha_inicio());
             ps.setDate(4, activi.getFecha_fin());
             ps.setDate(5, activi.getFecha_inicio());

@@ -169,7 +169,7 @@ public class AprendizDAO {
     
       public ArrayList<?> getByActivity(String acti) {
         try {
-            String sql = "SELECT ap.*, ac.Nombre_actividad  " +
+            String sql = "SELECT ap.*  " +
                         "FROM Actividades ac  " +
                         "INNER JOIN Actividades_Aprendiz aa  " +
                         "ON ac.Id_actividad=aa.Cod_actividad " +
@@ -188,7 +188,6 @@ public class AprendizDAO {
                 aprendiz.setFicha(rs.getString("Ficha"));
                 aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
                 aprendiz.setCoordinacion(rs.getString("Coordinacion"));
-                aprendiz.setActividades(new Actividades(rs.getString("Nombre_actividad")));
                 list.add(aprendiz);
             }
             return (ArrayList<?>) list;
