@@ -1,8 +1,11 @@
-function deleteCode(id){
+$(document).on('click', '.deletecode', function(){
+    let ele = $(this)[0].parentElement.parentElement
+    let id = $(ele).attr('idRes')
+    deleteCode(id)
+})
 
-    var split = id.split(',')
-    
-    id = split[1]
+
+function deleteCode(id){
     
     Swal.fire({
   title: 'esta seguro?',
@@ -35,10 +38,9 @@ function deleteOk(id){
     }).done(function (data) {
    
         if (data) {
-            messageOk('Generado con éxito')
+            messageOk('Eliminado con éxito')
             queryResponsables()
         }
-        
         
     })
     
@@ -53,15 +55,15 @@ function drawTable(data){
    
     for (var item of data) {
 
-        str += `<tr id="${item.id}" class="chiquito">
-                                                    <td>${item.nombre}</td>
-                                                    <td>${item.codigo}</td>
-                                                    <td>${item.year}</td>
+        str += `<tr idRes="${item.id}" class="chiquito">
+                                                    <td class="element">${item.nombre}</td>
+                                                    <td class="element">${item.codigo}</td>
+                                                    <td class="element">${item.year}</td>
                                                  <td>         
-                                                      <button class="btn btn-warning btn-sm" role="button" onclick = "update('${Object.entries(item)}')" >
+                                                      <button class="seeRespon btn btn-warning btn-sm">
                                                             <i class="fas fa-edit"></i>
                                                         </button>    
-                                                        <button class="btn btn-danger btn-sm" role="button" onclick = "deleteCode('${Object.entries(item)}')" >
+                                                        <button class="deletecode btn btn-danger btn-sm">
                                                             <i class="fas fa-trash"></i>
                                                         </button>     
                                                 </td>
@@ -73,18 +75,26 @@ function drawTable(data){
 }
 
 
+$(document).on('click','.seeRespon', function(){
+    
+    let ele = $(this)[0].parentElement.parentElement
+    let id = $(ele).attr('idRes')
+    let element = $(this).closest('tr').find('.element')
+    var data = {
+        id:id,
+        nombre:element[0].outerText,
+        codigo:element[1].outerText,
+        year:element[2].outerText
+    }
+    
+    update(data)
+    
+})
+
 function update(data){
     
-   var split = data.split(',')
-    
+
     $('#modalUpdate').modal('show')
-    
-    var data = {
-        id:split[1],
-        nombre:split[3],
-        codigo:split[5],
-        year:split[7]
-    }
     
     $('#idE').val(data.id)
     $('#nameE').val(data.nombre)
