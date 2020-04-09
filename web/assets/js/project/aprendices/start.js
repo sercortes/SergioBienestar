@@ -1,4 +1,12 @@
-
+var input = ''
+var $pagination = $('#pagination'),
+        totalRecords = 0,
+        records = [],
+        displayRecords = [],
+        recPerPage = 10,
+        page = 1,
+        totalPages = 0,
+        initiateStartPageClick = true
 
 $(function () {
 
@@ -33,6 +41,7 @@ $(function () {
 })
 
 function cambiarFecha() {
+    $pagination.twbsPagination('destroy');
     
     let select = document.getElementById('coor').value
     if (select == '' || select == 'No') {
@@ -46,6 +55,7 @@ function cambiarFecha() {
 
 function buscarAprendiz() {
 
+$pagination.twbsPagination('destroy');
 showAnimation()
       
 
@@ -89,7 +99,11 @@ function searchAprendiz(data) {
 
         validationResult(data.length)
 
-        generateTableaprendices(data);
+        records = data
+        totalRecords = data.length
+        totalPages = Math.ceil(totalRecords / recPerPage)
+
+        apply_pagination()
 
     })
 
@@ -97,3 +111,17 @@ function searchAprendiz(data) {
 }
 
 
+function apply_pagination() {
+
+    $pagination.twbsPagination({
+        totalPages: totalPages,
+        visiblePages: 4,
+        onPageClick: function (event, page) {
+            displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
+            endRec = (displayRecordsIndex) + recPerPage;
+
+            displayRecords = records.slice(displayRecordsIndex, endRec);
+            generateTableaprendices(displayRecords)
+        }
+    });
+}

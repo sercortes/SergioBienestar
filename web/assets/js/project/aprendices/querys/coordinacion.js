@@ -3,6 +3,7 @@ var total
 function selectCoordinacion(){
     
     showAnimation()
+    $pagination.twbsPagination('destroy');
     
     let select = document.getElementById('coor').value
     
@@ -53,11 +54,11 @@ function listarCoor(data) {
         let coor = document.getElementById('coor').value
      let select = document.getElementById('tabla');
         let str = ` <h4 class="titulos hvr-icon-pop mt-4" id="tituloInforme">${coor}</h4>
-    <table id="examples" class="table table-striped table-bordered table-responsive">
+    <table id="examples" class="table-responsive-sm table table-striped table-bordered">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
                                         <th>Nombre programas</th>
-                                        <th>Coordinaciónn</th>
+                                        <th>Coordinación</th>
                                         <th># Participaciones</th>
                                         <th>Detalles</th>
                                     </tr>
@@ -84,10 +85,10 @@ function listarCoor(data) {
         str += `      </tbody>
                                 <tfoot class="letrablanca">
                                     <tr class="tablas">
-                                        <th>Fecha Fin</th>
-                                        <th>Responsable</th>
-                                        <th>Aprendices</th>
-                                        <th>Listado Aprendices</th>
+                                         <th>Nombre programas</th>
+                                        <th>Coordinación</th>
+                                        <th># Participaciones</th>
+                                        <th>Detalles</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -102,9 +103,7 @@ function listarCoor(data) {
 
             </div>
          <div id="buttons" class="m-3 float-right">
-        <button id="generatePdf" type="button" class="btn btn-primary hvr-pulse-grow" onclick="printCoor()"><i class="fas fa-print"></i> Imprimir</button>
-    </div>
-                `
+        <button id="generatePdf" type="button" class="btn btn-primary hvr-pulse-grow" onclick="printCoor()"><i class="fas fa-print"></i> Imprimir</button>`
 
 
         select.innerHTML = str;    

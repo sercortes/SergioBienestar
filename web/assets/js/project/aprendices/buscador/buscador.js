@@ -2,6 +2,7 @@
 
 function searchAprendizWord(data) {
     
+    $pagination.twbsPagination('destroy');
     $('#coor').val(1)
 
     $.ajax({
@@ -31,7 +32,7 @@ function generateTableaprendices(data) {
     let sum = 0
 
     let select = document.getElementById('tabla');
-    let str = `<table id="examples" class="table table-striped table-bordered table-responsive">
+    let str = `<table id="examples" class="table table-striped table-bordered table-responsive-sm">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
                                         <th>Documento</th>

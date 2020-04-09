@@ -14,10 +14,19 @@
 <%@include file="/views/system/modalAprendiz/aprendicesXficha.jspf"%>
 
 <%@include file="/views/system/modals/actividadesAprendiz.jspf"%>
+ 
+
+    <div id="pager" class="col-sm-12">
+    <nav aria-label="Page navigation example">
+    <ul id="pagination" class="pagination"></ul>
+    </nav>
+
     </div>
+
 <%@include file="/views/template/footer.jspf"%>
 
 
+<script src="assets/js/pagination/pager.js" charset="utf-8"></script>
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
 <script src="assets/js/project/aprendices/start.js" charset="utf-8"></script>
 
