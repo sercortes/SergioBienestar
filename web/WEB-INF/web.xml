@@ -38,6 +38,8 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Routes</servlet-name>
+        <url-pattern>/Start</url-pattern>
+        <url-pattern>/Logout</url-pattern>
         <url-pattern>/Home</url-pattern>
         <url-pattern>/Upload</url-pattern>
         <url-pattern>/Activitys</url-pattern>

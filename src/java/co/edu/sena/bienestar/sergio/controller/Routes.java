@@ -35,6 +35,15 @@ public class Routes extends HttpServlet {
         RequestDispatcher rd;
         
         switch (direccion){
+             case "/bienestar/Logout":
+                    request.getSession().removeAttribute("MESSAGE");
+                    request.getSession().invalidate();
+                    response.sendRedirect("/bienestar/Start");
+                  break;
+            case "/bienestar/Start":
+                rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
+                break;
             case "/bienestar/Home":
                 rd = request.getRequestDispatcher("/views/home/home.jsp");
                 rd.forward(request, response);
