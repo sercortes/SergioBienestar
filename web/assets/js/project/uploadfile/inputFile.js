@@ -37,6 +37,7 @@ $("#send").click(function (e) {
 
     document.getElementById('send').disabled = true
     document.getElementById('fileToUpload').disabled = true
+    $('li a').addClass('disabled')
 
     $.ajax({
         type: "POST",
@@ -78,6 +79,7 @@ function hideAnimation() {
     $('#loader').hide()
     document.getElementById('send').disabled = false
     document.getElementById('fileToUpload').disabled = false
+    $('li a').removeClass('disabled')
     $('#formulario').trigger('reset')
 }
 
@@ -90,7 +92,7 @@ function generateSucces() {
         icon: "success",
         backdrop: `
     rgba(0,0,123,0.4)
-    url("assets/img/cat2.gif")
+    url("assets/img/cat3.gif")
     left top
     no-repeat
   `

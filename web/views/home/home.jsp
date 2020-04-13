@@ -32,7 +32,7 @@
 
         <div class="col-sm-6 justify-content-center">
 
-            <a href="./Activitys" class="menu hvr-grow w-100"> 
+            <a href="./Activitys" class="menu hvr-forward w-100"> 
                 <div class="card text-white bg-info mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-calendar-check"></i> Ver actividades</h5>
@@ -41,7 +41,7 @@
                 </div>
             </a>
 
-            <a href="./Statistics" class="menu hvr-grow w-100"> 
+            <a href="./Statistics" class="menu hvr-forward w-100"> 
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-chart-area"></i> Ver estadísticas</h5>
@@ -55,7 +55,7 @@
 
         <div class="col-sm-6">
 
-            <a href="./Upload" class="menu hvr-grow w-100"> 
+            <a href="./Upload" class="menu hvr-forward w-100"> 
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-database"></i> Importe la Base de Datos</h5>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </a>
-            <a href="./Aprendices" class="menu hvr-grow w-100"> 
+            <a href="./Aprendices" class="menu hvr-forward w-100"> 
                 <div class="card text-white bg-secondary mb-3 ">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-users"></i> Ver aprendices</h5>

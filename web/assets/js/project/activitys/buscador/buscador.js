@@ -60,7 +60,7 @@ function generateTableBuscador() {
     let num = 0
 
     let select = document.getElementById('tabla');
-    let str = `<table id="examples" class="table table-striped table-bordered table-responsive">
+    let str = `<table id="examples" class="table table-striped table-bordered table-responsive-sm">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
                                         <th>Actividad</th>
