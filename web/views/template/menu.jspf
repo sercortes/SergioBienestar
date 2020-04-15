@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
@@ -40,7 +41,7 @@
           <span>Estadísticas</span>
         </a>
       </li>
-      
+      <c:if test="${USER.perfil == 5}">
       <li class="nav-item" id="menuUpload">
         <a class="nav-link hvr-icon-pop" href="./Upload">
           <i class="fas fa-file-excel hvr-icon"></i>
@@ -61,7 +62,7 @@
           <span>Usuarios</span>
         </a>
       </li>
-      
+      </c:if>
       
 
       <hr class="sidebar-divider">

@@ -57,6 +57,24 @@ public class UsuarioDAO {
         }
 
     }
+        public boolean updatePass(Usuario usuario) {
+            try {
+           
+            String sql = "UPDATE Usuario set password = md5(?) "
+                    + "WHERE idUsuario = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, usuario.getPass());
+            ps.setInt(2, usuario.getId());
+            
+            int rows = ps.executeUpdate();
+            boolean estado = rows > 0;
+            return estado;
+        } catch (Exception ex) {
+            System.out.println("Error edit " + ex.getMessage());
+            return false;
+        }
+    }
       
       
       public boolean updateUser(Usuario usuario) {

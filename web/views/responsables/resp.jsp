@@ -6,8 +6,9 @@
 
 
 
-<!-- Topbar -->
-
+<c:if test="${USER.perfil != 5}">
+    <c:redirect url="/Home"/>
+</c:if>
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
 

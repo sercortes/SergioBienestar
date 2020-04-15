@@ -27,40 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class User extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-  
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, UnsupportedEncodingException {
@@ -89,6 +56,12 @@ public class User extends HttpServlet {
                 case "/bienestar/editUser":
                     
                     editUser(request, response);
+                    
+                    break;
+                    
+                    case "/bienestar/updatePass":
+                    
+                    updatePass(request, response);
                     
                     break;
                     
@@ -179,6 +152,24 @@ public class User extends HttpServlet {
         usuario.setEstatus(request.getParameter("estado"));
 
        boolean estado = usuarioDAO.updateUser(usuario);
+
+        usuarioDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(estado, response.getWriter());
+        
+    }
+
+    private void updatePass(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        
+        Conexion conexion = new Conexion();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(conexion.getConnection());
+        Usuario usuario = new Usuario();
+        usuario.setId(Integer.parseInt(request.getParameter("id")));
+        usuario.setPass(request.getParameter("pass"));
+
+       boolean estado = usuarioDAO.updatePass(usuario);
 
         usuarioDAO.CloseAll();
         response.setContentType("application/json");

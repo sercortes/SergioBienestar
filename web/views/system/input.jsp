@@ -3,6 +3,10 @@
 <%@include file="/views/template/menu.jspf"%>
 <!-- Topbar -->
 
+<c:if test="${USER.perfil != 5}">
+    <c:redirect url="/Home"/>
+</c:if>
+
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
     <h3 class="text-center titulos"><i class="fas fa-database"></i> IMPORTAR BASE DE DATOS</h3>

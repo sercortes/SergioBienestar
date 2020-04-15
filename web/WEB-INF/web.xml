@@ -102,6 +102,7 @@
         <url-pattern>/addUser</url-pattern>
         <url-pattern>/deluser</url-pattern>
         <url-pattern>/editUser</url-pattern>
+        <url-pattern>/updatePass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,9 +5,9 @@
 <%@include file="/views/template/menu.jspf"%>
 
 
-
-<!-- Topbar -->
-
+<c:if test="${USER.perfil != 5}">
+    <c:redirect url="/Home"/>
+</c:if>
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
 
@@ -66,12 +66,14 @@
 
 <%@include file="/views/users/modalEdit.jspf"%>
 <%@include file="/views/users/modalUpdate.jspf"%>
+<%@include file="/views/users/modalUpdatePassword.jspf"%>
 
 
 
 <%@include file="/views/template/footer.jspf"%>
 
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
-<script src="assets/js/project/user/home.js" charset="utf-8"></script>
 
+<script src="assets/js/project/user/home.js" charset="utf-8"></script>
+<script src="assets/js/project/user/pass.js" charset="utf-8"></script>
 <script src="assets/js/project/user/crud.js" charset="utf-8"></script>
