@@ -8,6 +8,7 @@ package co.edu.sena.bienestar.sergio.controller;
 import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.AprendizDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
+import co.edu.sena.bienestar.sergio.dao.PerfilDAO;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -52,6 +53,13 @@ public class Select extends HttpServlet {
                 getYears(request, response);
 
                 break;
+                
+                case "/bienestar/getPerfil":
+
+                getPerfil(request, response);
+
+                break;
+
 
         }
     }
@@ -119,6 +127,20 @@ public class Select extends HttpServlet {
         response.setContentType("application/json");
         actividadDAO.CloseAll();
         new Gson().toJson(aprendices, response.getWriter());
+        
+    }
+
+    private void getPerfil(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        Conexion conexion = new Conexion();
+        PerfilDAO perfilDAO = new PerfilDAO(conexion.getConnection());
+
+        ArrayList<?> perfiles = perfilDAO.getPerfiles();
+
+        response.setContentType("application/json");
+        perfilDAO.CloseAll();
+        new Gson().toJson(perfiles, response.getWriter());
         
     }
 

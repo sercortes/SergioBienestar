@@ -42,6 +42,7 @@ public class Responsable extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String direccion = request.getRequestURI();
         
         switch(direccion){

@@ -76,7 +76,7 @@ public class ResponsableDAO {
           
             return true;   
         } catch(MySQLIntegrityConstraintViolationException e){
-            System.out.println(e);
+            System.out.println("D"+e+"D");
             return false;
         }catch(Exception e){
             System.out.println(e);
@@ -86,7 +86,7 @@ public class ResponsableDAO {
     
      public ArrayList<Responsables> getResponsables() {
         try {
-            String sql = "SELECT * FROM Responsables";
+            String sql = "SELECT * FROM Responsables ORDER BY YEAR ASC";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             List<Responsables> list = new ArrayList<Responsables>();

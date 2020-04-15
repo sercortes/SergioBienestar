@@ -19,6 +19,8 @@ public class Usuario {
     private String perfil;
     private String estatus;
 
+    private Perfil perfilO;
+    
     public Usuario() {
     }
 
@@ -104,11 +106,17 @@ public class Usuario {
         this.estatus = estatus;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", pass=" + pass + ", perfil=" + perfil + ", estatus=" + estatus + '}';
+    public Perfil getPerfilO() {
+        return perfilO;
+    }
+
+    public void setPerfilO(Perfil perfilO) {
+        this.perfilO = perfilO;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", pass=" + pass + ", perfil=" + perfil + ", estatus=" + estatus + ", perfilO=" + perfilO + '}';
+    }
     
 }

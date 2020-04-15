@@ -51,7 +51,7 @@ public class AprendizDAO {
         try {
             String sql = "SELECT idAprendiz FROM Aprendiz "
                     + "WHERE Documento_aprendiz = ? "
-                    + "AND Ficha = ? ";
+                    + "AND Ficha = ? LIMIT 1";
             ps = conn.prepareStatement(sql);
             ps.setString(1, apren.getDocumento_aprendiz());
             ps.setString(2, apren.getFicha());

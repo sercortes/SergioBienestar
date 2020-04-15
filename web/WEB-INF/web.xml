@@ -32,6 +32,10 @@
         <servlet-name>Responsable</servlet-name>
         <servlet-class>co.edu.sena.bienestar.sergio.controller.Responsable</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>User</servlet-name>
+        <servlet-class>co.edu.sena.bienestar.sergio.controller.User</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -46,6 +50,7 @@
         <url-pattern>/Aprendices</url-pattern>
         <url-pattern>/Statistics</url-pattern>
         <url-pattern>/Responsables</url-pattern>
+        <url-pattern>/Users</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>
@@ -70,6 +75,7 @@
         <url-pattern>/getFichas</url-pattern>
         <url-pattern>/getCoor</url-pattern>
         <url-pattern>/getYears</url-pattern>
+        <url-pattern>/getPerfil</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UploadFile</servlet-name>
@@ -89,6 +95,13 @@
         <url-pattern>/addResponsables</url-pattern>
         <url-pattern>/delResponsables</url-pattern>
         <url-pattern>/editResponsables</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>User</servlet-name>
+        <url-pattern>/SelectUsers</url-pattern>
+        <url-pattern>/addUser</url-pattern>
+        <url-pattern>/deluser</url-pattern>
+        <url-pattern>/editUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

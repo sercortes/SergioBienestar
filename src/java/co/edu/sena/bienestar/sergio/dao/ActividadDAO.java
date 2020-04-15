@@ -106,7 +106,7 @@ public class ActividadDAO {
             String sql = "SELECT Id_actividad FROM Actividades "
                     + "WHERE Nombre_actividad = ? "
                     + "AND Tipo_actividad = ? "
-                    + "AND Fecha_inicio = ?";
+                    + "AND Fecha_inicio = ? LIMIT 1";
             ps = conn.prepareStatement(sql);
             ps.setString(1, actividades.getNombre_actividad());
             ps.setString(2, actividades.getTipo_actividad());

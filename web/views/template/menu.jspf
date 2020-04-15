@@ -55,6 +55,13 @@
         </a>
       </li>
       
+      <li class="nav-item" id="menuUsers">
+        <a class="nav-link hvr-icon-pop" href="./Users">
+          <i class="fas fa-user-tie hvr-icon"></i>
+          <span>Usuarios</span>
+        </a>
+      </li>
+      
       
 
       <hr class="sidebar-divider">

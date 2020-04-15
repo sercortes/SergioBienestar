@@ -1,0 +1,68 @@
+<!-- ModalActividadeAprendiz -->
+<div class="modal fade text-center" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="contenidoModal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Editar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-center">
+
+                            <form id="formEdit" autocomplete="off">
+                                <input type="hidden" class="form-control" id="idE">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label float-left">Nombre:</label>
+                                    <input type="text" class="form-control" id="nameE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label float-left">Apellido:</label>
+                                    <input type="text" class="form-control" id="surnameE">
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-form-label float-left">Email:</label>
+                                    <input type="email" class="form-control" id="emailE" autocomplete="none">
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="validationTooltip03" class="float-left">Perfil:</label>
+                                    <select class="form-control" id="perfilE" tabindex="4" required>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="validationTooltip03" class="float-left">Estado:</label>
+                                    <select class="form-control" id="estadoE" tabindex="4" required>
+
+                                    </select>
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+                <button type="button" id="botonUpdateForm" class="btn btn-primary"><i class="fas fa-edit"></i> Modificar</button>
+            </div>
+        </div>
+    </div>
+</div>
