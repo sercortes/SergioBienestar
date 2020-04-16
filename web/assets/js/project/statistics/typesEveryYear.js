@@ -12,9 +12,11 @@ function graphicByTypesYear(data) {
         
         addDivs()
         
-        generateOther(castArray(data), 'graphicOne', '# aprendices', 'light2')
+        let select = document.getElementById('TypeActivity').value
+        
+        generateOther(castArray(data), 'graphicOne', '# aprendices', 'light2', select)
 
-        generateGraaaTwo(castArrayTwo(data), 'graphicTwo', 'porcentaje', 'light2')
+        generateGraaaTwo(castArrayTwo(data), 'graphicTwo', 'porcentaje', 'light2', select)
         
         addButtons()
 
@@ -77,7 +79,7 @@ function castArrayTwo(data) {
 
 }
 
-function generateOther(data, div, title, theme) {
+function generateOther(data, div, title, theme, sub) {
 
     var chart = new CanvasJS.Chart(div, {
         animationEnabled: true,
@@ -86,6 +88,11 @@ function generateOther(data, div, title, theme) {
         title: {
             text: title
         },
+        subtitles:[
+                {
+                    text:sub
+                }
+            ],
         axisY: {
             title: "valor",
             titleFontSize: 24
@@ -106,7 +113,7 @@ function generateOther(data, div, title, theme) {
 }
 
 
-function generateGraaaTwo(data, div, title, theme){
+function generateGraaaTwo(data, div, title, theme, sub){
       var chart = new CanvasJS.Chart(div, {
             theme: theme, // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,
@@ -114,6 +121,11 @@ function generateGraaaTwo(data, div, title, theme){
             title: {
                 text: title
             },
+            subtitles:[
+                {
+                    text:sub
+                }
+            ],
             data: [{
                     type: "pie",
                     startAngle: 235,

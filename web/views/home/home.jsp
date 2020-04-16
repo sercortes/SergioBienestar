@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="titulos text-center"> <i class="far fa-smile-beam"></i> BIENVENIDO</h1>
+            <h1 class="titulos text-center"> <i class="far fa-smile-beam"></i> Bienvenido ${USER.nombre}</h1>
             <h5 class="titulos hvr-icon-pop"><i class="fas fa-laptop-code hvr-icon"></i> Sistema de control y seguimiento de actividades de Bienestar al aprendiz</h5>
         </div>
         <c:if test="${USER.perfil == 5}">

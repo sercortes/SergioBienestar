@@ -96,7 +96,11 @@ function generateGrap(data){
             animationEnabled: true,
             title: {
                 text: "Participación de programas"
-            },
+            },subtitles:[
+                {
+                    text:activ.tipo
+                }
+            ],
             data: [{
                     type: "pie",
                     startAngle: 235,
@@ -174,8 +178,15 @@ function generateTableAprendicess(data){
                             </table>`
 
         select.innerHTML = str;
+        description()
 }
 
 $('#prints').click(function(){
     generatePDF('#contenido', activ.nombre.toString().substring(0,55), true)
 })
+
+
+function description(){
+    $('#titulosD').text('NOMBRE ACTIVIDAD : '+activ.nombre)
+       $('#dimensionD').text('DIMENSIÓN : '+activ.tipo.toString().toUpperCase())
+}

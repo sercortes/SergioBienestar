@@ -30,7 +30,9 @@
                             <div id="graphicOne" class="canva">
                                 
                             </div>    
-
+                            <hr>
+                                <h6 class="chiquito" id="titulosD"></h6>
+                                <h6 class="chiquito" id="dimensionD"></h6>
                         </div>
       </div>
                    

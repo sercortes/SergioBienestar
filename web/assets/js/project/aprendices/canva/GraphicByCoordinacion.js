@@ -1,5 +1,6 @@
 function generateGraphicByCoor(data){
     
+    let select = $('#coor').val()
      let charts = `<div id="chartCoordinacion" style="height: 400px;"></div>`
         let grafico = document.getElementById('graficos')
        grafico.innerHTML = charts
@@ -12,6 +13,11 @@ function generateGraphicByCoor(data){
             title: {
                 text: "Participacion X programa"
             },
+            subtitles:[
+                {
+                    text:select
+                }
+            ],
             data: [{
                     type: "pie",
                     startAngle: 25,

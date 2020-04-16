@@ -76,8 +76,8 @@ function generateGraphicByYearCoorRanges(arreglo){
 
 function generateGraphicByYearCoorRange(data){
     let charts = `<div id="chartByYearCoorRange" style="height: 400px;"> </div>`
+    let select = $('#coor').val()
        document.getElementById('yearRange').innerHTML = charts
-    
      var chart = new CanvasJS.Chart("chartByYearCoorRange", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,
@@ -85,6 +85,11 @@ function generateGraphicByYearCoorRange(data){
             title: {
                 text: "Rango de edades Edad"
             },
+            subtitles:[
+                {
+                    text:select
+                }
+            ],
             data: [{
                     type: "pie",
                     startAngle: 25,
@@ -106,6 +111,7 @@ function generateGraphicByYearCoorRange(data){
 function generateGraphicByYearCoor(data){
     
     let charts = `<div id="chartByYearCoor" style="height: 400px;"> </div>`
+    let select = $('#coor').val()
        document.getElementById('year').innerHTML = charts
     
      var chart = new CanvasJS.Chart("chartByYearCoor", {
@@ -115,6 +121,11 @@ function generateGraphicByYearCoor(data){
             title: {
                 text: "Edad participantes"
             },
+            subtitles:[
+                {
+                    text:select
+                }
+            ],
             data: [{
                     type: "pie",
                     startAngle: 25,

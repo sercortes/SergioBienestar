@@ -27,6 +27,7 @@ function getByTypes(data) {
 }
 
 function generateGraaa(data2){
+    let nombre = $('#modalActividadesAprendiz').text()
       var chart = new CanvasJS.Chart("chartContainer", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,
@@ -34,6 +35,11 @@ function generateGraaa(data2){
             title: {
                 text: "Eventos preferidos"
             },
+            subtitles:[{
+                text:nombre,
+                fontSize:14
+            }
+        ],
             data: [{
                     type: "pie",
                     startAngle: 235,

@@ -62,7 +62,8 @@ public class ActividadDAO {
     
     public ArrayList<?> getAllByword(Actividades activi) {
         try {
-            String sql = "SELECT ac.*, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
+            String sql = "SELECT ac.Id_actividad, ac.Nombre_actividad, ac.Tipo_actividad, ac.Fecha_inicio, "
+                    + "ac.Fecha_fin, ac.responsable, count(aa.Cod_aprendiz) 'cantidad' FROM Actividades ac "
                     + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
                     + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
                     + "WHERE ac.Nombre_actividad LIKE ? AND "
