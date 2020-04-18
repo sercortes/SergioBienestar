@@ -1,11 +1,10 @@
 
 var dataG
 $(document).ready(function(){
- 
-    menu('menuHome')
-    
-       
-       query()
+
+    setTimeout(() => {
+        query()
+    }, 4000)
     
 })
 
@@ -14,8 +13,7 @@ function query(){
      $.ajax({
         type: "GET",
         url: './SelectgetProgramsWithOutCoor',
-        datatype: 'json',
-        async: false
+        datatype: 'json'
     }).done(function(data){
         
         dataG = data

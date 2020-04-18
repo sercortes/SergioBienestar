@@ -6,7 +6,7 @@
 
 
 
-<c:if test="${USER.perfil != 5}">
+<c:if test="${USER.perfil != 5 && USER.perfil != 2}">
     <c:redirect url="/Home"/>
 </c:if>
 <!-- Container Fluid-->

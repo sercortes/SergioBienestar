@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </a>
-            <c:if test="${USER.perfil == 5}">
+            <c:if test="${USER.perfil == 5 || USER.perfil == 2}">
                 <a href="./Upload" class="menu hvr-forward w-100"> 
                     <div class="card text-white bg-warning mb-3">
                         <div class="card-body">
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 </a>
-            </c:if>
+                 </c:if>
 
         </div>
 
@@ -77,8 +77,7 @@
 
 
 
-            <c:if test="${USER.perfil == 5}"> 
-
+            <c:if test="${USER.perfil == 5 || USER.perfil == 2}">
                 <a href="./Responsables" class="menu hvr-forward w-100"> 
                     <div class="card text-white morado mb-3">
                         <div class="card-body">
@@ -87,7 +86,8 @@
                         </div>
                     </div>
                 </a>
-
+                </c:if>
+                <c:if test="${USER.perfil == 5 }">
                 <a href="./Users" class="menu hvr-forward w-100"> 
                     <div class="card text-white usuarios mb-3">
                         <div class="card-body">
@@ -96,8 +96,8 @@
                         </div>
                     </div>
                 </a>
+            </c:if>
 
-  </c:if>
             </div>
 
          
@@ -112,6 +112,7 @@
 
 <%@include file="/views/template/footer.jspf"%>
 
+    <script src="assets/js/project/home/menu.js" charset="utf-8"></script>
 <c:if test="${USER.perfil == 5}">
     <script src="assets/js/project/home/home.js" charset="utf-8"></script>
 </c:if>

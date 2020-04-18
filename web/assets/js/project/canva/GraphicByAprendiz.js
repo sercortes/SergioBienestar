@@ -1,4 +1,4 @@
-
+var dataP
 function getByTypes(data) {
     $.ajax({
         type: "GET",
@@ -22,9 +22,22 @@ function getByTypes(data) {
         }
         
         generateGraaa(data2)
+        
+        dataP = data
 
     })
 }
+
+$('#generateXlsAprendiz').click(function(){
+    let cabecera = {
+        columna1:'actividad',
+        columna2:'porcentaje'
+    }
+    for(var item of dataP){
+        item.cantidad=Math.round(item.cantidad)
+    }
+    exportCSVFile(cabecera, dataP, 'informeAprendiz',)
+})
 
 function generateGraaa(data2){
     let nombre = $('#modalActividadesAprendiz').text()

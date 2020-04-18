@@ -41,7 +41,7 @@
           <span>Estadísticas</span>
         </a>
       </li>
-      <c:if test="${USER.perfil == 5}">
+      <c:if test="${USER.perfil == 5 || USER.perfil == 2}">
       <li class="nav-item" id="menuUpload">
         <a class="nav-link hvr-icon-pop" href="./Upload">
           <i class="fas fa-file-excel hvr-icon"></i>
@@ -55,7 +55,8 @@
           <span>Códigos</span>
         </a>
       </li>
-      
+           </c:if>
+           <c:if test="${USER.perfil == 5 }">
       <li class="nav-item" id="menuUsers">
         <a class="nav-link hvr-icon-pop" href="./Users">
           <i class="fas fa-user-tie hvr-icon"></i>

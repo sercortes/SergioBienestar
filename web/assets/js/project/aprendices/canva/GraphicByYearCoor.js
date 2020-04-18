@@ -1,4 +1,6 @@
-
+var excelYears
+var excelYearsRange
+var selected
 function generateQueryYearCoor(data){
     let datos
   $.ajax({
@@ -30,6 +32,7 @@ function generateArrayStaticsYearCoor(data, total){
     }
     generateGraphicByYearCoor(array)
     generateGraphicByYearCoorRanges(array)
+    selected = $('#coor').val()
 }
 
 function generateGraphicByYearCoorRanges(arreglo){
@@ -71,44 +74,13 @@ function generateGraphicByYearCoorRanges(arreglo){
     arreglo.push(adultos)
     arreglo.push(adultosDos)
 
+    
     generateGraphicByYearCoorRange(arreglo)
 }
 
-function generateGraphicByYearCoorRange(data){
-    let charts = `<div id="chartByYearCoorRange" style="height: 400px;"> </div>`
-    let select = $('#coor').val()
-       document.getElementById('yearRange').innerHTML = charts
-     var chart = new CanvasJS.Chart("chartByYearCoorRange", {
-            theme: "light2", // "light1", "light2", "dark1", "dark2"
-            exportEnabled: true,
-            animationEnabled: true,
-            title: {
-                text: "Rango de edades Edad"
-            },
-            subtitles:[
-                {
-                    text:select
-                }
-            ],
-            data: [{
-                    type: "pie",
-                    startAngle: 25,
-                    toolTipContent: "<b>{label}</b>: {y}%",
-                    showInLegend: "true",
-                    legendText: "{label}",
-                    indexLabelFontSize: 16,
-                    indexLabel: "{label} - {y}%",
-                    dataPoints: 
-			data
-                    
-                }]
-        });
-        chart.render();
-        
-    
-}
-
 function generateGraphicByYearCoor(data){
+    
+    excelYears = data
     
     let charts = `<div id="chartByYearCoor" style="height: 400px;"> </div>`
     let select = $('#coor').val()
@@ -140,9 +112,66 @@ function generateGraphicByYearCoor(data){
                 }]
         });
         chart.render();
-        
-    
 }
  
+ $(document).on('click','#generateXlsCoorYear', function(){
+     
+     let cabecera = {
+         columna1:'edad',
+         columna2:'%'
+     }
+     for(var item of excelYears){
+         item.y= Math.round(parseInt(item.y))
+     }
+     
+     exportCSVFile(cabecera, excelYears, selected+'-EDADES')
+     
+ })
+ 
+ $(document).on('click', '#generateXlsCoorYearRanges',function(){
+     let cabecera = {
+         columna1:'rango de edades',
+         columna2:'%'
+     }
+     for(var item of excelYearsRange){
+         item.y=Math.round(parseInt(item.y))
+     }
+     
+     exportCSVFile(cabecera, excelYearsRange,'RANGO-EDADES-'+selected)
+ })
+ 
+ function generateGraphicByYearCoorRange(data){
+    
+    excelYearsRange = data
+    let charts = `<div id="chartByYearCoorRange" style="height: 400px;"> </div>`
+       document.getElementById('yearRange').innerHTML = charts
+     var chart = new CanvasJS.Chart("chartByYearCoorRange", {
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
+            animationEnabled: true,
+            title: {
+                text: "Rango de edades Edad"
+            },
+            subtitles:[
+                {
+                    text:selected
+                }
+            ],
+            data: [{
+                    type: "pie",
+                    startAngle: 25,
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabelFontSize: 16,
+                    indexLabel: "{label} - {y}%",
+                    dataPoints: 
+			data
+                    
+                }]
+        });
+        chart.render();
         
+    
+}       
     

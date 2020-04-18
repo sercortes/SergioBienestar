@@ -1,6 +1,22 @@
- 
+var dataE
+var titu
+$(document).on('click','#generateXlsPrograma', function(){
+    let cabecera = {
+        columna1:'ficha',
+        columna2:'%'
+    }
+
+    for(var item of dataE){
+        item.y=Math.round(parseInt(item.y))
+    }
+  
+    exportCSVFile(cabecera, dataE, titu+'-PARTICIPACIONES-FICHAS')
+  
+}) 
  function graphicByProgram(data){
+     dataE = data
         let titulo = document.getElementById('tittleAprendicesXPrograma').textContent
+        titu = titulo
           var chart = new CanvasJS.Chart("chartPrograma", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,

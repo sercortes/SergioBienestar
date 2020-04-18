@@ -93,15 +93,44 @@ function listarCoor(data) {
                                 </tfoot>
                             </table>
             <div id="graficos" class="page-break">
+    
+            </div>
+                <hr>
+            <div class="row">
+                <div class="col-md-10">
+                    
+                </div>
+                <div class="col-md-2">
+                    <button id="generateXlsCoorPrograma" type="button" class="btn btn-success float-right"><i class="far fa-file-excel"></i> Generar</button>
+                </div>
             </div>
                 <hr>
             <div id="year" class="page-break">
 
             </div>
                 <hr>
+            <div class="row">
+                <div class="col-md-10">
+                    
+                </div>
+                <div class="col-md-2">
+                    <button id="generateXlsCoorYear" type="button" class="btn btn-success float-right"><i class="far fa-file-excel"></i> Generar</button>
+                </div>
+            </div>
+                <hr>
             <div id="yearRange" class="page-break">
 
             </div>
+                <hr>
+            <div class="row">
+                <div class="col-md-10">
+                    
+                </div>
+                <div class="col-md-2">
+                    <button id="generateXlsCoorYearRanges" type="button" class="btn btn-success float-right"><i class="far fa-file-excel"></i> Generar</button>
+                </div>
+            </div>
+                <hr>
          <div id="buttons" class="m-3 float-right">
         <button id="generatePdf" type="button" class="btn btn-primary hvr-pulse-grow" onclick="printCoor()"><i class="fas fa-print"></i> Imprimir</button>`
 

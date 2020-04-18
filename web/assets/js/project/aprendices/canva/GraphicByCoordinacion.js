@@ -1,6 +1,10 @@
+
+var dataG
+var sel
 function generateGraphicByCoor(data){
-    
+    dataG = data
     let select = $('#coor').val()
+    sel = select
      let charts = `<div id="chartCoordinacion" style="height: 400px;"></div>`
         let grafico = document.getElementById('graficos')
        grafico.innerHTML = charts
@@ -33,3 +37,19 @@ function generateGraphicByCoor(data){
         });
         chart.render();
 }
+
+$(document).on('click', '#generateXlsCoorPrograma', function (){
+
+    let cabezera = {
+        columna1:'programa',
+        columna2:'%'
+    }
+
+    for(var item of dataG){
+        item.y=Math.round((item.y))
+    }
+    
+    exportCSVFile(cabezera, dataG, 'PARTICIPACION-PROGRAMAS-'+sel)
+    
+})
+

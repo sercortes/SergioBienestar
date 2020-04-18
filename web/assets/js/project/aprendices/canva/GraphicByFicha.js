@@ -1,4 +1,23 @@
-  
+var dataE
+var titu
+$(document).on('click', '#generateXlsFicha', function(){
+    let cabecera = {
+        columna1:'Dimensión',
+        columna2:'%'
+    }
+     let data = []
+    for(var item of dataE){
+        let ob = {
+            label:item.label,
+            y:Math.round(parseInt(item.y))
+        }
+        data.push(ob)
+    }
+   
+    
+    exportCSVFile(cabecera, data, titu)
+    
+})  
  function graphicByFicha(data){
     
     $.ajax({
@@ -20,9 +39,9 @@
             }
             data2.push(ob)
         }
-        
+        dataE = data2
         let titulos = document.getElementById('tittleListAprendices').textContent
-        
+        titu = titulos
           var chart = new CanvasJS.Chart("chartFicha", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,

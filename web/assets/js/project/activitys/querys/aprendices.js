@@ -90,7 +90,7 @@ $('#modalThree').on('shown.bs.modal', function generargrafica(){
 
 function generateGrap(data){
     
-         var chart = new CanvasJS.Chart("graphicOne", {
+        let chart = new CanvasJS.Chart("graphicOne", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,
             animationEnabled: true,
@@ -103,7 +103,6 @@ function generateGrap(data){
             ],
             data: [{
                     type: "pie",
-                    startAngle: 235,
                     toolTipContent: "<b>{label}</b>: {y}%",
                     showInLegend: "true",
                     legendText: "{label}",
@@ -115,9 +114,21 @@ function generateGrap(data){
                 }]
         });
         chart.render();
-
-    
 }
+
+$('#generateXls').click(function(){
+    
+    let cabecera ={
+        hola:'Programa',
+        dos:'Porcentaje'
+    }
+    for(let item of dataGr){
+        item.y=Math.round(parseInt(item.y))
+    }
+    
+    exportCSVFile(cabecera,dataGr, activ.nombre.toString().substring(0, 60))
+    
+})
 
 
 function generateTableAprendicess(data){
@@ -188,5 +199,4 @@ $('#prints').click(function(){
 
 function description(){
     $('#titulosD').text('NOMBRE ACTIVIDAD : '+activ.nombre)
-       $('#dimensionD').text('DIMENSIÓN : '+activ.tipo.toString().toUpperCase())
 }
