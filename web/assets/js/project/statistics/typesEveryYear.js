@@ -1,4 +1,6 @@
-
+var dataOne
+var dataTwo
+var titlee
 function graphicByTypesYear(data) {
 
     $.ajax({
@@ -13,6 +15,7 @@ function graphicByTypesYear(data) {
         addDivs()
         
         let select = document.getElementById('TypeActivity').value
+        titlee = select
         
         generateOther(castArray(data), 'graphicOne', '# aprendices', 'light2', select)
 
@@ -42,11 +45,47 @@ function addTitle(){
     document.getElementById('tituloInforme').innerHTML = datos
 }
 
+$(document).on('click','#generateXlsOne', function(){
+    let cabecera = {
+        columna1:'año',
+        columna:'valor'
+    }
+    let dataM = []
+    for(var item of dataOne){
+        var ob ={
+            label:item.label,
+            y:item.y
+        }
+        dataM.push(ob)
+    }
+    exportCSVFile(cabecera, dataM, titlee+'participantes')
+})
+
+$(document).on('click', '#generateXlsTwo', function(){
+    let cabecera = {
+        columna1:'año',
+        columna:'%'
+    }
+    let dataM = []
+    for(var item of dataTwo){
+        var ob ={
+            label:item.label,
+            y:Math.round(parseInt(item.y)) 
+        }
+        dataM.push(ob)
+    }
+    exportCSVFile(cabecera, dataM, titlee+'%-participantes')
+})
+
 function addDivs(){
     let divOne = document.getElementById('outputOne')
-    divOne.innerHTML = '<div id="graphicOne" style="height: 400px;"></div><hr>'
+    divOne.innerHTML = `<div id="graphicOne" style="height: 400px;"></div><hr>
+                        <button id="generateXlsOne" type="button" class="btn btn-success mb-3 float-right">
+                        <i class="far fa-file-excel"></i> Generar</button>`
     let divTwo = document.getElementById('outPutTwo')
-    divTwo.innerHTML = '<div id="graphicTwo" style="height: 400px;"></div>'
+    divTwo.innerHTML = `<div id="graphicTwo" style="height: 400px;"></div><hr>
+                        <button id="generateXlsTwo" type="button" class="btn btn-success mb-3 float-right">
+                        <i class="far fa-file-excel"></i> Generar</button>`
 }
 
 function castArray(data) {
@@ -80,7 +119,7 @@ function castArrayTwo(data) {
 }
 
 function generateOther(data, div, title, theme, sub) {
-
+    dataOne = data
     var chart = new CanvasJS.Chart(div, {
         animationEnabled: true,
         exportEnabled: true,
@@ -114,6 +153,7 @@ function generateOther(data, div, title, theme, sub) {
 
 
 function generateGraaaTwo(data, div, title, theme, sub){
+    dataTwo = data
       var chart = new CanvasJS.Chart(div, {
             theme: theme, // "light1", "light2", "dark1", "dark2"
             exportEnabled: true,
