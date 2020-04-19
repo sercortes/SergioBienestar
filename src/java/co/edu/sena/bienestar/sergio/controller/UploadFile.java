@@ -9,9 +9,12 @@ import co.edu.sena.bienestar.sergio.dao.ActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.AprendizActividadDAO;
 import co.edu.sena.bienestar.sergio.dao.AprendizDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
+import co.edu.sena.bienestar.sergio.dao.LogMigrationDAO;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
 import co.edu.sena.bienestar.sergio.dto.ActividadesAprendiz;
 import co.edu.sena.bienestar.sergio.dto.Aprendiz;
+import co.edu.sena.bienestar.sergio.dto.LogMigration;
+import co.edu.sena.bienestar.sergio.dto.Usuario;
 import co.edu.sena.bienestar.sergio.util.readXls;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -62,6 +65,7 @@ public class UploadFile extends HttpServlet {
         // creación de variables para el objeto actividadesAprendiz
         int idActividad = 0;
         int idAprendiz = 0;
+        int contadorRegistros = 0;
 
         // instancia de objeto de tabla intermedia
         ActividadesAprendiz actividadesAprendiz = new ActividadesAprendiz();
@@ -88,6 +92,7 @@ public class UploadFile extends HttpServlet {
                 if (apren.getId_aprendiz() == 0) {
                     // inserción del aprendiz
                     idAprendiz = aprendizDAO.insertReturn(acti);
+                    contadorRegistros++;
                 } else {
                     // de lo contrario se trae el id de la consulta
                     idAprendiz = apren.getId_aprendiz();
@@ -100,6 +105,7 @@ public class UploadFile extends HttpServlet {
                 if (activi.getIdRealActividad() == 0) {
                     // si no existe, se inserta la actividad
                     idActividad = actividadDAO.insertReturn(acti.getActividades());
+                    contadorRegistros++;
                 } else {
                     // si existe, solo se trae el id pero no se agrega de nuevo
                     idActividad = activi.getIdRealActividad();
@@ -128,6 +134,14 @@ public class UploadFile extends HttpServlet {
 
         // imprimiendo el tamaño de la lista insertada
         new Gson().toJson(lista.size() + " :D", response.getWriter());
+        
+        // validación para la tabla log
+        if (lista.size() > 0) {
+            // para la tabla log
+            contadorRegistros = contadorRegistros+lista.size();
+            generateLog(request, contadorRegistros);
+        }
+        
         // cerrando conexión y otros componentes
         actividadDAO.CloseAll();
         aprendizDAO.CloseAll();
@@ -135,6 +149,16 @@ public class UploadFile extends HttpServlet {
 
     } // cierre del método proccessRequest
 
+    // método para insertar en la tabla log
+    public void generateLog(HttpServletRequest request, int cont){
+             Usuario usuario = (Usuario) request.getSession().getAttribute("USER");
+            LogMigration logMigration = new LogMigration(usuario.getEmail(), cont+"");
+            Conexion connTwo = new Conexion();
+            LogMigrationDAO logMigrationDAO = new LogMigrationDAO(connTwo.getConnection());
+            logMigrationDAO.insertReturn(logMigration);
+            logMigrationDAO.CloseAll();
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
