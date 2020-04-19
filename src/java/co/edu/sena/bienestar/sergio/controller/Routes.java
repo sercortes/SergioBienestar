@@ -72,6 +72,11 @@ public class Routes extends HttpServlet {
                 rd = request.getRequestDispatcher("/views/users/user.jsp");
                 rd.forward(request, response);
                 break;
+                
+                case "/bienestar/Profile":
+                rd = request.getRequestDispatcher("/views/system/profile/user.jsp");
+                rd.forward(request, response);
+                break;
         }
         
         

@@ -51,6 +51,7 @@
         <url-pattern>/Statistics</url-pattern>
         <url-pattern>/Responsables</url-pattern>
         <url-pattern>/Users</url-pattern>
+        <url-pattern>/Profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>
@@ -76,6 +77,7 @@
         <url-pattern>/getCoor</url-pattern>
         <url-pattern>/getYears</url-pattern>
         <url-pattern>/getPerfil</url-pattern>
+        <url-pattern>/getUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UploadFile</servlet-name>
@@ -103,6 +105,7 @@
         <url-pattern>/deluser</url-pattern>
         <url-pattern>/editUser</url-pattern>
         <url-pattern>/updatePass</url-pattern>
+        <url-pattern>/updatePassIndividual</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

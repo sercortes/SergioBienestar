@@ -10,6 +10,7 @@ import co.edu.sena.bienestar.sergio.dao.AprendizDAO;
 import co.edu.sena.bienestar.sergio.dao.Conexion;
 import co.edu.sena.bienestar.sergio.dao.PerfilDAO;
 import co.edu.sena.bienestar.sergio.dto.Actividades;
+import co.edu.sena.bienestar.sergio.dto.Usuario;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -57,6 +59,12 @@ public class Select extends HttpServlet {
                 case "/bienestar/getPerfil":
 
                 getPerfil(request, response);
+
+                break;
+                
+                case "/bienestar/getUser":
+
+                getUser(request, response);
 
                 break;
 
@@ -141,6 +149,19 @@ public class Select extends HttpServlet {
         response.setContentType("application/json");
         perfilDAO.CloseAll();
         new Gson().toJson(perfiles, response.getWriter());
+        
+    }
+
+    private void getUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+         request.getSession();
+        
+        Usuario usuario = (Usuario) request.getSession().getAttribute("USER");
+
+        response.setContentType("application/json");
+
+        new Gson().toJson(usuario.getEmail(), response.getWriter());
         
     }
 

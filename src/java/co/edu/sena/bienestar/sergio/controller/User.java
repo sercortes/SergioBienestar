@@ -59,9 +59,15 @@ public class User extends HttpServlet {
                     
                     break;
                     
-                    case "/bienestar/updatePass":
+                case "/bienestar/updatePass":
                     
                     updatePass(request, response);
+                    
+                    break;
+                    
+                    case "/bienestar/updatePassIndividual":
+                    
+               updatePassIndividual(request, response);
                     
                     break;
                     
@@ -167,6 +173,26 @@ public class User extends HttpServlet {
         UsuarioDAO usuarioDAO = new UsuarioDAO(conexion.getConnection());
         Usuario usuario = new Usuario();
         usuario.setId(Integer.parseInt(request.getParameter("id")));
+        usuario.setPass(request.getParameter("pass"));
+
+       boolean estado = usuarioDAO.updatePass(usuario);
+
+        usuarioDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(estado, response.getWriter());
+        
+    }
+
+    private void updatePassIndividual(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        
+        Conexion conexion = new Conexion();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(conexion.getConnection());
+        Usuario usuarioSe = (Usuario) request.getSession().getAttribute("USER");
+        Usuario usuario = new Usuario();
+        
+        usuario.setId(usuarioSe.getId());
         usuario.setPass(request.getParameter("pass"));
 
        boolean estado = usuarioDAO.updatePass(usuario);
