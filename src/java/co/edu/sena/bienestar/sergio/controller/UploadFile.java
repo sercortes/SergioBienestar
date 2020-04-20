@@ -46,7 +46,12 @@ public class UploadFile extends HttpServlet {
         Part file = request.getPart("fileToUpload");
 
         readXls read = new readXls();
-
+  
+        if (!read.validationXls(file)) {
+             new Gson().toJson(0, response.getWriter());
+            throw new Exception();
+        }
+        
         // método para leer xls
         ArrayList<Aprendiz> lista = read.readingXls(file);
 
@@ -131,15 +136,17 @@ public class UploadFile extends HttpServlet {
             }
 
         }
-
-        // imprimiendo el tamaño de la lista insertada
-        new Gson().toJson(lista.size() + " :D", response.getWriter());
         
         // validación para la tabla log
         if (lista.size() > 0) {
             // para la tabla log
             contadorRegistros = contadorRegistros+lista.size();
             generateLog(request, contadorRegistros);
+            
+            // imprimiendo el tamaño de la lista insertada
+            new Gson().toJson(lista.size() + " :D", response.getWriter());
+        }else{
+            new Gson().toJson(1, response.getWriter());
         }
         
         // cerrando conexión y otros componentes

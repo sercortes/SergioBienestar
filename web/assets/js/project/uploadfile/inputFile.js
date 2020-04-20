@@ -6,32 +6,35 @@ $('#loader').hide()
 
 menu('menuUpload')
 
+})
+
 $("#send").click(function (e) {
+    
+    e.preventDefault()
 
     let file = $('#fileToUpload').val()
+    
+    let size = $('#fileToUpload')[0].files[0].size
+    let sizeDefined = Math.round((size / 1024))
 
     if (file == "") {
-        Swal.fire({
-            icon: 'info',
-            title: 'Seleccione un archivo',
-            showConfirmButton: true,
-            timer: 1500,
-        })
+        messageInfo('Seleccione un archivo')
         return false
     }
-
-    if (!checkextension()) {
+    
+     if (!checkextension()) {
 
         return false
     }
+    
+    if (sizeDefined > 14000) {
+        messageError('archivo muy grande')
+        return false
+    }
 
-
-
-    e.preventDefault()
 
     var form = $('#formulario')[0]
     var data = new FormData(form)
-
 
     $('#loader').show()
 
@@ -49,10 +52,12 @@ $("#send").click(function (e) {
         cache: false,
         success: function (data) {
 
-            console.log(data)
+           console.log(data)
             
-                if (data == '0') {
-                    generateError()
+                if (data === '0') {
+                    messageError('Seleccione un archivo válido')
+                }else if(data === '1'){
+                    messageInfo('archivo ya subido')
                 }else{
                     generateSucces()
                 }
@@ -66,7 +71,7 @@ $("#send").click(function (e) {
             
             hideAnimation()
             
-            generateError()
+            messageError('=(')
 
         }
     });
@@ -94,28 +99,15 @@ function generateSucces() {
     rgba(0,0,123,0.4)
     url("assets/img/cat3.gif")
     left top
-    no-repeat
-  `
+    no-repeat`
     });
 }
-function generateError() {
-    Swal.fire({
-        icon: 'error',
-        title: 'Seleccione un archivo válido',
-        showConfirmButton: true
-    })
 
-}
 
 function checkextension() {
     var file = document.querySelector("#fileToUpload");
     if (/\.(xls)$/i.test(file.files[0].name) === false) {
-        Swal.fire({
-            icon: 'info',
-            title: 'Seleccione un archivo válido',
-            showConfirmButton: true,
-            timer: 1500
-        })
+            messageInfo('Seleccione un archivo válido')
         return false
     } else {
         return true
@@ -124,4 +116,3 @@ function checkextension() {
 
 
 
-})
