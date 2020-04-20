@@ -69,24 +69,20 @@ public class readXls {
 
         //objeto bandera
         Actividades actividad;
-
-        // lectura el archivo xls
-        for (Row row : sheet1) {
-            //objetos para agregar a la lista
+        
+        for (int i = 3; i < sheet1.getLastRowNum()+1; i++) {
+            Row rows = sheet1.getRow(i);
+            
             aprendiz = new Aprendiz();
             actividades = new Actividades();
+            
+            for (Cell cell : rows) {
+                switch (formulaEvaluator.evaluateInCell(cell).getCellType()) {
 
-            if (row.getRowNum() != 2) {
+                // lectura de campos de tipo caracter
+                case Cell.CELL_TYPE_STRING:
 
-                for (Cell cell : row) {
-
-                    switch (formulaEvaluator.evaluateInCell(cell).getCellType()) {
-
-                        // lectura de campos de tipo caracter
-                        case Cell.CELL_TYPE_STRING:
-                            
-
-                                switch (cell.getColumnIndex()) {
+                    switch (cell.getColumnIndex()) {
                                     case 3:
                                         // separando tipo de documento y documento
                                         documento = cell.getStringCellValue().split(" ");
@@ -164,18 +160,19 @@ public class readXls {
                                         break;
 
                                 }
-                            
-                            break;
-                        // lectura de campos enteros
+
+                    break;
+                    // lectura de campos enteros
                         case Cell.CELL_TYPE_NUMERIC:
                         case 12:
                             estrato = (int) cell.getNumericCellValue();
                             aprendiz.setEstrato(Integer.toString(estrato));
                             break;
-                    }
-                }
-
-                // validaciones, para que no se repitan datos en la bd
+            }
+                
+            }
+            
+             // validaciones, para que no se repitan datos en la bd
                 actividad = actividadDAO.getIdActividad(actividades);
 
                 // retorna verdadero si esta en la bd
@@ -189,8 +186,7 @@ public class readXls {
                     lista.add(aprendiz);
 
                 } // cierre de comprobación de actividad 
-
-            }
+            
         }
 
         // limpiando memoria por lectura del archivo

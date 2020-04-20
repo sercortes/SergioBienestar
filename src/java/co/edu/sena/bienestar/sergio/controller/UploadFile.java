@@ -17,6 +17,7 @@ import co.edu.sena.bienestar.sergio.dto.LogMigration;
 import co.edu.sena.bienestar.sergio.dto.Usuario;
 import co.edu.sena.bienestar.sergio.util.readXls;
 import com.google.gson.Gson;
+import com.mysql.jdbc.StringUtils;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -54,6 +55,15 @@ public class UploadFile extends HttpServlet {
         
         // método para leer xls
         ArrayList<Aprendiz> lista = read.readingXls(file);
+        
+         // comprobando que no existan objetos nulos
+         for (Aprendiz item: lista) {
+             if (!validateAprendiz(item)) {
+                 new Gson().toJson(0, response.getWriter());
+                throw new Exception();
+             }
+        }
+            
 
         // instancia de conexion y los DAO para la inserción
         Conexion conexion = new Conexion();
@@ -81,11 +91,6 @@ public class UploadFile extends HttpServlet {
 
         // lectura de la lista de objetos del archivo
         for (Aprendiz acti : lista) {
-
-            // comprobando que no existan objetos nulos
-            if (acti.getDocumento_aprendiz() == null) {
-                throw new Exception();
-            }
 
             // inserción del aprendiz en la bd
             // bandera para verificar la existencia del aprendiz
@@ -190,4 +195,74 @@ public class UploadFile extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
+    
+    
+    
+     public boolean validateAprendiz(Aprendiz aprendiz){
+        boolean estado = true;
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getDocumento_aprendiz())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getTipo_documento())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getNombre_aprendiz())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getEmail_aprendiz())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getMunicipio())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getGenero())) {
+            estado = false;
+        }
+        
+        if (aprendiz.getFecha_nacimiento() == null) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getTipo_poblacion())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getEstrato())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getFicha())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getNivelFormacion())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getActividades().getTipo_actividad())) {
+            estado = false;
+        }
+        
+        if (StringUtils.isNullOrEmpty(aprendiz.getActividades().getNombre_actividad())) {
+            estado = false;
+        }
+        
+        if (aprendiz.getActividades().getFecha_inicio() == null) {
+            estado = false;
+        }
+        
+        if (aprendiz.getActividades().getFecha_fin() == null) {
+            estado = false;
+        }
+        
+        return estado;
+        
+    }
+    
 }
