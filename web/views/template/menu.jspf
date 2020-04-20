@@ -64,6 +64,14 @@
         </a>
       </li>
       </c:if>
+      <c:if test="${USER.perfil == 5 }">
+      <li class="nav-item" id="menuLogs">
+        <a class="nav-link hvr-icon-pop" href="./Logs">
+          <i class="fas fa-server hvr-icon"></i>
+          <span>Sistema</span>
+        </a>
+      </li>
+      </c:if>
       
 
       <hr class="sidebar-divider">

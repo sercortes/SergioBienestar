@@ -53,7 +53,7 @@
             </a>
             <c:if test="${USER.perfil == 5 || USER.perfil == 2}">
                 <a href="./Upload" class="menu hvr-forward w-100"> 
-                    <div class="card text-white bg-warning mb-3">
+                    <div class="card text-white azulOne mb-3">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-database"></i> Importe la Base de Datos</h5>
                             <p class="card-text">Restaure la BD para que la información quede actualizada.</p>
@@ -61,7 +61,16 @@
                     </div>
                 </a>
                  </c:if>
-
+            <c:if test="${USER.perfil == 5 }">
+            <a href="./Logs" class="menu hvr-forward w-100"> 
+                    <div class="card text-white bg-warning mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-exclamation-triangle"></i> Eventos del sistema</h5>
+                            <p class="card-text">Gestione los diferentes sucesos del sistema.</p>
+                        </div>
+                    </div>
+                </a>
+            </c:if>
         </div>
 
         <div class="col-sm-6">

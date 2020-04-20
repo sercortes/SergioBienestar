@@ -73,7 +73,7 @@ public class readXls {
         
         // lectura el archivo xls
         for (Row row : sheet1) {
-            
+        
             aprendiz = new Aprendiz();
             actividades = new Actividades();
             

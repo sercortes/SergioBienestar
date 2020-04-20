@@ -36,6 +36,10 @@
         <servlet-name>User</servlet-name>
         <servlet-class>co.edu.sena.bienestar.sergio.controller.User</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EventsLogs</servlet-name>
+        <servlet-class>co.edu.sena.bienestar.sergio.controller.EventsLogs</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -52,6 +56,7 @@
         <url-pattern>/Responsables</url-pattern>
         <url-pattern>/Users</url-pattern>
         <url-pattern>/Profile</url-pattern>
+        <url-pattern>/Logs</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>
@@ -106,6 +111,10 @@
         <url-pattern>/editUser</url-pattern>
         <url-pattern>/updatePass</url-pattern>
         <url-pattern>/updatePassIndividual</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EventsLogs</servlet-name>
+        <url-pattern>/getEventsLogs</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

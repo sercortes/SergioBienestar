@@ -6,6 +6,7 @@
 package co.edu.sena.bienestar.sergio.dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,7 +17,7 @@ public class LogMigration {
     private String id;
     private String email;
     private String registros;
-    private Date fechaModif;
+    private Timestamp fechaModif;
 
     public LogMigration() {
     }
@@ -26,7 +27,7 @@ public class LogMigration {
         this.registros = registros;
     }
 
-    public LogMigration(String id, String email, String registros, Date fechaModif) {
+    public LogMigration(String id, String email, String registros, Timestamp fechaModif) {
         this.id = id;
         this.email = email;
         this.registros = registros;
@@ -57,11 +58,11 @@ public class LogMigration {
         this.registros = registros;
     }
 
-    public Date getFechaModif() {
+    public Timestamp getFechaModif() {
         return fechaModif;
     }
 
-    public void setFechaModif(Date fechaModif) {
+    public void setFechaModif(Timestamp fechaModif) {
         this.fechaModif = fechaModif;
     }
 

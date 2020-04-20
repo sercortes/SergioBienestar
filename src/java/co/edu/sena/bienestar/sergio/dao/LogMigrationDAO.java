@@ -10,6 +10,8 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -43,6 +45,27 @@ public class LogMigrationDAO {
         }catch(Exception e){
             System.out.println(e);
             return false;
+        }
+    }
+    public ArrayList<LogMigration> getLogs() {
+        try {
+            String sql = "SELECT email, registros, modificado FROM LogMigration";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<LogMigration> list = new ArrayList<LogMigration>();
+            LogMigration logMigration;
+            while (rs.next()) {
+                logMigration = new LogMigration();
+                logMigration.setEmail(rs.getString("email"));
+                logMigration.setRegistros(rs.getString("registros"));
+                logMigration.setFechaModif(rs.getTimestamp("modificado"));
+                
+                list.add(logMigration);
+            }
+            return (ArrayList<LogMigration>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
         }
     }
      
