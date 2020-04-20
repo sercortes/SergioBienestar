@@ -33,22 +33,19 @@ function aprendices(){
     }).done(function (data) {
       
         generateTableAprendicess(data)
-        resultGraphicOne(activ.id)
        
     })
     
 
 }
 
-function resultGraphicOne(id){
-    
-    let dataP
-    
-    $.ajax({
+$('#modalThree').on('shown.bs.modal', function generargrafica(){
+      
+      $.ajax({
         type:'GET',
         url: 'SelectStatiticsByActivity',
         data:{
-            id:id
+            id:activ.id
         },
         dataType: 'JSON'
     }).done(function(data){
@@ -77,14 +74,9 @@ function resultGraphicOne(id){
         }
         
         dataGr = dataP
+        generateGrap(dataP)
       
     })
-    
-     
-}
-
-$('#modalThree').on('shown.bs.modal', function generargrafica(){
-      generateGrap(dataGr)
 });
 
 
