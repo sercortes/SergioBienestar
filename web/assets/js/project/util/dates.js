@@ -162,7 +162,7 @@ const csv = convertToCSV(jsonObject);
 
 const exportName = fileName + ".csv" || "export.csv";
 
-const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+const blob = new Blob([csv], { type: "text/csv;charset=utf-18;" });
  if (navigator.msSaveBlob) {
   navigator.msSaveBlob(blob, exportName);
  } else {

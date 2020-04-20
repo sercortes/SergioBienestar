@@ -17,14 +17,14 @@ import java.util.concurrent.TimeUnit;
  */
 public class events {
 
-    public static void main(String[] args) {
-        final ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-        ses.scheduleWithFixedDelay(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Time is "+new Date());
-            }
-        }, 1, 1, TimeUnit.MINUTES);
-    }
+//    public static void main(String[] args) {
+//        final ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+//        ses.scheduleWithFixedDelay(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println("Time is "+new Date());
+//            }
+//        }, 1, 1, TimeUnit.MINUTES);
+//    }
 
 }

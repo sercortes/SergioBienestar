@@ -20,9 +20,6 @@
                     No funciona con archivos modificados
                 </li>
                 <li>
-                    Debe subir el archivo que contenga todas las categorias
-                </li>
-                <li>
                     Debe subir el archivo tal cual se descargo de sofia plus
                 </li>
             </ul>

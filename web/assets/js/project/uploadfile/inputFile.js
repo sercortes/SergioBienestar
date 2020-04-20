@@ -14,9 +14,6 @@ $("#send").click(function (e) {
 
     let file = $('#fileToUpload').val()
     
-    let size = $('#fileToUpload')[0].files[0].size
-    let sizeDefined = Math.round((size / 1024))
-
     if (file == "") {
         messageInfo('Seleccione un archivo')
         return false
@@ -26,6 +23,9 @@ $("#send").click(function (e) {
 
         return false
     }
+    
+    let size = $('#fileToUpload')[0].files[0].size
+    let sizeDefined = Math.round((size / 1024))
     
     if (sizeDefined > 14000) {
         messageError('archivo muy grande')
