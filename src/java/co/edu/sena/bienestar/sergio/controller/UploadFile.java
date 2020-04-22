@@ -49,6 +49,7 @@ public class UploadFile extends HttpServlet {
 
         readXls read = new readXls();
   
+        //validación del excel de acuerdo a su estructura
         if (!read.validationXls(file)) {
              new Gson().toJson(0, response.getWriter());
             throw new Exception();
@@ -61,12 +62,12 @@ public class UploadFile extends HttpServlet {
          for (Aprendiz item: lista) {
              if (!validateAprendiz(item)) {
                  new Gson().toJson(0, response.getWriter());
+                 // imprimiendo objetos por consola que contenga errores
                  System.out.println(item.toString());
                 throw new Exception();
              }
         }
-            
-
+         
         // instancia de conexion y los DAO para la inserción
         Conexion conexion = new Conexion();
         Connection cone = conexion.getConnection();
@@ -91,14 +92,13 @@ public class UploadFile extends HttpServlet {
         Actividades activi;
         Aprendiz apren;
 
+        try {
+        
         // lectura de la lista de objetos del archivo
         for (Aprendiz acti : lista) {
 
-            // inserción del aprendiz en la bd
             // bandera para verificar la existencia del aprendiz
             apren = aprendizDAO.getIdAprendiz(acti);
-
-            try {
 
                 //si el aprendiz no existe se crea uno nuevo
                 if (apren.getId_aprendiz() == 0) {
@@ -129,7 +129,9 @@ public class UploadFile extends HttpServlet {
 
                 // insertando en la tabla intermedia
                 aprendizActividadDAO.insertReturn(actividadesAprendiz);
-
+                
+        } // cierre del for que recorre la lista
+        
                 // guardando todos lo cambios en la bd
                 cone.commit();
             } catch (SQLException sql) {
@@ -141,8 +143,6 @@ public class UploadFile extends HttpServlet {
                     System.out.println(sq);
                 }
             }
-
-        }
         
         // validación para la tabla log
         if (lista.size() > 0) {
@@ -150,8 +150,8 @@ public class UploadFile extends HttpServlet {
             contadorRegistros = contadorRegistros+lista.size();
             generateLog(request, contadorRegistros);
             
-            // imprimiendo el tamaño de la lista insertada
-            new Gson().toJson(lista.size() + " :D", response.getWriter());
+            // imprimiendo el tamaño de los registros agregados
+            new Gson().toJson(contadorRegistros + " :D", response.getWriter());
         }else{
             new Gson().toJson(1, response.getWriter());
         }
