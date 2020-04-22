@@ -27,4 +27,11 @@ public class events {
 //        }, 1, 1, TimeUnit.MINUTES);
 //    }
 
+    public static void main(String[] args) {
+        String nombre = "343454";
+        System.out.println(nombre.matches("[a-zA-z]+([ '-][a-zA-Z]+)*"));
+                
+                
+    }
+    
 }

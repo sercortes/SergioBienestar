@@ -16,12 +16,17 @@ public class returnString {
 
             case "DESARROLLO DE APLICACIONES PARA DISPOSITIVOS MOVILES.":
                     return "TELEINFORMÁTICA";
-                    
             
             case "ANALISIS Y DESARROLLO DE SISTEMAS DE INFORMACION":
                 return "TELEINFORMÁTICA";
+                
+            case "ANÁLISIS Y DESARROLLO DE SISTEMAS DE INFORMACIÓN":
+                return "TELEINFORMÁTICA";
 
             case "GESTION DE REDES DE DATOS":
+                return "TELEINFORMÁTICA";
+                
+            case "GESTIÓN DE REDES DE DATOS":
                 return "TELEINFORMÁTICA";
 
             case "MANTENIMIENTO DE EQUIPOS DE COMPUTO, DISEÑO E INSTALACION DE CABLEADO ESTRUCTURADO":
@@ -39,6 +44,7 @@ public class returnString {
             case "PROGRAMACION DE SOFTWARE":
                 return "TELEINFORMÁTICA";
 
+                
             case "ANIMACION 3D":
                 return "INDUSTRIAS CREATIVAS";
 
@@ -50,12 +56,16 @@ public class returnString {
 
             case "PRODUCCION DE MEDIOS AUDIOVISUALES DIGITALES":
                 return "INDUSTRIAS CREATIVAS";
+            
+            case "PRODUCCIÓN DE MEDIOS AUDIOVISUALES DIGITALES":
+                return "INDUSTRIAS CREATIVAS";
 
             case "PRODUCCION DE MULTIMEDIA":
                 return "INDUSTRIAS CREATIVAS";
 
             case "DISEÑO E INTEGRACION DE MULTIMEDIA":
                 return "INDUSTRIAS CREATIVAS";
+                
 
             case "GESTIÓN LOGÍSTICA":
                 return "LOGÍSTICA";
@@ -81,7 +91,28 @@ public class returnString {
             case "OPERACIÓN DE EVENTOS":
                 return "LOGÍSTICA";
                 
+            case "LOGÍSTICA EN ALMACENES DE CADENA":
+                return "LOGÍSTICA";
                 
+            case "SERVICIOS DE APOYO LOGISTICO":
+                return "LOGÍSTICA";
+                
+            case "DISTRIBUCIÓN FÍSICA INTERNACIONAL":
+                return "LOGÍSTICA";
+                
+             case "OPERACIONES COMERCIALES EN ALMACENES DE CADENA":
+                return "LOGÍSTICA"; 
+                
+            case "DESARROLLO DE OPERACIONES LOGÍSTICAS EN LA CADENA DE ABASTECIMIENTO":
+                return "LOGÍSTICA"; 
+                
+                
+            case "DIRECCIÓN DE VENTAS":
+                return "MERCADEO";
+                
+            case "COMERCIALIZACIÓN DE PRODUCTOS MASIVOS":
+                return "MERCADEO";
+                 
             case "DISEÑO Y DESARROLLO DE INVESTIGACIONES DE MERCADO":
                 return "MERCADEO";
                 
@@ -102,6 +133,9 @@ public class returnString {
 
             case "GESTION COMERCIAL Y TELEMERCADEO EN CONTACT CENTER":
                 return "MERCADEO";
+                
+            case "GESTIÓN COMERCIAL Y TELEMERCADEO EN CONTACT CENTER":
+                return "MERCADEO";
 
             case "BILINGUAL EXPERT ON BUSINESS PROCESS OUTSOURCING":
                 return "MERCADEO";
@@ -109,7 +143,35 @@ public class returnString {
             case "ASESORIA COMERCIAL":
                     return "MERCADEO";
                     
+                    
+            case "EXCEL BASICO":
+                    return "VIRTUALIZACIÓN";
+                    
+            case "ENGLISH B2 FOCUSED ON THE BUSINESS PROCESSES INDUSTRY	":
+                    return "VIRTUALIZACIÓN";
+                    
+            case "ENGLISH B1 FOCUSED ON THE BUSINESS PROCESSES INDUSTRY":
+                    return "VIRTUALIZACIÓN";
                 
+            case "EMPRENDEDOR EN ESTRATEGIAS DE COMERCIALIZACIÓN PARA LA PRODUCTIVIDAD RURAL":
+                    return "VIRTUALIZACIÓN";
+                
+            case "AUTOCAD 2D":
+                    return "VIRTUALIZACIÓN";
+                
+            case "MANEJO DE 3D STUDIO MAX DESIGN CONCEPTOS GENERALES":
+                    return "VIRTUALIZACIÓN";
+                
+            case "MANEJO Y ADMINISTRACIÓN DE DATOS CON LAS HERRAMIENTAS BÁSICAS DE ACCESS MS":
+                    return "VIRTUALIZACIÓN";
+                
+            case "APLICACION DE TECNICAS DE DIAGNOSTICO EN CIBERSEGURIDAD":
+                    return "VIRTUALIZACIÓN";
+                
+            case "DISEÑAR PÁGINAS WEB CON HTML Y JAVASCRIP":
+                    return "VIRTUALIZACIÓN";
+                    
+                    
             default:
                 return "n/a";
         }

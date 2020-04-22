@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.servlet.annotation.MultipartConfig;
+//import org.apache.commons.validator.routines.EmailValidator;
 
 /**
  *
@@ -60,6 +61,7 @@ public class UploadFile extends HttpServlet {
          for (Aprendiz item: lista) {
              if (!validateAprendiz(item)) {
                  new Gson().toJson(0, response.getWriter());
+                 System.out.println(item.toString());
                 throw new Exception();
              }
         }
@@ -172,22 +174,14 @@ public class UploadFile extends HttpServlet {
     }
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
+            System.out.println(ex+" =)");
             Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
+             new Gson().toJson(0, response.getWriter());
         }
     }
 
@@ -199,7 +193,10 @@ public class UploadFile extends HttpServlet {
     
     
      public boolean validateAprendiz(Aprendiz aprendiz){
-        boolean estado = true;
+        
+         boolean estado = true;
+        
+//        EmailValidator validatorE = EmailValidator.getInstance();
         
         if (StringUtils.isNullOrEmpty(aprendiz.getDocumento_aprendiz())) {
             estado = false;
@@ -217,6 +214,10 @@ public class UploadFile extends HttpServlet {
             estado = false;
         }
         
+//         if (!validatorE.isValid(aprendiz.getEmail_aprendiz().replace(".", ""))) {
+//             estado = false;
+//         }
+        
         if (StringUtils.isNullOrEmpty(aprendiz.getMunicipio())) {
             estado = false;
         }
@@ -224,6 +225,10 @@ public class UploadFile extends HttpServlet {
         if (StringUtils.isNullOrEmpty(aprendiz.getGenero())) {
             estado = false;
         }
+        
+         if (aprendiz.getGenero().length() > 1) {
+             estado = false;
+         }
         
         if (aprendiz.getFecha_nacimiento() == null) {
             estado = false;
@@ -237,6 +242,10 @@ public class UploadFile extends HttpServlet {
             estado = false;
         }
         
+         if (aprendiz.getEstrato().length() > 1) {
+             estado = false;
+         }
+        
         if (StringUtils.isNullOrEmpty(aprendiz.getFicha())) {
             estado = false;
         }
@@ -248,7 +257,7 @@ public class UploadFile extends HttpServlet {
         if (StringUtils.isNullOrEmpty(aprendiz.getActividades().getTipo_actividad())) {
             estado = false;
         }
-        
+       
         if (StringUtils.isNullOrEmpty(aprendiz.getActividades().getNombre_actividad())) {
             estado = false;
         }
@@ -265,4 +274,11 @@ public class UploadFile extends HttpServlet {
         
     }
     
+     public boolean validateString(String str){
+         if (str.replace(" ", "").chars().allMatch(Character::isLetter)) {
+             return false;
+         }
+         return true;
+     }
+  
 }

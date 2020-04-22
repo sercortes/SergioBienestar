@@ -56,6 +56,8 @@ $("#send").click(function (e) {
             
                 if (data === '0') {
                     messageError('Seleccione un archivo válido')
+                } else if(data === '00'){
+                    messageInfo('Seleccione un archivo válido')
                 }else if(data === '1'){
                     messageInfo('archivo ya subido')
                 }else{
