@@ -60,7 +60,7 @@ $(document).on('click', '#generateXlsFicha', function(){
                     toolTipContent: "<b>{label}</b>: {y}%",
                     showInLegend: "true",
                     legendText: "{label}",
-                    indexLabelFontSize: 16,
+                    indexLabelFontSize: 12,
                     indexLabel: "{label} - {y}%",
                     dataPoints: 
 			data2

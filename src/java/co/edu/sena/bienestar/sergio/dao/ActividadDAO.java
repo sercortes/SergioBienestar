@@ -255,7 +255,7 @@ public class ActividadDAO {
                     + "WHERE ap.idAprendiz = ? "
                     + "AND ac.Fecha_inicio BETWEEN ? AND ? "
                     + "AND ac.Fecha_fin BETWEEN ? AND ? "
-                    + "GROUP BY(ac.Id_actividad)";
+                    + "GROUP BY(ac.Id_actividad) ORDER BY ac.fecha_inicio";
             ps = conn.prepareStatement(sql);
             ps.setString(1, aprendiz.getDocumento_aprendiz());
             ps.setDate(2, aprendiz.getActividades().getFecha_inicio());

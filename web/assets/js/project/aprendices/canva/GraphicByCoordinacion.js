@@ -5,7 +5,7 @@ function generateGraphicByCoor(data){
     dataG = data
     let select = $('#coor').val()
     sel = select
-     let charts = `<div id="chartCoordinacion" style="height: 400px;"></div>`
+     let charts = `<div id="chartCoordinacion" style="height: 500px;"></div>`
         let grafico = document.getElementById('graficos')
        grafico.innerHTML = charts
        
@@ -28,7 +28,7 @@ function generateGraphicByCoor(data){
                     toolTipContent: "<b>{label}</b>: {y}%",
                     showInLegend: "true",
                     legendText: "{label}",
-                    indexLabelFontSize: 16,
+                    indexLabelFontSize: 12,
                     indexLabel: "{label} - {y}%",
                     dataPoints: 
 			data

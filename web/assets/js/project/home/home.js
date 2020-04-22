@@ -1,40 +1,41 @@
 
-var dataG
-$(document).ready(function(){
+$(document).ready(function () {
+
+  menu('menuHome')
 
     setTimeout(() => {
         query()
-    }, 4000)
-    
+    }, 3000)
+
 })
 
 
-function query(){
-     $.ajax({
+function query() {
+    $.ajax({
         type: "GET",
         url: './SelectgetProgramsWithOutCoor',
         datatype: 'json'
-    }).done(function(data){
-        
-        dataG = data
-       
-        if (data.length>0) {
+    }).done(function (data) {
+
+        if (data.length > 0) {
             showAlert(data.length)
-        }else{
+            generateTable(data)
+        } else {
+            generateMessage()
             showOne()
         }
-        
+
     })
 }
 
-function update(data){
-    
+function update(data) {
+
     $('#modalEdit').modal('show')
-    
+
     $('#programa').val(data)
-    
-    
-     let coor = document.getElementById('coor')
+
+
+    let coor = document.getElementById('coor')
 
     let cordinacion = `<option value="No">No</option>`
 
@@ -47,7 +48,7 @@ function update(data){
 
         for (var item of data) {
             if (item.coordinacion != 'n/a') {
-                    cordinacion += `<option value="${item.coordinacion}">${item.coordinacion}</option>`
+                cordinacion += `<option value="${item.coordinacion}">${item.coordinacion}</option>`
             }
         }
 
@@ -55,25 +56,31 @@ function update(data){
         coor.innerHTML = cordinacion;
     })
 
-    
+
 }
 
-function generateTable(data){
-    
-    let select = document.getElementById('tabla');
+function generateMessage(){
+     
     let str = ` `
-    
-    if (data.length <= 0) {
         str = `<div class="alert alert-info alert-dismissible fade show" role="alert">
   <strong>Ya no hay resultados!</strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>`
-        let selec = document.getElementById('examples');
-        selec.innerHTML = ''
-        selec.innerHTML = str
-    }
+        let select = document.getElementById('examples');
+        select.innerHTML = ''
+        select.innerHTML = str
+    
+}
+
+function generateTable(data) {
+
+    let select = document.getElementById('tabla');
+    let str = ` `
+
+ 
+    
 
     for (var item of data) {
 
@@ -88,17 +95,16 @@ function generateTable(data){
                                                 </td>
                                                 </tr> `
     }
-    
+
     select.innerHTML = str;
-    
 }
 
-function hola(){
+function hola() {
     $('#modalPrograms').modal('show')
-    generateTable(dataG)
+    query()
 }
 
-function showAlert(tama){
+function showAlert(tama) {
     let menu = document.getElementById('alerta')
     let dialog = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Hola tienes ${tama} programas!</strong> sin actualizar su coordinación.
@@ -111,7 +117,7 @@ function showAlert(tama){
 
 }
 
-function showOne(){
+function showOne() {
     let menu = document.getElementById('alerta')
     let dialog = `<div class="alert alert-info alert-dismissible fade show" role="alert">
   <strong>Todo en orden!</strong>
@@ -123,85 +129,83 @@ function showOne(){
 
 }
 
-$('#botonUpdate').click(function(){
-    
+$('#botonUpdate').click(function () {
+
     let select = document.getElementById('coor').value
     let prog = document.getElementById('programa').value
-    
-    
+
+
     if (select == 'No') {
         messageInfo('seleccione cordinación')
-    }else{
-        
-        
-        
+    } else {
+
+
+
         const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false
-})
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            }
+        })
 
-swalWithBootstrapButtons.fire({
-  title: 'esta seguro?',
-  text: prog+" en "+select,
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, !',
-  cancelButtonText: 'No, !',
-  reverseButtons: true
-}).then((result) => {
-  if (result.value) {
-   
-    let data = {
-            coor: select,
-            programa: prog
-        }
-        
-        updateProgram(data)
-   
-  } else if (
-    /* Read more about handling dismissals below */
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelado',
-      'Ups :)',
-      ':D'
-    )
-  }
-})
-        
-        
-        
-       
+        swalWithBootstrapButtons.fire({
+            title: 'esta seguro?',
+            text: prog + " en " + select,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, !',
+            cancelButtonText: 'No, !',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+
+                let data = {
+                    coor: select,
+                    programa: prog
+                }
+
+                updateProgram(data)
+
+            } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Ups :)',
+                        ':D'
+                        )
+            }
+        })
+
+
+
+
     }
-    
+
 })
 
-function updateProgram(data){
-    
-     $.ajax({
+function updateProgram(data) {
+
+    $.ajax({
         type: "POST",
         url: './UpdateProgram',
         datatype: 'json',
-        data:data,
-        async: false
-    }).done(function(data){
-        
-       if(data){
+        data: data
+    }).done(function (data) {
+
+        if (data) {
             messageOk('actualizado :D')
-            
-       }else{
+
+        } else {
             messageError('ups :(')
-       }
-      
-       
-       
+        }
+
+        $('#modalEdit').modal('hide')
+        query()
+
+
     })
+
     
-     $('#modalEdit').modal('hide')
-    query()
-            generateTable(dataG)
 }
