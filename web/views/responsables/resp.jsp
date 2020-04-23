@@ -68,6 +68,7 @@
 
 <%@include file="/views/template/footer.jspf"%>
 
+<script src="assets/js/project/util/bootstrapVali.js" charset="utf-8"></script>
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
 <script src="assets/js/project/resp/home.js" charset="utf-8"></script>
 <script src="assets/js/project/resp/crud.js" charset="utf-8"></script>

@@ -104,14 +104,17 @@ function update(data){
     
 }
 
-$('#botonUpdateForm').click(function (){
+document.getElementById('formEdit').addEventListener('submit', function(ev){
+    
+
+    ev.preventDefault()
     
     let id = document.getElementById('idE').value
     let nombre = document.getElementById('nameE').value
     let codigo = document.getElementById('codeE').value
     let year = document.getElementById('yearE').value
     
-    if (nombre == '' || codigo == '' || year == 'No') {
+    if (nombre == '' || codigo == '' || year == '' || nombre.length <= 2 || codigo.length <= 1) {
         messageInfo('complete el formulario')
     }else{
         
@@ -125,8 +128,8 @@ $('#botonUpdateForm').click(function (){
         editRecord(data);
         
     }
-    
 })
+
 
 function editRecord(data){
     $.ajax({
@@ -139,6 +142,7 @@ function editRecord(data){
       
         if (data) {
             messageOk('Editado con éxito')
+            $('#formEdit').removeClass('was-validated')
             queryResponsables()
         }
         

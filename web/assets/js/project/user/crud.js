@@ -120,7 +120,8 @@ function update(data){
     
 }
 
-$('#botonUpdateForm').click(function (){
+document.getElementById('formEdit').addEventListener('submit', function (ev){
+    ev.preventDefault()
     
     let id = document.getElementById('idE').value
       let nombre = document.getElementById('nameE').value
@@ -129,7 +130,8 @@ $('#botonUpdateForm').click(function (){
     let perfil = document.getElementById('perfilE').value
     let estado = document.getElementById('estadoE').value
 
-    if (nombre == '' || surname == '' || email == '' || perfil == 'No' || estado == 'No') {
+    if (nombre == '' || surname == '' || email == '' || perfil == '' || estado == ''
+             || nombre.length <= 2 || surname.length <= 2 || !email.toString().includes("@")) {
         messageInfo('complete el formulario')
     } else {
 
@@ -147,6 +149,7 @@ $('#botonUpdateForm').click(function (){
     }
     
 })
+
 
 function editRecord(data){
     $.ajax({

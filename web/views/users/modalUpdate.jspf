@@ -17,19 +17,39 @@
                     <div class="row">
                         <div class="col-sm-12 d-flex justify-content-center">
 
-                            <form id="formEdit" autocomplete="off">
+                            <form id="formEdit" class="needs-validation" autocomplete="off" novalidate>
                                 <input type="hidden" class="form-control" id="idE">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label float-left">Nombre:</label>
-                                    <input type="text" class="form-control" id="nameE">
+                                    <input type="text" class="form-control" id="nameE" minlength="3" maxlength="40" required>
+                                     <div class="valid-feedback">
+                                        :D
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, Digita el nombre
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label float-left">Apellido:</label>
-                                    <input type="text" class="form-control" id="surnameE">
+                                    <input type="text" class="form-control" id="surnameE" minlength="3" maxlength="40" required>
+                                    <div class="valid-feedback">
+                                        :D
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, Digita el apellido
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label  class="col-form-label float-left">Email:</label>
-                                    <input type="email" class="form-control" id="emailE" autocomplete="none">
+                                    <input type="email" class="form-control" id="emailE" autocomplete="none" required>
+                                
+                                  <div class="valid-feedback">
+                                        :D
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, Digita un correo válido
+                                    </div>
+                                        
                                 </div>
                                 <div class="form-group">
 
@@ -37,6 +57,12 @@
                                     <select class="form-control" id="perfilE" tabindex="4" required>
 
                                     </select>
+                                    <div class="valid-feedback">
+                                        :D
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecciona un perfil
+                                    </div>
 
                                 </div>
 
@@ -46,9 +72,15 @@
                                     <select class="form-control" id="estadoE" tabindex="4" required>
 
                                     </select>
+                                     <div class="valid-feedback">
+                                        :D
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecciona el estado
+                                    </div>
 
                                 </div>
-                            </form>
+                          
                         </div>
 
                     </div>
@@ -61,7 +93,8 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
-                <button type="button" id="botonUpdateForm" class="btn btn-primary"><i class="fas fa-edit"></i> Modificar</button>
+                <button type="submit" id="" class="btn btn-primary"><i class="fas fa-edit"></i> Modificar</button>
+                  </form>
             </div>
         </div>
     </div>

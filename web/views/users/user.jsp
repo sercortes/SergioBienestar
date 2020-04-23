@@ -73,6 +73,7 @@
 <%@include file="/views/template/footer.jspf"%>
 
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
+<script src="assets/js/project/util/bootstrapVali.js" charset="utf-8"></script>
 
 <script src="assets/js/project/user/home.js" charset="utf-8"></script>
 <script src="assets/js/project/user/pass.js" charset="utf-8"></script>

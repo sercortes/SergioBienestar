@@ -33,7 +33,7 @@ function generatePerfiles(per, value) {
                    }
        }
         }else{
-            srt = '<option value="No">No</option>'
+            srt = '<option value="">No</option>'
             for (var item of data) {
                 srt += `<option value="${item.idPerfil}">${item.nombre}</option>`              
            }
@@ -68,7 +68,7 @@ function generatePerfiles(per, value) {
 function generateEstado() {
 
     let estado = document.getElementById('estado')
-    let srt = '<option value="No">No</option>'
+    let srt = '<option value="">No</option>'
     let ac = 'Habilitado'
     let ina = 'Deshabilitado'
     srt += `<option value="${1}">${ac}</option>`
@@ -78,8 +78,10 @@ function generateEstado() {
 
 }
 
-$('#botonAgregar').click(function () {
-
+document.getElementById('formAdd').addEventListener('submit', function (ev){
+    
+    ev.preventDefault()
+    
     let nombre = document.getElementById('name').value
     let surname = document.getElementById('surname').value
     let email = document.getElementById('email').value
@@ -87,7 +89,8 @@ $('#botonAgregar').click(function () {
     let perfil = document.getElementById('perfil').value
     let estado = document.getElementById('estado').value
 
-    if (nombre == '' || surname == '' || email == '' || pass == '' || perfil == 'No' || estado == 'No') {
+    if (nombre == '' || surname == '' || email == '' || pass == '' || perfil == '' || estado == ''
+            || nombre.length <= 2 || surname.length <= 2 || pass.length <= 6 || !email.toString().includes('@')) {
         messageInfo('complete el formulario')
     } else {
 
@@ -104,6 +107,7 @@ $('#botonAgregar').click(function () {
     }
 
 
+    
 })
 
 function addNewRecord(data) {
@@ -124,6 +128,7 @@ function messages(data) {
     
     if (data == 1) {
         messageOk('Generado con éxito')
+        $('#formAdd').removeClass('was-validated')
         $('#formAdd').trigger('reset')
         Users()
     } else if (data == 2) {
@@ -148,3 +153,5 @@ function Users() {
     })
 
 }
+
+
