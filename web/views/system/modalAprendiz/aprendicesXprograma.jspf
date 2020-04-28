@@ -40,10 +40,10 @@
                                     </tbody>
                                     <tfoot class="letrablanca">
                                         <tr class="tablas">
-                                            <th>Documento</th>
-                                            <th>Nombres</th>
                                             <th>Ficha</th>
-                                            <th>Programa</th>
+                                            <th>Coordinación</th>
+                                            <th>Participaciones</th>
+                                            <th>Detalles</th>
                                         </tr>
                                     </tfoot>
                                 </table>

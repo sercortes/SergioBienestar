@@ -20,7 +20,7 @@
                             <form id="formAdd" class="needs-validation" autocomplete="off" novalidate>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label float-left">Nombre:</label>
-                                    <input type="text" class="form-control" id="name" minlength="3" maxlength="40" required>
+                                    <input type="text" class="form-control" id="name" minlength="3" maxlength="25" required>
                                      <div class="valid-feedback">
                                         :D
                                     </div>
