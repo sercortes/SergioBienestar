@@ -30,7 +30,7 @@ function graphicByTypesYear(data) {
 function print(){
 
      let select = document.getElementById('TypeActivity').value
-    generatePDF('#informe', select, true)
+    generatePDF1('#informe', select, true)
 }
 
 function addButtons(){

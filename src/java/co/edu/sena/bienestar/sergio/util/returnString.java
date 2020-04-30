@@ -35,15 +35,14 @@ public class returnString {
             case "DESARROLLO DE VIDEOJUEGOS":
                 return "TELEINFORMÁTICA";
 
-            case "SISTEMAS":
-                return "TELEINFORMÁTICA";
-
             case "MANTENIMIENTO DE EQUIPOS DE COMPUTO.":
                 return "TELEINFORMÁTICA";
 
             case "PROGRAMACION DE SOFTWARE":
                 return "TELEINFORMÁTICA";
 
+            case "SISTEMAS":
+                return "INDUSTRIAS CREATIVAS";
                 
             case "ANIMACION 3D":
                 return "INDUSTRIAS CREATIVAS";

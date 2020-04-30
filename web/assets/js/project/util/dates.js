@@ -9,7 +9,27 @@ function generatePDF(div, nameFile, horizontal) {
                         margin: {
                             top: "1cm"},
 //            bottom: "0,5mm" },
-                        scale: 0.9,
+                        scale: 0.8,
+                        height: 500,
+                        with : 400
+//         keepTogether: ".prevent-split"
+                    })
+            .then(function (group) {
+                kendo.drawing.pdf.saveAs(group, nameFile)
+            });
+}
+function generatePDF1(div, nameFile, horizontal) {
+
+    kendo.drawing
+            .drawDOM(div,
+                    {
+                        landscape: horizontal,
+                        forcePageBreak: ".page-break",
+                        paperSize: "A4",
+                        margin: {
+                            top: "1cm"},
+//            bottom: "0,5mm" },
+                        scale: 0.6,
                         height: 500,
                         with : 400
 //         keepTogether: ".prevent-split"

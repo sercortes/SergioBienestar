@@ -6,7 +6,7 @@
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         
         <div class="sidebar-brand-icon">
-            <img src="assets/img/logo/logooo.png" class="">
+            <img src="assets/img/logo/logooo3.png" class="img-fluid" style="width: 90%;">
         </div>
        
       </a>
@@ -91,8 +91,8 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle hvr-icon-pop" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle fa-2x hvr-icon" style="max-width: 60px"></i>
-                <span class="ml-2 d-none d-lg-inline text-white small">${USER.nombre}</span>
+                <span class="ml-2 d-none d-lg-inline text-white small mr-2">${USER.nombre} </span>
+                 <i class="fas fa-user-circle fa-2x hvr-icon" style="max-width: 60px"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="./Profile">
