@@ -39,6 +39,7 @@
 <script src="assets/js/project/aprendices/canva/GraphicByProgram.js" charset="utf-8"></script>
 <script src="assets/js/project/aprendices/canva/GraphicByCoordinacion.js" charset="utf-8"></script>
 <script src="assets/js/project/aprendices/canva/GraphicByYearCoor.js" charset="utf-8"></script>
+<script src="assets/js/project/aprendices/canva/GraphicByProgramXDime.js" charset="utf-8"></script>
 
 <!-- consulta que comparten las dos vistas-->
 <script src="assets/js/project/querys/ActivitysByAprendiz.js" charset="utf-8"></script>

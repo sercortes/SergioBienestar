@@ -14,6 +14,11 @@ function aprendicesByCoor(id) {
         fechaInicial: fechai,
         fechaFinal: fechaf
     }
+    
+    setTimeout(() => {
+        graphicByProgramD(data)
+    }, 1300)
+ 
  
     $.ajax({
         type: "GET",
@@ -119,3 +124,25 @@ function generateArrayForProgram(data, total){
 }
 
 
+$(document).on('click','#generateXlsPrograma', function(){
+    let titulo = document.getElementById('tittleAprendicesXPrograma').textContent
+    let dataE = []
+    for(var item of fichas){
+        var ob = {
+            label:item.ficha,
+            y:((item.participaciones * 100) / total).toFixed(2)
+        }
+        dataE.push(ob)
+    }
+    let cabecera = {
+        columna1:'ficha',
+        columna2:'%'
+    }
+
+    for(var item of dataE){
+        item.y=Math.round(parseInt(item.y))
+    }
+  
+    exportCSVFile(cabecera, dataE, titulo+'-PARTICIPACIONES-FICHAS')
+  
+}) 

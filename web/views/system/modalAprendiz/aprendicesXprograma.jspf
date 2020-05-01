@@ -58,6 +58,18 @@
                                     <button id="generateXlsPrograma" type="button" class="btn btn-success mb-3"><i class="far fa-file-excel"></i> Generar</button>
                                 </div>
                             </div>
+                            
+                            <hr>
+                            <div class="page-break" id="chartTiposPrograma" style="height: 400px;"></div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-10">
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="generateXlsTiposProgramass" type="button" class="btn btn-success mb-3"><i class="far fa-file-excel"></i> Generar</button>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

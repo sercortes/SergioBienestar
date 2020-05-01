@@ -201,6 +201,47 @@ public class ActividadDAO {
         }
     }
 
+    
+    public ArrayList<?> getStaticsByTypeProgram(Aprendiz aprendiz) {
+        try {
+            String sql = "SELECT ac.Tipo_actividad, (count(ac.Tipo_actividad) * 100/ "
+                    + "(select count(*) from Aprendiz ap INNER JOIN Actividades_Aprendiz aa "
+                    + "ON ap.idAprendiz=aa.Cod_aprendiz "
+                    + "INNER JOIN Actividades ac ON aa.Cod_actividad = ac.Id_actividad "
+                    + "WHERE ap.NombrePrograma = ? AND ac.Fecha_inicio BETWEEN ? AND ? AND ac.Fecha_fin BETWEEN ? AND ?)) 'cantidad' FROM Actividades ac "
+                    + "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad "
+                    + "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz "
+                    + "WHERE ap.NombrePrograma = ? "
+                    + "AND ac.Fecha_inicio BETWEEN ? AND ? "
+                    + "AND ac.Fecha_fin BETWEEN ? AND ? "
+                    + "GROUP BY(ac.Tipo_actividad)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, aprendiz.getNombrePrograma());
+            ps.setDate(2, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(3, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(4, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(5, aprendiz.getActividades().getFecha_fin());
+            ps.setString(6, aprendiz.getNombrePrograma());
+            ps.setDate(7, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(8, aprendiz.getActividades().getFecha_fin());
+            ps.setDate(9, aprendiz.getActividades().getFecha_inicio());
+            ps.setDate(10, aprendiz.getActividades().getFecha_fin());
+            rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades actividades;
+            while (rs.next()) {
+                actividades = new Actividades();
+                actividades.setTipo_actividad(rs.getString("Tipo_actividad"));
+                actividades.setCantidad(rs.getString("cantidad"));
+
+                list.add(actividades);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
     public ArrayList<?> getStaticsByType(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ac.Tipo_actividad, "
