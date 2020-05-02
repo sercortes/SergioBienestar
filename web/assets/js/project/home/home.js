@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-  menu('menuHome')
+    menu('menuHome')
 
     setTimeout(() => {
         query()
@@ -59,28 +59,25 @@ function update(data) {
 
 }
 
-function generateMessage(){
-     
+function generateMessage() {
+
     let str = ` `
-        str = `<div class="alert alert-info alert-dismissible fade show" role="alert">
+    str = `<div class="alert alert-info alert-dismissible fade show" role="alert">
   <strong>Ya no hay resultados!</strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>`
-        let select = document.getElementById('examples');
-        select.innerHTML = ''
-        select.innerHTML = str
-    
+    let select = document.getElementById('examples');
+    select.innerHTML = ''
+    select.innerHTML = str
+
 }
 
 function generateTable(data) {
 
     let select = document.getElementById('tabla');
     let str = ` `
-
- 
-    
 
     for (var item of data) {
 
@@ -155,7 +152,8 @@ $('#botonUpdate').click(function () {
             showCancelButton: true,
             confirmButtonText: 'Si, !',
             cancelButtonText: 'No, !',
-            reverseButtons: true
+            reverseButtons: true,
+            showLoaderOnConfirm: true
         }).then((result) => {
             if (result.value) {
 
@@ -207,5 +205,5 @@ function updateProgram(data) {
 
     })
 
-    
+
 }

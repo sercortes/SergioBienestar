@@ -20,11 +20,9 @@ function selectCoordinacion(){
             fechaInicial : fechai,
             fechaFinal : fechaf
         };
-        
-        
+         
             listarCoor(input)
        
-            
     }
 }
 
@@ -131,7 +129,6 @@ function listarCoor(data) {
         
         generateArrayStatics(data, sum)
         
-        
         let datos = generateQueryYearCoor(input);
         generateArrayStaticsYearCoor(datos, total)
        
@@ -146,7 +143,6 @@ function printCoor(){
 }
 
 function generateArrayStatics(data, total){
-    
         generateGraphicByCoor(data, total)
         setArray(data, total)
 }

@@ -1,4 +1,5 @@
 var fichas
+var fichasTwo
 var total
 function aprendicesByCoor(id) {
 
@@ -27,6 +28,8 @@ function aprendicesByCoor(id) {
         data: data
     }).done(function (data) {
 
+        fichasTwo = data
+
         fichas = data
 
         drawSelectFichas(data)
@@ -45,13 +48,13 @@ function selectFicha() {
     let ficha = document.getElementById('fichas').value
 
     if (ficha == 'No') {
-        drawTable(fichas)
+        drawTable(fichasTwo)
 
     } else {
 
         let fichasBusqueda = []
 
-        for (var item of fichas) {
+        for (var item of fichasTwo) {
             if (item.ficha == ficha) {
                 fichasBusqueda.push(item)
             }

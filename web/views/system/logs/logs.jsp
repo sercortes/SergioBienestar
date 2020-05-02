@@ -30,7 +30,7 @@
 
         <div class="col-sm-12 d-flex justify-content-center">
            
-            <table id="examples" class="table table-striped table-bordered">
+            <table id="examples" class="table table-striped table-bordered table-responsive-sm">
                                 <thead class="letrablanca">
                                     <tr class="tablas">
                                        <th>Usuario</th>

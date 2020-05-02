@@ -1,12 +1,7 @@
 
-$('#exampleModal').on('show.bs.modal', function (){
-    
-    
-})
 function fichasTotal(id){
       
     $('#exampleModal').modal('show')
-    
   
         let fechai = document.getElementById('fechaI').value
         let fechaf = document.getElementById('fechaF').value

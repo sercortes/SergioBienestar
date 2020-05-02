@@ -3,17 +3,19 @@ var titu
 var dataGlobal
 $(document).on('click', '#generateXlsFicha', function(){
    
-    
     exportCSVFile('cabecera', dataGlobal, titu)
     
 })  
 
 function generateHeaderFicha(){
+    
      let cabecera = {
         columna1:'Dimensión',
         columna2:'%'
     }
-     let data = []
+    
+    let data = []
+     
     for(var item of dataE){
         let ob = {
             label:item.label,
@@ -21,8 +23,10 @@ function generateHeaderFicha(){
         }
         data.push(ob)
     }
-   data.unshift(cabecera)
+   
+    data.unshift(cabecera)
    dataGlobal = data
+   
 }
 
  function graphicByFicha(data){
@@ -39,6 +43,7 @@ function generateHeaderFicha(){
     }).done(function (data){
        
         var data2 = []
+        
         for (var item of data){
             var ob = {
                 y:Math.round(item.cantidad * 100)/100,
@@ -46,8 +51,10 @@ function generateHeaderFicha(){
             }
             data2.push(ob)
         }
+        
         dataE = data2
         generateHeaderFicha()
+        
         let titulos = document.getElementById('tittleListAprendices').textContent
         titu = titulos
           var chart = new CanvasJS.Chart("chartFicha", {

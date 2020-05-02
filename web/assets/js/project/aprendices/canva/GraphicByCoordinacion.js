@@ -47,7 +47,9 @@ function generateGraphicByCoor(data) {
 }
 
 function setArray(data, total) {
+    
     let arregloEstadisticas = []
+    
     for (var item of data) {
         let ob = {
             label: item.nombrePrograma,
@@ -65,7 +67,6 @@ function setArray(data, total) {
         columna2: '%'
     }
     
-
    dataG.unshift(cabezera);
 
 }

@@ -15,7 +15,9 @@ function graphicByProgramD(data) {
 }
 
 function modifyData(data) {
+    
     var data2 = []
+    
     for (var item of data) {
         var ob = {
             label: item.tipo_actividad,
@@ -23,7 +25,9 @@ function modifyData(data) {
         }
         data2.push(ob)
     }
+    
     return data2
+    
 }
 
 function generateCanvas(data) {
@@ -65,7 +69,6 @@ $('#generateXlsTiposProgramass').click(function () {
     let data2 = modifyDataTwo(dataGlo)
 
     let titulo = document.getElementById('tittleAprendicesXPrograma').textContent
-
 
     exportCSVFile('cabecera', data2, titulo + '-PARTICIPACIONES-DIMENSIONES')
 
