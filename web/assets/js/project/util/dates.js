@@ -171,20 +171,14 @@ function convertToCSV(objArray) {
 
 function exportCSVFile(headers, items, fileName) {
 
-    if (headers) {
-        items.unshift(headers);
-    }
-
     const jsonObject = JSON.stringify(items);
 
     const csv = convertToCSV(jsonObject);
 
     const exportName = fileName + ".csv" || "export.csv";
 
-
-
     const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), // UTF-8 BOM
-        "Text", csv], {type: "text/plain;charset=utf-8"});
+        "", csv], {type: "text/plain;charset=utf-8"});
     if (navigator.msSaveBlob) {
         navigator.msSaveBlob(blob, exportName);
     } else {

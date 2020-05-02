@@ -1,5 +1,6 @@
 var dataGr
 var activ
+var tota
 
 $(document).on('click', '.seeAprendices', function(){
     
@@ -63,24 +64,27 @@ $('#modalThree').on('shown.bs.modal', function generargrafica(){
             dataG.push(ob)
         }
       
-        dataP = []
+        generateGrap(dataG, total)
         
-        for(var item of dataG){
+        tota = total
+        dataGr = dataG
+        generabeHeader()
+      
+    })
+});
+
+
+function generateGrap(data, total){
+    
+        let dataP = []
+        
+        for(var item of data){
             var ob = {
                 label:item.label,
                 y:((item.y * 100) / total).toFixed(2)
             }
             dataP.push(ob)
         }
-        
-        dataGr = dataP
-        generateGrap(dataP)
-      
-    })
-});
-
-
-function generateGrap(data){
     
         let chart = new CanvasJS.Chart("graphicOne", {
             theme: "light2", // "light1", "light2", "dark1", "dark2"
@@ -101,7 +105,7 @@ function generateGrap(data){
                     indexLabelFontSize: 12,
                     indexLabel: "{label} - {y}%",
                     dataPoints: 
-			data
+			dataP
                     
                 }]
         });
@@ -110,17 +114,32 @@ function generateGrap(data){
 
 $('#generateXls').click(function(){
     
-    let cabecera ={
+    exportCSVFile('cabecera',dataGr, activ.nombre.toString().substring(0, 60))
+    
+})
+
+function generabeHeader(){
+      let cabecera ={
         hola:'Programa',
         dos:'Porcentaje'
     }
-    for(let item of dataGr){
+    
+    let dataP = []
+        
+        for(var item of dataGr){
+            var ob = {
+                label:item.label,
+                y:((item.y * 100) / tota).toFixed(2)
+            }
+            dataP.push(ob)
+        }
+    
+    for(let item of dataP){
         item.y=Math.round(parseInt(item.y))
     }
-    
-    exportCSVFile(cabecera,dataGr, activ.nombre.toString().substring(0, 60))
-    
-})
+    dataP.unshift(cabecera)
+    dataGr = dataP
+}
 
 
 function generateTableAprendicess(data){

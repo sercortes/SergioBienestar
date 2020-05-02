@@ -1,7 +1,15 @@
 var dataE
 var titu
+var dataGlobal
 $(document).on('click', '#generateXlsFicha', function(){
-    let cabecera = {
+   
+    
+    exportCSVFile('cabecera', dataGlobal, titu)
+    
+})  
+
+function generateHeaderFicha(){
+     let cabecera = {
         columna1:'Dimensión',
         columna2:'%'
     }
@@ -13,11 +21,10 @@ $(document).on('click', '#generateXlsFicha', function(){
         }
         data.push(ob)
     }
-   
-    
-    exportCSVFile(cabecera, data, titu)
-    
-})  
+   data.unshift(cabecera)
+   dataGlobal = data
+}
+
  function graphicByFicha(data){
     
     $.ajax({
@@ -40,6 +47,7 @@ $(document).on('click', '#generateXlsFicha', function(){
             data2.push(ob)
         }
         dataE = data2
+        generateHeaderFicha()
         let titulos = document.getElementById('tittleListAprendices').textContent
         titu = titulos
           var chart = new CanvasJS.Chart("chartFicha", {

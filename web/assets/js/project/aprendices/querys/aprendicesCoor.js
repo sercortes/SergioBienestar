@@ -14,12 +14,12 @@ function aprendicesByCoor(id) {
         fechaInicial: fechai,
         fechaFinal: fechaf
     }
-    
+
     setTimeout(() => {
         graphicByProgramD(data)
     }, 1300)
- 
- 
+
+
     $.ajax({
         type: "GET",
         url: './ListAprendicesByCoor',
@@ -32,7 +32,7 @@ function aprendicesByCoor(id) {
         drawSelectFichas(data)
 
         drawTable(data)
-        
+
         generateArrayForProgram(data, total)
 
     })
@@ -41,16 +41,16 @@ function aprendicesByCoor(id) {
 }
 
 function selectFicha() {
-    
+
     let ficha = document.getElementById('fichas').value
-    
+
     if (ficha == 'No') {
         drawTable(fichas)
 
     } else {
 
         let fichasBusqueda = []
-        
+
         for (var item of fichas) {
             if (item.ficha == ficha) {
                 fichasBusqueda.push(item)
@@ -86,63 +86,70 @@ function drawTable(data) {
     }
     console.log(num)
     total = num
-    
-    
+
+
     select.innerHTML = str;
+    organizateArray()
+
 }
 
-$('#generateInforme').click(function(){
+function organizateArray() {
+    let dataE = []
+    for (var item of fichas) {
+        var ob = {
+            label: 'FICHA ' + item.ficha,
+            y: ((item.participaciones * 100) / total).toFixed(2)
+        }
+        dataE.push(ob)
+    }
+    let cabecera = {
+        columna1: 'ficha',
+        columna2: '%'
+    }
+
+    for (var item of dataE) {
+        item.y = Math.round(parseInt(item.y))
+    }
+    dataE.unshift(cabecera)
+    fichas = dataE
+}
+
+$('#generateInforme').click(function () {
     let titulo = document.getElementById('tittleAprendicesXPrograma').textContent
     generatePDF('#informePrograma', titulo, true)
 })
 
 function drawSelectFichas(data) {
-    
+
     let fichaSelect = document.getElementById('fichas')
     let option = '<option value="No">No</option>'
     for (var item of data) {
         option += `<option value="${item.ficha}">${item.ficha}</option>`
     }
     fichaSelect.innerHTML = option;
-    
 }
 
-function generateArrayForProgram(data, total){
-     let arreglo = []
-    for(var item of data){
+function generateArrayForProgram(data, total) {
+    let arreglo = []
+    for (var item of data) {
         var ob = {
-            label:item.ficha,
-            y:((item.participaciones * 100) / total).toFixed(2)
+            label: item.ficha,
+            y: ((item.participaciones * 100) / total).toFixed(2)
         }
         arreglo.push(ob)
     }
-    
-   setTimeout(() => {
-       graphicByProgram(arreglo)
-   }, 1800) 
-   
+
+    setTimeout(() => {
+        graphicByProgram(arreglo)
+    }, 1800)
+
 }
 
 
-$(document).on('click','#generateXlsPrograma', function(){
+$(document).on('click', '#generateXlsPrograma', function () {
     let titulo = document.getElementById('tittleAprendicesXPrograma').textContent
-    let dataE = []
-    for(var item of fichas){
-        var ob = {
-            label:item.ficha,
-            y:((item.participaciones * 100) / total).toFixed(2)
-        }
-        dataE.push(ob)
-    }
-    let cabecera = {
-        columna1:'ficha',
-        columna2:'%'
-    }
 
-    for(var item of dataE){
-        item.y=Math.round(parseInt(item.y))
-    }
-  
-    exportCSVFile(cabecera, dataE, titulo+'-PARTICIPACIONES-FICHAS')
-  
+
+    exportCSVFile('cabecera', fichas, titulo + '-PARTICIPACIONES-FICHAS')
+
 }) 
