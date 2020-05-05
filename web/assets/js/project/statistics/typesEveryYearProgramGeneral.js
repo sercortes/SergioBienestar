@@ -14,6 +14,10 @@ function graphicByTypesYearProgramGeneral(data) {
         data: data
     }).done(function (data) {
 
+        if (controlQuery(data)) {
+            return false
+        }
+
         addTitle()
 
         addDivs()
@@ -42,7 +46,6 @@ function addButtons() {
 function addTitle() {
     let select = document.getElementById('TypeActivity').value
     let datos = '<i class="fas fa-chart-line hvr-icon"></i> ' + select
-
     document.getElementById('tituloInforme').innerHTML = datos
 }
 

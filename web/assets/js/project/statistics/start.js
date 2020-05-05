@@ -103,3 +103,17 @@ function getPrograms() {
     })
 
 }
+
+
+function controlQuery(data){
+    if (data.length <= 0) {
+        messageInfo('consulta sin resultados')
+        document.getElementById('outputOne').innerHTML = ''
+        document.getElementById('outPutTwo').innerHTML = ''
+        document.getElementById('buttons').innerHTML = ''
+        document.getElementById('tituloInforme').innerHTML = ''
+        return true
+    }else{
+        return false
+    }
+}

@@ -12,6 +12,10 @@ function graphicByTypesYear(data) {
         data: data
     }).done(function (data) {
 
+        if (controlQuery(data)) {
+            return false
+        }
+
         addTitle()
 
         addDivs()

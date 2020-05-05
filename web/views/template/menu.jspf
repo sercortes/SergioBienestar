@@ -3,14 +3,18 @@
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center p-2" href="#">
         
         <div class="sidebar-brand-icon">
-            <img src="assets/img/logo/logooo3.png" class="img-fluid" style="width: 90%;">
+            <img src="assets/img/logo/logooo3.png" class="img-fluid" style="width: 95%;">
         </div>
        
       </a>
-      <hr class="sidebar-divider my-0">
+        
+        <div class="p-1">
+            
+        </div>
+     
       <li class="nav-item" id="menuHome">
         <a class="nav-link hvr-icon-pop" href="./Home">
           <i class="fas fa-fw fa-home hvr-icon"></i>
