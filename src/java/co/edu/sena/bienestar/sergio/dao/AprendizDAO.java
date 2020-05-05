@@ -361,7 +361,7 @@ public class AprendizDAO {
        
 
       
-        public ArrayList<?> getCoordinacion() {
+     public ArrayList<?> getCoordinacion() {
         try {
             String sql = "SELECT A.Coordinacion FROM Aprendiz A group by(A.Coordinacion)";
             ps = conn.prepareStatement(sql);
@@ -371,6 +371,25 @@ public class AprendizDAO {
             while (rs.next()) {
                 aprendiz = new Aprendiz();
                 aprendiz.setCoordinacion(rs.getString("Coordinacion"));
+                list.add(aprendiz);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+     
+      public ArrayList<?> getPrograms() {
+        try {
+            String sql = "SELECT A.NombrePrograma FROM Aprendiz A WHERE A.Coordinacion != 'VIRTUALIZACION' group by(A.NombrePrograma)";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<Aprendiz> list = new ArrayList<>();
+            Aprendiz aprendiz;
+            while (rs.next()) {
+                aprendiz = new Aprendiz();
+                aprendiz.setNombrePrograma(rs.getString("NombrePrograma"));
                 list.add(aprendiz);
             }
             return (ArrayList<?>) list;

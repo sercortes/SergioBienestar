@@ -23,7 +23,7 @@
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             
              <label for="validationTooltip03">Año Inicial</label>
             <select class="form-control" id="yearStart" tabindex="4" onchange="" required>
@@ -32,7 +32,7 @@
              
         </div>
         
-          <div class="col-sm-3">
+          <div class="col-sm-2">
               
              <label for="validationTooltip03">Año Final</label>
             <select class="form-control" id="yearFinish" tabindex="4" onchange="" required>
@@ -41,14 +41,21 @@
              
         </div>
         
-        <div class="col-sm-3" id="">
-             <label for="validationTooltip03">Tipo Actividad</label>
+        <div class="col-sm-2" id="">
+             <label for="validationTooltip03">Dimensión</label>
             <select name="actividadTipos" class="form-control" id="TypeActivity" tabindex="4" required>
           <option value="No">No</option>
           </select>
         </div>
+        
+        <div class="col-sm-4" id="">
+             <label for="">Programa</label>
+            <select name="" class="form-control" id="program" tabindex="4" required>
+          <option value="No">No</option>
+          </select>
+        </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
       
          <button class="btn btn-primary btn-lg hvr-pulse-grow mt-4" type="button" id="buttonGenerateG"><i class="fas fa-file-invoice"></i> Generar</button>
 
@@ -97,6 +104,8 @@
 
 <script src="assets/js/project/statistics/start.js" charset="utf-8"></script>
 <script src="assets/js/project/statistics/typesEveryYear.js" charset="utf-8"></script>
+<script src="assets/js/project/statistics/typesEveryYearProgram.js" charset="utf-8"></script>
+<script src="assets/js/project/statistics/typesEveryYearProgramGeneral.js" charset="utf-8"></script>
 
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
 

@@ -34,6 +34,8 @@ public class Actividades {
     
     private String yearStar;
     private String yearFinish;
+    
+    private Aprendiz aprendiz;
 
     public Actividades() {
     }
@@ -191,11 +193,20 @@ public class Actividades {
         this.yearFinish = yearFinish;
     }
 
-    @Override
-    public String toString() {
-        return "Actividades{" + "idRealActividad=" + idRealActividad + ", id_actividades=" + id_actividades + ", nombre_actividad=" + nombre_actividad + ", tipo_actividad=" + tipo_actividad + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", actividadesAprendiz=" + actividadesAprendiz + ", responsable=" + responsable + ", cantidad=" + cantidad + ", programa=" + programa + ", coor=" + coor + ", keyWord=" + keyWord + ", y=" + y + ", label=" + label + ", yearStar=" + yearStar + ", yearFinish=" + yearFinish + '}';
+    public Aprendiz getAprendiz() {
+        return aprendiz;
     }
 
+    public void setAprendiz(Aprendiz aprendiz) {
+        this.aprendiz = aprendiz;
+    }
+
+    @Override
+    public String toString() {
+        return "Actividades{" + "idRealActividad=" + idRealActividad + ", id_actividades=" + id_actividades + ", nombre_actividad=" + nombre_actividad + ", tipo_actividad=" + tipo_actividad + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", actividadesAprendiz=" + actividadesAprendiz + ", responsable=" + responsable + ", cantidad=" + cantidad + ", programa=" + programa + ", coor=" + coor + ", keyWord=" + keyWord + ", y=" + y + ", label=" + label + ", yearStar=" + yearStar + ", yearFinish=" + yearFinish + ", aprendiz=" + aprendiz + '}';
+    }
+
+ 
  
     
     

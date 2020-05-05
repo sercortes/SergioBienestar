@@ -29,7 +29,7 @@ function generatePDF1(div, nameFile, horizontal) {
                         margin: {
                             top: "1cm"},
 //            bottom: "0,5mm" },
-                        scale: 0.6,
+                        scale: 0.7,
                         height: 500,
                         with : 400
 //         keepTogether: ".prevent-split"

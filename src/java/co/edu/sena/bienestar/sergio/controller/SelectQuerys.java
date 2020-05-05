@@ -65,6 +65,19 @@ public class SelectQuerys extends HttpServlet {
                 UpdateProgram(request, response);
                 
                 break;
+                
+                
+            case "/bienestar/SelectByTypesbyYearProgram":
+                
+                SelectByTypesbyYearProgram(request, response);
+                
+                break;
+                
+                case "/bienestar/SelectByTypesbyYearProgramGeneral":
+                
+                SelectByTypesbyYearProgramGeneral(request, response);
+                
+                break;
             
         }
         
@@ -182,6 +195,54 @@ public class SelectQuerys extends HttpServlet {
                 response.setContentType("application/json");
                 new Gson().toJson(estado, response.getWriter());
         
+        
+    }
+
+    private void SelectByTypesbyYearProgram(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+           request.setCharacterEncoding("UTF-8");
+   
+
+        Actividades actividades = new Actividades();
+        actividades.setYearStar(request.getParameter("yearStart"));
+        actividades.setYearFinish(request.getParameter("finishYear"));
+        actividades.setTipo_actividad(request.getParameter("tipo"));
+        Aprendiz aprendiz = new Aprendiz();
+        aprendiz.setNombrePrograma(request.getParameter("program"));
+        actividades.setAprendiz(aprendiz);
+        
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
+
+        ArrayList<?> activid = actividadDAO.getStaticsByTypeEveryYearProgram(actividades);
+
+        actividadDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(activid, response.getWriter());
+        
+    }
+
+    private void SelectByTypesbyYearProgramGeneral(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+   
+
+        Actividades actividades = new Actividades();
+        actividades.setYearStar(request.getParameter("yearStart"));
+        actividades.setYearFinish(request.getParameter("finishYear"));
+        actividades.setTipo_actividad(request.getParameter("tipo"));
+        Aprendiz aprendiz = new Aprendiz();
+        aprendiz.setNombrePrograma(request.getParameter("program"));
+        actividades.setAprendiz(aprendiz);
+        
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
+
+        ArrayList<?> activid = actividadDAO.getStaticsByTypeEveryYearProgramGeneral(actividades);
+
+        actividadDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(activid, response.getWriter());
         
     }
 

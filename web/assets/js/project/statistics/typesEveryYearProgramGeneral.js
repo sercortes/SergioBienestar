@@ -1,13 +1,15 @@
 var dataOne
 var dataTwo
 var titlee
-function graphicByTypesYear(data) {
+var program
+function graphicByTypesYearProgramGeneral(data) {
 
         titlee = document.getElementById('TypeActivity').value
+        program = document.getElementById('program').value
 
     $.ajax({
         type: 'GET',
-        url: './SelectByTypesbyYear',
+        url: './SelectByTypesbyYearProgramGeneral',
         dataType: 'JSON',
         data: data
     }).done(function (data) {
@@ -16,9 +18,9 @@ function graphicByTypesYear(data) {
 
         addDivs()
 
-        generateOther(castArray(data), 'graphicOne', 'Cantidad', 'light2', titlee)
+        generateOther(castArray(data), 'graphicOne', program, 'light2', 'General')
 
-        generateGraaaTwo(castArrayTwo(data), 'graphicTwo', 'Procentaje', 'light2', titlee)
+        generateGraaaTwo(castArrayTwo(data), 'graphicTwo', program, 'light2', 'General')
 
         addButtons()
 
@@ -166,7 +168,7 @@ function generateOther(data, div, title, theme, sub) {
 }
 
 
-function generateGraaaTwo(data, div, title, theme, sub) {
+function generateGraaaTwo(data, div, title, theme, sub, ) {
     dataTwo = data
     generateheaderTwo()
     var chart = new CanvasJS.Chart(div, {

@@ -160,7 +160,77 @@ public class ActividadDAO {
         }
     }
 
+  
+    public ArrayList<?> getStaticsByTypeEveryYearProgram(Actividades actividades) {
+        try {
+            String sql = "SELECT ac.Tipo_actividad, YEAR(ac.Fecha_inicio) 'year', count(*) 'cantidad' " +
+                    "FROM Actividades ac " +
+                    "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad " +
+                    "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz " +
+                    "WHERE ac.Tipo_actividad = ? AND ap.NombrePrograma = ? " +
+                    "AND YEAR(ac.Fecha_inicio) BETWEEN ? AND ? " +
+                    "AND YEAR(ac.Fecha_fin) BETWEEN ? AND ? " +
+                    "GROUP BY YEAR(ac.Fecha_inicio)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, actividades.getTipo_actividad());
+            ps.setString(2, actividades.getAprendiz().getNombrePrograma());
+            
+            ps.setString(3, actividades.getYearStar());
+            ps.setString(4, actividades.getYearFinish());
+            ps.setString(5, actividades.getYearStar());
+            ps.setString(6, actividades.getYearFinish());
+            
+            rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades activi;
+            while (rs.next()) {
+                activi = new Actividades();
+                activi.setLabel(rs.getString("year"));
+                activi.setY(rs.getString("cantidad"));
+
+                list.add(activi);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
    
+     public ArrayList<?> getStaticsByTypeEveryYearProgramGeneral(Actividades actividades) {
+        try {
+            String sql = "SELECT ac.Tipo_actividad, YEAR(ac.Fecha_inicio) 'year', count(*) 'cantidad' " +
+                    "FROM Actividades ac " +
+                    "INNER JOIN Actividades_Aprendiz aa ON ac.Id_actividad=aa.Cod_actividad " +
+                    "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = ap.idAprendiz " +
+                    "WHERE ap.NombrePrograma = ? " +
+                    "AND YEAR(ac.Fecha_inicio) BETWEEN ? AND ? " +
+                    "AND YEAR(ac.Fecha_fin) BETWEEN ? AND ? " +
+                    "GROUP BY YEAR(ac.Fecha_inicio)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, actividades.getAprendiz().getNombrePrograma());
+            
+            ps.setString(2, actividades.getYearStar());
+            ps.setString(3, actividades.getYearFinish());
+            ps.setString(4, actividades.getYearStar());
+            ps.setString(5, actividades.getYearFinish());
+            
+            rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades activi;
+            while (rs.next()) {
+                activi = new Actividades();
+                activi.setLabel(rs.getString("year"));
+                activi.setY(rs.getString("cantidad"));
+
+                list.add(activi);
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+   
+    
     public ArrayList<?> getStaticsByTypeFicha(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ac.Tipo_actividad, (count(ac.Tipo_actividad) * 100/ "

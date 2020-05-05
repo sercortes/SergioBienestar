@@ -67,6 +67,12 @@ public class Select extends HttpServlet {
                 getUser(request, response);
 
                 break;
+                
+                case "/bienestar/getPrograms":
+
+                getPrograms(request, response);
+
+                break;
 
 
         }
@@ -162,6 +168,22 @@ public class Select extends HttpServlet {
         response.setContentType("application/json");
 
         new Gson().toJson(usuario.getEmail(), response.getWriter());
+        
+    }
+
+    private void getPrograms(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+
+        Conexion conexion = new Conexion();
+        AprendizDAO actividadDAO = new AprendizDAO(conexion.getConnection());
+
+        ArrayList<?> programas = actividadDAO.getPrograms();
+
+        response.setContentType("application/json");
+
+        actividadDAO.CloseAll();
+        new Gson().toJson(programas, response.getWriter());
         
     }
 

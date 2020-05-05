@@ -84,6 +84,7 @@
         <url-pattern>/getYears</url-pattern>
         <url-pattern>/getPerfil</url-pattern>
         <url-pattern>/getUser</url-pattern>
+        <url-pattern>/getPrograms</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UploadFile</servlet-name>
@@ -96,6 +97,8 @@
         <url-pattern>/SelectStatiticsByActivity</url-pattern>
         <url-pattern>/SelectgetProgramsWithOutCoor</url-pattern>
         <url-pattern>/UpdateProgram</url-pattern>
+        <url-pattern>/SelectByTypesbyYearProgram</url-pattern>
+        <url-pattern>/SelectByTypesbyYearProgramGeneral</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Responsable</servlet-name>
