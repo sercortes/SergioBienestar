@@ -116,7 +116,7 @@ function showAlert(tama) {
 
 function showOne() {
     let menu = document.getElementById('alerta')
-    let dialog = `<div class="alert alert-info alert-dismissible fade show" role="alert">
+    let dialog = `<div class="alert alert-secondary alert-dismissible fade show" role="alert">
   <strong>Todo en orden!</strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>

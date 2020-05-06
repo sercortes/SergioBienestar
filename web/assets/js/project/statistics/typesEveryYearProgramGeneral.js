@@ -4,7 +4,7 @@ var titlee
 var program
 function graphicByTypesYearProgramGeneral(data) {
 
-        titlee = document.getElementById('TypeActivity').value
+        titlee = 'Total'
         program = document.getElementById('program').value
 
     $.ajax({
@@ -22,9 +22,9 @@ function graphicByTypesYearProgramGeneral(data) {
 
         addDivs()
 
-        generateOther(castArray(data), 'graphicOne', program, 'light2', 'General')
+        generateOther(castArray(data), 'graphicOne', program, 'light2', 'Total participaciones')
 
-        generateGraaaTwo(castArrayTwo(data), 'graphicTwo', program, 'light2', 'General')
+        generateGraaaTwo(castArrayTwo(data), 'graphicTwo', program, 'light2', 'Total participaciones')
 
         addButtons()
 
@@ -44,8 +44,7 @@ function addButtons() {
 }
 
 function addTitle() {
-    let select = document.getElementById('TypeActivity').value
-    let datos = '<i class="fas fa-chart-line hvr-icon"></i> ' + select
+    let datos = '<i class="fas fa-chart-line hvr-icon"></i> ' + titlee
     document.getElementById('tituloInforme').innerHTML = datos
 }
 

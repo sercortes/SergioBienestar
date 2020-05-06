@@ -7,6 +7,9 @@ function generatePDF(div, nameFile, horizontal) {
                         forcePageBreak: ".page-break",
                         paperSize: "A4",
                         margin: {
+                            left: "1cm",
+                            right: "1cm",
+                            bottom: "1cm",
                             top: "1cm"},
 //            bottom: "0,5mm" },
                         scale: 0.8,
@@ -26,7 +29,10 @@ function generatePDF1(div, nameFile, horizontal) {
                         landscape: horizontal,
                         forcePageBreak: ".page-break",
                         paperSize: "A4",
-                        margin: {
+                         margin: {
+                            left: "1cm",
+                            right: "1cm",
+                            bottom: "1cm",
                             top: "1cm"},
 //            bottom: "0,5mm" },
                         scale: 0.7,
@@ -102,7 +108,7 @@ function validationResult(size) {
 
     let select = document.getElementById('resultado');
     select.innerHTML = `
-<div class="alert alert-info alert-dismissible fade show" role="alert">
+<div class="alert alert-secondary alert-dismissible fade show" role="alert">
   <strong>${size}</strong> Resultados
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
