@@ -12,6 +12,8 @@ $(function(){
     
     listarActivitysSearch(returtDataActivitys())
     
+    $('#informe').hide()
+    
 })
 
 

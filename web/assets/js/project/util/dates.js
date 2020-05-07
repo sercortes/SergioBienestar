@@ -29,7 +29,7 @@ function generatePDF1(div, nameFile, horizontal) {
                         landscape: horizontal,
                         forcePageBreak: ".page-break",
                         paperSize: "A4",
-                         margin: {
+                        margin: {
                             left: "1cm",
                             right: "1cm",
                             bottom: "1cm",

@@ -28,9 +28,13 @@
 
 <script src="assets/js/project/activitys/start.js" charset="utf-8"></script>
 <script src="assets/js/project/activitys/buscador/buscador.js" charset="utf-8"></script>
+<script src="assets/js/project/activitys/canva/canvaActivity.js" charset="utf-8"></script>
+
+
 <script src="assets/js/project/util/dates.js" charset="utf-8"></script>
 
 <script src="assets/js/project/activitys/querys/aprendices.js" charset="utf-8"></script>
+<script src="assets/js/project/activitys/querys/tableAprendices.js" charset="utf-8"></script>
 
 <!-- consulta que comparten las dos vistas-->
 <script src="assets/js/project/querys/ActivitysByAprendiz.js" charset="utf-8"></script>
