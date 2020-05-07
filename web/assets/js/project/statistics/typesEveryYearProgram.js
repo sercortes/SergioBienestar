@@ -98,11 +98,11 @@ function generateheaderTwo() {
 function addDivs() {
     let divOne = document.getElementById('outputOne')
     divOne.innerHTML = `<div id="graphicOne" style="height: 400px;"></div><hr>
-                        <button id="generateXlsOne" type="button" class="btn btn-success mb-3 float-right">
+                        <button id="generateXlsOne" type="button" class="btn btn-success mb-3 float-right noexportar">
                         <i class="far fa-file-excel"></i> Generar</button>`
     let divTwo = document.getElementById('outPutTwo')
     divTwo.innerHTML = `<div id="graphicTwo" style="height: 400px;"></div><hr>
-                        <button id="generateXlsTwo" type="button" class="btn btn-success mb-3 float-right">
+                        <button id="generateXlsTwo" type="button" class="btn btn-success mb-3 float-right noexportar">
                         <i class="far fa-file-excel"></i> Generar</button>`
 }
 

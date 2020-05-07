@@ -83,7 +83,7 @@ function generateTableBuscador() {
                                                     <td class="elements">${item.fecha_fin}</td>
                                                     <td class="elements">${item.responsable}</td>
                                                     <td>${item.cantidad}</td>
-                                                 <td>         
+                                                 <td class="text-center">         
                                                       <button class="seeAprendices btn btn-info btn-xs" >
                                                             <i class="fas fa-list-ol"></i> 
                                                         </button>            

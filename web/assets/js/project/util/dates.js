@@ -10,11 +10,7 @@ function generatePDF(div, nameFile, horizontal) {
                             left: "1cm",
                             right: "1cm",
                             bottom: "1cm",
-                            top: "1cm"},
-//            bottom: "0,5mm" },
-                        scale: 0.8,
-                        height: 500,
-                        with : 400
+                            top: "1cm"}
 //         keepTogether: ".prevent-split"
                     })
             .then(function (group) {
@@ -34,11 +30,9 @@ function generatePDF1(div, nameFile, horizontal) {
                             right: "1cm",
                             bottom: "1cm",
                             top: "1cm"},
-//            bottom: "0,5mm" },
                         scale: 0.7,
                         height: 500,
                         with : 400
-//         keepTogether: ".prevent-split"
                     })
             .then(function (group) {
                 kendo.drawing.pdf.saveAs(group, nameFile)

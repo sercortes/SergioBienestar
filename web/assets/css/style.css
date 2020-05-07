@@ -1,3 +1,13 @@
+.k-pdf-export .noexportar {
+    visibility: hidden;
+}
+
+.k-pdf-export .oculto {
+    display: inline;
+}
+.oculto{
+    display: none;
+}
 .azulOne{
     background-color: #2193b0;
 }

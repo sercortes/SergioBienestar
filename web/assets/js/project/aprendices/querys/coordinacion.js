@@ -68,7 +68,7 @@ function listarCoor(data) {
                                                     <td>${item.nombrePrograma}</td>
                                                     <td>${item.coordinacion}</td>
                                                     <td>${item.participaciones}</td>
-                                                 <td>         
+                                                 <td class="text-center">         
                                                       <button class="btn btn-info btn-xs" role="button" onclick = "aprendicesByCoor('${item.nombrePrograma}')" >
                                                             <i class="fas fa-list-ol"></i> 
                                                         </button>            
@@ -101,7 +101,7 @@ function listarCoor(data) {
                     
                 </div>
                 <div class="col-md-2">
-                    <button id="generateXlsBarra" type="button" class="btn btn-success float-right"><i class="far fa-file-excel"></i> Generar</button>
+                    <button id="generateXlsBarra" type="button" class="btn btn-success float-right noexportar"><i class="far fa-file-excel"></i> Generar</button>
                 </div>
             </div>
                 <hr>
@@ -118,7 +118,7 @@ function listarCoor(data) {
                     
                 </div>
                 <div class="col-md-2">
-                    <button id="generateXlsCoorPrograma" type="button" class="btn btn-success float-right"><i class="far fa-file-excel"></i> Generar</button>
+                    <button id="generateXlsCoorPrograma" type="button" class="btn btn-success float-right noexportar"><i class="far fa-file-excel"></i> Generar</button>
                 </div>
             </div>
                 
@@ -132,12 +132,12 @@ function listarCoor(data) {
                     
                 </div>
                 <div class="col-md-2">
-                    <button id="generateXlsCoorYearRanges" type="button" class="btn btn-success float-right"><i class="far fa-file-excel"></i> Generar</button>
+                    <button id="generateXlsCoorYearRanges" type="button" class="btn btn-success float-right noexportar"><i class="far fa-file-excel"></i> Generar</button>
                 </div>
             </div>
                 <hr>
          <div id="buttons" class="m-3 float-right">
-        <button id="generatePdf" type="button" class="btn btn-primary hvr-pulse-grow" onclick="printCoor()"><i class="fas fa-print"></i> Imprimir</button>`
+        <button id="generatePdf" type="button" class="btn btn-primary hvr-pulse-grow noexportar" onclick="printCoor()"><i class="fas fa-print"></i> Imprimir</button>`
 
 
         select.innerHTML = str;
@@ -154,7 +154,7 @@ function listarCoor(data) {
 
 function printCoor() {
     let select = document.getElementById('coor').value
-    generatePDF('#informe', select, true)
+    generatePDF1('#informe', select, true)
 }
 
 function generateArrayStatics(data, total) {

@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <div class="row pb-3">
+                    <div class="row pb-3 noexportar">
                         <div class="col-sm-2 pt-1">
                             <label for="">Buscar ficha:</label>
 
@@ -55,7 +55,7 @@
                                 <div class="col-md-10">
                                 </div>
                                 <div class="col-md-2">
-                                    <button id="generateXlsPrograma" type="button" class="btn btn-success mb-3"><i class="far fa-file-excel"></i> Generar</button>
+                                    <button id="generateXlsPrograma" type="button" class="btn btn-success mb-3 noexportar"><i class="far fa-file-excel"></i> Generar</button>
                                 </div>
                             </div>
                             
@@ -66,7 +66,7 @@
                                 <div class="col-md-10">
                                 </div>
                                 <div class="col-md-2">
-                                    <button id="generateXlsTiposProgramass" type="button" class="btn btn-success mb-3"><i class="far fa-file-excel"></i> Generar</button>
+                                    <button id="generateXlsTiposProgramass" type="button" class="btn btn-success mb-3 noexportar"><i class="far fa-file-excel"></i> Generar</button>
                                 </div>
                             </div>
                             

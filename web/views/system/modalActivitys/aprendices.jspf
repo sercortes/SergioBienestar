@@ -2,7 +2,7 @@
 <div class="modal fade bd-example-modal-lg" id="modalThree" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div id="contenido">
+   
 
 
                 <div class="modal-header">
@@ -12,6 +12,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                             <div id="contenido">
+                    <img src="assets/img/logo/logoInforme.png" class="img-fluid oculto" >
                     <h6 class="chiquito" id="titulos"></h6>
                     <h6 class="chiquito" id="dimension"></h6>
                     <h6 class="chiquito" id="fechaI"></h6>
@@ -38,7 +40,7 @@
 
                         </div>
                         <div class="col-md-2">
-                            <button id="generateXlsTwo" type="button" class="btn btn-success mb-3"><i class="far fa-file-excel"></i> Generar</button>
+                            <button id="generateXlsTwo" type="button" class="btn btn-success mb-3 noexportar"><i class="far fa-file-excel"></i> Generar</button>
                         </div>
                     </div>
                     <hr>

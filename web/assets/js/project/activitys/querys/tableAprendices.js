@@ -33,8 +33,8 @@ function generateTableAprendicess(data, activ) {
                                                     <td>${item.ficha}</td>
                                                     <td>${item.nombrePrograma}</td>
                                                     <td>${item.coordinacion}</td>
-                                                 <td>         
-                                                      <button class="btn btn-info btn-sm" role="button" onclick = "getActivitysByAprendiz('${item.id_aprendiz}')" >
+                                                 <td class="text-center">         
+                                                      <button class="btn btn-info btn-sm noexportar" role="button" onclick = "getActivitysByAprendiz('${item.id_aprendiz}')" >
                                                             <i class="fas fa-address-card"></i>
                                                         </button>           
                                                 </td>

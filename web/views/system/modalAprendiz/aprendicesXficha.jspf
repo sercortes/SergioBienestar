@@ -29,7 +29,7 @@
 
                                 </div>
                                 <div class="col-md-2">
-                                    <button id="generateXlsFicha" type="button" class="btn btn-success mb-3"><i class="far fa-file-excel"></i> Generar</button>
+                                    <button id="generateXlsFicha" type="button" class="btn btn-success mb-3 noexportar"><i class="far fa-file-excel"></i> Generar</button>
                                 </div>
                             </div>
                         </div>

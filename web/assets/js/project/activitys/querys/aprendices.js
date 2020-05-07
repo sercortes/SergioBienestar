@@ -138,9 +138,9 @@ function generabeHeaderTwo() {
 
 
 $('#prints').click(function () {
- 
+        
     generatePDF('#contenido', activ.nombre.toString().substring(0, 55), true)
-
+   
 })
 
 
