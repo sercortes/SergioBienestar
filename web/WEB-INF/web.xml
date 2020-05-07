@@ -57,6 +57,8 @@
         <url-pattern>/Users</url-pattern>
         <url-pattern>/Profile</url-pattern>
         <url-pattern>/Logs</url-pattern>
+        <url-pattern>/Error404</url-pattern>
+        <url-pattern>/Error500</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>activitys</servlet-name>
@@ -120,6 +122,18 @@
         <servlet-name>EventsLogs</servlet-name>
         <url-pattern>/getEventsLogs</url-pattern>
     </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error404</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/Error500</location>
+    </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <location>/Error500</location>
+    </error-page>
     <session-config>
         <session-timeout>
             30

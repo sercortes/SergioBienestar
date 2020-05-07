@@ -1,9 +1,6 @@
 .bg-gradient-login{
-     background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url(../img/login/login7.jpg);
-}
-
-#imgerror{
-    max-height:240px;
+     background:  url(../img/login/FondoError.jpg) no-repeat center center fixed;
+   background-size: cover;
 }
 
 .bg-gradient-login1{

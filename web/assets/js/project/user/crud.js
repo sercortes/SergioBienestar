@@ -63,7 +63,7 @@ function drawTable(data){
                                                     <td class="element">${item.email}</td>
                                                     <td class="element">${item.estatus == 1 ? 'habilitado' : 'deshabilitado' }</td>
                                                     <td class="element">${item.perfilO.nombre}</td>
-                                                 <td>         
+                                                 <td class="text-center">         
                                                       <button class="seeRespon btn btn-primary btn-sm">
                                                             <i class="fas fa-edit"></i>
                                                         </button>    

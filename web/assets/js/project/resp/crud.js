@@ -59,7 +59,7 @@ function drawTable(data){
                                                     <td class="element">${item.nombre}</td>
                                                     <td class="element">${item.codigo}</td>
                                                     <td class="element">${item.year}</td>
-                                                 <td>         
+                                                 <td class="text-center">         
                                                       <button class="seeRespon btn btn-warning btn-sm">
                                                             <i class="fas fa-edit"></i>
                                                         </button>    

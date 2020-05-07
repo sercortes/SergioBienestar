@@ -30,16 +30,16 @@ public class Routes extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String direccion = request.getRequestURI();
         RequestDispatcher rd;
-        
-        switch (direccion){
-             case "/bienestar/Logout":
-                    request.getSession().removeAttribute("MESSAGE");
-                    request.getSession().invalidate();
-                    response.sendRedirect("/bienestar/Start");
-                  break;
+
+        switch (direccion) {
+            case "/bienestar/Logout":
+                request.getSession().removeAttribute("MESSAGE");
+                request.getSession().invalidate();
+                response.sendRedirect("/bienestar/Start");
+                break;
             case "/bienestar/Start":
                 rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request, response);
@@ -60,32 +60,38 @@ public class Routes extends HttpServlet {
                 rd = request.getRequestDispatcher("/views/system/students.jsp");
                 rd.forward(request, response);
                 break;
-                case "/bienestar/Statistics":
+            case "/bienestar/Statistics":
                 rd = request.getRequestDispatcher("/views/system/statistics.jsp");
                 rd.forward(request, response);
                 break;
-                case "/bienestar/Responsables":
+            case "/bienestar/Responsables":
                 rd = request.getRequestDispatcher("/views/responsables/resp.jsp");
                 rd.forward(request, response);
                 break;
-                 case "/bienestar/Users":
+            case "/bienestar/Users":
                 rd = request.getRequestDispatcher("/views/users/user.jsp");
                 rd.forward(request, response);
                 break;
-                
-                case "/bienestar/Profile":
+
+            case "/bienestar/Profile":
                 rd = request.getRequestDispatcher("/views/system/profile/user.jsp");
                 rd.forward(request, response);
                 break;
-                
-                 case "/bienestar/Logs":
+
+            case "/bienestar/Logs":
                 rd = request.getRequestDispatcher("/views/system/logs/logs.jsp");
                 rd.forward(request, response);
                 break;
+            case "/bienestar/Error404":
+                rd = request.getRequestDispatcher("/views/error/error404.jsp");
+                rd.forward(request, response);
+                break;
+            case "/bienestar/Error500":
+                rd = request.getRequestDispatcher("/views/error/error500.jsp");
+                rd.forward(request, response);
+                break;
         }
-        
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
