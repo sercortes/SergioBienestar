@@ -1,5 +1,6 @@
 .bg-gradient-login{
-     background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url(../img/login/login7.jpg);
+       background:  url(../img/login/login7.jpg) no-repeat center center fixed;
+   background-size: cover;
 }
 
 #imgerror{

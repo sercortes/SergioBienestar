@@ -86,13 +86,19 @@ document.getElementById('formAdd').addEventListener('submit', function (ev){
     let surname = document.getElementById('surname').value
     let email = document.getElementById('email').value
     let pass = document.getElementById('password').value
+    
+    let passTwo = document.getElementById('passwordTwo').value
+    
     let perfil = document.getElementById('perfil').value
     let estado = document.getElementById('estado').value
 
     if (nombre == '' || surname == '' || email == '' || pass == '' || perfil == '' || estado == ''
             || nombre.length <= 2 || surname.length <= 2 || pass.length <= 6 || !email.toString().includes('@')) {
         messageInfo('complete el formulario')
-    } else {
+        
+    } else if(pass !== passTwo){
+        messageInfo('Las contraseñas no coinciden')
+    }else {
 
         let data = {
             nombre: nombre,

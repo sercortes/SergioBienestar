@@ -87,7 +87,7 @@
                                             </c:if>
                                         </form>
                                         <div class="text-center">
-                                            <a class="font-weight-bold small" href="#">Olvido la contraseña</a>
+                                            <a class="font-weight-bold small" href="#"></a>
                                         </div>
                                         <div class="text-center">
                                         </div>
