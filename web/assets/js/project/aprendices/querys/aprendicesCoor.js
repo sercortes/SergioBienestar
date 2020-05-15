@@ -87,7 +87,7 @@ function drawTable(data) {
 
 
     }
-    console.log(num)
+    
     total = num
 
 

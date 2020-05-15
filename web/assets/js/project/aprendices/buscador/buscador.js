@@ -60,7 +60,7 @@ function generateTableaprendices(data) {
                                                 </tr> `
         sum += parseInt(item.actividades.cantidad);
     }
-    console.log(sum)
+
     str += `      </tbody>
                                 <tfoot class="letrablanca">
                                     <tr class="tablas">

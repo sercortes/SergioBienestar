@@ -77,7 +77,7 @@ function listarCoor(data) {
                                                 </tr> `
             sum += parseInt(item.participaciones);
         }
-        console.log(sum)
+
         total = sum
         str += `      </tbody>
                                 <tfoot class="letrablanca">

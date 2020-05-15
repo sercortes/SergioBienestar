@@ -91,7 +91,6 @@ function generateTableBuscador() {
                                                 </tr> `
         num += parseInt(item.cantidad)
     }
-    console.log(num)
 
     str += `      </tbody>
                                 <tfoot class="letrablanca">

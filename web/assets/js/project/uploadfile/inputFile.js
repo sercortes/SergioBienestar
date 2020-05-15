@@ -52,7 +52,6 @@ $("#send").click(function (e) {
         cache: false,
         success: function (data) {
 
-           console.log(data)
             
                 if (data === '0') {
                     messageError('Seleccione un archivo válido')
@@ -69,8 +68,6 @@ $("#send").click(function (e) {
         },
         error: function (e) {
 
-            console.log(e)
-            
             hideAnimation()
             
             messageError('=(')

@@ -13,7 +13,7 @@
                 </div>
                 <div class="modal-body">
                              <div id="contenido">
-                    <img src="assets/img/logo/logoInforme.png" class="img-fluid oculto" >
+                 
                     <h6 class="chiquito" id="titulos"></h6>
                     <h6 class="chiquito" id="dimension"></h6>
                     <h6 class="chiquito" id="fechaI"></h6>

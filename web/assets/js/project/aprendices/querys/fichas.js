@@ -67,7 +67,6 @@ function fichasTotal(id){
                                                 </tr> `
         num +=parseInt(item.participaciones)
         }
-        console.log(num)
 
         str += `      </tbody>
                                 <tfoot class="letrablanca">
