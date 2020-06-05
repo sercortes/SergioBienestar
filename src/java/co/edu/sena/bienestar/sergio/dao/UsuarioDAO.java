@@ -140,7 +140,7 @@ public class UsuarioDAO {
       public ArrayList<Usuario> getUsers(int id) {
         try {
             String sql = "SELECT u.idUsuario, u.nombre, u.apellido, u.email, u.perfil, u.estatus, p.idPerfil, p.nombrePerfil "
-                    + "FROM Usuario u INNER JOIN perfil p ON u.perfil=p.idPerfil WHERE u.idUsuario <> ?";
+                    + "FROM Usuario u INNER JOIN perfil p ON u.perfil=p.idPerfil WHERE u.idUsuario <> ? AND u.idUsuario <> 1";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();

@@ -23,9 +23,7 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-//        int intentos = 0;
-
+           
         String userParam = request.getParameter("email");
         String passParam = request.getParameter("pass");
 

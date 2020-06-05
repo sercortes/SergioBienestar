@@ -24,7 +24,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link href="assets/img/logo/logooo.png" rel="icon">
+        <link href="assets/img/logo/logoH.png" rel="icon">
         <title>Login</title>
         <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
                                 <div class="col-lg-12">
                                     <div class="login-form">
                                         <div class="text-center">
-                                            <img src="assets/img/logo/logooo.png" class="rounded img-fluid" alt="Cinque Terre">
+                                            <img src="assets/img/logo/logoF.png" class="rounded img-fluid" alt="Cinque Terre">
                                             <hr>
                                         </div>
                                         <form class="user needs-validation" action="Login" method="post" novalidate>
@@ -90,12 +90,14 @@
                                             <a class="font-weight-bold small" href="#"></a>
                                         </div>
                                         <div class="text-center">
+                                            <b><a href="http://datasena.com/" target="_blank" style="text-decoration: none">Publicado en el Datacenter Académico</a></b>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

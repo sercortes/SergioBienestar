@@ -6,7 +6,9 @@
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
               <span>&copy; <b>SENA</b> 2020
-              <b><a href="#" target="_blank"> - Sergio Cortes</a></b>
+              <b><a href="#"> - Sergio Cortes</a></b>
+              <hr style="visibility: hidden">
+             <a href="http://datasena.com/" target="_blank">Publicado en el  <b>Datacenter Académico www.datasena.com</a></b>
             </span>
           </div>
         </div>
