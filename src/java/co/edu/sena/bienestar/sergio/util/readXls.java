@@ -117,7 +117,7 @@ public class readXls {
                                         // separando el campo programa de formación para obtener la ficha
                                         ficha = cell.getStringCellValue().split("-");
                                         aprendiz.setFicha(ficha[0].toString().substring(0, ficha[0].length() - 1));
-                                        aprendiz.setNombrePrograma(ficha[1].replaceFirst(" ", ""));
+                                        aprendiz.setNombrePrograma(ficha[1].replaceFirst(" ", "").replace(".", ""));
 
                                         // asignando cordinación por el programa de formación
                                         aprendiz.setCoordinacion(returnString.getCoordinacion(aprendiz.getNombrePrograma()));

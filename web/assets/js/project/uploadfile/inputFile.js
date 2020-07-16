@@ -24,14 +24,13 @@ $("#send").click(function (e) {
         return false
     }
     
-//    let size = $('#fileToUpload')[0].files[0].size
-//    let sizeDefined = Math.round((size / 1024))
-//    
-//    if (sizeDefined > 14000) {
-//        messageError('archivo muy grande')
-//        return false
-//    }
-
+    let size = $('#fileToUpload')[0].files[0].size
+    let sizeDefined = Math.round((size / 1024))
+    
+    if (sizeDefined > 14000) {
+        messageError('archivo muy grande')
+        return false
+    }
 
     var form = $('#formulario')[0]
     var data = new FormData(form)
