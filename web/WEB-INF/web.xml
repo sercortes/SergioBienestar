@@ -53,6 +53,7 @@
         <url-pattern>/Activitys</url-pattern>
         <url-pattern>/Aprendices</url-pattern>
         <url-pattern>/Statistics</url-pattern>
+        <url-pattern>/StatisticsDimensions</url-pattern>
         <url-pattern>/Responsables</url-pattern>
         <url-pattern>/Users</url-pattern>
         <url-pattern>/Profile</url-pattern>
@@ -101,6 +102,7 @@
         <url-pattern>/UpdateProgram</url-pattern>
         <url-pattern>/SelectByTypesbyYearProgram</url-pattern>
         <url-pattern>/SelectByTypesbyYearProgramGeneral</url-pattern>
+        <url-pattern>/SelectDimensions</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Responsable</servlet-name>

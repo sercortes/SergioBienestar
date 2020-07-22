@@ -231,6 +231,47 @@ public class ActividadDAO {
     }
    
     
+       public ArrayList<?> getStaticsByDimensions(Actividades actividades) {
+        try {
+            String sql = "SELECT ap.NombrePrograma, count(*) cantidad " +
+                            "FROM Actividades ac  " +
+                            "INNER JOIN Actividades_Aprendiz aa " +
+                            "ON ac.Id_actividad=aa.Cod_actividad " +
+                            "INNER JOIN Aprendiz ap ON aa.Cod_aprendiz = " +
+                            "ap.idAprendiz " +
+                            "WHERE ac.Tipo_actividad = ? " +
+                            "AND ac.Fecha_inicio BETWEEN ? AND ? " +
+                            "AND ac.Fecha_fin BETWEEN ? AND ? " +
+                            "group by(ap.NombrePrograma)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, actividades.getTipo_actividad());
+            
+            ps.setString(2, actividades.getYearStar());
+            ps.setString(3, actividades.getYearFinish());
+            ps.setString(4, actividades.getYearStar());
+            ps.setString(5, actividades.getYearFinish());
+            
+            System.out.println(ps.toString());
+            
+            rs = ps.executeQuery();
+            List<Actividades> list = new ArrayList<>();
+            Actividades activi;
+            while (rs.next()) {
+                activi = new Actividades();
+                activi.setLabel(rs.getString("ap.NombrePrograma"));
+                activi.setY(rs.getString("cantidad"));
+                
+                list.add(activi);
+                System.out.println(activi.toString());
+            }
+            return (ArrayList<?>) list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+   
+     
+     
     public ArrayList<?> getStaticsByTypeFicha(Aprendiz aprendiz) {
         try {
             String sql = "SELECT ac.Tipo_actividad, (count(ac.Tipo_actividad) * 100/ "

@@ -73,9 +73,15 @@ public class SelectQuerys extends HttpServlet {
                 
                 break;
                 
-                case "/bienestar/SelectByTypesbyYearProgramGeneral":
+            case "/bienestar/SelectByTypesbyYearProgramGeneral":
                 
                 SelectByTypesbyYearProgramGeneral(request, response);
+                
+                break;
+                
+            case "/bienestar/SelectDimensions":
+                
+                SelectDimensions(request, response);
                 
                 break;
             
@@ -239,6 +245,29 @@ public class SelectQuerys extends HttpServlet {
         ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
 
         ArrayList<?> activid = actividadDAO.getStaticsByTypeEveryYearProgramGeneral(actividades);
+
+        actividadDAO.CloseAll();
+        response.setContentType("application/json");
+        new Gson().toJson(activid, response.getWriter());
+        
+    }
+
+    private void SelectDimensions(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+   
+
+        Actividades actividades = new Actividades();
+        actividades.setYearStar(request.getParameter("yearStart"));
+        actividades.setYearFinish(request.getParameter("finishYear"));
+        actividades.setTipo_actividad(request.getParameter("tipo"));
+        
+        System.out.println(actividades.toString());
+        
+        Conexion conexion = new Conexion();
+        ActividadDAO actividadDAO = new ActividadDAO(conexion.getConnection());
+
+        ArrayList<?> activid = actividadDAO.getStaticsByDimensions(actividades);
 
         actividadDAO.CloseAll();
         response.setContentType("application/json");
